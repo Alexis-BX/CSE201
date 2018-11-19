@@ -1,13 +1,17 @@
 #ifndef OBJECT_H
 #define OBJECT_H
+#include <utility>
+
 
 
 class Object
 {
 public:
-    Object();
-    double* get_collision_box();
-    double pos_x, pos_y, size_x, size_y;
+    Object( std::pair<int,int> position, std::pair<int,int> size);
+    std::pair<int , int > position, size;
+    // std::pair<int,int> get_position, get_size; no use for now
+
+
 
 };
 

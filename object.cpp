@@ -6,12 +6,12 @@
 // https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1898475-lheritage
 
 
-Object::Object()
+Object::Object(std::pair<int,int> position, std::pair<int,int> size)
 {
-
+    this->position = position;
+    this->size = size;
 }
 
-double *Object::get_collision_box()
-{
-   return [pos_x,pos_y,size_x,size_y];
-}
+
+
+
