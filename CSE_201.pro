@@ -30,14 +30,20 @@ SOURCES += \
     character.cpp \
     player.cpp \
     block.cpp \
-    dead.cpp
+    dead.cpp \
+    block_p.cpp \
+    block_act.cpp \
+    block_ali.cpp
 
 HEADERS += \
     object.h \
     character.h \
     player.h \
     block.h \
-    dead.h
+    dead.h \
+    block_p.h \
+    block_act.h \
+    block_ali.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
