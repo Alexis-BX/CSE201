@@ -1,5 +1,3 @@
-#ifndef COLLECTIBLES_H
-#define COLLECTIBLES_H
 #include "dead.h"
 #pragma once
 
