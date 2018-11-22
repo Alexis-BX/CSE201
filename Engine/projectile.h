@@ -7,16 +7,16 @@ class Projectile: public Dead
 {
 public:
     int speed;
-    std::pair<int, int> direction;
+    pair direction;
     int life;
 
-    Projectile(std::pair<int,int> position, std::pair<int,int> size, int speed, std::pair<int, int> direction, int life);
+    Projectile(pair position, pair size, int speed, pair direction, int life);
 
-    void next_pos(std::pair<int,int> position, int speed, std::pair<int, int> direction);
+    void next_pos(pair position, int speed, pair direction);
 
-    bool die_progressively(int life, std::pair<int,int> position, std::pair<int,int> size, std::pair<int,int> direction);
+    bool die_progressively(int life, pair position, pair size, pair direction);
 
-    bool explode(std::pair<int,int> size);
+    bool explode(pair size);
 
 };
 
