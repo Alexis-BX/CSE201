@@ -1,12 +1,14 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <iostream>
-#include "Character.h"
+#include "character.h"
 using namespace std;
 
 class Player: public Character
 {
 public:
+    char state;
+    Player(pr position, pr size, char state);
     void goforward();
     void goback();
     void jump();

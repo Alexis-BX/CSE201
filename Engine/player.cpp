@@ -1,6 +1,5 @@
 #include "player.h"
 
-
 void Player::goforward(){
     pr newspeed;
     newspeed.x=10;//should be changed later

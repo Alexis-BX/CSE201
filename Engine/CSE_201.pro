@@ -28,12 +28,28 @@ SOURCES += \
         main.cpp \
     object.cpp \
     character.cpp \
-    player.cpp
+    player.cpp \
+    projectile.cpp\
+    block.cpp \
+    dead.cpp \
+    block_p.cpp \
+    block_act.cpp \
+    block_ali.cpp  \
+    coin.cpp \
+    collectibles.cpp
 
 HEADERS += \
     object.h \
     character.h \
-    player.h
+    player.h \
+    projectile.h \
+    block.h \
+    dead.h \
+    block_p.h \
+    block_act.h \
+    block_ali.h \
+    coin.h \
+    collectibles.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
