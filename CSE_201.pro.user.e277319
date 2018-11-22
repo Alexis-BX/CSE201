@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD:CSE_201.pro.user
 <!-- Written by QtCreator 4.7.2, 2018-11-19T14:48:29. -->
+=======
+<<<<<<< HEAD
+<!-- Written by QtCreator 4.7.2, 2018-11-20T15:25:06. -->
+=======
+<!-- Written by QtCreator 4.7.2, 2018-11-19T14:47:27. -->
+>>>>>>> 208f95c90dfead9bb959e9ca20e887526da05685
+>>>>>>> ce9921600c65ee485c5518135002dbbd88645610:CSE_201.pro.user.e277319
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>

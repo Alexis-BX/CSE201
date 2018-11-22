@@ -5,7 +5,8 @@
 class Dead: public Object
 {
 public:
-    Dead(std::pair<int,int> position, std::pair<int,int> size);
+    Dead(pair position, pair size, State state);
+
 
 };
 
