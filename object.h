@@ -1,14 +1,16 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+struct pr{
+    int x,y;
+};
 
 class Object
 {
 public:
-    Object();
+    Object(pr position, pr size);
     double* get_collision_box();
-    double pos_x, pos_y, size_x, size_y;
-
+    pr position,size;
 };
 
 

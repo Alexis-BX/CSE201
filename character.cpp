@@ -1,17 +1,15 @@
 #include "character.h"
+#include<iostream>
+using namespace std;
 
-Character::Character()
+void Character::set_speed(pr new_speed)
 {
-
+    speed.x= new_speed.x;
+    speed.y=new_speed.y;
 }
 
-void Character::set_speed(int new_speed)
-{
-    speed = new_speed;
-}
 
-
-int Character::get_speed()
+pr Character::get_speed()
 {
     return speed;
 }
