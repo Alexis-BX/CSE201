@@ -1,6 +1,6 @@
 #include "block.h"
 
-Block::Block(std::pair<int,int> position, std::pair<int,int> size) : Dead(position, size)
+Block::Block(pair position, pair size, State state) : Dead(position, size, state)
 {
 
 }
