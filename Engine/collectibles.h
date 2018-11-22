@@ -9,5 +9,5 @@ public:
 
 	char state;
 
-	Collectibles(std::pair<int,int> position, std::pair<int,int> size, char st);
+	Collectibles(pr position, pr size, char st);
 };
