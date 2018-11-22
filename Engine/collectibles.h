@@ -10,4 +10,8 @@ public:
 	char state;
 
 	Collectibles(pr position, pr size, char st);
+
+	bool Coll_state(char st);
+
+	bool Pass_by(char st);
 };
