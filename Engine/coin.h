@@ -4,7 +4,7 @@
 class Coin : public Collectibles
 {
 public:
-	Coin(std::pair<int,int> position, std::pair<int,int> size, char state);
+	Coin(pr position, pr size, enum state);
 
-	void Value(std::pair<int, int> size);
+	void Value(pr size);
 };

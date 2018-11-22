@@ -1,5 +1,3 @@
-#ifndef COLLECTIBLES_H
-#define COLLECTIBLES_H
 #include "dead.h"
 #pragma once
 
@@ -7,7 +5,11 @@ class Collectibles: public Dead
 {
 public:
 
-	char state;
+	enum state;
 
-	Collectibles(std::pair<int,int> position, std::pair<int,int> size, char st);
+	Collectibles(pr position, pr size, enum st);
+
+	bool Coll_state(enum st);
+
+	bool Pass_by(enum st);
 };
