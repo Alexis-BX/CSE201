@@ -1,12 +1,12 @@
 #include "collectibles.h"
 
 
-Collectibles::Collectibles(pr position, pr size, char st) : Dead(position,size)
+Collectibles::Collectibles(pr position, pr size, enum st) : Dead(position,size)
 {
 	state = st;
 }
 
-void Collectibles::Coll_state(char st)
+void Collectibles::Coll_state(enum st)
 {
 	state = st;
 	if (state == "Unused")
@@ -15,9 +15,9 @@ void Collectibles::Coll_state(char st)
 	}
 }
 
-bool Collectibles::Pass_by(char st)
+bool Collectibles::Pass_by(enum st)
 {
-	if (Collectibles::Coll_state(char st) == "Used")
+	if (Coll_state(st) == "Used")
 	{
 		return true;
 	}

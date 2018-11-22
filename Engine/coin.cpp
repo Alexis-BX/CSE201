@@ -1,6 +1,6 @@
 #include "coin.h"
 
-Coin::Coin(pr position, pr size, char state) : Collectibles(position, size, state)
+Coin::Coin(pr position, pr size, enum state) : Collectibles(position, size, state)
 {
 	
 }

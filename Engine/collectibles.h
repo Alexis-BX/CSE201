@@ -7,11 +7,11 @@ class Collectibles: public Dead
 {
 public:
 
-	char state;
+	enum state;
 
-	Collectibles(pr position, pr size, char st);
+	Collectibles(pr position, pr size, enum st);
 
-	bool Coll_state(char st);
+	bool Coll_state(enum st);
 
-	bool Pass_by(char st);
+	bool Pass_by(enum st);
 };
