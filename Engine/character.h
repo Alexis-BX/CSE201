@@ -1,16 +1,16 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include <Object.h>
+#include <object.h>
 
 class Character : public Object
 {
 public:
-    Character();
-    int speed = 0;
-    void set_speed(int new_speed);
-    int get_speed();
-
+    pr speed;
+    char state;
+    Character(pr position, pr size, char state);
+    void set_speed(pr new_speed);
+    pr get_speed();
 };
 
 #endif // CHARACTER_H
