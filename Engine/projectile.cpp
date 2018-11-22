@@ -1,20 +1,11 @@
 #include "projectile.h"
 
-Projectile::Projectile(int speed, std::pair<int, int> direction, int life) : Dead(position, size)
+Projectile::Projectile(std::pair<int,int> position, std::pair<int,int> size, int speed, std::pair<int, int> direction, int life) : Dead(position, size)
 {
     this -> speed = speed;
     this -> direction = direction;
     this -> life = life;
 
-}
-
-Projectile::~Projectile()
-{
-    delete position;
-    delete size;
-    delete life;
-    delete speed;
-    delete direction;
 }
 
 void Projectile::next_pos(std::pair<int,int> position, int speed, std::pair<int,int> direction)
@@ -43,9 +34,15 @@ bool Projectile::explode(std::pair<int,int> size)
     return false; //the destructor of the game state will make it disappear
 }
 
-bool die_progressively(int life, std::pair<int,int> position, std::pair<int,int> size)
+bool Projectile::die_progressively(int life, std::pair<int,int> position, std::pair<int,int> size, std::pair<int,int> direction)
 {
-    for
+    while (life>0) {
+        life-=life;
+        next_pos(position, speed, direction);
+        size.first-=1;
+        size.second-=1;
+    return false; //game state must make it disappear
+    }
 }
 
 
