@@ -7,7 +7,4 @@ public:
 
     Collectibles(pair position, pair size, State state);
 
-	bool Coll_state(enum st);
-
-	bool Pass_by(enum st);
 };

@@ -37,7 +37,7 @@ SOURCES += \
     block_ali.cpp  \
     coin.cpp \
     collectibles.cpp \
-    baguettes.cpp \
+    baguette.cpp \
     mushroom.cpp \
     star.cpp \
     cheese.cpp
@@ -54,7 +54,7 @@ HEADERS += \
     block_ali.h \
     coin.h \
     collectibles.h \
-    baguettes.h \
+    baguette.h \
     mushroom.h \
     star.h \
     cheese.h

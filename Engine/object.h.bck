@@ -6,7 +6,7 @@ struct pair{
     int x,y;
 };
 
-enum State {};
+enum State { };
 
 class Object
 {
