@@ -1,7 +1,8 @@
 #include "collectibles.h"
 
 
-Collectibles::Collectibles(pair position, pair size, State state) : Dead(position,size,state)
+Collectibles::Collectibles(pair position, pair size, State state): 
+      Dead(position, size, state)
 {
 
 }

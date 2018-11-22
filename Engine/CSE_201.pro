@@ -37,6 +37,10 @@ SOURCES += \
     block_ali.cpp  \
     coin.cpp \
     collectibles.cpp \
+<<<<<<< HEAD
+=======
+    baguette.cpp \
+>>>>>>> 30757372698b5ac1e2476893e41df1661a6a8e52
     mushroom.cpp \
     star.cpp
 
@@ -52,6 +56,10 @@ HEADERS += \
     block_ali.h \
     coin.h \
     collectibles.h \
+<<<<<<< HEAD
+=======
+    baguette.h \
+>>>>>>> 30757372698b5ac1e2476893e41df1661a6a8e52
     mushroom.h \
     star.h
 

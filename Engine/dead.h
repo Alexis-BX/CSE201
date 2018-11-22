@@ -5,8 +5,8 @@
 class Dead: public Object
 {
 public:
+      
     Dead(pair position, pair size, State state);
-
 
 };
 

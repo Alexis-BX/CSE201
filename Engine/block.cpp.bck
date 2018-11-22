@@ -1,6 +1,0 @@
-#include "block.h"
-
-Block::Block(pair position, pair size) : Dead(position, size)
-{
-
-}
