@@ -1,6 +1,7 @@
 #ifndef BLOCK_ALI_H
 #define BLOCK_ALI_H
 #include "block.h"
+//ALIVE BLOCKS
 
 class Block_Ali : public Block
 {
