@@ -3,6 +3,9 @@
 #include <string>
 #include "dead.h"
 
+
+// ALL DIFFERENT TYPES OF PROJECTILES WILL JUST BE DIFFERENT DUE TO THEIR STATE, THERE
+// IS NO NEED TO CREATE SUB CLASSES OF PROJECTILES
 class Projectile: public Dead
 {
 public:
@@ -17,6 +20,7 @@ public:
     bool die_progressively(int life, pair position, pair size, pair direction);
 
     bool explode(pair size);
+
 
 };
 

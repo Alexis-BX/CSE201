@@ -37,10 +37,8 @@ SOURCES += \
     block_ali.cpp  \
     coin.cpp \
     collectibles.cpp \
-    baguettes.cpp \
     mushroom.cpp \
-    star.cpp \
-    cheese.cpp
+    star.cpp
 
 HEADERS += \
     object.h \
@@ -54,10 +52,8 @@ HEADERS += \
     block_ali.h \
     coin.h \
     collectibles.h \
-    baguettes.h \
     mushroom.h \
-    star.h \
-    cheese.h
+    star.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
