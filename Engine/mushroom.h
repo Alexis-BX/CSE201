@@ -1,14 +1,19 @@
 #ifndef MUSHROOM_H
 #define MUSHROOM_H
-#include <string>
-#include "collectibles.h"
-#include "player.h"
 
-class Mushroom: public Collectibles
+#include "collectable.h"
+
+class Mushroom: public Collectable
 {
+
 public:
-    Mushroom(pr size, pr position, enum state);
-    void superpower(pr size); //if the player take a mushroom it doubles size except if he is already big
+
+    int life;
+
+    Mushroom(pair size, pair position, State state);
+
+    void superpower(pair size); //if the player take a mushroom it doubles size except if he is already big
+   
 
 };
 

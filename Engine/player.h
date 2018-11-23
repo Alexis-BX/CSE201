@@ -1,20 +1,33 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include <iostream>
+
 #include "character.h"
-using namespace std;
 
 class Player: public Character
 {
+
 public:
-    char state;
-    Player(pr position, pr size, char state);
+
+    int max_speed;
+
+    Player(pair position, pair size, State state);
+
+    Player(pair position);
+
+    void next_position();
+
     void goforward();
+
     void goback();
+
     void jump();
-    void growbigger();//these moving parts should have a default speed so we dont put parametres
+
+    void growbigger();
+
     void shrink();
+
     void stop();
+
 };
 
 #endif // PLAYER_H

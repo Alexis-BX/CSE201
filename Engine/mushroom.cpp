@@ -1,10 +1,13 @@
 #include "mushroom.h"
 
-Mushroom::Mushroom(pr position, pr size, enum state)
+Mushroom::Mushroom (pair position, pair size, State state):
+    Collectable (position, size, state)
 {
 
 }
 
+
+/**
 void Mushroom::superpower(pr size)
 {
     if (Collectibles::Pass_by == true) {
@@ -12,5 +15,5 @@ void Mushroom::superpower(pr size)
             Player::growbigger }
     }
 }
-
+**/
 

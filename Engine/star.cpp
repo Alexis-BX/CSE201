@@ -1,10 +1,12 @@
 #include "star.h"
 
-Star::Star(pr speed)
+Star::Star(pair speed)
 {
 
 }
 
+
+/**
 void Star::superpower(pr speed)
 {
     if (Collectibles::Pass_by == true) {
@@ -15,3 +17,4 @@ void Star::superpower(pr speed)
         Player::speeddown;
     }
 }
+**/

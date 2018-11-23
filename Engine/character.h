@@ -8,7 +8,10 @@ class Character : public Object
 public:
     pair speed;
 
-    Character(pair position, pair size, State state, int speed, pair direction);
+    Character(pair position, pair size, State state, pair speed);
+
+    Character(pair position, pair size, State state);
+
 };
 
 #endif // CHARACTER_H

@@ -32,17 +32,11 @@ SOURCES += \
     projectile.cpp\
     block.cpp \
     dead.cpp \
-    block_p.cpp \
-    block_act.cpp \
-    block_ali.cpp  \
-    coin.cpp \
-    collectibles.cpp \
-<<<<<<< HEAD
-=======
-    baguette.cpp \
->>>>>>> 30757372698b5ac1e2476893e41df1661a6a8e52
-    mushroom.cpp \
-    star.cpp
+    collectable.cpp \
+    screen.cpp \
+    gamestate.cpp \
+    is_colliding.cpp \
+    read_write.cpp
 
 HEADERS += \
     object.h \
@@ -51,17 +45,9 @@ HEADERS += \
     projectile.h \
     block.h \
     dead.h \
-    block_p.h \
-    block_act.h \
-    block_ali.h \
-    coin.h \
-    collectibles.h \
-<<<<<<< HEAD
-=======
-    baguette.h \
->>>>>>> 30757372698b5ac1e2476893e41df1661a6a8e52
-    mushroom.h \
-    star.h
+    collectable.h \
+    screen.h \
+    gamestate.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\object.o
+./debug\character.o
+./debug\player.o
+./debug\projectile.o
+./debug\block.o
+./debug\dead.o
+./debug\collectable.o
+./debug\screen.o
+./debug\gamestate.o
+./debug\is_colliding.o
+./debug\read_write.o
+./debug\moc_screen.o
+);

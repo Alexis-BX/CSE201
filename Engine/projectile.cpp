@@ -1,21 +1,22 @@
 #include "projectile.h"
 
-Projectile::Projectile(pair position, pair size, int speed, pair direction, int life, State state) : Dead(position, size, state)
+Projectile::Projectile(pair position, pair size, State state, pair speed, int life) : Dead(position, size, state)
 {
     this -> speed = speed;
-    this -> direction = direction;
     this -> life = life;
 }
 
-void Projectile::next_pos(pair position, int speed, pair direction)
+void Projectile::next_frame()
 {
 //Goal of this method is to update the position of the projectile
     // for now linear direction no parabola
-    position.x += speed* direction.x;
-    position.y += speed* direction.y;
+    position.x += speed.x;
+    position.y += speed.y;
 
 }
 
+
+/**
 bool Projectile::explode(pair size)
 {
 //We use this method to make a projectile explode, it doubles size and then dissapears using the destroctor
@@ -28,17 +29,17 @@ bool Projectile::explode(pair size)
     return false; //the destructor of the game state will make it disappear //FIX THIS: EXPLOSION ANIMATION
 }
 
-bool Projectile::die_progressively(int life, pair position, pair size, pair direction)
+bool Projectile::die_progressively()
 {
     while (life>0) {
         life-=life;
-        next_pos(position, speed, direction);
+        next_frame();
         size.x -= 1;
         size.y -= 1;
     return false; //game state must make it disappear
     }
 }
-
+**/
 
 
 

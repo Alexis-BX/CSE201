@@ -1,18 +1,18 @@
 #include "coin.h"
 
-Coin::Coin(pr position, pr size, enum state) : Collectibles(position, size, state)
+Coin::Coin(pair position, pair size, State state) : Collectable(position, size, state)
 {
 	
 }
-
-void Coin::Value(pr size)
+/**
+void Coin::Value(pair size)
 {
-	if (pr.x * pr.y <= 2)
+    if (size.x * size.y <= 2)
 	{
 		std::cout << "Value of 3" << std::endl;
 	}
 
-	if (pr.x * pr.y <= 6)
+    if (pair.x * pair.y <= 6)
 	{
 		std::cout << "Value of 7" << std::endl;
 	}
@@ -21,3 +21,4 @@ void Coin::Value(pr size)
 		std::cout << "Value of 13" << std::endl;
 	}
 }
+**/

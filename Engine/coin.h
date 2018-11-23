@@ -1,10 +1,16 @@
-#pragma once
-#include "collectibles.h"
+#ifndef COIN_H
+#define COIN_H
 
-class Coin : public Collectibles
+#include "collectable.h"
+
+class Coin : public Collectable
 {
-public:
-	Coin(pr position, pr size, enum state);
 
-	void Value(pr size);
+public:
+
+    Coin(pair position, pair size, State state);
+
+    //void Value(pair size);
 };
+
+#endif // COIN_H
