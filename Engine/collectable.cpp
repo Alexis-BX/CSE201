@@ -1,9 +1,12 @@
 #include "collectable.h"
 
 
-Collectable::Collectable(pair position, pair size, State state):
-      Dead(position, size, state)
+Collectable::Collectable(pair position, pair size, Collectable_state state, Collectable_type type):
+      Dead(position, size)
 {
+	this->state = state;
+
+	this->type = type;
 
 }
 /**
