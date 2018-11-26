@@ -56,9 +56,8 @@ public:
 
     pair position,size;
 
-    State state ;
 
-    Object(pair position, pair size, State state, QGraphicsItem* parent=0);
+    Object(pair position, pair size, QGraphicsItem* parent=0);
 
     void next_frame(pair &screen_top_left);
 

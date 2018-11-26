@@ -5,14 +5,13 @@
 // https://openclassrooms.com/fr/courses/1894236-programmez-avec-le-langage-c/1898475-lheritage
 
 
-Object::Object(pair position, pair size, State state, QGraphicsItem* parent): QObject(), QGraphicsRectItem(parent)
+Object::Object(pair position, pair size, QGraphicsItem* parent): QObject(), QGraphicsRectItem(parent)
 {
 
     this->position = position;
 
     this->size = size;
 
-    this->state = state;
 
 }
 
