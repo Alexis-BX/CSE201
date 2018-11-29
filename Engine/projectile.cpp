@@ -46,7 +46,7 @@ void Projectile::next_frame()
     }
 }
 
-void Projectile::hit(Projectile_state state)
+void Projectile::hit(Projectile_state state) //if porjectile is hit by something it changes state to dead
 {
     state = dead;
 }
@@ -62,36 +62,6 @@ void Projectile::explode() //if we want, the projectile can explode before chang
         state = dead;
     }
 }
-
-
-
-
-
-/**
-bool Projectile::explode(pair size)
-{
-//We use this method to make a projectile explode, it doubles size and then dissapears using the destroctor
-// must decide when we use explode either at the end of life of projectile or when touches smt TO DO
-
-    size.x *= 2;
-    size.y *= 2;``
-
-    size.x *= 2;
-    size.y *= 2;
-    return false; //the destructor of the game state will make it disappear //FIX THIS: EXPLOSION ANIMATION
-}
-
-bool Projectile::die_progressively()
-{
-    while (life>0) {
-        life-=life;
-        next_frame();
-        size.x -= 1;
-        size.y -= 1;
-    return false; //game state must make it disappear
-    }
-}
-**/
 
 
 
