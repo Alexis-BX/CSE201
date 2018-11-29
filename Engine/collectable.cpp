@@ -1,7 +1,7 @@
 #include "collectable.h"
 
 
-Collectable::Collectable(pair position, pair size, Collectable_state state, Collectable_type type):
+Collectable::Collectable(pair position, pair size, Collectable_state state, Collectable_type type):  // constructor: inherits position from the Dead class and gives the type and the state of the collectable 
       Dead(position, size)
 {
 	this->state = state;
