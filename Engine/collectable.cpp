@@ -1,12 +1,14 @@
 #include "collectable.h"
 
 
-Collectable::Collectable(pair position, pair size, Collectable_state state, Collectable_type type):  // constructor: inherits position from the Dead class and gives the type and the state of the collectable 
-      Dead(position, size)
+Collectable::Collectable(pair position, pair size, Collectable_state state, Collectable_type type, Collectable_texture texture):  // constructor: gives default aspects of the collectable 
+      Dead(position, size)                    // inherits the position and the size from the Dead class
 {
-	this->state = state;
+	this->state = state;                      // gives the state of the collectable
 
-	this->type = type;
+	this->type = type;                        // gives the type of the collectable
+
+	this->texture = texture;                  // gives the texture of the collectable
 
 }
 /**
