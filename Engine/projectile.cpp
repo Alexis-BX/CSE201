@@ -2,10 +2,12 @@
 
 Projectile::Projectile(pair position, pair speed, Projectile_state state, Projectile_type type) :
      Dead(position, size)
-{
+{   //initialisation
     this -> speed = speed;
     this -> state = state;
     this -> type = type;
+
+    //initializing life and size of projectile depending on it's type
     if (type == baguette){
         life = 100;
         size.x = 40;
@@ -25,8 +27,8 @@ Projectile::Projectile(pair position, pair speed, Projectile_state state, Projec
 
 void Projectile::next_frame()
 {
-//Goal of this method is to update the position of the projectile
-    // for now linear direction no parabola
+    //Goal of this method is to update the position of the projectile
+    //linear direction for smoke and baguette prjectile
     if (type == smoke || type == baguette){
         position.x += speed.x;
         position.y += speed.y;
@@ -38,21 +40,27 @@ void Projectile::next_frame()
         position.y -= 1;
     }
 
-    life -= 1;
+    life -= 1; //at each next frame, life of projectile diminishes by 1
     if (life == 0){
-        state = Projectile_state{dead};
+        state = Projectile_state{dead}; //if projectile have no more life, projectile change state from alive to dead
     }
 }
 
 void Projectile::hit(Projectile_state state)
 {
     state = dead;
-
 }
 
-void Projectile::explode()
+void Projectile::explode() //if we want, the projectile can explode before changing state to vanish or dead
 {
-    //do when you have collision
+    size.x *= 2;
+    size.y *= 2;
+    if (state == alive){
+        state = vanish;
+    }
+    else {
+        state = dead;
+    }
 }
 
 
