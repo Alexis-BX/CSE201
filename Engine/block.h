@@ -17,14 +17,11 @@ enum Block_state
     damaged, //the block is damaged (it has half life basically and the graphics change)
     operative, // the block can  be used to pop up coins for instance
     inoperative, // the block cannot be used anymore but remains there as a permanent block
-
 };
 
 enum Block_texture
 {
-    brick, // graphics texture of the blocks
-
-
+    brick // graphics texture of the blocks
 };
 
 class Block: public Dead
@@ -40,8 +37,6 @@ public:
 
     void hit_block();
     void destroy_block();
-
-
 };
 
 #endif // BLOCK_H

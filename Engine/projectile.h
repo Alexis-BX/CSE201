@@ -11,14 +11,14 @@ enum Projectile_state
 {
     alive,
     vanish,
-    dead
+    dead //if his life is over or it hit something
 };
 
 enum Projectile_type
 {
-    baguette, //player projectile
-    smoke,
-    wine
+    baguette, //player's projectile : horizantal attack
+    smoke, //enemy's projectile : horizantal attack
+    wine //player's projectile : downward attack to kill the thief roding right to left
 };
 
 class Projectile: public Dead
@@ -36,9 +36,9 @@ public:
 
     Projectile(pair position, pair speed, Projectile_state state = Projectile_state{alive}, Projectile_type type = Projectile_type{baguette});
 
-    void next_frame();
+    void next_frame(); //next position of the projectile depending on their way of moving
 
-    void die(Projectile_state state);
+    void hit(Projectile_state state);
 
     void explode();
 

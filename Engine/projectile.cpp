@@ -2,10 +2,12 @@
 
 Projectile::Projectile(pair position, pair speed, Projectile_state state, Projectile_type type) :
      Dead(position, size)
-{
+{   //initialisation
     this -> speed = speed;
     this -> state = state;
     this -> type = type;
+
+    //initializing life and size of projectile depending on it's type
     if (type == baguette){
         life = 100;
         size.x = 40;
@@ -25,8 +27,8 @@ Projectile::Projectile(pair position, pair speed, Projectile_state state, Projec
 
 void Projectile::next_frame()
 {
-//Goal of this method is to update the position of the projectile
-    // for now linear direction no parabola
+    //Goal of this method is to update the position of the projectile
+    //linear direction for smoke and baguette prjectile
     if (type == smoke || type == baguette){
         position.x += speed.x;
         position.y += speed.y;
@@ -38,52 +40,28 @@ void Projectile::next_frame()
         position.y -= 1;
     }
 
-    life -= 1;
+    life -= 1; //at each next frame, life of projectile diminishes by 1
     if (life == 0){
-        state = Projectile_state{dead};
+        state = Projectile_state{dead}; //if projectile have no more life, projectile change state from alive to dead
     }
 }
 
-void Projectile::hit(Projectile_state state)
+void Projectile::hit(Projectile_state state) //if porjectile is hit by something it changes state to dead
 {
     state = dead;
-
 }
 
-void Projectile::explode()
+void Projectile::explode() //if we want, the projectile can explode before changing state to vanish or dead
 {
-    //do when you have collision
-}
-
-
-
-
-
-/**
-bool Projectile::explode(pair size)
-{
-//We use this method to make a projectile explode, it doubles size and then dissapears using the destroctor
-// must decide when we use explode either at the end of life of projectile or when touches smt TO DO
-
-    size.x *= 2;
-    size.y *= 2;``
-
     size.x *= 2;
     size.y *= 2;
-    return false; //the destructor of the game state will make it disappear //FIX THIS: EXPLOSION ANIMATION
-}
-
-bool Projectile::die_progressively()
-{
-    while (life>0) {
-        life-=life;
-        next_frame();
-        size.x -= 1;
-        size.y -= 1;
-    return false; //game state must make it disappear
+    if (state == alive){
+        state = vanish;
+    }
+    else {
+        state = dead;
     }
 }
-**/
 
 
 

@@ -15,7 +15,6 @@ enum State
     block_permanent,
     block_active,
     block_alive,
-    baguette,
     star,
     mushroom,
     coin
