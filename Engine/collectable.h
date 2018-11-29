@@ -12,15 +12,30 @@ enum Collectable_texture { same , different };                 // shows if the p
 class Collectable: public Dead
 {
 
-public:
-
-    Collectable(pair position, pair size, Collectable_state state, Collectable_type type, Collectable_texture texture);  // constructor that initializes all aspects of collectable 
+private:
 
 	Collectable_state state;           // shows if the collectable is used or unused
 
 	Collectable_type type;             // shows the kind of collectable the player meets
 
 	Collectable_texture texture;       // the player meets the same or different collectable
+
+
+public:
+
+    Collectable(pair position, pair size, Collectable_state state, Collectable_type type, Collectable_texture texture);  // constructor that initializes all aspects of collectable 
+
+	void Set_State(Collectable_state state);
+
+	Collectable_state Get_State() const;
+
+	void Set_Type(Collectable_type type);
+
+	Collectable_type Get_Type() const;
+
+	void Set_Texture(Collectable_texture texture);
+
+	Collectable_texture Get_Texture() const;
 
 };
 

@@ -11,6 +11,37 @@ Collectable::Collectable(pair position, pair size, Collectable_state state, Coll
 	this->texture = texture;                  // gives the texture of the collectable
 
 }
+
+void Collectable::Set_State(Collectable_state state)
+{
+	this->state = state;
+}
+
+Collectable_state Collectable::Get_State() const
+{
+	return state;
+}
+
+void Collectable::Set_Type(Collectable_type type)
+{
+	this->type = type;
+}
+
+Collectable_type Collectable::Get_Type() const
+{
+	return type;
+}
+
+void Collectable::Set_Texture(Collectable_texture texture)
+{
+	this->texture = texture;
+}
+
+Collectable_texture Collectable::Get_Texture() const
+{
+	return texture;
+}
+
 /**
 void Collectibles::Coll_state(enum st)
 {
