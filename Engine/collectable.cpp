@@ -1,20 +1,23 @@
 #include "collectable.h"
+#include "screen.h"
+#include "player.h"
 
 
-Collectable::Collectable(pair position, pair size, Collectable_state state, Collectable_type type, Collectable_texture texture):  // constructor: gives default aspects of the collectable 
-      Dead(position, size)                    // inherits the position and the size from the Dead class
+Collectable::Collectable(pair position, pair size, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
+      QObject (), QGraphicsPixmapItem (parent)
 {
-	this->state = state;                      // gives the state of the collectable
+    setPos(position.x, position.y);
+    this -> type = type;
+    this -> state = state;                      // gives the state of the collectable                        // gives the type of the collectable
+    this -> texture = texture;                  // gives the texture of the collectable
+    this -> size = size;
 
-	this->type = type;                        // gives the type of the collectable
-
-	this->texture = texture;                  // gives the texture of the collectable
-
+    setPixmap(QPixmap(":/images/Collectables.png"));
 }
 
 void Collectable::Set_State(Collectable_state state)
 {
-	this->state = state;
+    this -> state = state;
 }
 
 Collectable_state Collectable::Get_State() const
@@ -42,26 +45,3 @@ Collectable_texture Collectable::Get_Texture() const
 	return texture;
 }
 
-/**
-void Collectibles::Coll_state(enum st)
-{
-	state = st;
-	if (state == "Unused")
-	{
-		state = "Used";
-	}
-}
-
-bool Collectibles::Pass_by(enum st)
-{
-	if (Coll_state(st) == "Used")
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
->>>>>>> a9ac4fb338b8d1131064a9c93d7b190498c2e9d3
-}
-**/

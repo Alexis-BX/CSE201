@@ -1,10 +1,19 @@
 #ifndef COLLECTABLE_H
 #define COLLECTABLE_H 
 
-#include "dead.h"
+#include <QGraphicsPixmapItem>
+#include <QObject>
 
-enum Collectable_state // the collectable can either be used by the player or not
-<<<<<<< HEAD
+struct pair
+{
+    int x,y ;
+};
+
+class Screen;
+
+extern Screen* screen;
+
+enum Collectable_state  // the collectable can either be used by the player or not
 {
     used,
     unused
@@ -14,60 +23,42 @@ enum Collectable_type // shows all kinds of collectables that can appear
 {
     star,
     mushroom,
-    eclair };
+    eclair
+};
 
 enum Collectable_texture  // shows if the player meets the same or different collectable
 {
     same,
     different
 };
-=======
-{ 
-	used, 
-	unused 
-};                       
 
-enum Collectable_type // shows all kinds of collectables that can appear 
-{ 
-	star, 
-	mushroom, 
-	eclair 
-};              
-
-enum Collectable_texture  // shows if the player meets the same or different collectable 
-{ 
-	same , 
-	different 
-};                 
->>>>>>> 2d13bfdbaa6150f40d6c33a62a50b0206f640c10
-
-class Collectable: public Dead
+class Collectable : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 
 private:
 
-	Collectable_state state;           // shows if the collectable is used or unused
-
-	Collectable_type type;             // shows the kind of collectable the player meets
-
-	Collectable_texture texture;       // the player meets the same or different collectable
-
+    Collectable_type type;             // shows the kind of collectable the player meets
+    Collectable_state state;           // shows if the collectable is used or unused
+    Collectable_texture texture;       // the player meets the same or different collectable
 
 public:
 
-    Collectable(pair position, pair size, Collectable_state state, Collectable_type type, Collectable_texture texture);  // constructor that initializes all aspects of collectable 
+    pair size;
 
-	void Set_State(Collectable_state state);
+    Collectable(pair position, pair size, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent = 0 );
 
-	Collectable_state Get_State() const;
+    void Set_State(Collectable_state state);
 
-	void Set_Type(Collectable_type type);
+    Collectable_state Get_State() const;
 
-	Collectable_type Get_Type() const;
+    void Set_Type(Collectable_type type);
 
-	void Set_Texture(Collectable_texture texture);
+    Collectable_type Get_Type() const;
 
-	Collectable_texture Get_Texture() const;
+    void Set_Texture(Collectable_texture texture);
+
+    Collectable_texture Get_Texture() const;
 
 };
 

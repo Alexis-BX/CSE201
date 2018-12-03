@@ -1,11 +1,17 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include "dead.h"
+#include <QGraphicsPixmapItem>
+#include <QObject>
 
+struct pair
+{
+    int x, y ;
+};
 
-// ALL DIFFERENT TYPES OF PROJECTILES WILL JUST BE DIFFERENT DUE TO THEIR STATE, THERE
-// IS NO NEED TO CREATE SUB CLASSES OF PROJECTILES
+class Screen;
+
+extern Screen* screen;
 
 enum Projectile_state
 {
@@ -21,32 +27,28 @@ enum Projectile_type
     wine //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
 };
 
-class Projectile: public Dead
+
+class Projectile : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
 
-public:
-
-    pair speed;
-
-    int life;
-
-    Projectile_state state;
+private:
 
     Projectile_type type;
+    Projectile_state state;
 
-    Projectile(pair position, pair speed, Projectile_state state = Projectile_state{alive}, Projectile_type type = Projectile_type{baguette});
+public:
+    int life;
+    pair speed;
+    pair size;
 
-    void next_frame(); //next position of the projectile depending on their way of moving
+    Projectile(pair position, pair size, pair speed, Projectile_type type = Projectile_type{baguette}, Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
+
+    void move(); //next position of the projectile depending on their way of moving
 
     void hit(Projectile_state state);
 
     void explode();
-
-    //bool die_progressively(int life, pair position, pair size, pair direction);
-
-    //bool explode(pair size);
-
-
 };
 
 #endif // PROJECTILE_H

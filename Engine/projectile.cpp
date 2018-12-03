@@ -1,11 +1,18 @@
 #include "projectile.h"
+#include "screen.h"
+#include "player.h"
 
-Projectile::Projectile(pair position, pair speed, Projectile_state state, Projectile_type type) :
-     Dead(position, size)
+Projectile::Projectile(pair position, pair size, pair speed, Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
+    QObject (), QGraphicsPixmapItem (parent)
+
 {   //initialisation
-    this -> speed = speed;
-    this -> state = state;
+    setPos (position.x, position.y);
     this -> type = type;
+    this -> state = state;
+    this -> speed = speed;
+    this -> size = size;
+
+    setPixmap(QPixmap(":/images/Projectile.png"));
 
     //initializing life and size of projectile depending on it's type
     if (type == baguette){
@@ -25,19 +32,19 @@ Projectile::Projectile(pair position, pair speed, Projectile_state state, Projec
     }
 }
 
-void Projectile::next_frame()
+void Projectile::move()
 {
     //Goal of this method is to update the position of the projectile
     //linear direction for smoke and baguette prjectile
     if (type == smoke || type == baguette){
-        position.x += speed.x;
-        position.y += speed.y;
+        setX(speed.x);
+        setY(speed.y);
     }
 
     // if type == wine: mario throw bottle of wine down in diagonal
     else {
-        position.x += 2;
-        position.y -= 1;
+        setX(2);
+        setY(1);
     }
 
     life -= 1; //at each next frame, life of projectile diminishes by 1
