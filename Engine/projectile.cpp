@@ -34,7 +34,7 @@ void Projectile::next_frame()
         position.y += speed.y;
     }
 
-    //if type == wine: mario throw bottle of wine down in diagonal
+    // if type == wine: mario throw bottle of wine down in diagonal
     else {
         position.x += 2;
         position.y -= 1;

@@ -36,7 +36,8 @@ SOURCES += \
     screen.cpp \
     gamestate.cpp \
     is_colliding.cpp \
-    read_write.cpp
+    read_write.cpp \
+    read_files.cpp
 
 HEADERS += \
     object.h \

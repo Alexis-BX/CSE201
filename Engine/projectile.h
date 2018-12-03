@@ -18,7 +18,7 @@ enum Projectile_type
 {
     baguette, //player's projectile : horizantal attack
     smoke, //enemy's projectile : horizantal attack
-    wine //player's projectile : downward attack to kill the thief roding right to left
+    wine //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
 };
 
 class Projectile: public Dead

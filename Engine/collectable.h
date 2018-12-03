@@ -3,17 +3,20 @@
 
 #include "dead.h"
 
-enum Collectable_state {  // the collectable can either be used by the player or not
+enum Collectable_state // the collectable can either be used by the player or not
+{
     used,
     unused
 };
 
-enum Collectable_type { // shows all kinds of collectables that can appear
+enum Collectable_type // shows all kinds of collectables that can appear
+{
     star,
     mushroom,
     eclair };
 
-enum Collectable_texture {  // shows if the player meets the same or different collectable
+enum Collectable_texture  // shows if the player meets the same or different collectable
+{
     same,
     different
 };
