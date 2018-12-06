@@ -1,4 +1,3 @@
-
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -12,7 +11,9 @@ struct double_pair
     int left,right,bottom,top;
 };
 
-struct pair{
+
+struct pair
+{
     int x,y;
 };
 
@@ -29,9 +30,10 @@ public:
     bool pressedL = false;
     bool pressedR = false;
     int size = 36;
+    int M = 5;
     int N = 8;
     double count;
-    QPixmap crouch[8];
+    QPixmap animations[5][8];
 
     Player(QGraphicsItem* parent = 0);
 

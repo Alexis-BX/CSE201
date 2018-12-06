@@ -5,11 +5,15 @@
 #include <cmath>
 
 Player::Player(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent){
-    QPixmap img(":/images/character_crouching.png");
-    for (int i = 0; i<N; i++){
-        crouch[i] = img.copy(i*size, 0, size, size);
+
+    QPixmap imgChar(":/images/character.png");
+    for (int j = (int)0; j<M; j++){
+        for (int i = (int)0; i<N; i++){
+            animations[j][i] = imgChar.copy(i*size, j*size, size, size);
+        }
     }
-    setPixmap(crouch[0]);
+
+    setPixmap(animations[0][0]);
     count = 0;
 
     speed = pair{0,0};
@@ -61,18 +65,44 @@ void Player::move()
     //in boundaries
     if(y()>=world_boundaries.bottom){
         speed.y = (0 > speed.y) ? speed.y : 0 ;
+        setY(world_boundaries.bottom);
     }
     if(x()<=world_boundaries.left){
         speed.x = (0 < speed.x) ? speed.x : 0 ;
+        setX(world_boundaries.left);
     }
     else if(x() >= world_boundaries.right){
         speed.x = (0 > speed.x) ? speed.x : 0 ;
+        setX(world_boundaries.right);
     }
 
     //animation
     count += 0.1;
     if (count>=N){count = 0;}
-    setPixmap(crouch[(int) count]);
+    if (speed.x<0){
+        if (speed.y<0){
+            setPixmap(animations[2][(int) count]);//flip
+        }
+        else{
+            setPixmap(animations[3][(int) count]);//flip
+        }
+    }
+    else if(speed.x>0){
+        if (speed.y<0){
+            setPixmap(animations[2][(int) count]);
+        }
+        else{
+            setPixmap(animations[3][(int) count]);
+        }
+    }
+    else{
+        if (speed.y<0){
+            setPixmap(animations[1][(int) count]);
+        }
+        else{
+            setPixmap(animations[0][(int) count]);
+        }
+    }
 
     setPos(x()+speed.x,y()+speed.y);
 
