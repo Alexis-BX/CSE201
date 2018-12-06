@@ -4,10 +4,7 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
-struct pair
-{
-    int x, y ;
-};
+struct pair;
 
 class Screen;
 

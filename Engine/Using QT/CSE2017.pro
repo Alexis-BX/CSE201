@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-11-15T11:26:12
+# Project created by QtCreator 2018-11-28T07:03:39
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = CSE_201
+TARGET = CSE2017
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -26,31 +26,26 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    object.cpp \
-    character.cpp \
     player.cpp \
-    projectile.cpp\
     block.cpp \
-    dead.cpp \
-    collectable.cpp \
-    screen.cpp \
-    gamestate.cpp \
-    is_colliding.cpp \
-    read_write.cpp \
-    read_files.cpp
+    view.cpp \
+    projectile.cpp \
+    collectable.cpp
 
 HEADERS += \
-    object.h \
-    character.h \
     player.h \
-    projectile.h \
     block.h \
-    dead.h \
-    collectable.h \
-    screen.h \
-    gamestate.h
+    view.h \
+    projectile.h \
+    collectable.h
+
+
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Transparent2.png</file>
+        <file>Mario.png</file>
+        <file>Brick.png</file>
+    </qresource>
+</RCC>

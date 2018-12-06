@@ -1,6 +1,6 @@
 #include "projectile.h"
-#include "screen.h"
 #include "player.h"
+#include "view.h"
 
 Projectile::Projectile(pair position, pair size, pair speed, Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)

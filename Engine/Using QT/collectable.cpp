@@ -1,6 +1,6 @@
 #include "collectable.h"
-#include "screen.h"
 #include "player.h"
+#include "view.h"
 
 
 Collectable::Collectable(pair position, pair size, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
