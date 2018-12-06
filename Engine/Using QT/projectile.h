@@ -4,7 +4,9 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
-struct pair;
+struct pair{
+    int x,y;
+};
 
 class Screen;
 

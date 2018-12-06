@@ -6,8 +6,7 @@
 
 class Player;
 
-struct pair
-{
+struct pair{
     int x,y;
 };
 

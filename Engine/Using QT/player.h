@@ -10,10 +10,11 @@
 struct double_pair
 {
     int left,right,bottom,top;
-
 };
 
-struct pair;
+struct pair{
+    int x,y;
+};
 
 class View;
 
