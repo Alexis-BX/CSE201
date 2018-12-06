@@ -1,11 +1,6 @@
 #include <QApplication>
 #include "view.h"
-
-struct pair;
-
-
-#include "view.h"
-
+#include "structures.h"
 
 View* view;
 

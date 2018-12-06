@@ -9,7 +9,7 @@
 
 class View;
 
-extern View* view;s
+extern View* view;
 
 class Player : public QObject, public QGraphicsPixmapItem
 {

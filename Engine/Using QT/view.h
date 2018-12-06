@@ -3,12 +3,9 @@
 
 #include <QGraphicsView>
 #include <QtWidgets>
+#include "structures.h"
 
 class Player;
-
-struct pair{
-    int x,y;
-};
 
 class View : public QGraphicsView
 {

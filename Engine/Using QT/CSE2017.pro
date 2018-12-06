@@ -37,7 +37,8 @@ HEADERS += \
     block.h \
     view.h \
     projectile.h \
-    collectable.h
+    collectable.h \
+    structures.h
 
 
 

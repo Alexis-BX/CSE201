@@ -3,15 +3,11 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
+#include "structures.h"
 
-struct pair
-{
-    int x,y;
-};
+class View;
 
-class Screen;
-
-extern Screen* screen;
+extern View* view;
 
 enum Collectable_state  // the collectable can either be used by the player or not
 {

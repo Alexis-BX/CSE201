@@ -3,11 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
-
-struct pair
-{
-    int x,y;
-};
+#include "structures.h"
 
 enum Block_state
 {

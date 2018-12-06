@@ -4,13 +4,9 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 
-struct pair{
-    int x,y;
-};
+class View;
 
-class Screen;
-
-extern Screen* screen;
+extern View* view;
 
 enum Projectile_state
 {
