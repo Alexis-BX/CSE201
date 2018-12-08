@@ -2,34 +2,47 @@
 #include "player.h"
 #include "view.h"
 
-Projectile::Projectile(pair position, pair size, pair speed, Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
+Projectile::Projectile(pair position, bool direction, Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 
 {   //initialisation
     setPos (position.x, position.y);
     this -> type = type;
     this -> state = state;
-    this -> speed = speed;
-    this -> size = size;
 
-    setPixmap(QPixmap(":/images/Projectile.png"));
+    setPixmap(QPixmap(":/images/Mario.png"));
 
     //initializing life and size of projectile depending on it's type
     if (type == baguette){
-        life = 100;
-        size.x = 40;
-        size.y = 10;
+        life = 1000;
+        size = pair{40,10};
+        if (direction)
+        {
+            speed = pair{5,0};
+        }
+        else
+        {
+            speed = pair{-5,0};
+        }
     }
     if (type == smoke){
         life = 200;
-        size.x = 18;
-        size.y = 18;
+        size = pair {18,18};
+        speed = pair{5,10};
     }
     if (type == wine){
         life = 50;
-        size.x = 20;
-        size.y = 10;
+        size = pair{20,10};
+        speed = pair{5,10};
     }
+
+    setPos(position.x, position.y);
+
+    QTimer * timer = new QTimer();
+
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+
+    timer->start(20);
 }
 
 void Projectile::move()
@@ -37,8 +50,8 @@ void Projectile::move()
     //Goal of this method is to update the position of the projectile
     //linear direction for smoke and baguette prjectile
     if (type == smoke || type == baguette){
-        setX(speed.x);
-        setY(speed.y);
+        setX(x() + speed.x);
+        setY(y() + speed.y);
     }
 
     // if type == wine: mario throw bottle of wine down in diagonal
