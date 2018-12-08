@@ -3,6 +3,7 @@
 #include <QtDebug>
 #include <QTimer>
 #include <cmath>
+#include "projectile.h"
 
 Player::Player(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent){
 
@@ -27,6 +28,8 @@ Player::Player(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 
     world_boundaries = double_pair{0,1000,-36,-100}; //PIXELS ATTENTION
 
+    //facing = right;
+
 
     collision_range = new QGraphicsRectItem(this);
     block_size = 18;
@@ -47,8 +50,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Right){
         pressedR=true;
     }
-    else if (event->key() == Qt::Key_Space){
+    else if (event->key() == Qt::Key_Up){
         speed.y -= 10;
+    }
+
+    else if (event -> key() == Qt::Key_Space){
+        throwprojectile();
     }
 }
 
@@ -56,8 +63,6 @@ void Player::keyPressEvent(QKeyEvent *event)
 void Player::move()
 {
     QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-
-
 
     speed.y += 1;
 
@@ -476,13 +481,10 @@ void Player::move()
     } //end of for loop
 
 
-
-
-
-
     setPos(x()+speed.x,y()+speed.y);
 
     view->centerOn(this);
+
 } //end of fonction
 
 
@@ -494,4 +496,17 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Right){
         pressedR = false;
     }
+}
+
+void Player::throwprojectile()
+{
+    if (speed.x == 0)
+    {
+        return;
+    }
+    Projectile* projectile = new Projectile(pair{int(x()),int(y())}, (speed.x > 0));
+
+    view->scene->addItem(projectile);
+    printf("h");
+
 }
