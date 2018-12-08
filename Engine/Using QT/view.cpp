@@ -34,7 +34,39 @@ View::View(pair screen_size, int block_size, QWidget* parent)
 }
 
 void View::create_basic_world(int width)
-{
+{   //test blocks
+    create_block(pair{150,-18});
+    create_block(pair{150,-36});
+    create_block(pair{150,-54});
+
+    create_block(pair{20,-18});
+    create_block(pair{20,-36});
+    create_block(pair{20,-54});
+
+    create_block(pair{254,-18});
+    create_block(pair{254,-36});
+    create_block(pair{254,-54});
+
+
+    create_block(pair{58,-162});
+    create_block(pair{40,-162});
+    create_block(pair{76,-162});
+    create_block(pair{94,-162});
+
+    create_block(pair{200,-108});
+    create_block(pair{218,-108});
+    create_block(pair{236,-108});
+    create_block(pair{254,-108});
+    create_block(pair{272,-108});
+
+    create_block(pair{550,-18});
+    create_block(pair{450,-36});
+    create_block(pair{350,-54});
+    create_block(pair{650,-72});
+    create_block(pair{750,-90});
+    create_block(pair{750,-108});
+    create_block(pair{850,-1});
+
     int i = -(rand()%15 +5);
     for(int x = 0 ; x < width ; x++)
     {

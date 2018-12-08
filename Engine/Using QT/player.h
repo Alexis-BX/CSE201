@@ -9,7 +9,7 @@
 
 class View;
 
-extern View* view;s
+extern View* view;
 
 class Player : public QObject, public QGraphicsPixmapItem
 {
@@ -32,6 +32,10 @@ public:
     void keyReleaseEvent(QKeyEvent * event);
 
     double_pair world_boundaries;
+
+    int block_size = 18;
+
+    QGraphicsRectItem* collision_range;
 
 public slots:
 

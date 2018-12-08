@@ -12,5 +12,5 @@ Block::Block(pair position, Block_type type, Block_state state, Block_texture te
 
     this->texture = texture;
 
-    setPixmap(QPixmap(":/images/Brick.png"));
+    setPixmap(QPixmap(":/images/brick18.png")); //JUST A WORKING BRICK WITH THE RIGHT DIMENSIONS
 }

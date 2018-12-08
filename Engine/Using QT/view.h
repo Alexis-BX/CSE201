@@ -12,7 +12,7 @@ class View : public QGraphicsView
 
 public:
 
-    View(pair screen_size, int block_size = 10, QWidget * parent=0);
+    View(pair screen_size, int block_size = 18, QWidget * parent=0);
 
     int block_size;
 
