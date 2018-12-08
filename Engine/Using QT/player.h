@@ -33,9 +33,11 @@ public:
 
     double_pair world_boundaries;
 
-    int block_size = 18;
+    void throwprojectile();
 
     QGraphicsRectItem* collision_range;
+
+    //direction facing;
 
 public slots:
 
