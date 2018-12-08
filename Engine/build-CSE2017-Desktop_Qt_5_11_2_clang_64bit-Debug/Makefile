@@ -1096,7 +1096,8 @@ player.o: ../Using\ QT/player.cpp ../Using\ QT/player.h \
 		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QtDebug \
 		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QTimer \
-		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qtimer.h
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		../Using\ QT/projectile.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../Using\ QT/player.cpp
 
 block.o: ../Using\ QT/block.cpp ../Using\ QT/block.h \
@@ -1524,7 +1525,13 @@ projectile.o: ../Using\ QT/projectile.cpp ../Using\ QT/projectile.h \
 		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
-		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QtDebug \
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QTime \
+		/Users/adrienmellot/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o projectile.o ../Using\ QT/projectile.cpp
 
 collectable.o: ../Using\ QT/collectable.cpp ../Using\ QT/collectable.h \

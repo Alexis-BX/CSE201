@@ -3,7 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
-#include "structures.h"
+#include <structures.h>
 
 class View;
 
@@ -37,14 +37,20 @@ public:
     int life;
     pair speed;
     pair size;
+    pair position;
 
-    Projectile(pair position, pair size, pair speed, Projectile_type type = Projectile_type{baguette}, Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
-
-    void move(); //next position of the projectile depending on their way of moving
+    Projectile(pair position, bool direction, Projectile_type type = Projectile_type{baguette}, Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
 
     void hit(Projectile_state state);
 
     void explode();
+
+    QGraphicsRectItem* collision_range_proj;
+
+public slots:
+
+    void move(); //next position of the projectile depending on their way of moving
+
 };
 
 #endif // PROJECTILE_H

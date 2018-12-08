@@ -3,8 +3,9 @@
 #include <QtDebug>
 #include <QTimer>
 #include <cmath>
+#include "projectile.h"
 
-Player::Player(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent){
+Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent){
 
     QPixmap imgChar(":/images/character.png");
     for (int j = (int)0; j<M; j++){
@@ -25,19 +26,33 @@ Player::Player(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 
     timer->start(20);
 
-    world_boundaries = double_pair{0,1000,-36,-100}; //PIXELS ATTENTION
+    world_boundaries = double_pair{0,1764,-36,-100}; //PIXELS ATTENTION
 
 
     collision_range = new QGraphicsRectItem(this);
     block_size = 18;
-    size = 36; //size of the player and the objects
     collision_range->setRect(0,0,size + size/2, size + size/2);
 
     collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
 
+    this->direction = 1; //0 = left, 1 = right
 
+    this->size = size;
 
 }
+
+
+
+/**NOTE:
+ *  FOR THE moment i made it so the player chooses the items he throws just for testing collisions
+ * the designs i made are shit and i know it but again its just to test
+ *
+ * - adrien
+ *
+ *
+ *
+ *
+ * **/
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
@@ -47,9 +62,22 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Right){
         pressedR=true;
     }
-    else if (event->key() == Qt::Key_Space){
+    else if (event->key() == Qt::Key_Up){
         speed.y -= 10;
     }
+
+    else if(event->key() == Qt::Key_1){
+        throwprojectile(1);
+    }
+
+    else if(event->key() == Qt::Key_2){
+        throwprojectile(2);
+    }
+
+    else if(event->key() == Qt::Key_3){
+        throwprojectile(3);
+    }
+
 }
 
 
@@ -57,6 +85,7 @@ void Player::move()
 {
     QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
 
+    view->centerOn(this);
 
 
     speed.y += 1;
@@ -478,6 +507,10 @@ void Player::move()
 
 
 
+    //Direction of the player:
+    if (pressedR){direction = 1;}
+    if (pressedL){direction = 0;}
+
 
 
     setPos(x()+speed.x,y()+speed.y);
@@ -493,5 +526,57 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Right){
         pressedR = false;
+    }
+}
+
+
+void Player::throwprojectile(int i)
+{
+
+    // for the directino of the projectile: define a "last velocity speed"
+    // then the direction is the direction of this last velocity
+    if(i == 1)
+    {
+        if (direction == 1)
+        {   // the player faces right, the projectile is thrown to the right
+            Projectile* projectile = new Projectile(pair{int(x() + size ),int(y() +  size/4)}, direction, Projectile_type{baguette});
+            view->scene->addItem(projectile);
+        }
+        else
+        {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
+            // -19... we would like -projectile.size.x - 1
+            Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{baguette});
+            view->scene->addItem(projectile);
+        }
+    }
+
+    if(i == 2)
+    {
+        if (direction == 1)
+        {   // the player faces right, the projectile is thrown to the right
+            Projectile* projectile = new Projectile(pair{int(x() + size ),int(y() +  size/4)}, direction, Projectile_type{wine});
+            view->scene->addItem(projectile);
+        }
+        else
+        {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
+            // -19... we would like -projectile.size.x - 1
+            Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{wine});
+            view->scene->addItem(projectile);
+        }
+    }
+
+    if(i == 3)
+    {
+        if (direction == 1)
+        {   // the player faces right, the projectile is thrown to the right
+            Projectile* projectile = new Projectile(pair{int(x() + size ),int(y() +  size/4)}, direction, Projectile_type{smoke});
+            view->scene->addItem(projectile);
+        }
+        else
+        {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
+            // -19... we would like -projectile.size.x - 1
+            Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{smoke});
+            view->scene->addItem(projectile);
+        }
     }
 }

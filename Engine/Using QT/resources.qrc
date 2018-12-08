@@ -4,5 +4,9 @@
         <file>Brick.png</file>
         <file>brick18.png</file>
         <file>character.png</file>
+        <file>smoke.png</file>
+        <file>wine.png</file>
+        <file>baguette.png</file>
+        <file>explosion.png</file>
     </qresource>
 </RCC>

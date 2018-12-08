@@ -19,13 +19,12 @@ public:
     pair speed;
     bool pressedL = false;
     bool pressedR = false;
-    int size = 36;
     int M = 5;
     int N = 8;
     double count;
     QPixmap animations[5][8];
 
-    Player(QGraphicsItem* parent = 0);
+    Player(QGraphicsItem* parent = 0, int size = 36);
 
     void keyPressEvent(QKeyEvent * event);
 
@@ -36,6 +35,12 @@ public:
     int block_size = 18;
 
     QGraphicsRectItem* collision_range;
+
+    void throwprojectile(int i);
+
+    int direction = 1;
+
+    int size;
 
 public slots:
 
