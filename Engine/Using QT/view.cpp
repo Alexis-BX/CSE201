@@ -74,7 +74,7 @@ void View::create_basic_world(int width)
         {
             create_block(pair{x*block_size,y*block_size});
         }
-        if(x%3 == 0)
+        /**if(x%3 == 0)
         {
             i += (rand()%3 )-1;
         }
@@ -83,6 +83,7 @@ void View::create_basic_world(int width)
             create_block(pair{x*block_size,i*block_size});
 
         }
+        **/
     }
 }
 

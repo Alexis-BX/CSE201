@@ -70,12 +70,12 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
 
     collision_range_proj = new QGraphicsRectItem(this);
     collision_range_proj->setRect(0,0,size.x + size.x /2, size.y + size.y/2);
-
+    collision_range_proj->setPen(QPen(Qt::NoPen));
     collision_range_proj->setPos(0 -size.x/4,0 - size.y/4); //we readjust the position of the collision
                                                                 //box so that is centers the projectile
 }
 
-void delay(int i)
+void delay(int i) //milliseconds
 {
     QTime dieTime= QTime::currentTime().addMSecs(i);
     while (QTime::currentTime() < dieTime)

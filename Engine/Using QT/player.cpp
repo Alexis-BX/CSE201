@@ -35,6 +35,8 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
 
+    collision_range->setPen(QPen(Qt::NoPen));
+
     this->direction = 1; //0 = left, 1 = right
 
     this->size = size;
@@ -174,23 +176,23 @@ void Player::move()
                 //HORITZONTAL MOVEMENT TO THE RIGHT, must check for the entire height of the player if there are collisions
             {// DO WE ADD speed.x?  YES BUT IT WILL BELONG TO THE NEXT BLOCK, must retrieve -1
                 // since block_size = 18, enough to check top of character and feet when the character is tall, but if he gets smaller, better to check middle too
-
-                if ((*iter)-> contains(QPointF(x() +  size  + speed.x - 1 - (*iter)->x() , y()  -(*iter)->y() ))) //HEIGHT 0 of the player
+                qDebug() << "speed.x >0, speed.y == 0";
+                if ((*iter)-> contains(QPointF(x() +  (size-1)  + speed.x - (*iter)->x() , y()  -(*iter)->y() ))) //HEIGHT 0 of the player (35,0)
                 {
                     speed.x = 0;
                 }
 
-                else if ((*iter)-> contains(QPointF(x() +  size + speed.x - 1 - (*iter)->x() , y()  + size - 1 -(*iter)->y() ))) // CHECK The feet of the player
+                else if ((*iter)-> contains(QPointF(x() +  (size-1) + speed.x  - (*iter)->x() , y()  + size - 1 -(*iter)->y() ))) // (35,35)
                 {
                     speed.x = 0;
                 }
 
-                else if ((*iter)-> contains(QPointF(x() +  size + speed.x - 1 - (*iter)->x() , y()  + block_size - 1 -(*iter)->y() ))) // CHECK The feet of the player
+                else if ((*iter)-> contains(QPointF(x() +  (size-1) + speed.x  - (*iter)->x() , y()  + block_size - 1 -(*iter)->y() ))) // (35,17)
                 {
                     speed.x = 0;
                 }
 
-                else if ((*iter)-> contains(QPointF(x() +  size + speed.x - 1 - (*iter)->x() , y()  + block_size -(*iter)->y() ))) // CHECK The feet of the player
+                else if ((*iter)-> contains(QPointF(x() +  (size-1) + speed.x  - (*iter)->x() , y()  + block_size -(*iter)->y() ))) // (35,18)
                 {
                     speed.x = 0;
                 }
@@ -199,28 +201,28 @@ void Player::move()
 
             if (speed.y >0) //PLAYER GOES RIGHT AND DOWN: coordinates are given with respect to the COF of the player
             {
+                qDebug() << "speed.x >0, speed.y > 0";
                 //(0,35) collide with below right
-                if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + size - 1 +speed.y  -(*iter)->y() )))
+                if ((*iter)-> contains(QPointF(x() + speed.x -1  - (*iter)->x() , y() + (size-1)  +speed.y   -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
                 //(17,35)
-                else if ((*iter)-> contains(QPointF(x() + speed.x +block_size - 1- (*iter)->x() , y() + size - 1 +speed.y  -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1 +block_size - 1- (*iter)->x() , y() + (size-1) +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
                 //(18,35)
 
-                else if ((*iter)-> contains(QPointF(x() + speed.x + block_size - (*iter)->x() , y() + size - 1 +speed.y  -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1 + block_size - (*iter)->x() , y() + (size-1) +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
-                //(35,35)
-
-                else if ((*iter)-> contains(QPointF(x() + speed.x + size - 1 - (*iter)->x() , y() + size - 1 +speed.y  -(*iter)->y() )))
+                //(35,35)  -2 because of the speed.x - 1 & size.x - 1
+                else if ((*iter)-> contains(QPointF(x() + speed.x + size - 2 - (*iter)->x() , y() + (size-1) +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
@@ -256,48 +258,49 @@ void Player::move()
 
             if (speed.y < 0) //PLAYER GOES RIGHT AND UP: coordinates are given with respect to the COF of the player
             {
+                qDebug() << "speed.x >0, speed.y < 0";
                 //LEFT top corner of player (0,0) will collide with block above
-                if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
+                if ((*iter)-> contains(QPointF(x() + speed.x - 1 - (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
                 // (17,0) will collide with block above
-                else if ((*iter)-> contains(QPointF(x() + speed.x + block_size - 1- (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x  - 1 + block_size - 1- (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
                 //(18,0) will collide with block above
-                else if ((*iter)-> contains(QPointF(x() + speed.x + block_size - (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1 + block_size - (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
                 //(35,0) will collide with block above
-                else if ((*iter)-> contains(QPointF(x() + speed.x + size - 1 - (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1 + size - 1 - (*iter)->x() , y()  +speed.y  -(*iter)->y() )))
                 {
                     speed.y = 0;
                 }
 
                 //(35,0) (TOP RIGHT of block will collide with block above)
-                if ((*iter)-> contains(QPointF(x() + speed.x + size  - (*iter)->x() , y()  +speed.y  -(*iter)->y() ))) //-1 in the x?
+                if ((*iter)-> contains(QPointF(x() + speed.x - 1 + size  - (*iter)->x() , y()  +speed.y  -(*iter)->y() ))) //-1 in the x?
                 {
                     speed.x = 0;
                 }
                 //(35,17) collides
-                else if ((*iter)-> contains(QPointF(x() + speed.x + size - (*iter)->x() , y()  +speed.y + block_size - 1 -(*iter)->y() ))) //-1 in the x?
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1 + size - (*iter)->x() , y()  +speed.y + block_size - 1 -(*iter)->y() ))) //-1 in the x?
                 {
                     speed.x = 0;
                 }
 
                 //(35,18)
-                else if ((*iter)-> contains(QPointF(x() + speed.x + size - (*iter)->x() , y()  +speed.y + block_size -(*iter)->y() ))) //-1 in the x?
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1 + size - (*iter)->x() , y()  +speed.y + block_size -(*iter)->y() ))) //-1 in the x?
                 {
                     speed.x = 0;
                 }
                 //(35,35)
-                else if ((*iter)-> contains(QPointF(x() + speed.x + size - (*iter)->x() , y()  +speed.y + size - 1 -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - 1  + size - (*iter)->x() , y()  +speed.y + size - 1 -(*iter)->y() )))
                 {
                     speed.x = 0;
                 }
@@ -314,6 +317,8 @@ void Player::move()
                 same principle as before, but this time no need to adjust by 1 as the block is at the right point. The speed when the character goes back
                 backwards is already negative so can keep +speed.x
                 **/
+
+                qDebug() << "speed.x <0, speed.y == 0";
                 if ((*iter)-> contains(QPointF(x() + speed.x  - (*iter)->x() , y()  -(*iter)->y() ))) //HEIGHT 0 of the player (0,0)
                 {
                     speed.x = 0;
@@ -338,7 +343,7 @@ void Player::move()
             }
 
             if (speed.y < 0) //PLAYER GOES LEFT AND UP
-            {
+            {   qDebug() << "speed.x <0, speed.y < 0";
                 //(0,35)
                 if ((*iter)-> contains(QPointF(x() + speed.x- (*iter)->x() , y() + speed.y + size - 1  -(*iter)->y() )))
                 {
@@ -394,30 +399,32 @@ void Player::move()
 
 
             if (speed.y > 0) //player goes left and down
-            {
+            {   qDebug() << "speed.x < 0, speed.y > 0";
+
+                //(0,35) collides with a block bottom left
+                if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y +size - 2 -(*iter)->y() )))
+                {
+                    speed.x = 0;
+                }
                 //(0,0) collides with a block bottom left
-                if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y  -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y -1 -(*iter)->y() )))
                 {
                     speed.x = 0;
                 }
 
                 //(0,17)
-                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y +block_size -1 -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y +block_size -2 -(*iter)->y() )))
                 {
                     speed.x = 0;
                 }
 
                 //(0,18)
-                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y + block_size -(*iter)->y() )))
+                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y + block_size - 1-(*iter)->y() )))
                 {
                     speed.x = 0;
                 }
 
-                //(0,35)
-                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y +size - 1 -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
+
 
                 //(0,35)
                 if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y + size - 1 -(*iter)->y() )))
@@ -452,7 +459,8 @@ void Player::move()
         {
 
             if (speed.y > 0) //character goes straight down
-            {   //(0,35)
+            {   qDebug() << "speed.x == 0, speed.y > 0";
+                //(0,35)
                 if ((*iter)-> contains(QPointF(x() - (*iter)->x() , y() + size + speed.y - 1 -(*iter)->y() ))) //width 0
                 {
                     speed.y = 0;
@@ -476,7 +484,8 @@ void Player::move()
 
 
             if (speed.y < 0) //character jummps straight up
-            {   //(0,0)
+            {   qDebug() << "speed.x == 0, speed.y < 0";
+                //(0,0)
                 if ((*iter)-> contains(QPointF(x() - (*iter)->x() , y() + speed.y -(*iter)->y() )))
                 {
                     speed.y = 0 ;
