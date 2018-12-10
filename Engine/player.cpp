@@ -32,31 +32,39 @@ void Player::next_position()
 
 void Player::goforward()
 {
-    speed.x = max_speed;
+    speed.x=max_speed;
 }
 
 
 void Player::goback()
 {
-    speed.x = max_speed;
+    speed.x=max_speed;
 }
 
 void Player::jump()
 {
-    speed.y = max_speed*5;
+    speed.y=max_speed*5;
 }
 
 void Player::stop()
 {
-    speed.x = 0;
+    speed.x=0;
 }
 
-void Player::growbigger()
-{
+void Player::growbigger(){
+    size.x*=2;
     size.y*=2;
 }
 
 void Player::shrink()
 {
-    size.y /= 2;
+    size.y/=2;
+}
+
+void Player::behit(){
+
+}
+
+void Player::hit(){
+
 }
