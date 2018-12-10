@@ -12,5 +12,16 @@ Block::Block(pair position, Block_type type, Block_state state, Block_texture te
 
     this->texture = texture;
 
-    setPixmap(QPixmap(":/images/brick18.png")); //JUST A WORKING BRICK WITH THE RIGHT DIMENSIONS
+
+    if(texture == brick)
+    {
+        if((position.y+81)%36 < 18)
+        {
+            setPixmap(QPixmap(":/images/ground1.png"));
+        }
+        else
+        {
+            setPixmap(QPixmap(":/images/ground3.png"));
+        }
+    }
 }

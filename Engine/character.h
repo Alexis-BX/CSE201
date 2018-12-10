@@ -7,10 +7,11 @@ class Character : public Object
 {
 public:
     pair speed;
+    int hp;
 
-    Character(pair position, pair size, State state, pair speed);
+    Character(pair position, pair size, pair speed, int hp);
 
-    Character(pair position, pair size, State state);
+    Character(pair position, pair size, int hp);
 
 };
 

@@ -32,33 +32,32 @@ class Projectile : public QObject, public QGraphicsPixmapItem
 private:
 
     Projectile_type type;
+
     Projectile_state state;
 
 public:
+
+    Projectile(pair position, bool direction, Projectile_type type = Projectile_type{baguette},
+               Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
+
+
+    // Attributes
     int life;
-    pair speed;
-    pair size;
-    pair position;
 
-    int count;
-    int velocity;
-
-
-    Projectile(pair position, bool direction, Projectile_type type = Projectile_type{baguette}, Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
-
-    void hit(Projectile_state state);
-
-    void explode();
+    pair speed,size;
 
     QGraphicsRectItem* collision_range_proj;
 
-    bool collision_right();
 
-    bool collision_left();
-    bool collision_down();
-    bool collision_up();
 
-    int collision = 0;
+    // Methods
+
+    bool collision_right(),collision_left(),collision_down(),collision_up();
+
+    void setup_projectile(bool direction);
+
+    void create_collision_range();
+
 
 public slots:
 

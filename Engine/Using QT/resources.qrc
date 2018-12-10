@@ -8,5 +8,8 @@
         <file>wine.png</file>
         <file>baguette.png</file>
         <file>explosion.png</file>
+        <file>characterT.png</file>
+        <file>ground1.png</file>
+        <file>ground3.png</file>
     </qresource>
 </RCC>

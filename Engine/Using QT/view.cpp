@@ -1,40 +1,30 @@
 #include "view.h"
 #include "player.h"
 #include "block.h"
+#include "structures.h"
 #include <QDebug>
 #include <cstdlib>
 
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
+    world_size = double_pair{-1500,0,0,10000};
+
     this->block_size = block_size;
 
-    scene = new QGraphicsScene();
+    this->screen_size = screen_size;
 
-    //scene->setSceneRect(-100,-100,100,100);
 
-    setScene(scene);
+    //Create world
+    set_scene_view();
 
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    create_basic_world(world_size.right-world_size.left);
 
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setFixedSize(screen_size.x,screen_size.y);
-
-    player = new Player();
-
-    player->setPos(50,-30);//int(screen_size.x/2),-int(screen_size.y/2));
-
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-
-    player->setFocus();
-
-    scene->addItem(player);
-
-    create_basic_world(100);
+    create_player();
 }
 
 void View::create_basic_world(int width)
 {   //test blocks
+
     create_block(pair{150,-18});
     create_block(pair{150,-36});
     create_block(pair{150,-54});
@@ -67,23 +57,13 @@ void View::create_basic_world(int width)
     create_block(pair{750,-108});
     create_block(pair{850,-1});
 
-    int i = -(rand()%15 +5);
+
     for(int x = 0 ; x < width ; x++)
     {
         for(int y = 0 ; y < 2 ; y++)
         {
             create_block(pair{x*block_size,y*block_size});
         }
-        /**if(x%3 == 0)
-        {
-            i += (rand()%3 )-1;
-        }
-        if(x > 15)
-        {
-            create_block(pair{x*block_size,i*block_size});
-
-        }
-        **/
     }
 }
 
@@ -91,7 +71,37 @@ void View::create_block(pair position)
 {
     Block* new_block = new Block(position);
 
-    new_block->setPos(position.x,position.y);
+    new_block->setPos(position.x,position.y-36); // the -36 is temporary
 
     this->scene->addItem(new_block);
+}
+
+void View::create_player(pair position)
+{
+    player = new Player();
+
+    player->setPos(position.x,position.y);
+
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+
+    player->setFocus();
+
+    scene->addItem(player);
+
+    centerOn(player);
+}
+
+void View::set_scene_view()
+{
+    scene = new QGraphicsScene();
+
+    scene->setSceneRect(world_size.left,world_size.top,world_size.right-world_size.left,world_size.bottom-world_size.top);
+
+    setScene(scene);
+
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setFixedSize(screen_size.x,screen_size.y);
 }

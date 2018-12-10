@@ -35,26 +35,17 @@ class Collectable : public QObject, public QGraphicsPixmapItem
 private:
 
     Collectable_type type;             // shows the kind of collectable the player meets
+
     Collectable_state state;           // shows if the collectable is used or unused
+
     Collectable_texture texture;       // the player meets the same or different collectable
 
 public:
 
     pair size;
 
-    Collectable(pair position, pair size, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent = 0 );
-
-    void Set_State(Collectable_state state);
-
-    Collectable_state Get_State() const;
-
-    void Set_Type(Collectable_type type);
-
-    Collectable_type Get_Type() const;
-
-    void Set_Texture(Collectable_texture texture);
-
-    Collectable_texture Get_Texture() const;
+    Collectable(pair position, pair size, Collectable_type type, Collectable_state state,
+                Collectable_texture texture, QGraphicsItem* parent = 0 );
 
 };
 
