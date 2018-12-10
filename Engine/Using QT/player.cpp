@@ -79,6 +79,9 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if(event->key() == Qt::Key_3){
         throwprojectile(3);
     }
+    else if(event->key() == Qt::Key_4){
+        throwprojectile(4);
+    }
 
 }
 
@@ -586,6 +589,20 @@ void Player::throwprojectile(int i)
             // -19... we would like -projectile.size.x - 1
             Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{smoke});
             view->scene->addItem(projectile);
+        }
+    }
+
+    if(i==4)
+    {
+        if (direction == 1)
+        {
+                Projectile* projectile = new Projectile(pair{int(x() + size), int(y() + size/4)}, direction, Projectile_type{pot});
+                view->scene-> addItem(projectile);
+        }
+        else
+        {
+                Projectile* projectile = new Projectile(pair{int(x() -19), int(y() + size/4)}, direction, Projectile_type{pot});
+                view->scene->addItem(projectile);
         }
     }
 }

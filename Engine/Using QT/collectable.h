@@ -11,14 +11,15 @@ extern View* view;
 
 enum Collectable_state  // the collectable can either be used by the player or not
 {
-    used,
-    unused
+    used, //if the player took the collectable
+    unused //if the player didn't took the collectbale
 };
 
 enum Collectable_type // shows all kinds of collectables that can appear
 {
-    star,
-    mushroom,
+    coin, //gives points
+    star, //gives the superpower to go faster
+    mushroom, //gives the superpower to be bigger
     eclair
 };
 
@@ -41,8 +42,18 @@ private:
 public:
 
     pair size;
+    pair position;
 
-    Collectable(pair position, pair size, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent = 0 );
+    Collectable(pair position, Collectable_type type = Collectable_type{coin}, Collectable_state state = Collectable_state{unused}, Collectable_texture texture = Collectable_texture{same}, QGraphicsItem* parent = 0 );
+
+    QGraphicsRectItem* collision_range_collec;
+
+    bool collision_left();
+    bool collision_down();
+    bool collision_up();
+    bool collision_right();
+
+    int collision = 0;
 
     void Set_State(Collectable_state state);
 

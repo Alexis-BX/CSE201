@@ -291,9 +291,9 @@ void Projectile::move()
     if (state == vanish){setPixmap(QPixmap(":/images/explosion.png")); state = dead ; delay(200); QObject::deleteLater();}
 
     life -= 10;
-    //if(life == 0){
-    //speed.y = 5; setPos(x()+speed.x, y()+speed.y); return;}
-    //if(life == -10){delay(100); QObject::deleteLater();}
+    if(life == 0){
+    speed.y = 5; setPos(x()+speed.x, y()+speed.y); return;}
+    if(life == -10){delay(100); QObject::deleteLater();}
 
     int ac_vel_x = 2; //after collision velocity (when the projectile bounces)
     int ac_vel_y = 5;
