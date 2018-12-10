@@ -43,6 +43,10 @@ public:
 
     pair size;
     pair position;
+    pair speed;
+
+    int velocity;
+    int count;
 
     Collectable(pair position, Collectable_type type = Collectable_type{coin}, Collectable_state state = Collectable_state{unused}, Collectable_texture texture = Collectable_texture{same}, QGraphicsItem* parent = 0 );
 
@@ -55,18 +59,23 @@ public:
 
     int collision = 0;
 
-    void Set_State(Collectable_state state);
+public slots:
 
-    Collectable_state Get_State() const;
-
-    void Set_Type(Collectable_type type);
-
-    Collectable_type Get_Type() const;
-
-    void Set_Texture(Collectable_texture texture);
-
-    Collectable_texture Get_Texture() const;
+    void move(); //next position of the projectile depending on their way of moving
 
 };
 
 #endif // COLLECTABLE_H
+
+
+/*void Set_State(Collectable_state state);
+
+Collectable_state Get_State() const;
+
+void Set_Type(Collectable_type type);
+
+Collectable_type Get_Type() const;
+
+void Set_Texture(Collectable_texture texture);
+
+Collectable_texture Get_Texture() const;*/
