@@ -28,6 +28,10 @@ public:
 
     void stop();
 
+    void behit();
+
+    void hit();
+
 };
 
 #endif // PLAYER_H
