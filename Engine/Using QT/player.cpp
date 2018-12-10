@@ -177,22 +177,22 @@ void Player::move()
             {// DO WE ADD speed.x?  YES BUT IT WILL BELONG TO THE NEXT BLOCK, must retrieve -1
                 // since block_size = 18, enough to check top of character and feet when the character is tall, but if he gets smaller, better to check middle too
                 qDebug() << "speed.x >0, speed.y == 0";
-                if ((*iter)-> contains(QPointF(x() +  (size-1)  + speed.x - (*iter)->x() , y()  -(*iter)->y() ))) //HEIGHT 0 of the player (35,0)
+                if ((*iter)-> contains(QPointF(x() +  (size-1)  + (speed.x) - (*iter)->x() , y()  -(*iter)->y() ))) //HEIGHT 0 of the player (35,0)
                 {
                     speed.x = 0;
                 }
 
-                else if ((*iter)-> contains(QPointF(x() +  (size-1) + speed.x  - (*iter)->x() , y()  + size - 1 -(*iter)->y() ))) // (35,35)
+                else if ((*iter)-> contains(QPointF(x() +  (size-1) + (speed.x)  - (*iter)->x() , y()  + size - 1 -(*iter)->y() ))) // (35,35)
                 {
                     speed.x = 0;
                 }
 
-                else if ((*iter)-> contains(QPointF(x() +  (size-1) + speed.x  - (*iter)->x() , y()  + block_size - 1 -(*iter)->y() ))) // (35,17)
+                else if ((*iter)-> contains(QPointF(x() +  (size-1) + (speed.x)  - (*iter)->x() , y()  + block_size - 1 -(*iter)->y() ))) // (35,17)
                 {
                     speed.x = 0;
                 }
 
-                else if ((*iter)-> contains(QPointF(x() +  (size-1) + speed.x  - (*iter)->x() , y()  + block_size -(*iter)->y() ))) // (35,18)
+                else if ((*iter)-> contains(QPointF(x() +  (size-1) + (speed.x)  - (*iter)->x() , y()  + block_size -(*iter)->y() ))) // (35,18)
                 {
                     speed.x = 0;
                 }
