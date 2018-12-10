@@ -20,7 +20,8 @@ enum Projectile_type
 {
     baguette, //player's projectile : horizantal attack
     smoke, //enemy's projectile : horizantal attack
-    wine //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
+    wine, //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
+    pot,
 };
 
 
@@ -39,6 +40,10 @@ public:
     pair size;
     pair position;
 
+    int count;
+    int velocity;
+
+
     Projectile(pair position, bool direction, Projectile_type type = Projectile_type{baguette}, Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
 
     void hit(Projectile_state state);
@@ -46,6 +51,14 @@ public:
     void explode();
 
     QGraphicsRectItem* collision_range_proj;
+
+    bool collision_right();
+
+    bool collision_left();
+    bool collision_down();
+    bool collision_up();
+
+    int collision = 0;
 
 public slots:
 

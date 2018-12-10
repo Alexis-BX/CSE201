@@ -15,12 +15,16 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
 
     int velocity = 5;
 
+    int count = 0; //number of times frames were reloaded
+    int collision = 0; // has there been collision or not?
+
+
 
     if (state == vanish){setPixmap(QPixmap(":/images/explosion.png"));}
 
     //initializing life and size of projectile depending on it's type
     if (type == baguette){
-        life = 10;
+        life = 1000;
         size = pair{18,5};
         if (direction == 1)
         {
@@ -34,11 +38,11 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
         setPixmap(QPixmap(":/images/baguette.png"));
     }
     if (type == smoke){
-        life = 200;
+        life = 400;
         size = pair {18,18};
         if (direction == 1)
         {
-            speed = pair{velocity,0};
+            speed = pair{velocity, 0};
         }
         else
         {
@@ -47,7 +51,7 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
         setPixmap(QPixmap(":/images/smoke.png"));
     }
     if (type == wine){
-        life = 50;
+        life = 50000;
         size = pair{18,18};
         if (direction == 1)
         {
@@ -58,6 +62,16 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
             speed = pair{-velocity,velocity};
         }
         setPixmap(QPixmap(":/images/wine.png"));
+
+    }
+
+    if (type == pot)
+    {
+        life = 200000;
+        size = pair{18,18};
+        if(direction == 1){speed = pair{velocity, -velocity + 3} ;}
+        else{speed = pair {-velocity, -velocity + 3};}
+        setPixmap(QPixmap(":/images/pot.png"));
     }
 
     setPos(position.x, position.y);
@@ -82,18 +96,9 @@ void delay(int i) //milliseconds
         QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
 }
 
-void Projectile::move()
+bool Projectile::collision_right()
 {
-    if (state == dead)
-    {
-        delay(200); //make sure the explosion image stays for a bit THIS SOLUTION FOR A TIMER IS SHIT, IT STOPS ALL CALCULATIONS
-        QObject::deleteLater();
-    }
-    if (state == vanish){setPixmap(QPixmap(":/images/explosion.png")); state = dead;}
-
-    //COLLISIONS OF THE PROJECTILE
-    // WE assume the projectile is necessarily smaller than a block (maximum size = 18*18)
-    // I did the cases where projectiles could also go up, although for the moment we have none of these
+    // return if the right of the projectile suffers a collision
     QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
@@ -101,223 +106,261 @@ void Projectile::move()
         {
             if (speed.y == 0) //horizontal movement
             {
-                //(size.x - 1, 0)
-                if ((*iter)-> contains(QPointF(x() +  size.x  + speed.x - 1 - (*iter)->x() , y()  -(*iter)->y() ))) //
+                for (int i = 0; i<size.y; i++) //iterate over the whole height of the projectile
                 {
-                    speed.x = 0;
-                    speed.y +=5;
-                }
-                //(size.x - 1, size.y - 1)
-                if ((*iter)-> contains(QPointF(x() +  size.x  + speed.x - 1 - (*iter)->x() , y() +size.y - 1 -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                    speed.y += 5;
+                    if ((*iter)-> contains(QPointF(x() +  (size.x-1)  + (speed.x - 1) - (*iter)->x() , y() + i -(*iter)->y() )))
+                    {
+                        return true;
+                    }
                 }
 
 
             }
 
-            if (speed.y > 0) //projectile moves right and down
+            else if (speed.y > 0) //projectile moves right and down
             {
-                //(size.x - 1, 0)
-                if ((*iter)-> contains(QPointF(x() +  size.x  + speed.x - 1 - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.x = 0;
+
+                for (int i =0; i< size.y; i++)
+                { //collision of the right side of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + (speed.x-1) + (size.x-1)  - (*iter)->x() , y() + (speed.y-1) + i -(*iter)->y() )))
+                    {
+                        return true;
+                    }
                 }
-
-                //(size.x - 1, size.y - 1)
-                else if ((*iter)-> contains(QPointF(x() +  size.x  + speed.x - 1 - (*iter)->x() , y() +speed.y + size.y -1 -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
-
-                //(size.x - 1, size.y - 1)
-                if ((*iter)-> contains(QPointF(x() +  size.x  + speed.x - 1 - (*iter)->x() , y() +speed.y + size.y -1 -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                    speed.x = 0; //when it reaches the ground it automatically stops
-                    state = vanish;
-
-                }
-
-                //(0, size.y - 1)
-                else if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() +speed.y + size.y -1 -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                    speed.x = 0;
-                    state = vanish;
-                }
-
-                //
             }
 
 
-            if (speed.y < 0) //projectile moves right and up
+            else if (speed.y < 0) //projectile moves right and up
             {
-                //(0, 0)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                }
-
-                //(size.x - 1,0)
-                else if ((*iter)-> contains(QPointF(x()  + speed.x + size.x - 1 - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                }
-
-                //(size.x-1, 0)
-                if ((*iter)-> contains(QPointF(x()  + speed.x +size.x - 1 - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
-
-                //(size.x -1, size.y - 1)
-                else if ((*iter)-> contains(QPointF(x()  + speed.x + size.x - 1 - (*iter)->x() , y() +speed.y + size.y - 1-(*iter)->y() )))
-                {
-                    speed.x = 0;
+                for (int i =0; i< size.y; i++)
+                { //collision of the right side of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + (speed.x-1) + (size.x-1)  - (*iter)->x() , y() +speed.y + i -(*iter)->y() )))
+                    {
+                        return true;;
+                    }
                 }
             }
         } //END OF FIRST CASE
 
+    }
+    return false;
+}
 
-        //SECOND CASE:
-        if (speed.x < 0) //projectile goes backwards
+bool Projectile::collision_left()
+{
+    QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+    {
+    if (speed.x < 0) //projectile goes backwards
+    {
+        if (speed.y ==0) // horizontal left movement
         {
-            if (speed.y ==0) // horizontal left movement
-            {
-                //(0,0)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
+            for (int i =0; i< size.y; i++)
+            { //collision of the left of the projectile
+                if ((*iter)-> contains(QPointF(x()  + speed.x   - (*iter)->x() , y() + i  -(*iter)->y() )))
                 {
-                    speed.x = 0;
-                    speed.y += 5;
+                    return true;
                 }
-
-                //(0,size.y - 1)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y +size.y - 1 -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                    speed.y += 5;
-                }
-            }
-
-            if (speed.y > 0) //left and down
-            {
-                //(0,0)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
-                //(0,size.y - 1)
-                else if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y + size.y - 1-(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
-
-                //(0, size.y - 1)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y +size.y - 1 -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                    speed.x = 0;
-                    state = vanish;
-                }
-
-                //(size.x -1, size.y - 1)
-                else if ((*iter)-> contains(QPointF(x()  + speed.x + size.x - 1 - (*iter)->x() , y() +speed.y + size.y - 1 -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                    speed.x = 0;
-                    state = vanish;
-                }
-            }
-
-            if (speed.y < 0) //left and up
-            {
-                // (0, size.y - 1)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y + size.y - 1 -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
-
-                //(0,0)
-                else if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.x = 0;
-                }
-
-                //(0,0)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.y = 0;
-
-                }
-
-                //(size.x - 1, 0)
-
-                if ((*iter)-> contains(QPointF(x()  + speed.x +size. x- 1  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                }
-
-
-            }
-        } //end of case 2
-
-
-        //Last case  if we create a projectile that drops straight down
-        if (speed.x == 0)
-        {
-            if (speed. y > 0)
-            { //(0, size.y - 1)
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +speed.y + size.y - 1 -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                    state = vanish;
-                }
-                //(size.x - 1, size.y - 1)
-                if ((*iter)-> contains(QPointF(x()  + speed.x +size.x - 1 - (*iter)->x() , y() +speed.y + size.y - 1 -(*iter)->y() )))
-                {
-                    speed.y = 0;
-                    state = vanish;
-                }
-            }
-
-
-        }
-
-        /**
-        // WE create a last case, where if there is a player that jumps above him, the object falls to the ground
-        // i.e. if the type/state of the block above our projectile is alive (player, not a brick), we have speed.y += 5 for the proj
-        // we must have the state for the characters.
-        // for the moment, we use: if not (type == block), then:
-
-
-        //(0,0)
-        if ((*iter)-> contains(QPointF(x()  - (*iter)->x() , y()  -(*iter)->y() )))
-        {
-            if ((*iter)->type != block) //must change the condition
-            {
-                speed.y += 5;
-            }
-
-        }
-        //(size.x - 1,0)
-        if ((*iter)-> contains(QPointF(x() + size.x - 1  - (*iter)->x() , y()  -(*iter)->y() )))
-        {
-            if ((*iter)->type != block) //must change the condition
-            {
-                speed.y += 5;
             }
 
         }
 
-        **/
+        else if (speed.y > 0) //left and down
+        {
+            for (int i =0; i< size.y; i++)
+            { //collision of the left side of the projectile
+                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +(speed.y-1) + i -(*iter)->y() )))
+                {
+                    return true;
+                }
+            }
+        }
 
+        else if (speed.y < 0) //left and up
+        {
+
+            for (int i =0; i< size.y; i++)
+            { //collision of the left side of the projectile
+                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +(speed.y) + i -(*iter)->y() )))
+                {
+                    return true;
+                }
+            }
+
+        }
+    } //end of case 2
+    }
+    return false;
+
+}
+
+bool Projectile::collision_up()
+{
+    QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+    {
+        if (speed.y < 0)
+        {
+            if (speed.x == 0)
+            {
+                for (int i =0; i< size.x; i++)
+                { //collision of the top of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
+                    {
+                        return true;
+                    }
+                }
+            }
+            else if (speed.x > 0)
+            {
+                for (int i =0; i< size.x; i++)
+                { //collision of the top of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + (speed.x-1) + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            else if (speed.x < 0)
+            {
+                for (int i =0; i< size.x; i++)
+                { //collision of the top of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + (speed.x) + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+
+
+}
+
+bool Projectile::collision_down()
+{
+    QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+    {
+        if(speed.y > 0)
+        {
+            if (speed.x == 0)
+            {
+                for (int i =0; i< size.x; i++)
+                { //collision of the bottom of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() + (size.y-1) + (speed.y-1) -(*iter)->y() )))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            if (speed.x > 0)
+            {
+                for (int i =0; i< size.x; i++)
+                { //collision of the bottom of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + i + (speed.x - 1)  - (*iter)->x() , y() + (size.y-1) + (speed.y-1) -(*iter)->y() )))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            if (speed.x < 0)
+            {
+                for (int i =0; i< size.x; i++)
+                { //collision of the bottom of the projectile
+                    if ((*iter)-> contains(QPointF(x()  + i + speed.x  - (*iter)->x() , y() + (size.y - 1) +  (speed.y-1) -(*iter)->y() )))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+    }
+    return false;
+}
+
+
+void Projectile::move()
+{
+
+    count += 1;
+    if (state == vanish){setPixmap(QPixmap(":/images/explosion.png")); state = dead ; delay(200); QObject::deleteLater();}
+
+    life -= 10;
+    //if(life == 0){
+    //speed.y = 5; setPos(x()+speed.x, y()+speed.y); return;}
+    //if(life == -10){delay(100); QObject::deleteLater();}
+
+    int ac_vel_x = 2; //after collision velocity (when the projectile bounces)
+    int ac_vel_y = 5;
+
+    bool r = collision_right();
+    bool l = collision_left();
+    bool t = collision_up();
+    bool b = collision_down();
+
+
+/**
+    if (b == true)
+    {
+        speed.y = 0;
+        state = vanish;
     }
 
+    else if (r == true)
+    {
+        speed.x = -ac_vel_x;
+        speed.y = ac_vel_y;
+    }
+
+    else if (l == true)
+    {
+        speed.x = ac_vel_x;
+        speed.y = ac_vel_y;
+    }
+
+    else if (t == true)
+    {
+        speed.y = ac_vel_y;
+    }
+
+    **/
+    if (r == true)
+    {
+        if (b == true)
+        {
+            speed.x = 0;
+            speed.y = 0;
+            state = vanish;
+        }
+        else
+        {
+            speed.x = - ac_vel_x;
+            speed.y = ac_vel_x;
+        }
+    }
+
+    else if (l == true)
+    {
+        if (b == true)
+        {
+            speed.x = 0;
+            speed.y = 0;
+            state = vanish;
+        }
+        else
+        {
+            speed.x = ac_vel_x;
+            speed.y = ac_vel_x;
+        }
+    }
+    if (t == true){ speed.y = ac_vel_y;}
+
     setPos(x() + speed.x, y() + speed.y);
-
-
 
 }
 
