@@ -4,6 +4,8 @@
 #include "structures.h"
 #include <QDebug>
 #include <cstdlib>
+#include <math.h>
+
 
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
@@ -199,6 +201,114 @@ void View::create_example_world(int width) // under construction
         }
     }
 }
+
+void View::readBMP(char *filename, int ord)
+{
+    int i;
+        FILE* f = fopen(filename, "rb");
+        unsigned char info[54];
+        fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
+
+        // extract image height and width from header
+        int width = *(int*)&info[18];
+        int height = *(int*)&info[22];
+
+        int size = 3 * width * height;
+        unsigned char* data = new unsigned char[size]; // allocate 3 bytes per pixel
+        fread(data, sizeof(unsigned char), size, f); // read the rest of the data at once
+        fclose(f);
+
+
+        if (ord==1){
+        /** if ord==1 means you are using a windows
+        the swap between every first and third pixel is done because windows stores the
+        color values as (B, G, R) triples, not (R, G, B).**/
+
+        for(i = 0; i < size; i += 3){
+                unsigned char tmp = data[i];
+                data[i] = data[i+2];
+                data[i+2] = tmp;
+        }}
+
+        /** Now data should contain the (R, G, B) values of the pixels. The color of pixel (i, j) is stored at
+         data[3 * (i * width + j)], data[3 * (i * width + j) + 1] and data[3 * (i * width + j) + 2]. **/
+
+        for(int i = 0; i < height; i ++) {
+            for(int j = 0; j < width; j++){
+                 int value [3];
+                 value[0] = data[3 * (i * width + j)];
+                 value [1]=data[3 * (i * width + j)+1];
+                 value [2]= data[3 * (i * width + j)+2];
+                 convert (value[0],value[1], value [2],i,j);  //this function creates ther object at position (i,j)
+        }
+        }
+}
+
+void View::convert(int v0, int v1, int v2, int i, int j)
+{
+    /*** we have the following legend take these values +/- a difference chosen so that we can dram with not exactly the same red or blue and it not be a promblem
+     * black --> brick --> 0,0,0
+     * red --> starting place enemy  36, 28, 237
+     * orange --> breakable blocks --> 14, 201, 255
+     * dark blue --> ?/active blocks --> 204, 72, 63
+     * yellow --> coins --> 0,242,255
+     * white  --> nothing  --> 255, 255, 255
+     * green --> grass --> 76,177,34
+     * brown --> ground --> 87 122 185
+    ***/
+
+       int diff=4;
+
+
+       if (v0==0 && v1==0 && v2==0){
+          //CREATE PERMANEMT BLOCK at position (i,j)
+          Block_type btype = permanent; Block_texture btexture = brick; Block_state bstate = initial;
+          create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
+          }
+
+       if (v0==255 && v1==255 && v2==255){
+          //CREATE nothing at position (i,j)
+          }
+
+       if (36-diff<=v0 && v0<=36+diff  && 28-diff<=v1 && v1<=28+diff && 237+diff<=v2 && v2<=237+diff){
+          //CREATE enemy stating point at position (i,j)
+          }
+
+       if (87-diff<=v0 && v0<=87+diff  && 122-diff<=v1 && v1<=122+diff && 185+diff<=v2 && v2<=185+diff){
+          //CREATE ground  at position (i,j)
+          Block_type btype = permanent; Block_texture btexture = dirt; Block_state bstate = initial;
+          create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
+          }
+
+       if (76-diff<=v0 && v0<=76+diff  && 177-diff<=v1 && v1<=177+diff && 34+diff<=v2 && v2<=34+diff){
+          //CREATE grass  at position (i,j)
+          Block_type btype = active; Block_texture btexture = question_mark; Block_state bstate = operative;
+          create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
+          }
+
+       if ( v0<=0+diff  && 242-diff<=v1 && v1<=242+diff && 155+diff<=v2 && v2<=155+diff){
+          //CREATE coin at position (i,j)
+          Block_type btype = permanent; Block_texture btexture = face; Block_state bstate = initial;
+          create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
+          }
+
+       if (204-diff<=v0 && v0<=204+diff  && 72-diff<=v1 && v1<=72+diff && 63+diff<=v2 && v2<=63+diff){
+          //CREATE ?/active block  at position (i,j)
+          Block_type btype = active; Block_texture btexture = question_mark; Block_state bstate = operative;
+          create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
+          }
+
+       if (14-diff<=v0 && v0<=14+diff  && 201-diff<=v1 && v1<=201+diff && 255+diff<=v2 && v2<=255+diff){
+          //CREATE breakable block  at position (i,j)
+          Block_type btype = breakable; Block_texture btexture = crate; Block_state bstate = initial;
+          create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
+          }
+}
+
+
+
+
+
 
 // brick -> Block_type btype = permanent; Block_texture btexture = brick; Block_state = initial;
 
