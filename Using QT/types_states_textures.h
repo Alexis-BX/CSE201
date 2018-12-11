@@ -20,7 +20,9 @@ enum Block_type
 enum Block_texture
 {
     brick, // graphics texture of the blocks
-    grass
+    grass,
+    crate,
+    question_mark
 };
 
 enum Collectable_state  // the collectable can either be used by the player or not

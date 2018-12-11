@@ -45,5 +45,6 @@
         <file>pixmaps/thief_walking_casual.png</file>
         <file>pixmaps/wine.png</file>
         <file>pixmaps/wine1.png</file>
+        <file>pixmaps/grass.png</file>
     </qresource>
 </RCC>

@@ -17,7 +17,7 @@ View::View(pair screen_size, int block_size, QWidget* parent)
     //Create world
     set_scene_view();
 
-    create_basic_world(world_size.right-world_size.left);
+    create_example_world(world_size.right-world_size.left);
 
     create_player();
 
@@ -111,7 +111,7 @@ void View::set_scene_view()
 void View::create_example_world(int width) // under construction
 {
 
-    const int number_blocks = 10;
+    const int number_blocks = 15;
 
     pair block_position[number_blocks];
 
@@ -119,24 +119,72 @@ void View::create_example_world(int width) // under construction
 
     Block_texture block_texture[number_blocks];
 
-    // Question mark
-    block_position[0] = pair{5,5};
+    greal xi = 5, yi = 10;
 
-    block_type[0] = active;
+    int number = 5,start = 0;
 
-    block_texture[0] = brick;
+    for(int i = start; i < number ; i++)
+    {
+        block_position[i] = pair{xi+i,yi};
 
+        block_type[i] = permanent;
 
+        block_texture[i] = (i%2 == 0) ? crate : question_mark;
+    }
+
+    xi = 15, yi = 11;
+
+    start = 5;
+
+    for(int i = start; i < number+ start ; i++)
+    {
+        block_position[i] = pair{xi+i,yi};
+
+        block_type[i] = permanent;
+
+        block_texture[i] = (i%2 == 0) ? crate : question_mark;
+    }
+
+    xi = 25, yi = 9;
+
+    start = 10;
+
+    for(int i = start; i < number+ start ; i++)
+    {
+        block_position[i] = pair{xi+i,yi};
+
+        block_type[i] = permanent;
+
+        block_texture[i] = (i%2 == 0) ? crate : question_mark;
+    }
 
     for(int i = 0; i < number_blocks; i++)
     {
-        create_block(pair{block_position[i].x*block_size, block_position[i].y*block_size}, block_type[i], block_texture[i]);
+        create_block(pair{block_position[i].x*block_size, - block_position[i].y*block_size}, block_type[i], block_texture[i]);
     }
 
     int h = 2;
 
+    bool is_grass = false;
+
+    int change = rand() % 10 + 5;
+
+    int i = 0;
+
     for(int x = 0 ; x < width ; x++)
     {
+
+        if(i == change)
+        {
+            change =  rand() % 10 + 5;
+            i = 0;
+            is_grass = !is_grass;
+        }
+        else
+        {
+            i ++;
+        }
+
         if(rand()%100<10)
         {
             h++;
@@ -145,9 +193,9 @@ void View::create_example_world(int width) // under construction
         {
             h--;
         }
-        for(int y = 0 ; y < h ; y++)
+        for(int y = -h ; y < 2 ; y++)
         {
-            create_block(pair{greal(x*block_size),greal(y*block_size)});
+            create_block(pair{greal(x*block_size),greal(y*block_size)}, permanent , (is_grass)? grass : brick);
         }
     }
 }

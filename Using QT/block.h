@@ -22,6 +22,12 @@ public:
           Block_texture texture = Block_texture{brick}, Block_state state = Block_state{initial},
           QGraphicsItem* parent = 0);
 
+    int image_count;
+
+public slots:
+
+    void blink();
+
 };
 
 #endif // BLOCK_H
