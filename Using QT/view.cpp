@@ -5,6 +5,8 @@
 #include <QDebug>
 #include <cstdlib>
 #include <math.h>
+#include <iostream>
+
 
 
 View::View(pair screen_size, int block_size, QWidget* parent)
@@ -19,7 +21,11 @@ View::View(pair screen_size, int block_size, QWidget* parent)
     //Create world
     set_scene_view();
 
-    create_example_world(world_size.right-world_size.left);
+    //create_example_world(world_size.right-world_size.left);
+
+    char level[100] = "Level_agathe_001.bmp";
+
+    readBMP(level);
 
     create_player();
 
@@ -202,46 +208,61 @@ void View::create_example_world(int width) // under construction
     }
 }
 
-void View::readBMP(char *filename, int ord)
+void View::readBMP(char* filename)
 {
-    int i;
-        FILE* f = fopen(filename, "rb");
-        unsigned char info[54];
-        fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
+    printf("1");
 
-        // extract image height and width from header
-        int width = *(int*)&info[18];
-        int height = *(int*)&info[22];
+    FILE* f = fopen(filename, "rb");
+    printf("2");
+    unsigned char info[54];
+    printf("3");
+    fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
+    printf("4");
 
-        int size = 3 * width * height;
-        unsigned char* data = new unsigned char[size]; // allocate 3 bytes per pixel
-        fread(data, sizeof(unsigned char), size, f); // read the rest of the data at once
-        fclose(f);
+    // extract image height and width from header
+    int width = *(int*)&info[18];
+    int height = *(int*)&info[22];
+    std::cout << width << std::endl;
+    std::cout << height << std::endl;
+
+    unsigned int size = 3 * width * height;
+    std::cout << "width" << std::endl;
+    unsigned char* data = new unsigned char[size]; // allocate 3 bytes per pixel
+    std::cout << "width" << std::endl;
+    fread(data, sizeof(unsigned char), size, f); // read the rest of the data at once
+    fclose(f);
+
+    printf("5");
+
+    /**
+    if (ord==1){
+     if ord==1 means you are using a windows
+    the swap between every first and third pixel is done because windows stores the
+    color values as (B, G, R) triples, not (R, G, B).
+
+    for(i = 0; i < size; i += 3){
+            unsigned char tmp = data[i];
+            data[i] = data[i+2];
+            data[i+2] = tmp;
+    }}
+    **/
 
 
-        if (ord==1){
-        /** if ord==1 means you are using a windows
-        the swap between every first and third pixel is done because windows stores the
-        color values as (B, G, R) triples, not (R, G, B).**/
+    /** Now data should contain the (R, G, B) values of the pixels. The color of pixel (i, j) is stored at
+     data[3 * (i * width + j)], data[3 * (i * width + j) + 1] and data[3 * (i * width + j) + 2]. **/
 
-        for(i = 0; i < size; i += 3){
-                unsigned char tmp = data[i];
-                data[i] = data[i+2];
-                data[i+2] = tmp;
-        }}
-
-        /** Now data should contain the (R, G, B) values of the pixels. The color of pixel (i, j) is stored at
-         data[3 * (i * width + j)], data[3 * (i * width + j) + 1] and data[3 * (i * width + j) + 2]. **/
-
-        for(int i = 0; i < height; i ++) {
-            for(int j = 0; j < width; j++){
-                 int value [3];
-                 value[0] = data[3 * (i * width + j)];
-                 value [1]=data[3 * (i * width + j)+1];
-                 value [2]= data[3 * (i * width + j)+2];
-                 convert (value[0],value[1], value [2],i,j);  //this function creates ther object at position (i,j)
+    for(int i = 0; i < height; i ++)
+    {
+        for(int j = 0; j < width; j++)
+        {
+             int value [3];
+             value[0] = data[3 * (i * width + j)];
+             value [1]=data[3 * (i * width + j)+1];
+             value [2]= data[3 * (i * width + j)+2];
+             convert (value[0],value[1], value [2],i,j);  //this function creates ther object at position (i,j)
         }
-        }
+    }
+    printf("3");
 }
 
 void View::convert(int v0, int v1, int v2, int i, int j)
@@ -304,26 +325,3 @@ void View::convert(int v0, int v1, int v2, int i, int j)
           create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
           }
 }
-
-
-
-
-
-
-// brick -> Block_type btype = permanent; Block_texture btexture = brick; Block_state = initial;
-
-// crate -> Block_type btype = breakable; Block_texture btexture = crate; Block_state = initial;
-
-// active -> Block_type btype = active; Block_texture btexture = question_mark; Block_state = operative;
-
-// grass -> Block_type btype = permanent; Block_texture btexture = grass; Block_state = initial;
-
-// dirt -> Block_type btype = permanent; Block_texture btexture = dirt; Block_state = initial;
-
-// coinstroll -> Block_type btype = permanent; Block_texture btexture = face; Block_state = initial;
-
-// nothing
-
-
-// create_block(pair{greal(x*block_size),greal(-18-y*block_size)}, type, texture, state};
-

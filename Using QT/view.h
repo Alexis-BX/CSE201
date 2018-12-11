@@ -34,11 +34,15 @@ public:
     void create_block(pair position, Block_type type = Block_type{permanent},
                       Block_texture texture = Block_texture{brick},Block_state state = Block_state{initial} );
 
-    void create_player(pair position = pair{100,-100});
+    void create_player(pair position = pair{300,-300});
 
     void set_scene_view();
 
     void create_example_world(int width);
+    
+    void readBMP(char* filename);
+    
+    void convert (int v0,int v1,int v2, int i, int j);
 };
 
 #endif // VIEW_H
