@@ -38,6 +38,7 @@ public:
     // Methods
 
     bool collision_right(),collision_left(),collision_down(),collision_up();
+    bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
 
     void setup_projectile(bool direction);
 

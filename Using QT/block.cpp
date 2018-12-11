@@ -17,11 +17,11 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
     {
         if(int(position.y+81)%36 < 18)
         {
-            setPixmap(QPixmap(":/images/pixmaps/ground1.png"));
+            setPixmap(QPixmap(":/images/pixmaps/face.png"));
         }
         else
         {
-            setPixmap(QPixmap(":/images/pixmaps/ground3.png"));
+            setPixmap(QPixmap(":/images/pixmaps/face.png"));
         }
     }
     else if(texture == crate)

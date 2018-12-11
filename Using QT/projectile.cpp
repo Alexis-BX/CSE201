@@ -111,7 +111,7 @@ void Projectile::create_collision_range()
 
     collision_range_proj->setRect(0,0,size.x + size.x /2, size.y + size.y/2);
 
-    collision_range_proj->setPen(QPen(Qt::NoPen));
+    collision_range_proj->setOpacity(0);
 
     collision_range_proj->setPos(-size.x/4,-size.y/4);
 
@@ -127,43 +127,14 @@ bool Projectile::collision_right()
     {
         if (speed.x > 0) //projectile moves right
         {
-            if (speed.y == 0) //horizontal movement
+            for (int i = 0; i<size.y; i++) //iterate over the whole height of the projectile
             {
-                for (int i = 0; i<size.y; i++) //iterate over the whole height of the projectile
+                if ((*iter)-> contains(QPointF(x() +  (size.x)  + (speed.x-1) - (*iter)->x() , y() + i -(*iter)->y() )))
                 {
-                    if ((*iter)-> contains(QPointF(x() +  (size.x-1)  + (speed.x) - (*iter)->x() , y() + i -(*iter)->y() )))
-                    {
-                        return true;
-                    }
-                }
-
-
-            }
-
-            else if (speed.y > 0) //projectile moves right and down
-            {
-
-                for (int i =0; i< size.y; i++)
-                { //collision of the right side of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + (speed.x-1) + (size.x)  - (*iter)->x() , y() + (speed.y-1) + i -(*iter)->y() )))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
-
-
-            else if (speed.y < 0) //projectile moves right and up
-            {
-                for (int i =0; i< size.y; i++)
-                { //collision of the right side of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + (speed.x) + (size.x-1)  - (*iter)->x() , y() +(speed.y+1) + i -(*iter)->y() )))
-                    {
-                        return true;;
-                    }
-                }
-            }
-        } //END OF FIRST CASE
+        }
 
     }
     return false;
@@ -176,42 +147,14 @@ bool Projectile::collision_left()
     {
     if (speed.x < 0) //projectile goes backwards
     {
-        if (speed.y ==0) // horizontal left movement
-        {
-            for (int i =0; i< size.y; i++)
-            { //collision of the left of the projectile
-                if ((*iter)-> contains(QPointF(x()  + speed.x   - (*iter)->x() , y() + i  -(*iter)->y() )))
-                {
-                    return true;
-                }
-            }
-
-        }
-
-        else if (speed.y > 0) //left and down
-        {
-            for (int i =0; i< size.y; i++)
-            { //collision of the left side of the projectile
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +(speed.y-1) + i -(*iter)->y() )))
-                {
-                    return true;
-                }
+        for (int i =0; i< size.y; i++)
+        { //collision of the left of the projectile
+            if ((*iter)-> contains(QPointF(x()  + speed.x   - (*iter)->x() , y() + i  -(*iter)->y() )))
+            {
+                return true;
             }
         }
-
-        else if (speed.y < 0) //left and up
-        {
-
-            for (int i =0; i< size.y; i++)
-            { //collision of the left side of the projectile
-                if ((*iter)-> contains(QPointF(x()  + speed.x  - (*iter)->x() , y() +(speed.y+1) + i -(*iter)->y() )))
-                {
-                    return true;
-                }
-            }
-
-        }
-    } //end of case 2
+    }
     }
     return false;
 
@@ -224,35 +167,11 @@ bool Projectile::collision_up()
     {
         if (speed.y < 0)
         {
-            if (speed.x == 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the top of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                    {
-                        return true;
-                    }
-                }
-            }
-            else if (speed.x > 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the top of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + (speed.x-1) + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            else if (speed.x < 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the top of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + (speed.x+1) + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                    {
-                        return true;
-                    }
+            for (int i =0; i< size.x; i++)
+            { //collision of the top of the projectile
+                if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
+                {
+                    return true;
                 }
             }
         }
@@ -269,42 +188,94 @@ bool Projectile::collision_down()
     {
         if(speed.y > 0)
         {
-            if (speed.x == 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the bottom of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() + (size.y-1) + (speed.y) -(*iter)->y() )))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            if (speed.x > 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the bottom of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + i + (speed.x - 1)  - (*iter)->x() , y() + (size.y-1) + (speed.y) -(*iter)->y() )))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            if (speed.x < 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the bottom of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + i + (speed.x+1)  - (*iter)->x() , y() + (size.y - 1) +  (speed.y) -(*iter)->y() )))
-                    {
-                        return true;
-                    }
+            for (int i =0; i< size.x; i++)
+            { //collision of the bottom of the projectile
+                if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() + (size.y-1) + (speed.y) -(*iter)->y() )))
+                {
+                    return true;
                 }
             }
         }
     }
     return false;
 }
+
+bool Projectile::collision_b_l() //spots if the bottom left corner endures a collision both from the left and the bottom
+{
+    bool l = collision_left();
+    bool b = collision_down();
+    if(speed.y > 0 && speed.x < 0 && l == false && b == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(bottom left)
+            if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + (size.y) + (speed.y - 1)   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Projectile::collision_b_r() // spots if the bottom right corner endures a collision both from the right and the bottom
+{
+    bool r = collision_right();
+    bool b = collision_down();
+    if(speed.y > 0 && speed.x > 0 && r == false && b == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(bottom right)
+            if ((*iter)-> contains(QPointF(x() + size.x + (speed.x - 1)  - (*iter)->x() , y() + (size.y) + (speed.y - 1)   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Projectile::collision_t_l()
+{
+    bool l = collision_left();
+    bool t = collision_up();
+    if(speed.y < 0 && speed.x < 0 && l == false && t == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(top left (0,0))
+            if ((*iter)-> contains(QPointF(x() + speed.x  - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Projectile::collision_t_r()
+{
+    bool r = collision_right();
+    bool t = collision_up();
+    if(speed.y < 0 && speed.x > 0 && r == false && t == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range_proj->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(top right (36,0))
+            if ((*iter)-> contains(QPointF(x() + size.x + speed.x-1 - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 
 void delay(int i) //milliseconds
 {
@@ -318,9 +289,13 @@ void Projectile::move()
     if (state == vanish){setPixmap(QPixmap(":/images/explosion.png")); state = dead ; delay(200); QObject::deleteLater();}
 
     life -= 10;
-    //if(life == 0){
-    //speed.y = 5; setPos(x()+speed.x, y()+speed.y); return;}
-    //if(life == -10){delay(100); QObject::deleteLater();}
+    if(life == 0)
+    {
+        speed.y = 5;
+        setPos(x()+speed.x, y()+speed.y);
+        return;
+    }
+    if(life == -10){delay(100); QObject::deleteLater();}
 
     int ac_vel_x = 2; //after collision velocity (when the projectile bounces)
     int ac_vel_y = 5;
@@ -329,38 +304,20 @@ void Projectile::move()
     bool l = collision_left();
     bool t = collision_up();
     bool b = collision_down();
+    bool bl = collision_b_l();
+    bool br = collision_b_r();
+    bool tl = collision_t_l();
+    bool tr = collision_t_r();
 
-    if (r == true)
-    {
-        if (b == true)
-        {
-            speed.x = 0;
-            speed.y = 0;
-            state = vanish;
-        }
-        else
-        {
-            speed.x = - ac_vel_x;
-            speed.y = ac_vel_x;
-        }
-    }
+    if (r == true){speed.x = -ac_vel_x; speed.y = ac_vel_y;}
+    if (l == true){speed.x = ac_vel_x; speed.y = ac_vel_y;}
+    if (b == true){speed.y = 0; life = 10;}
+    if (t == true){speed.y = ac_vel_y;}
+    if (bl == true || br == true){speed.y = 0; speed.x = speed.x; life = 10;} //if the bottom corners collide, we maintain the velocity on x,
+                                                                              //but not on y but we make the projectile almost dead
+    if (tl == true || tr == true){speed.y = 0; speed.x = speed.x; life = 10;} //if the top corners collide, we maintain the velocity on x,
+                                                                              //but not on y but we make the projectile almost dead
 
-    else if (l == true)
-    {
-        if (b == true)
-        {
-            speed.x = 0;
-            speed.y = 0;
-            state = vanish;
-        }
-        else
-        {
-            speed.x = ac_vel_x;
-            speed.y = ac_vel_x;
-        }
-    }
-    if (t == true){ speed.y = ac_vel_y;}
 
     setPos(x() + speed.x, y() + speed.y);
-
 }

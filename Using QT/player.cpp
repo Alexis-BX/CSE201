@@ -100,43 +100,14 @@ bool Player::collision_right()
         QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            if (speed.y == 0)
+            for (int i = 0; i < size; i += 1)
             {
-                for (int i = 0; i<size; i += 1)
+                if ((*iter)-> contains(QPointF(x() + (size) + (speed.x-1)  - (*iter)->x() , y() + i    -(*iter)->y() )))
                 {
-                    if ((*iter)-> contains(QPointF(x() + (size-1) + (speed.x)  - (*iter)->x() , y() + i    -(*iter)->y() )))
-                    {
-                        qDebug() << " speed.x > 0,speed.y == 0";
-
-                        return true;
-                    }
+                    return true;
                 }
             }
 
-            else if (speed.y < 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + (size-1) + (speed.x)  - (*iter)->x() , y() + i + (speed.y + 1)   -(*iter)->y() )))
-                    {
-                        qDebug() << " speed.x > 0, speed.y < 0";
-                        return true;
-                    }
-                }
-            }
-
-            else if (speed.y > 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + (size-1) + (speed.x)  - (*iter)->x() , y() + i + (speed.y-1)   -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.x > 0 , speed.y > 0";
-
-                        return true;
-                    }
-                }
-            }
         }
     }
 
@@ -150,42 +121,13 @@ bool Player::collision_left()
         QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            if (speed.y == 0)
+            for (int i = 0; i< size; i += 1)
             {
-                for (int i = 0; i<size; i += 1)
+                if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + i   -(*iter)->y() )))
                 {
-                    if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + i   -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.x < 0 , speed.y == 0";
-
-                        return true;
-                    }
+                    return true;
                 }
             }
-
-            else if (speed.y < 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + i + (speed.y + 1)  -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.x < 0 , speed.y < 0";
-                        return true;
-                    }
-                }
-            }
-            else if (speed.y > 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + i + (speed.y - 1)    -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.x < 0 , speed.y > 0";
-                        return true;
-                    }
-                }
-            }
-
         }
     }
     return false;
@@ -198,43 +140,11 @@ bool Player::collision_up()
         QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            if (speed.x == 0)
+            for (int i = 0; i< size; i += 1)
             {
-                for (int i = 0; i<size; i += 1)
+                if ((*iter)-> contains(QPointF(x() + i  - (*iter)->x() , y() + (speed.y)  -(*iter)->y() )))
                 {
-                    if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + (speed.y)  -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.y < 0 , speed.x ==  0";
-
-                        return true;
-                    }
-                }
-            }
-
-            else if (speed.x < 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + i + (speed.x+1)  - (*iter)->x() , y() + (speed.y)  -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.y < 0 , speed.x <  0";
-
-                        return true;
-                    }
-                }
-            }
-
-
-            else if (speed.x > 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + i + (speed.x-1)  - (*iter)->x() , y() + (speed.y)  -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.y < 0 , speed.x >  0";
-
-                        return true;
-                    }
+                    return true;
                 }
             }
 
@@ -250,54 +160,98 @@ bool Player::collision_down()
         QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            if (speed.x == 0)
+            for (int i = 0; i<size; i += 1)
             {
-                for (int i = 0; i<size; i += 1)
+                if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + (size) + (speed.y-1 )  - (*iter)->y() )))
                 {
-                    if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + (size-1) + (speed.y)  - (*iter)->y() )))
-                    {
-                        qDebug() << "speed.y > 0 , speed.x ==  0";
-
-                        return true;
-                    }
+                    return true;
                 }
             }
-
-            else if (speed.x < 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + i + (speed.x+1)  - (*iter)->x() , y() + (size-1) + (speed.y)  -(*iter)->y() )))
-                    {
-                        qDebug() << "speed.y > 0 , speed.x <  0";
-                        return true;
-                    }
-                }
-
-            }
-
-
-            else if (speed.x > 0)
-            {
-                for (int i = 0; i<size; i += 1)
-                {
-                    if ((*iter)-> contains(QPointF(x() + i + (speed.x-1) - (*iter)->x() , y() + (size-1) + (speed.y)  - (*iter)->y() )))
-                    {
-                        qDebug() << "speed.y > 0 , speed.x >  0";
-                        return true;
-                    }
-                }
-            }
-
         }
     }
     return false;
 
 }
 
+bool Player::collision_b_l() //spots if the bottom left corner endures a collision both from the left and the bottom
+{
+    bool l = collision_left();
+    bool b = collision_down();
+    if(speed.y > 0 && speed.x < 0 && l == false && b == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(bottom left, (0,36)
+            if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + (size) + (speed.y - 1)   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Player::collision_b_r() // spots if the bottom right corner endures a collision both from the right and the bottom
+{
+    bool r = collision_right();
+    bool b = collision_down();
+    if(speed.y > 0 && speed.x > 0 && r == false && b == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(bottom right, (36,36)
+            if ((*iter)-> contains(QPointF(x() + size + (speed.x - 1)  - (*iter)->x() , y() + (size) + (speed.y - 1)   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Player::collision_t_l()
+{
+    bool l = collision_left();
+    bool t = collision_up();
+    if(speed.y < 0 && speed.x < 0 && l == false && t == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(top left (0,0))
+            if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Player::collision_t_r()
+{
+    bool r = collision_right();
+    bool t = collision_up();
+    if(speed.y < 0 && speed.x > 0 && r == false && t == false)
+    {
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
+        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+        {
+            //(top right (36,0))
+            if ((*iter)-> contains(QPointF(x() + size + speed.x-1 - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
 void Player::move()
 {
-    speed.y += 1;
 
     //Motion smooth
     if (pressedL){
@@ -380,26 +334,35 @@ void Player::move()
         }
     }
 
+    speed.y += 1;
 
     bool r = collision_right();
     bool l = collision_left();
     bool t = collision_up();
     bool b = collision_down();
+    bool bl = collision_b_l();
+    bool br = collision_b_r();
+    bool tl = collision_t_l();
+    bool tr = collision_t_r();
 
-    qDebug() << "==========";
-    qDebug() << r;
-    qDebug() << l;
-    qDebug() << t;
-    qDebug() << b;
 
     // movements of the player:
-
-
     if (r == true){speed.x = 0;}
     if (l == true){speed.x = 0;}
-    if (t == true){speed.y = 0;}
     if (b == true){speed.y = 0;}
+    if (t == true){speed.y = 0;}
+    if (bl == true || br == true){speed.y = 0; speed.x = speed.x;} //if the bottom corners collide, we maintain the velocity on x, but not on y
+    if (tl == true || tr == true){speed.y = 0; speed.x = speed.x;} //if the top corners collide, we maintain the velocity on x. but not on y
 
+    // check y-velocity is not too big
+    if (speed.y > speedMax.y)
+    {
+        speed.y = speedMax.y;
+    }
+    if (speed.y < -speedMax.y)
+    {
+        speed.y = -speedMax.y;
+    }
 
     //Direction of the player:
     if (pressedR){direction = 1;}
@@ -418,7 +381,7 @@ void Player::create_collision_range()
 
     collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
 
-    collision_range->setPen(QPen(Qt::NoPen));
+    collision_range->setOpacity(0);
 }
 
 /***

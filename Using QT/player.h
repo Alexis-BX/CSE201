@@ -50,6 +50,8 @@ public:
     void create_collision_range();
 
     bool collision_left(), collision_right(), collision_up(), collision_down();
+    bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
+
 
 
 public slots:
