@@ -200,3 +200,20 @@ void View::create_example_world(int width) // under construction
     }
 }
 
+// brick -> Block_type btype = permanent; Block_texture btexture = brick; Block_state = initial;
+
+// crate -> Block_type btype = breakable; Block_texture btexture = crate; Block_state = initial;
+
+// active -> Block_type btype = active; Block_texture btexture = question_mark; Block_state = operative;
+
+// grass -> Block_type btype = permanent; Block_texture btexture = grass; Block_state = initial;
+
+// dirt -> Block_type btype = permanent; Block_texture btexture = dirt; Block_state = initial;
+
+// coinstroll -> Block_type btype = permanent; Block_texture btexture = face; Block_state = initial;
+
+// nothing
+
+
+// create_block(pair{greal(x*block_size),greal(-18-y*block_size)}, type, texture, state};
+

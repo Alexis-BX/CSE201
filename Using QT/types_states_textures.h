@@ -1,15 +1,6 @@
 #ifndef TYPES_STATES_TEXTURES_H
 #define TYPES_STATES_TEXTURES_H
 
-enum Block_state
-{
-    initial, //initial state of the block
-    operative // the block can  be used to pop up coins for instance
-    //inoperative, // the block cannot be used anymore but remains there as a permanent block
-    //damaged, //the block is damaged (it has half life basically and the graphics change)
-    //dead, // the block is dead and vanishes
-};
-
 enum Block_type
 {
     permanent,
@@ -22,7 +13,18 @@ enum Block_texture
     brick, // graphics texture of the blocks
     grass,
     crate,
-    question_mark
+    question_mark,
+    dirt,
+    face
+};
+
+enum Block_state
+{
+    initial, //initial state of the block
+    operative // the block can  be used to pop up coins for instance
+    //inoperative, // the block cannot be used anymore but remains there as a permanent block
+    //damaged, //the block is damaged (it has half life basically and the graphics change)
+    //dead, // the block is dead and vanishes
 };
 
 enum Collectable_state  // the collectable can either be used by the player or not

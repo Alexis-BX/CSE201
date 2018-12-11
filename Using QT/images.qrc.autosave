@@ -1,0 +1,52 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>pixmaps/baguette.png</file>
+        <file>pixmaps/big cheese.png</file>
+        <file>pixmaps/break.png</file>
+        <file>pixmaps/break0.png</file>
+        <file>pixmaps/break1.png</file>
+        <file>pixmaps/break2.png</file>
+        <file>pixmaps/break3.png</file>
+        <file>pixmaps/break4.png</file>
+        <file>pixmaps/break5.png</file>
+        <file>pixmaps/Brick.png</file>
+        <file>pixmaps/brick18.png</file>
+        <file>pixmaps/character crouching.png</file>
+        <file>pixmaps/character horizontal jump.png</file>
+        <file>pixmaps/character run.png</file>
+        <file>pixmaps/character stand.png</file>
+        <file>pixmaps/character throw stand.png</file>
+        <file>pixmaps/character vertical jump.png</file>
+        <file>pixmaps/character.png</file>
+        <file>pixmaps/characterT.png</file>
+        <file>pixmaps/croissant.png</file>
+        <file>pixmaps/eclair au chocolat.png</file>
+        <file>pixmaps/eiffel tower.png</file>
+        <file>pixmaps/explosion.png</file>
+        <file>pixmaps/ground1.png</file>
+        <file>pixmaps/ground3.png</file>
+        <file>pixmaps/Mario.png</file>
+        <file>pixmaps/pain au chocolat.png</file>
+        <file>pixmaps/question.png</file>
+        <file>pixmaps/question0.png</file>
+        <file>pixmaps/question1.png</file>
+        <file>pixmaps/question2.png</file>
+        <file>pixmaps/rotating baguette.png</file>
+        <file>pixmaps/small cheese.png</file>
+        <file>pixmaps/smoke.png</file>
+        <file>pixmaps/smoking dude.png</file>
+        <file>pixmaps/super character crouching.png</file>
+        <file>pixmaps/super character horizontal jump.png</file>
+        <file>pixmaps/super character run.png</file>
+        <file>pixmaps/super character stand.png</file>
+        <file>pixmaps/super character throw.png</file>
+        <file>pixmaps/super character vertical jump.png</file>
+        <file>pixmaps/thief_dying_poorthing.png</file>
+        <file>pixmaps/thief_walking_casual.png</file>
+        <file>pixmaps/wine.png</file>
+        <file>pixmaps/wine1.png</file>
+        <file>pixmaps/grass.png</file>
+        <file>pixmaps/face.png</file>
+        <file>pixmaps/dirt.png</file>
+    </qresource>
+</RCC>

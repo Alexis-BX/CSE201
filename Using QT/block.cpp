@@ -17,11 +17,11 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
     {
         if(int(position.y+81)%36 < 18)
         {
-            setPixmap(QPixmap(":/images/pixmaps/face.png"));
+            setPixmap(QPixmap(":/images/pixmaps/ground1.png"));
         }
         else
         {
-            setPixmap(QPixmap(":/images/pixmaps/face.png"));
+            setPixmap(QPixmap(":/images/pixmaps/ground3.png"));
         }
     }
     else if(texture == crate)
@@ -44,6 +44,14 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
     else if(texture == grass)
     {
         setPixmap(QPixmap(":/images/pixmaps/grass.png"));
+    }
+    else if(texture == dirt)
+    {
+        setPixmap(QPixmap(":/images/pixmaps/dirt.png"));
+    }
+    else if(texture == face)
+    {
+        setPixmap(QPixmap(":/images/pixmaps/face.png"));
     }
 }
 
