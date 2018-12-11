@@ -2,6 +2,13 @@
     <qresource prefix="/images">
         <file>pixmaps/baguette.png</file>
         <file>pixmaps/big cheese.png</file>
+        <file>pixmaps/break.png</file>
+        <file>pixmaps/break0.png</file>
+        <file>pixmaps/break1.png</file>
+        <file>pixmaps/break2.png</file>
+        <file>pixmaps/break3.png</file>
+        <file>pixmaps/break4.png</file>
+        <file>pixmaps/break5.png</file>
         <file>pixmaps/Brick.png</file>
         <file>pixmaps/brick18.png</file>
         <file>pixmaps/character crouching.png</file>
@@ -20,6 +27,10 @@
         <file>pixmaps/ground3.png</file>
         <file>pixmaps/Mario.png</file>
         <file>pixmaps/pain au chocolat.png</file>
+        <file>pixmaps/question.png</file>
+        <file>pixmaps/question0.png</file>
+        <file>pixmaps/question1.png</file>
+        <file>pixmaps/question2.png</file>
         <file>pixmaps/rotating baguette.png</file>
         <file>pixmaps/small cheese.png</file>
         <file>pixmaps/smoke.png</file>
@@ -30,6 +41,9 @@
         <file>pixmaps/super character stand.png</file>
         <file>pixmaps/super character throw.png</file>
         <file>pixmaps/super character vertical jump.png</file>
+        <file>pixmaps/thief_dying_poorthing.png</file>
+        <file>pixmaps/thief_walking_casual.png</file>
         <file>pixmaps/wine.png</file>
+        <file>pixmaps/wine1.png</file>
     </qresource>
 </RCC>
