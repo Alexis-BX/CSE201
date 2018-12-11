@@ -295,7 +295,6 @@ bool Player::collision_down()
 
 }
 
-
 void Player::move()
 {
     speed.y += 1;
@@ -411,6 +410,202 @@ void Player::move()
     view->centerOn(this);
 }
 
+void Player::create_collision_range()
+{
+    collision_range = new QGraphicsRectItem(this);
+
+    collision_range->setRect(0,0,size + size/2, size + size/2);
+
+    collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
+
+    collision_range->setPen(QPen(Qt::NoPen));
+}
+
+/***
+ * Trying another move method
+ ***/
+/**
+void Player::create_collision_range()
+{
+    collision_range = new QGraphicsRectItem(this);
+
+    collision_range->setRect(0, 0, size, size);
+
+    collision_range->setPos(0, 0); //we readjust the position of the collision box so that is centers the player
+
+    //collision_range->setPen(QPen(Qt::NoPen));
+}
+
+void Player::move()
+{
+
+    speed.y += 1;
+
+    //Motion smooth
+    if (pressedL)
+    {
+        if (speed.x>-speedMax.x)
+        {
+            speed.x -= 1;
+        }
+    }
+    else
+    {
+        if (speed.x<-1)
+        {
+            speed.x -= speed.x/2;
+        }
+        else if (speed.x<0)
+        {
+            speed.x=0;
+        }
+    }
+    if (pressedR)
+    {
+        if (speed.x<speedMax.x)
+        {
+            speed.x += 1;
+        }
+    }
+    else{
+        if (speed.x>1)
+        {
+            speed.x -= speed.x/2;
+        }
+        else if (speed.x>0)
+        {
+            speed.x=0;
+        }
+    }
+
+    //in boundaries
+    if(y()>=view->world_size.bottom)
+    {
+        speed.y = (0 > speed.y) ? speed.y : 0 ;
+        setY(view->world_size.bottom);
+    }
+    if(x()<=view->world_size.left)
+    {
+        speed.x = (0 < speed.x) ? speed.x : 0 ;
+        setX(view->world_size.left);
+    }
+    else if(x() >= view->world_size.right)
+    {
+        speed.x = (0 > speed.x) ? speed.x : 0 ;
+        setX(view->world_size.right);
+    }
+
+    collision_range->setPos(speed.x,speed.y);
+
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
+
+
+    pair temp_ratio{1,1},final_ratio{1,1},collision_vector;
+
+    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+    {
+        if((*iter)->x() == x() && (*iter)->y() == y())
+        {
+            continue;
+        }
+
+        //set the collision vector x
+        if(speed.x > 0)
+        {
+            collision_vector.x = (*iter)->x()-x()-size;
+        }
+        else if(speed.x < 0)
+        {
+            collision_vector.x = (*iter)->x()+block_size-x();
+        }
+        else
+        {
+            collision_vector.x = 0;
+        }
+
+
+        //set the collision vector y
+        if(speed.y > 0)
+        {
+            collision_vector.y =(*iter)->y()-y()-size;
+        }
+        else if(speed.y < 0)
+        {
+            collision_vector.y = (*iter)->y()+block_size-y();
+        }
+        else
+        {
+            collision_vector.y = 0;
+        }
+
+        // computer temp ratios
+        temp_ratio.x = (speed.x != 0) ? (collision_vector.x)/speed.x : 0;
+        temp_ratio.y = (speed.y != 0) ? (collision_vector.y)/speed.y : 0;
+
+        temp_ratio.x = max_of<greal>(temp_ratio);
+        temp_ratio.y = temp_ratio.x;
+
+        if(speed.x !=0 && collision_vector.x == 0) //((*iter)->x() >= x()+size)||((*iter)->x()+block_size <= x()))
+        {
+            temp_ratio.y = 1;
+        }
+        if(speed.y !=0 && collision_vector.y == 0) //((*iter)->y() >= y()+size)||((*iter)->y() + block_size <= y()))
+        {
+            temp_ratio.x = 1;
+        }
+
+        //update fianl ration we want to it be between 1 and -1 (it starts at 1 only decreases and is bounded by -1)
+        final_ratio.x = max<greal>(min<greal>(temp_ratio.x,final_ratio.x),-1);
+        final_ratio.y = max<greal>(min<greal>(temp_ratio.y,final_ratio.y),-1);
+    }
+
+    //update speed
+    speed.x = int(speed.x * final_ratio.x);
+    speed.y = int(speed.y * final_ratio.y);
+
+
+    //animation
+    if (speed.x<0){count -= 0.1;}
+    else{count += 0.1;}
+
+    if (count>=N){count = 0;}
+    if (count< 0){count = N-0.00001;}
+
+    if (speed.x<0){
+        if (speed.y<0){
+            setPixmap(animations[7][int(count)]);//flip
+        }
+        else{
+            setPixmap(animations[8][int(count)]);//flip
+        }
+    }
+    else if(speed.x>0){
+        if (speed.y<0){
+            setPixmap(animations[2][int(count)]);
+        }
+        else{
+            setPixmap(animations[3][int(count)]);
+        }
+    }
+    else{
+        if (speed.y<0){
+            setPixmap(animations[1][int(count)]);
+        }
+        else{
+            setPixmap(animations[0][int(count)]);
+        }
+    }
+
+    //Direction of the player:
+    if (pressedR){direction = 1;}
+    if (pressedL){direction = 0;}
+
+    setPos(x()+speed.x,y()+speed.y);
+
+    view->centerOn(this);
+}
+**/
+
 void Player::throwprojectile(int i)
 {
 
@@ -420,13 +615,13 @@ void Player::throwprojectile(int i)
     {
         if (direction == 1)
         {   // the player faces right, the projectile is thrown to the right
-            Projectile* projectile = new Projectile(pair{int(x() + size ),int(y() +  size/4)}, direction, Projectile_type{baguette});
+            Projectile* projectile = new Projectile(pair{x() + size,y() +  size/4}, direction, Projectile_type{baguette});
             view->scene->addItem(projectile);
         }
         else
         {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
             // -19... we would like -projectile.size.x - 1
-            Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{baguette});
+            Projectile* projectile = new Projectile(pair{x() -19 ,y() +  size/4}, direction, Projectile_type{baguette});
             view->scene->addItem(projectile);
         }
     }
@@ -435,13 +630,13 @@ void Player::throwprojectile(int i)
     {
         if (direction == 1)
         {   // the player faces right, the projectile is thrown to the right
-            Projectile* projectile = new Projectile(pair{int(x() + size ),int(y() +  size/4)}, direction, Projectile_type{wine});
+            Projectile* projectile = new Projectile(pair{x() + size ,y() +  size/4}, direction, Projectile_type{wine});
             view->scene->addItem(projectile);
         }
         else
         {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
             // -19... we would like -projectile.size.x - 1
-            Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{wine});
+            Projectile* projectile = new Projectile(pair{x() -19 ,y() +  size/4}, direction, Projectile_type{wine});
             view->scene->addItem(projectile);
         }
     }
@@ -450,13 +645,13 @@ void Player::throwprojectile(int i)
     {
         if (direction == 1)
         {   // the player faces right, the projectile is thrown to the right
-            Projectile* projectile = new Projectile(pair{int(x() + size ),int(y() +  size/4)}, direction, Projectile_type{smoke});
+            Projectile* projectile = new Projectile(pair{x() + size ,y() +  size/4}, direction, Projectile_type{smoke});
             view->scene->addItem(projectile);
         }
         else
         {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
             // -19... we would like -projectile.size.x - 1
-            Projectile* projectile = new Projectile(pair{int(x() -19 ),int(y() +  size/4)}, direction, Projectile_type{smoke});
+            Projectile* projectile = new Projectile(pair{x() -19 ,y() +  size/4}, direction, Projectile_type{smoke});
             view->scene->addItem(projectile);
         }
     }
@@ -492,13 +687,3 @@ void Player::create_animation()
     }
 }
 
-void Player::create_collision_range()
-{
-    collision_range = new QGraphicsRectItem(this);
-
-    collision_range->setRect(0,0,size + size/2, size + size/2);
-
-    collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
-
-    collision_range->setPen(QPen(Qt::NoPen));
-}

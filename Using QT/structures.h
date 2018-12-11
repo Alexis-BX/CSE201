@@ -1,5 +1,8 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
+#define greal double
+#define pixmap_dir ":/images/pixmaps/"
+
 
 struct double_pair
 {
@@ -9,7 +12,7 @@ struct double_pair
 
 struct pair
 {
-    int x,y;
+    greal x,y;
 };
 
 template <typename T> T min(T a, T b)
@@ -51,5 +54,20 @@ enum Object_type
     projectile,
     collectable
 };
+
+/**
+template char* add_dir(char* image)
+{
+    const int length = strlen(pixmap_dir) + strlen(image) + 1;
+
+    char pixmap[length];
+
+    strcpy(pixmap,pixmap_dir);
+
+    strcat(pixmap,image);
+
+    return pixmap;
+}
+**/
 
 #endif // STRUCTURES_H

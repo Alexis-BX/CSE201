@@ -4,29 +4,11 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include "structures.h"
+#include "types_states_textures.h"
 
 class View;
 
 extern View* view;
-
-enum Collectable_state  // the collectable can either be used by the player or not
-{
-    used,
-    unused
-};
-
-enum Collectable_type // shows all kinds of collectables that can appear
-{
-    star,
-    mushroom,
-    eclair
-};
-
-enum Collectable_texture  // shows if the player meets the same or different collectable
-{
-    same,
-    different
-};
 
 class Collectable : public QObject, public QGraphicsPixmapItem
 {

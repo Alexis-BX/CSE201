@@ -4,26 +4,11 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <structures.h>
+#include "types_states_textures.h"
 
 class View;
 
 extern View* view;
-
-enum Projectile_state
-{
-    alive,
-    vanish,
-    dead //if his life is over or it hit something
-};
-
-enum Projectile_type
-{
-    baguette, //player's projectile : horizantal attack
-    smoke, //enemy's projectile : horizantal attack
-    wine, //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
-    pot,
-};
-
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {

@@ -20,6 +20,7 @@ View::View(pair screen_size, int block_size, QWidget* parent)
     create_basic_world(world_size.right-world_size.left);
 
     create_player();
+
 }
 
 void View::create_basic_world(int width)
@@ -62,15 +63,15 @@ void View::create_basic_world(int width)
     {
         for(int y = 0 ; y < 2 ; y++)
         {
-            create_block(pair{x*block_size,y*block_size});
+            create_block(pair{greal(x*block_size),greal(y*block_size)});
         }
-        create_block(pair{x*block_size,world_size.top});
+        create_block(pair{greal(x*block_size),greal(world_size.top)});
     }
 }
 
-void View::create_block(pair position)
+void View::create_block(pair position, Block_type type, Block_texture texture,Block_state state )
 {
-    Block* new_block = new Block(position);
+    Block* new_block = new Block(position, type, texture, state);
 
     new_block->setPos(position.x,position.y-36); // the -36 is temporary
 
@@ -106,3 +107,48 @@ void View::set_scene_view()
 
     setFixedSize(screen_size.x,screen_size.y);
 }
+
+void View::create_example_world(int width) // under construction
+{
+
+    const int number_blocks = 10;
+
+    pair block_position[number_blocks];
+
+    Block_type block_type[number_blocks];
+
+    Block_texture block_texture[number_blocks];
+
+    // Question mark
+    block_position[0] = pair{5,5};
+
+    block_type[0] = active;
+
+    block_texture[0] = brick;
+
+
+
+    for(int i = 0; i < number_blocks; i++)
+    {
+        create_block(pair{block_position[i].x*block_size, block_position[i].y*block_size}, block_type[i], block_texture[i]);
+    }
+
+    int h = 2;
+
+    for(int x = 0 ; x < width ; x++)
+    {
+        if(rand()%100<10)
+        {
+            h++;
+        }
+        if(rand()%100<10)
+        {
+            h--;
+        }
+        for(int y = 0 ; y < h ; y++)
+        {
+            create_block(pair{greal(x*block_size),greal(y*block_size)});
+        }
+    }
+}
+

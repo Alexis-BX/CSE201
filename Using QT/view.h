@@ -4,6 +4,7 @@
 #include <QGraphicsView>
 #include <QtWidgets>
 #include "structures.h"
+#include "types_states_textures.h"
 
 class Player;
 
@@ -30,11 +31,14 @@ public:
     // Create world
     void create_basic_world(int width);
 
-    void create_block(pair position);
+    void create_block(pair position, Block_type type = Block_type{permanent},
+                      Block_texture texture = Block_texture{brick},Block_state state = Block_state{initial} );
 
-    void create_player(pair position = pair{50,-60});
+    void create_player(pair position = pair{100,-100});
 
     void set_scene_view();
+
+    void create_example_world(int width);
 };
 
 #endif // VIEW_H

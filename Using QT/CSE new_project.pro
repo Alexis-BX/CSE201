@@ -38,7 +38,8 @@ HEADERS += \
     view.h \
     projectile.h \
     collectable.h \
-    structures.h
+    structures.h \
+    types_states_textures.h
 
 
 

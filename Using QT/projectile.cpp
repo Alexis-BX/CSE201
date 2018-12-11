@@ -32,7 +32,7 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
 
 void Projectile::setup_projectile(bool direction)
 {
-    int velocity = 5;
+    greal velocity = 5;
 
     //initializing life and size of projectile depending on it's type
     if (type == baguette)

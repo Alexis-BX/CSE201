@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QKeyEvent>
 #include "structures.h"
+#include "types_states_textures.h"
 
 class View;
 
