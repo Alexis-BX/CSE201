@@ -35,14 +35,6 @@ template <typename T> T abs(T a)
     return (a<0) ? -a : a;
 };
 
-enum Object_type
-{
-    player,
-    block,
-    projectile,
-    collectable
-};
-
 const char* add_dir(const char* image)
 {
     const unsigned int length = strlen(pixmap_dir) + strlen(image) + 1;

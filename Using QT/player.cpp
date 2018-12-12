@@ -567,6 +567,7 @@ void Player::move()
     view->centerOn(this);
 }
 **/
+
 void Player::throwprojectile(int i)
 {
 
