@@ -1,7 +1,7 @@
 #include "view.h"
 #include "player.h"
 #include "block.h"
-#include "structures.h"
+#include "tools.h"
 #include <QDebug>
 #include <cstdlib>
 #include <math.h>

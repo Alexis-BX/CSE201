@@ -1,6 +1,7 @@
 #include "block.h"
 #include "player.h"
 #include "view.h"
+#include "tools.h"
 
 Block::Block(pair position, Block_type type, Block_texture texture, Block_state state, QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 {
@@ -12,25 +13,26 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
 
     this->texture = texture;
 
+    const char * image;
 
     if(texture == brick)
     {
         if(int(position.y+81)%36 < 18)
         {
-            setPixmap(QPixmap(":/images/pixmaps/ground1.png"));
+             image = "ground1.png";
         }
         else
         {
-            setPixmap(QPixmap(":/images/pixmaps/ground3.png"));
+             image = "ground3.png";
         }
     }
     else if(texture == crate)
     {
-        setPixmap(QPixmap(":/images/pixmaps/break0.png"));
+         image = "break0.png";
     }
     else if(texture == question_mark)
     {
-        setPixmap(QPixmap(":/images/pixmaps/question0.png"));
+         image = "question0.png";
 
         image_count = 0;
 
@@ -43,33 +45,36 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
     }
     else if(texture == grass)
     {
-        setPixmap(QPixmap(":/images/pixmaps/grass.png"));
+         image = "grass.png";
     }
     else if(texture == dirt)
     {
-        setPixmap(QPixmap(":/images/pixmaps/dirt.png"));
+         image = "dirt.png";
     }
     else if(texture == face)
     {
-        setPixmap(QPixmap(":/images/pixmaps/face.png"));
+        image = "face.png";
     }
+    setPixmap(QPixmap(add_dir(image)));
+
 }
 
 void Block::blink()
 {
     if(texture == question_mark)
     {
+        const char * image;
         if(image_count == 0)
         {
-            setPixmap(QPixmap(":/images/pixmaps/question1.png"));
+             image = "question1.png";
             image_count = 1;
         }
         else if(image_count == 1)
         {
-            setPixmap(QPixmap(":/images/pixmaps/question0.png"));
+             image = "question0.png";
             image_count = 0;
         }
-
+        setPixmap(QPixmap(add_dir(image)));
 
     }
 

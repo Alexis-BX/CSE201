@@ -1,19 +1,7 @@
-#ifndef STRUCTURES_H
-#define STRUCTURES_H
-#define greal double
+#include "tools.h"
 #define pixmap_dir ":/images/pixmaps/"
+#include "cstring"
 
-
-struct double_pair
-{
-    int top,left,bottom,right;
-
-};
-
-struct pair
-{
-    greal x,y;
-};
 
 template <typename T> T min(T a, T b)
 {
@@ -55,19 +43,16 @@ enum Object_type
     collectable
 };
 
-/**
-template char* add_dir(char* image)
+const char* add_dir(const char* image)
 {
-    const int length = strlen(pixmap_dir) + strlen(image) + 1;
+    const unsigned int length = strlen(pixmap_dir) + strlen(image) + 1;
 
-    char pixmap[length];
+    char* pixmap = new char[length];
 
     strcpy(pixmap,pixmap_dir);
 
     strcat(pixmap,image);
 
     return pixmap;
-}
-**/
+};
 
-#endif // STRUCTURES_H

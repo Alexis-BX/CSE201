@@ -30,7 +30,8 @@ SOURCES += \
     block.cpp \
     view.cpp \
     projectile.cpp \
-    collectable.cpp
+    collectable.cpp \
+    tools.cpp
 
 HEADERS += \
     player.h \
@@ -38,8 +39,8 @@ HEADERS += \
     view.h \
     projectile.h \
     collectable.h \
-    structures.h \
-    types_states_textures.h
+    types_states_textures.h \
+    tools.h
 
 
 

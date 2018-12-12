@@ -3,7 +3,7 @@
 
 #include <QGraphicsView>
 #include <QtWidgets>
-#include "structures.h"
+#include "tools.h"
 #include "types_states_textures.h"
 
 class Player;

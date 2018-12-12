@@ -1,6 +1,6 @@
 #include <QApplication>
 #include "view.h"
-#include "structures.h"
+#include "tools.h"
 
 View* view;
 

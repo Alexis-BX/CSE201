@@ -16,5 +16,5 @@ Collectable::Collectable(pair position, pair size, Collectable_type type, Collec
 
     this -> size = size;
 
-    setPixmap(QPixmap(":/images/pixmaps/Collectables.png"));
+    setPixmap(QPixmap(add_dir("Collectables.png")));
 }

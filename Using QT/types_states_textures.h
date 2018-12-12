@@ -61,6 +61,13 @@ enum Projectile_type
     pot,
 };
 
+enum Object_type
+{
+    player,
+    block,
+    projectile,
+    collectable
+};
 
 
 #endif // TYPES_STATES_TEXTURES_H

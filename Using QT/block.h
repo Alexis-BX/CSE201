@@ -3,7 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
-#include "structures.h"
+#include "tools.h"
 #include "types_states_textures.h"
 
 class Block : public QObject, public QGraphicsPixmapItem

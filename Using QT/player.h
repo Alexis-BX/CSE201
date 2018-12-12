@@ -5,7 +5,7 @@
 #include <QGraphicsItem>
 #include <QObject>
 #include <QKeyEvent>
-#include "structures.h"
+#include "tools.h"
 #include "types_states_textures.h"
 
 class View;

@@ -92,7 +92,6 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-
 bool Player::collision_right()
 {
     if (speed.x > 0)
@@ -568,7 +567,6 @@ void Player::move()
     view->centerOn(this);
 }
 **/
-
 void Player::throwprojectile(int i)
 {
 
@@ -622,7 +620,7 @@ void Player::throwprojectile(int i)
 
 void Player::create_animation()
 {
-    QPixmap imgChar(":/images/pixmaps/characterT.png");
+    QPixmap imgChar(add_dir("characterT.png"));
 
     for (int j = 0; j<M-toMirror; j++)
     {
