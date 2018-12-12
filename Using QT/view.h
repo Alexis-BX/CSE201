@@ -40,7 +40,7 @@ public:
 
     void create_example_world(int width);
     
-    void readBMP(char* filename);
+    void readBMP(const char* filename);
     
     void convert (int v0,int v1,int v2, int i, int j);
 };

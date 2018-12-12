@@ -47,5 +47,6 @@
         <file>pixmaps/wine1.png</file>
         <file>pixmaps/grass.png</file>
         <file>pixmaps/face.png</file>
+        <file>pixmaps/dirt.png</file>
     </qresource>
 </RCC>
