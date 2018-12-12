@@ -1,5 +1,4 @@
 #include "tools.h"
-#define pixmap_dir ":/images/pixmaps/"
 #include "cstring"
 
 
