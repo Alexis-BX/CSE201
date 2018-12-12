@@ -1,7 +1,7 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
 #define greal double
-#define pixmap_dir ":/images/pixmaps/"
+#define pixmap_dir ":/images/main_texture_pack/"
 
 struct double_pair
 {

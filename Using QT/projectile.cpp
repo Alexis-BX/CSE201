@@ -13,8 +13,6 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
 
     this -> state = state;
 
-
-
     setup_projectile(direction);
 
     setPos(position.x, position.y);
@@ -34,6 +32,8 @@ void Projectile::setup_projectile(bool direction)
 {
     greal velocity = 5;
 
+    const char* image;
+
     //initializing life and size of projectile depending on it's type
     if (type == baguette)
     {
@@ -50,7 +50,7 @@ void Projectile::setup_projectile(bool direction)
             speed = pair{-velocity, 0};
         }
 
-        setPixmap(QPixmap(":/images/pixmaps/baguette.png"));
+        image = "baguette.png";
     }
     else if (type == smoke)
     {
@@ -67,7 +67,7 @@ void Projectile::setup_projectile(bool direction)
             speed = pair{-velocity, 0};
         }
 
-        setPixmap(QPixmap(":/images/pixmaps/smoke.png"));
+        image =  "smoke.png";
     }
     else if (type == wine)
     {
@@ -84,7 +84,7 @@ void Projectile::setup_projectile(bool direction)
             speed = pair{-velocity,velocity};
         }
 
-        setPixmap(QPixmap(":/images/pixmaps/wine.png"));
+        image = "wine.png";
     }
     else if (type == pot)
     {
@@ -101,8 +101,9 @@ void Projectile::setup_projectile(bool direction)
             speed = pair{-velocity, -velocity + 3};
         }
 
-        setPixmap(QPixmap(":/images/pixmaps/pot.png"));
+        image = "pot.png";
     }
+    setPixmap(QPixmap(add_dir("baguette.png")));
 }
 
 void Projectile::create_collision_range()
