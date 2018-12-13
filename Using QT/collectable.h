@@ -33,6 +33,8 @@ public:
 
      QGraphicsRectItem* collision_range_collec;
 
+     void collision_range();
+
      bool collision_left();
      bool collision_down();
      bool collision_up();
