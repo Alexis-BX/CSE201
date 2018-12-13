@@ -647,7 +647,7 @@ void Player::superpower(Collectable collectable)
 
     if (collectable.type == eclair)
     {
-        Projectile* projectile = new Projectile(pair{int(x() + size), int(y() + size/4)}, direction, Projectile_type{pot});
+        Projectile* projectile = new Projectile(pair{x() + size, y() + size/4}, direction, Projectile_type{pot});
     }
 }
 

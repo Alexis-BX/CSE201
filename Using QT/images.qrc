@@ -1,5 +1,58 @@
 <RCC>
     <qresource prefix="/images">
+<<<<<<< HEAD
+        <file>main_texture_pack/break5.png</file>
+        <file>main_texture_pack/baguette.png</file>
+        <file>main_texture_pack/big cheese.png</file>
+        <file>main_texture_pack/break.png</file>
+        <file>main_texture_pack/break0.png</file>
+        <file>main_texture_pack/break1.png</file>
+        <file>main_texture_pack/break2.png</file>
+        <file>main_texture_pack/break3.png</file>
+        <file>main_texture_pack/break4.png</file>
+        <file>main_texture_pack/Brick.png</file>
+        <file>main_texture_pack/brick18.png</file>
+        <file>main_texture_pack/character crouching.png</file>
+        <file>main_texture_pack/character horizontal jump.png</file>
+        <file>main_texture_pack/character run.png</file>
+        <file>main_texture_pack/character stand.png</file>
+        <file>main_texture_pack/character throw stand.png</file>
+        <file>main_texture_pack/character vertical jump.png</file>
+        <file>main_texture_pack/character.png</file>
+        <file>main_texture_pack/characterT.png</file>
+        <file>main_texture_pack/croissant.png</file>
+        <file>main_texture_pack/dirt.png</file>
+        <file>main_texture_pack/eclair au chocolat.png</file>
+        <file>main_texture_pack/eiffel tower.png</file>
+        <file>main_texture_pack/explosion.png</file>
+        <file>main_texture_pack/face.png</file>
+        <file>main_texture_pack/grass.png</file>
+        <file>main_texture_pack/ground1.png</file>
+        <file>main_texture_pack/ground3.png</file>
+        <file>main_texture_pack/Mario.png</file>
+        <file>main_texture_pack/pain au chocolat.png</file>
+        <file>main_texture_pack/question.png</file>
+        <file>main_texture_pack/question0.png</file>
+        <file>main_texture_pack/question1.png</file>
+        <file>main_texture_pack/question2.png</file>
+        <file>main_texture_pack/rotating baguette.png</file>
+        <file>main_texture_pack/small cheese.png</file>
+        <file>main_texture_pack/smoke.png</file>
+        <file>main_texture_pack/smoke1.png</file>
+        <file>main_texture_pack/smoking dude.png</file>
+        <file>main_texture_pack/super character crouching.png</file>
+        <file>main_texture_pack/super character horizontal jump.png</file>
+        <file>main_texture_pack/super character run.png</file>
+        <file>main_texture_pack/super character stand.png</file>
+        <file>main_texture_pack/super character throw.png</file>
+        <file>main_texture_pack/super character vertical jump.png</file>
+        <file>main_texture_pack/thief_dying_poorthing.png</file>
+        <file>main_texture_pack/thief_walking_casual.png</file>
+        <file>main_texture_pack/wine.png</file>
+        <file>main_texture_pack/wine1.png</file>
+        <file>main_texture_pack/Level_agathe_001.bmp</file>
+        <file>main_texture_pack/Level_agathe_001.png</file>
+=======
         <file>pixmaps/baguette.png</file>
         <file>pixmaps/big_cheese.png</file>
         <file>pixmaps/break.png</file>
@@ -12,7 +65,7 @@
         <file>pixmaps/Brick.png</file>
         <file>pixmaps/brick18.png</file>
         <file>pixmaps/character_crouching.png</file>
-        <file>pixmaps/character_horizontal jump.png</file>
+        <file>pixmaps/character_horizontal_jump.png</file>
         <file>pixmaps/character_run.png</file>
         <file>pixmaps/character_stand.png</file>
         <file>pixmaps/character_throw_stand.png</file>
@@ -26,21 +79,21 @@
         <file>pixmaps/ground1.png</file>
         <file>pixmaps/ground3.png</file>
         <file>pixmaps/Mario.png</file>
-        <file>pixmaps/pain au chocolat.png</file>
+        <file>pixmaps/pain_au_chocolat.png</file>
         <file>pixmaps/question.png</file>
         <file>pixmaps/question0.png</file>
         <file>pixmaps/question1.png</file>
         <file>pixmaps/question2.png</file>
-        <file>pixmaps/rotating baguette.png</file>
-        <file>pixmaps/small cheese.png</file>
+        <file>pixmaps/rotating_baguette.png</file>
+        <file>pixmaps/small_cheese.png</file>
         <file>pixmaps/smoke.png</file>
-        <file>pixmaps/smoking dude.png</file>
-        <file>pixmaps/super character crouching.png</file>
-        <file>pixmaps/super character horizontal jump.png</file>
-        <file>pixmaps/super character run.png</file>
-        <file>pixmaps/super character stand.png</file>
-        <file>pixmaps/super character throw.png</file>
-        <file>pixmaps/super character vertical jump.png</file>
+        <file>pixmaps/smoking_dude.png</file>
+        <file>pixmaps/super_character_crouching.png</file>
+        <file>pixmaps/super_character_horizontal_jump.png</file>
+        <file>pixmaps/super_character_run.png</file>
+        <file>pixmaps/super_character_stand.png</file>
+        <file>pixmaps/super_character_throw.png</file>
+        <file>pixmaps/super_character_vertical_jump.png</file>
         <file>pixmaps/thief_dying_poorthing.png</file>
         <file>pixmaps/thief_walking_casual.png</file>
         <file>pixmaps/wine.png</file>
@@ -48,5 +101,6 @@
         <file>pixmaps/grass.png</file>
         <file>pixmaps/face.png</file>
         <file>pixmaps/dirt.png</file>
+>>>>>>> 37c4a6a69fedee3fdd335e2d744154e27e587b4e
     </qresource>
 </RCC>
