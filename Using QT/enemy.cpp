@@ -6,6 +6,7 @@
 #include <cmath>
 #include "projectile.h"
 #include "types_states_textures.h"
+#include "tools.h"
 
 class View;
 

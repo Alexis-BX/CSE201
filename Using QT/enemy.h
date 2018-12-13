@@ -6,8 +6,8 @@
 #include <QGraphicsItem>
 #include <QObject>
 #include <QKeyEvent>
-#include "tools.h"
 #include "types_states_textures.h"
+#include "tools.h"
 
 class View;
 
@@ -20,7 +20,7 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Enemy( int size = 36, pair position = pair{0,0}, bool direction = 0, QGraphicsItem* parent = 0);
+    Enemy(int size = 36, pair position = pair{0,0}, bool direction = 0, QGraphicsItem* parent = 0);
 
     bool direction = 0;
 

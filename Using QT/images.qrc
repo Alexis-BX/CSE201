@@ -1,37 +1,53 @@
 <RCC>
     <qresource prefix="/images">
-        <file>main_texture_pack/break5.png</file>
         <file>main_texture_pack/baguette.png</file>
+        <file>main_texture_pack/big_cheese.png</file>
         <file>main_texture_pack/break.png</file>
         <file>main_texture_pack/break0.png</file>
         <file>main_texture_pack/break1.png</file>
         <file>main_texture_pack/break2.png</file>
         <file>main_texture_pack/break3.png</file>
         <file>main_texture_pack/break4.png</file>
+        <file>main_texture_pack/break5.png</file>
         <file>main_texture_pack/Brick.png</file>
         <file>main_texture_pack/brick18.png</file>
+        <file>main_texture_pack/character_crouching.png</file>
+        <file>main_texture_pack/character_horizontal_jump.png</file>
+        <file>main_texture_pack/character_run.png</file>
+        <file>main_texture_pack/character_stand.png</file>
+        <file>main_texture_pack/character_throw_stand.png</file>
+        <file>main_texture_pack/character_vertical_jump.png</file>
         <file>main_texture_pack/character.png</file>
         <file>main_texture_pack/characterT.png</file>
         <file>main_texture_pack/croissant.png</file>
-        <file>main_texture_pack/dirt.png</file>
+        <file>main_texture_pack/eclair_au_chocolat.png</file>
+        <file>main_texture_pack/eiffel_tower.png</file>
         <file>main_texture_pack/explosion.png</file>
-        <file>main_texture_pack/face.png</file>
-        <file>main_texture_pack/grass.png</file>
         <file>main_texture_pack/ground1.png</file>
         <file>main_texture_pack/ground3.png</file>
         <file>main_texture_pack/Mario.png</file>
+        <file>main_texture_pack/pain_au_chocolat.png</file>
         <file>main_texture_pack/question.png</file>
         <file>main_texture_pack/question0.png</file>
         <file>main_texture_pack/question1.png</file>
         <file>main_texture_pack/question2.png</file>
+        <file>main_texture_pack/rotating_baguette.png</file>
+        <file>main_texture_pack/small_cheese.png</file>
         <file>main_texture_pack/smoke.png</file>
-        <file>main_texture_pack/smoke1.png</file>
+        <file>main_texture_pack/smoking_dude.png</file>
+        <file>main_texture_pack/super_character_crouching.png</file>
+        <file>main_texture_pack/super_character_horizontal_jump.png</file>
+        <file>main_texture_pack/super_character_run.png</file>
+        <file>main_texture_pack/super_character_stand.png</file>
+        <file>main_texture_pack/super_character_throw.png</file>
+        <file>main_texture_pack/super_character_vertical_jump.png</file>
         <file>main_texture_pack/thief_dying_poorthing.png</file>
         <file>main_texture_pack/thief_walking_casual.png</file>
         <file>main_texture_pack/wine.png</file>
         <file>main_texture_pack/wine1.png</file>
-        <file>main_texture_pack/Level_agathe_001.bmp</file>
-        <file>main_texture_pack/Level_agathe_001.png</file>
+        <file>main_texture_pack/grass.png</file>
+        <file>main_texture_pack/face.png</file>
+        <file>main_texture_pack/dirt.png</file>
         <file>main_texture_pack/enemy.png</file>
     </qresource>
 </RCC>

@@ -28,11 +28,11 @@ View::View(pair screen_size, int block_size, QWidget* parent)
 
     //create_example_world(world_size.right-world_size.left);
 
-
     //const char* level = "C:/Users/Sebastien/Desktop/ColTogether/Using QT/levels/Level_agathe_001.bmp";;
 
     //readBMP(level);
     create_example_world(world_size.right);
+
    const char* level = "/Users/devulpian/Documents/year\ 2/CSE\ 201/project\ 3/Using\ QT/Level_agathe_001.png ";
    //":/images/Level_agathe_001.png ";
 

@@ -57,9 +57,7 @@ public:
     bool collision_left(), collision_right(), collision_up(), collision_down();
     bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
 
-    void create_enemy();
-
-
+    void create_enemy(); //for the moment the player chooses when the enemy appears while we work on it
 
 public slots:
 

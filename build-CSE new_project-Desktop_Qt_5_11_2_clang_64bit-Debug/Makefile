@@ -849,8 +849,8 @@ moc_enemy.cpp: ../../../../Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QG
 		../../../../Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../../../../Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		../../../../Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/enemy.h \
 		moc_predefs.h \
 		../../../../Qt/5.11.2/clang_64/bin/moc
@@ -1898,8 +1898,8 @@ enemy.o: ../Using\ QT/enemy.cpp ../Using\ QT/enemy.h \
 		../../../../Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../../../../Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		../../../../Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/player.h \
 		../Using\ QT/collectable.h \
 		../Using\ QT/view.h \
