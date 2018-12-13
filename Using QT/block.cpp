@@ -55,6 +55,7 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
     {
         image = "face.png";
     }
+    qDebug() << add_dir(image) ;
     setPixmap(QPixmap(add_dir(image)));
 
 }

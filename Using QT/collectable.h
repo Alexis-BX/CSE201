@@ -29,6 +29,12 @@ public:
     Collectable(pair position, pair size, Collectable_type type, Collectable_state state,
                 Collectable_texture texture, QGraphicsItem* parent = 0 );
 
+     QGraphicsRectItem* collision_range_collec;
+
+public slots:
+
+    void move(); //next position of the collectable depending on their way of moving
+
 };
 
 #endif // COLLECTABLE_H
