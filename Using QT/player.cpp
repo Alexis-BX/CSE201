@@ -4,6 +4,7 @@
 #include <QTimer>
 #include <cmath>
 #include "projectile.h"
+#include "collectable.h"
 
 Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent)
 {
@@ -383,6 +384,18 @@ void Player::create_collision_range()
     collision_range->setOpacity(0);
 }
 
+void Player::count_coins(Collectable collectable)
+{
+    int count = 0;
+    if (collectable.type == coin)
+    {
+        if (collectable.state == used)
+        {
+            count += 1;
+        }
+    }
+}
+
 /***
  * Trying another move method
  ***/
@@ -619,6 +632,25 @@ void Player::throwprojectile(int i)
     }
 }
 
+void Player::superpower(Collectable collectable)
+{
+    if (collectable.type == star)
+    {
+        speed.x *= 2;
+        speed.y *= 2;
+    }
+
+    if (collectable.type == mushroom)
+    {
+        size *= 2;
+    }
+
+    if (collectable.type == eclair)
+    {
+        Projectile* projectile = new Projectile(pair{int(x() + size), int(y() + size/4)}, direction, Projectile_type{pot});
+    }
+}
+
 void Player::create_animation()
 {
     QPixmap imgChar(add_dir("characterT.png"));
@@ -648,4 +680,5 @@ void Player::create_animation()
         }
     }
 }
+
 
