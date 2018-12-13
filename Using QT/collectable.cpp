@@ -40,7 +40,10 @@ Collectable::Collectable(pair position, bool direction, Collectable_type type, C
         setPixmap(QPixmap(":/images/eclair.png"));
         }
 
+}
 
+void Collectable::collision_range()
+{
         collision_range_collec = new QGraphicsRectItem(this);
         collision_range_collec -> setRect(0,0,size.x + size.x/2);
         collision_range_collec -> setPos(0 - size.x/4, 0 -size.y/4);
@@ -136,3 +139,12 @@ bool Collectable::collision_down()
     }
     return false;
 }
+
+void Collectable::move()
+{
+    if (state == used)
+    {
+        QObject::deleteLater();
+    }
+}
+

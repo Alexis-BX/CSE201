@@ -116,6 +116,7 @@ void View::set_scene_view()
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     setFixedSize(screen_size.x,screen_size.y);
+
 }
 
 void View::create_example_world(int width) // under construction
