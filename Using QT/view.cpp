@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstddef>
 #include <fstream>
+#include <QRgb>
 
 
 
@@ -23,11 +24,19 @@ View::View(pair screen_size, int block_size, QWidget* parent)
     //Create world
     set_scene_view();
 
+
+
     //create_example_world(world_size.right-world_size.left);
 
-    const char* level = "C:/Users/Sebastien/Desktop/ColTogether/Using QT/levels/Level_agathe_001.bmp";;
+   const char* level = "/Users/devulpian/Documents/year\ 2/CSE\ 201/project\ 3/Using\ QT/Level_agathe_001.png ";
+   //":/images/Level_agathe_001.png ";
+
+
+
 
     readBMP(level);
+
+    //create_example_world(world_size.right);
 
     create_player();
 
@@ -210,9 +219,23 @@ void View::create_example_world(int width) // under construction
     }
 }
 
+
 void View::readBMP(const char* filename)
 {
 
+    QPixmap imgChar(add_dir("Level_agathe_001.png"));
+
+
+    QImage level = imgChar.toImage();
+
+    level = level.mirrored(false, true);
+
+    int height = level.height();
+    int width = level.width();
+
+
+
+/** OLD VERSION THAT ONLY WORKED ON WINDOWS USE QT TOOLS TO MAKE IT WORK FOR EVERYTHING
     std::ifstream image;
 
     image.open(filename);
@@ -245,11 +268,13 @@ void View::readBMP(const char* filename)
     world_size.top = - block_size * height;
     world_size.right = block_size * width;
     //std::cout << width << "  " << height << std::endl;
+    **/
 
     /**
      * Now data should contain the (R, G, B) values of the pixels. The color of pixel (i, j) is stored at
      * data[3 * (i * width + j)], data[3 * (i * width + j) + 1] and data[3 * (i * width + j) + 2].
     **/
+
 
     int R,G,B;
 
@@ -257,16 +282,19 @@ void View::readBMP(const char* filename)
     {
         for(int i = 0 ; i < width; i++)
         {
-            R = image.get();
-            G = image.get();
-            B = image.get();
+            QRgb pixColor = level.pixel(i,j);
+
+            R = qRed(pixColor);
+            G = qGreen(pixColor);
+            B = qBlue(pixColor);
+
+
+
             std::cout << i << "   " << j << "   " << R << "   " << G << "   " << B << "   " << std::endl;
-            convert (R,G,B,i,j);
+            convert (B,G,R,i,j); // careful colors are not stored in correct order so do swap
         }
-        for(int i = 0 ; i < width%4; i++)
-        {
-            std::cout << image.get() << std::endl;
-        }
+
+
 
 
     }

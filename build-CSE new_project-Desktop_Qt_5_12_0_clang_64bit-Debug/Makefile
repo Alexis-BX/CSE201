@@ -55,7 +55,8 @@ SOURCES       = ../Using\ QT/main.cpp \
 		../Using\ QT/block.cpp \
 		../Using\ QT/view.cpp \
 		../Using\ QT/projectile.cpp \
-		../Using\ QT/collectable.cpp qrc_images.cpp \
+		../Using\ QT/collectable.cpp \
+		../Using\ QT/tools.cpp qrc_images.cpp \
 		moc_player.cpp \
 		moc_block.cpp \
 		moc_projectile.cpp \
@@ -66,6 +67,7 @@ OBJECTS       = main.o \
 		view.o \
 		projectile.o \
 		collectable.o \
+		tools.o \
 		qrc_images.o \
 		moc_player.o \
 		moc_block.o \
@@ -229,6 +231,7 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
+		../Using QT/.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -261,13 +264,14 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		../Using\ QT/view.h \
 		../Using\ QT/projectile.h \
 		../Using\ QT/collectable.h \
-		../Using\ QT/structures.h \
-		../Using\ QT/types_states_textures.h ../Using\ QT/main.cpp \
+		../Using\ QT/types_states_textures.h \
+		../Using\ QT/tools.h ../Using\ QT/main.cpp \
 		../Using\ QT/player.cpp \
 		../Using\ QT/block.cpp \
 		../Using\ QT/view.cpp \
 		../Using\ QT/projectile.cpp \
-		../Using\ QT/collectable.cpp
+		../Using\ QT/collectable.cpp \
+		../Using\ QT/tools.cpp
 QMAKE_TARGET  = CSE2017
 DESTDIR       = 
 TARGET        = CSE2017.app/Contents/MacOS/CSE2017
@@ -447,6 +451,7 @@ Makefile: ../Using\ QT/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -638,6 +643,7 @@ Makefile: ../Using\ QT/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf:
@@ -699,10 +705,10 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../Using\ QT/images.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../Using\ QT/images.qrc ../Using\ QT/images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Using\ QT/player.h ../Using\ QT/block.h ../Using\ QT/view.h ../Using\ QT/projectile.h ../Using\ QT/collectable.h ../Using\ QT/structures.h ../Using\ QT/types_states_textures.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Using\ QT/main.cpp ../Using\ QT/player.cpp ../Using\ QT/block.cpp ../Using\ QT/view.cpp ../Using\ QT/projectile.cpp ../Using\ QT/collectable.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Using\ QT/player.h ../Using\ QT/block.h ../Using\ QT/view.h ../Using\ QT/projectile.h ../Using\ QT/collectable.h ../Using\ QT/types_states_textures.h ../Using\ QT/tools.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Using\ QT/main.cpp ../Using\ QT/player.cpp ../Using\ QT/block.cpp ../Using\ QT/view.cpp ../Using\ QT/projectile.cpp ../Using\ QT/collectable.cpp ../Using\ QT/tools.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -712,6 +718,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r CSE2017.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -725,58 +732,117 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_images.cpp
+compiler_rcc_make_all: qrc_images.cpp qrc_images.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_images.cpp
+	-$(DEL_FILE) qrc_images.cpp qrc_images.cpp
 qrc_images.cpp: ../Using\ QT/images.qrc \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/rcc \
-		../Using\ QT/pixmaps/super\ character\ horizontal\ jump.png \
-		../Using\ QT/pixmaps/rotating\ baguette.png \
-		../Using\ QT/pixmaps/thief_walking_casual.png \
-		../Using\ QT/pixmaps/character\ run.png \
-		../Using\ QT/pixmaps/super\ character\ throw.png \
-		../Using\ QT/pixmaps/super\ character\ run.png \
-		../Using\ QT/pixmaps/character\ vertical\ jump.png \
-		../Using\ QT/pixmaps/break5.png \
-		../Using\ QT/pixmaps/character\ throw\ stand.png \
-		../Using\ QT/pixmaps/super\ character\ crouching.png \
-		../Using\ QT/pixmaps/small\ cheese.png \
-		../Using\ QT/pixmaps/Mario.png \
-		../Using\ QT/pixmaps/grass.png \
-		../Using\ QT/pixmaps/big\ cheese.png \
-		../Using\ QT/pixmaps/characterT.png \
-		../Using\ QT/pixmaps/break4.png \
-		../Using\ QT/pixmaps/super\ character\ vertical\ jump.png \
-		../Using\ QT/pixmaps/character.png \
-		../Using\ QT/pixmaps/break3.png \
-		../Using\ QT/pixmaps/question2.png \
-		../Using\ QT/pixmaps/wine.png \
-		../Using\ QT/pixmaps/break2.png \
-		../Using\ QT/pixmaps/brick18.png \
-		../Using\ QT/pixmaps/question1.png \
-		../Using\ QT/pixmaps/eiffel\ tower.png \
-		../Using\ QT/pixmaps/pain\ au\ chocolat.png \
-		../Using\ QT/pixmaps/question.png \
-		../Using\ QT/pixmaps/super\ character\ stand.png \
-		../Using\ QT/pixmaps/break1.png \
-		../Using\ QT/pixmaps/question0.png \
-		../Using\ QT/pixmaps/explosion.png \
-		../Using\ QT/pixmaps/wine1.png \
-		../Using\ QT/pixmaps/break.png \
-		../Using\ QT/pixmaps/smoking\ dude.png \
-		../Using\ QT/pixmaps/break0.png \
-		../Using\ QT/pixmaps/character\ crouching.png \
-		../Using\ QT/pixmaps/character\ stand.png \
-		../Using\ QT/pixmaps/ground3.png \
-		../Using\ QT/pixmaps/croissant.png \
-		../Using\ QT/pixmaps/smoke.png \
-		../Using\ QT/pixmaps/Brick.png \
-		../Using\ QT/pixmaps/eclair\ au\ chocolat.png \
-		../Using\ QT/pixmaps/character\ horizontal\ jump.png \
-		../Using\ QT/pixmaps/baguette.png \
-		../Using\ QT/pixmaps/thief_dying_poorthing.png \
-		../Using\ QT/pixmaps/face.png \
-		../Using\ QT/pixmaps/ground1.png
+		../Using\ QT/main_texture_pack/rotating\ baguette.png \
+		../Using\ QT/main_texture_pack/super\ character\ horizontal\ jump.png \
+		../Using\ QT/main_texture_pack/thief_walking_casual.png \
+		../Using\ QT/main_texture_pack/Level_agathe_001.bmp \
+		../Using\ QT/main_texture_pack/character\ run.png \
+		../Using\ QT/main_texture_pack/super\ character\ throw.png \
+		../Using\ QT/main_texture_pack/super\ character\ run.png \
+		../Using\ QT/main_texture_pack/character\ vertical\ jump.png \
+		../Using\ QT/main_texture_pack/break5.png \
+		../Using\ QT/main_texture_pack/character\ throw\ stand.png \
+		../Using\ QT/main_texture_pack/Level_agathe_001.png \
+		../Using\ QT/main_texture_pack/small\ cheese.png \
+		../Using\ QT/main_texture_pack/super\ character\ crouching.png \
+		../Using\ QT/main_texture_pack/Mario.png \
+		../Using\ QT/main_texture_pack/grass.png \
+		../Using\ QT/main_texture_pack/big\ cheese.png \
+		../Using\ QT/main_texture_pack/characterT.png \
+		../Using\ QT/main_texture_pack/break4.png \
+		../Using\ QT/main_texture_pack/super\ character\ vertical\ jump.png \
+		../Using\ QT/main_texture_pack/character.png \
+		../Using\ QT/main_texture_pack/break3.png \
+		../Using\ QT/main_texture_pack/question2.png \
+		../Using\ QT/main_texture_pack/wine.png \
+		../Using\ QT/main_texture_pack/break2.png \
+		../Using\ QT/main_texture_pack/brick18.png \
+		../Using\ QT/main_texture_pack/question1.png \
+		../Using\ QT/main_texture_pack/eiffel\ tower.png \
+		../Using\ QT/main_texture_pack/pain\ au\ chocolat.png \
+		../Using\ QT/main_texture_pack/question.png \
+		../Using\ QT/main_texture_pack/super\ character\ stand.png \
+		../Using\ QT/main_texture_pack/break1.png \
+		../Using\ QT/main_texture_pack/question0.png \
+		../Using\ QT/main_texture_pack/explosion.png \
+		../Using\ QT/main_texture_pack/wine1.png \
+		../Using\ QT/main_texture_pack/break.png \
+		../Using\ QT/main_texture_pack/smoking\ dude.png \
+		../Using\ QT/main_texture_pack/break0.png \
+		../Using\ QT/main_texture_pack/character\ crouching.png \
+		../Using\ QT/main_texture_pack/character\ stand.png \
+		../Using\ QT/main_texture_pack/ground3.png \
+		../Using\ QT/main_texture_pack/croissant.png \
+		../Using\ QT/main_texture_pack/smoke.png \
+		../Using\ QT/main_texture_pack/Brick.png \
+		../Using\ QT/main_texture_pack/eclair\ au\ chocolat.png \
+		../Using\ QT/main_texture_pack/character\ horizontal\ jump.png \
+		../Using\ QT/main_texture_pack/baguette.png \
+		../Using\ QT/main_texture_pack/face.png \
+		../Using\ QT/main_texture_pack/thief_dying_poorthing.png \
+		../Using\ QT/main_texture_pack/smoke1.png \
+		../Using\ QT/main_texture_pack/ground1.png \
+		../Using\ QT/main_texture_pack/dirt.png
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/rcc -name images ../Using\ QT/images.qrc -o qrc_images.cpp
+
+qrc_images.cpp: ../Using\ QT/images.qrc \
+		/Users/devulpian/Qt/5.12.0/clang_64/bin/rcc \
+		../Using\ QT/main_texture_pack/rotating\ baguette.png \
+		../Using\ QT/main_texture_pack/super\ character\ horizontal\ jump.png \
+		../Using\ QT/main_texture_pack/thief_walking_casual.png \
+		../Using\ QT/main_texture_pack/Level_agathe_001.bmp \
+		../Using\ QT/main_texture_pack/character\ run.png \
+		../Using\ QT/main_texture_pack/super\ character\ throw.png \
+		../Using\ QT/main_texture_pack/super\ character\ run.png \
+		../Using\ QT/main_texture_pack/character\ vertical\ jump.png \
+		../Using\ QT/main_texture_pack/break5.png \
+		../Using\ QT/main_texture_pack/character\ throw\ stand.png \
+		../Using\ QT/main_texture_pack/Level_agathe_001.png \
+		../Using\ QT/main_texture_pack/small\ cheese.png \
+		../Using\ QT/main_texture_pack/super\ character\ crouching.png \
+		../Using\ QT/main_texture_pack/Mario.png \
+		../Using\ QT/main_texture_pack/grass.png \
+		../Using\ QT/main_texture_pack/big\ cheese.png \
+		../Using\ QT/main_texture_pack/characterT.png \
+		../Using\ QT/main_texture_pack/break4.png \
+		../Using\ QT/main_texture_pack/super\ character\ vertical\ jump.png \
+		../Using\ QT/main_texture_pack/character.png \
+		../Using\ QT/main_texture_pack/break3.png \
+		../Using\ QT/main_texture_pack/question2.png \
+		../Using\ QT/main_texture_pack/wine.png \
+		../Using\ QT/main_texture_pack/break2.png \
+		../Using\ QT/main_texture_pack/brick18.png \
+		../Using\ QT/main_texture_pack/question1.png \
+		../Using\ QT/main_texture_pack/eiffel\ tower.png \
+		../Using\ QT/main_texture_pack/pain\ au\ chocolat.png \
+		../Using\ QT/main_texture_pack/question.png \
+		../Using\ QT/main_texture_pack/super\ character\ stand.png \
+		../Using\ QT/main_texture_pack/break1.png \
+		../Using\ QT/main_texture_pack/question0.png \
+		../Using\ QT/main_texture_pack/explosion.png \
+		../Using\ QT/main_texture_pack/wine1.png \
+		../Using\ QT/main_texture_pack/break.png \
+		../Using\ QT/main_texture_pack/smoking\ dude.png \
+		../Using\ QT/main_texture_pack/break0.png \
+		../Using\ QT/main_texture_pack/character\ crouching.png \
+		../Using\ QT/main_texture_pack/character\ stand.png \
+		../Using\ QT/main_texture_pack/ground3.png \
+		../Using\ QT/main_texture_pack/croissant.png \
+		../Using\ QT/main_texture_pack/smoke.png \
+		../Using\ QT/main_texture_pack/Brick.png \
+		../Using\ QT/main_texture_pack/eclair\ au\ chocolat.png \
+		../Using\ QT/main_texture_pack/character\ horizontal\ jump.png \
+		../Using\ QT/main_texture_pack/baguette.png \
+		../Using\ QT/main_texture_pack/face.png \
+		../Using\ QT/main_texture_pack/thief_dying_poorthing.png \
+		../Using\ QT/main_texture_pack/smoke1.png \
+		../Using\ QT/main_texture_pack/ground1.png \
+		../Using\ QT/main_texture_pack/dirt.png
 	/Users/devulpian/Qt/5.12.0/clang_64/bin/rcc -name images ../Using\ QT/images.qrc -o qrc_images.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h
@@ -795,7 +861,7 @@ moc_player.cpp: /Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Head
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/player.h \
 		moc_predefs.h \
@@ -806,7 +872,7 @@ moc_block.cpp: /Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Heade
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/block.h \
 		moc_predefs.h \
@@ -817,7 +883,7 @@ moc_projectile.cpp: /Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/projectile.h \
 		moc_predefs.h \
@@ -828,7 +894,7 @@ moc_collectable.cpp: /Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/collectable.h \
 		moc_predefs.h \
@@ -985,7 +1051,7 @@ main.o: ../Using\ QT/main.cpp /Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Using\ QT/main.cpp
 
@@ -997,7 +1063,7 @@ player.o: ../Using\ QT/player.cpp ../Using\ QT/player.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/view.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
@@ -1141,7 +1207,7 @@ block.o: ../Using\ QT/block.cpp ../Using\ QT/block.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/player.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
@@ -1410,7 +1476,7 @@ view.o: ../Using\ QT/view.cpp ../Using\ QT/view.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/player.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
@@ -1421,7 +1487,9 @@ view.o: ../Using\ QT/view.cpp ../Using\ QT/view.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../Using\ QT/block.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QRgb \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qrgb.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o view.o ../Using\ QT/view.cpp
 
 projectile.o: ../Using\ QT/projectile.cpp ../Using\ QT/projectile.h \
@@ -1429,7 +1497,7 @@ projectile.o: ../Using\ QT/projectile.cpp ../Using\ QT/projectile.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/player.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
@@ -1578,7 +1646,7 @@ collectable.o: ../Using\ QT/collectable.cpp ../Using\ QT/collectable.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		../Using\ QT/structures.h \
+		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
 		../Using\ QT/player.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
@@ -1715,6 +1783,9 @@ collectable.o: ../Using\ QT/collectable.cpp ../Using\ QT/collectable.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collectable.o ../Using\ QT/collectable.cpp
+
+tools.o: ../Using\ QT/tools.cpp ../Using\ QT/tools.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tools.o ../Using\ QT/tools.cpp
 
 qrc_images.o: qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp

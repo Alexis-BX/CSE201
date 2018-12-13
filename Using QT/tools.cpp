@@ -1,5 +1,6 @@
 #include "tools.h"
 #include "cstring"
+#define pixmap_dir ":/images/main_texture_pack/"
 
 
 template <typename T> T min(T a, T b)
