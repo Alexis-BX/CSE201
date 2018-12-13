@@ -35,6 +35,7 @@ enum Collectable_state  // the collectable can either be used by the player or n
 
 enum Collectable_type // shows all kinds of collectables that can appear
 {
+    coin,
     star,
     mushroom,
     eclair
