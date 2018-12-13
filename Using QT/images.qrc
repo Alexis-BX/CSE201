@@ -12,7 +12,7 @@
         <file>pixmaps/Brick.png</file>
         <file>pixmaps/brick18.png</file>
         <file>pixmaps/character_crouching.png</file>
-        <file>pixmaps/character_horizontal jump.png</file>
+        <file>pixmaps/character_horizontal_jump.png</file>
         <file>pixmaps/character_run.png</file>
         <file>pixmaps/character_stand.png</file>
         <file>pixmaps/character_throw_stand.png</file>
@@ -36,11 +36,11 @@
         <file>pixmaps/smoke.png</file>
         <file>pixmaps/smoking_dude.png</file>
         <file>pixmaps/super_character_crouching.png</file>
-        <file>pixmaps/super_character_horizontal jump.png</file>
+        <file>pixmaps/super_character_horizontal_jump.png</file>
         <file>pixmaps/super_character_run.png</file>
         <file>pixmaps/super_character_stand.png</file>
         <file>pixmaps/super_character_throw.png</file>
-        <file>pixmaps/super_character_vertical jump.png</file>
+        <file>pixmaps/super_character_vertical_jump.png</file>
         <file>pixmaps/thief_dying_poorthing.png</file>
         <file>pixmaps/thief_walking_casual.png</file>
         <file>pixmaps/wine.png</file>
