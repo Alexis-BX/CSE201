@@ -708,6 +708,7 @@ moc_player.cpp: /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
+		../Using\ QT/collectable.h \
 		../Using\ QT/player.h \
 		moc_predefs.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc
@@ -910,6 +911,7 @@ player.o: ../Using\ QT/player.cpp ../Using\ QT/player.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		../Using\ QT/tools.h \
 		../Using\ QT/types_states_textures.h \
+		../Using\ QT/collectable.h \
 		../Using\ QT/view.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \
@@ -1058,6 +1060,7 @@ block.o: ../Using\ QT/block.cpp ../Using\ QT/block.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Using\ QT/collectable.h \
 		../Using\ QT/view.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \
@@ -1330,6 +1333,7 @@ view.o: ../Using\ QT/view.cpp ../Using\ QT/view.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Using\ QT/collectable.h \
 		../Using\ QT/block.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QDebug \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qdebug.h
@@ -1346,6 +1350,7 @@ projectile.o: ../Using\ QT/projectile.cpp ../Using\ QT/projectile.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Using\ QT/collectable.h \
 		../Using\ QT/view.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \

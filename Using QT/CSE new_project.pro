@@ -31,7 +31,8 @@ SOURCES += \
     view.cpp \
     projectile.cpp \
     collectable.cpp \
-    tools.cpp
+    tools.cpp \
+    coin_counter.cpp
 
 HEADERS += \
     player.h \
@@ -40,7 +41,8 @@ HEADERS += \
     projectile.h \
     collectable.h \
     types_states_textures.h \
-    tools.h
+    tools.h \
+    coin_counter.h
 
 
 

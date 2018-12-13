@@ -26,7 +26,7 @@ public:
     pair position;
     pair speed;
 
-    Collectable(pair position, bool direction, Collectable_type type = Collectable_type{coin}, Collectable_state state = Collectable_state{unused},
+    Collectable(pair position, Collectable_type type = Collectable_type{coin}, Collectable_state state = Collectable_state{unused},
                 Collectable_texture texture = Collectable_texture{same}, QGraphicsItem* parent = 0 );
 
      QGraphicsRectItem* collision_range_collec;

@@ -3,7 +3,7 @@
 #include "view.h"
 
 
-Collectable::Collectable(pair position, bool direction, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
+Collectable::Collectable(pair position, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
     setPos(position.x, position.y);

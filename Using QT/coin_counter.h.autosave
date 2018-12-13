@@ -10,7 +10,6 @@ class View;
 
 extern View* view;
 
-
 class coin_counter : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
