@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include "tools.h"
 #include "types_states_textures.h"
+#include "collectable.h"
 
 class View;
 
@@ -48,6 +49,10 @@ public:
     void create_animation();
 
     void create_collision_range();
+
+    void count_coins(Collectable collectable);
+
+    void superpower(Collectable collectable);
 
     bool collision_left(), collision_right(), collision_up(), collision_down();
     bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
