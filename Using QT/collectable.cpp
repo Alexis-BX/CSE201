@@ -45,7 +45,7 @@ Collectable::Collectable(pair position, Collectable_type type, Collectable_state
 void Collectable::collision_range()
 {
         collision_range_collec = new QGraphicsRectItem(this);
-        collision_range_collec -> setRect(0,0,size.x + size.x/2);
+        collision_range_collec -> setRect(0,0,size.x + size.x/2, size.y + size.y/2);
         collision_range_collec -> setPos(0 - size.x/4, 0 -size.y/4);
 
 }
