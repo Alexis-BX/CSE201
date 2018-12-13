@@ -25,9 +25,22 @@ private:
 public:
 
     pair size;
+    pair position;
+    pair speed;
 
-    Collectable(pair position, pair size, Collectable_type type, Collectable_state state,
-                Collectable_texture texture, QGraphicsItem* parent = 0 );
+    Collectable(pair position, bool direction, Collectable_type type = Collectable_type{coin}, Collectable_state state = Collectable_state{unused},
+                Collectable_texture texture = Collectable_texture{same}, QGraphicsItem* parent = 0 );
+
+     QGraphicsRectItem* collision_range_collec;
+
+     bool collision_left();
+     bool collision_down();
+     bool collision_up();
+     bool collision_right();
+
+public slots:
+
+    void move(); //next position of the collectable depending on their way of moving
 
 };
 
