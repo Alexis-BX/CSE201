@@ -5,6 +5,7 @@
 #include <cmath>
 #include "projectile.h"
 #include "collectable.h"
+#include "tools.h"
 
 Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent)
 {
@@ -249,7 +250,6 @@ bool Player::collision_t_r()
     return false;
 }
 
-
 void Player::move()
 {
 
@@ -399,6 +399,7 @@ void Player::count_coins(Collectable collectable)
 /***
  * Trying another move method
  ***/
+
 /**
 void Player::create_collision_range()
 {
@@ -417,48 +418,43 @@ void Player::move()
     speed.y += 1;
 
     //Motion smooth
-    if (pressedL)
-    {
-        if (speed.x>-speedMax.x)
-        {
-            speed.x -= 1;
-        }
-    }
-    else
-    {
-        if (speed.x<-1)
-        {
-            speed.x -= speed.x/2;
-        }
-        else if (speed.x<0)
-        {
-            speed.x=0;
-        }
-    }
-    if (pressedR)
-    {
-        if (speed.x<speedMax.x)
-        {
-            speed.x += 1;
-        }
+    if (pressedL){
+        if (speed.x>-speedMax.x){speed.x -= 1;}
     }
     else{
-        if (speed.x>1)
-        {
-            speed.x -= speed.x/2;
-        }
-        else if (speed.x>0)
-        {
-            speed.x=0;
-        }
+        if (speed.x<-1){speed.x -= speed.x/2;}
+        else if (speed.x<0){speed.x=0;}
+    }
+    if (pressedR){
+        if (speed.x<speedMax.x){speed.x += 1;}
+    }
+    else{
+        if (speed.x>1){speed.x -= speed.x/2;}
+        else if (speed.x>0){speed.x=0;}
+    }
+    if (speed.y > speedMax.y)
+    {
+        speed.y = speedMax.y;
+    }
+    if (speed.y < -speedMax.y)
+    {
+        speed.y = -speedMax.y;
     }
 
+
+
     //in boundaries
-    if(y()>=view->world_size.bottom)
+    if(y() >= view->world_size.bottom)
     {
         speed.y = (0 > speed.y) ? speed.y : 0 ;
         setY(view->world_size.bottom);
     }
+    else if(y() <= view->world_size.top)
+    {
+        speed.y = (0 < speed.y) ? speed.y : 0 ;
+        setY(view->world_size.top);
+    }
+
     if(x()<=view->world_size.left)
     {
         speed.x = (0 < speed.x) ? speed.x : 0 ;
@@ -469,6 +465,39 @@ void Player::move()
         speed.x = (0 > speed.x) ? speed.x : 0 ;
         setX(view->world_size.right);
     }
+
+    //animation
+    if (speed.x<0){count -= 0.1;}
+    else{count += 0.1;}
+
+    if (count>=N){count = 0;}
+    if (count< 0){count = N-0.00001;}
+
+    if (speed.x<0){
+        if (speed.y<0){
+            setPixmap(animations[7][int(count)]);//flip
+        }
+        else{
+            setPixmap(animations[8][int(count)]);//flip
+        }
+    }
+    else if(speed.x>0){
+        if (speed.y<0){
+            setPixmap(animations[2][int(count)]);
+        }
+        else{
+            setPixmap(animations[3][int(count)]);
+        }
+    }
+    else{
+        if (speed.y<0){
+            setPixmap(animations[1][int(count)]);
+        }
+        else{
+            setPixmap(animations[0][int(count)]);
+        }
+    }
+
 
     collision_range->setPos(speed.x,speed.y);
 
@@ -538,38 +567,6 @@ void Player::move()
     speed.x = int(speed.x * final_ratio.x);
     speed.y = int(speed.y * final_ratio.y);
 
-
-    //animation
-    if (speed.x<0){count -= 0.1;}
-    else{count += 0.1;}
-
-    if (count>=N){count = 0;}
-    if (count< 0){count = N-0.00001;}
-
-    if (speed.x<0){
-        if (speed.y<0){
-            setPixmap(animations[7][int(count)]);//flip
-        }
-        else{
-            setPixmap(animations[8][int(count)]);//flip
-        }
-    }
-    else if(speed.x>0){
-        if (speed.y<0){
-            setPixmap(animations[2][int(count)]);
-        }
-        else{
-            setPixmap(animations[3][int(count)]);
-        }
-    }
-    else{
-        if (speed.y<0){
-            setPixmap(animations[1][int(count)]);
-        }
-        else{
-            setPixmap(animations[0][int(count)]);
-        }
-    }
 
     //Direction of the player:
     if (pressedR){direction = 1;}

@@ -28,23 +28,10 @@ View::View(pair screen_size, int block_size, QWidget* parent)
 
     //create_example_world(world_size.right-world_size.left);
 
-<<<<<<< HEAD
-    //const char* level = "C:/Users/Sebastien/Desktop/ColTogether/Using QT/levels/Level_agathe_001.bmp";;
-
     //readBMP(level);
     create_example_world(world_size.right);
-=======
-   const char* level = "/Users/devulpian/Documents/year\ 2/CSE\ 201/project\ 3/Using\ QT/Level_agathe_001.png ";
-   //":/images/Level_agathe_001.png ";
-
-
-
-
-    readBMP(level);
 
     //create_example_world(world_size.right);
-
->>>>>>> 2d300fbb73cf618def6d7ee68fd6d55e31f8f4f7
     create_player();
 
 }
@@ -159,7 +146,7 @@ void View::create_example_world(int width) // under construction
         block_texture[i] = (i%2 == 0) ? crate : question_mark;
     }
 
-    xi = 15, yi = 11;
+    xi = 15; yi = 11;
 
     start = 5;
 
@@ -172,7 +159,7 @@ void View::create_example_world(int width) // under construction
         block_texture[i] = (i%2 == 0) ? crate : question_mark;
     }
 
-    xi = 25, yi = 9;
+    xi = 25; yi = 9;
 
     start = 10;
 
@@ -298,7 +285,7 @@ void View::readBMP(const char* filename)
 
 
 
-            std::cout << i << "   " << j << "   " << R << "   " << G << "   " << B << "   " << std::endl;
+            //std::cout << i << "   " << j << "   " << R << "   " << G << "   " << B << "   " << std::endl;
             convert (B,G,R,i,j); // careful colors are not stored in correct order so do swap
         }
 
