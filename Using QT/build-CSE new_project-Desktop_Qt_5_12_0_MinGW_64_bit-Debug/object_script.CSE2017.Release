@@ -1,0 +1,16 @@
+release/main.o
+release/player.o
+release/block.o
+release/view.o
+release/projectile.o
+release/collectable.o
+release/coin_counter.o
+release/enemy.o
+release/texture.o
+release/qrc_resources.o
+release/moc_player.o
+release/moc_block.o
+release/moc_projectile.o
+release/moc_collectable.o
+release/moc_coin_counter.o
+release/moc_enemy.o

@@ -1,0 +1,19 @@
+basic_player : characterT.png
+base_block_1 : ground1.png
+base_block_2 : ground3.png
+breakable_block : break0.png
+active_block_1 : question1.png
+active_block_2 : question0.png
+special_block_above : grass.png
+special_block_below : dirt.png
+small_collectable : face.png
+big_collectable : star.png
+power_up_1 : mushroom.png
+power_up_2 : eclair.png
+enemy_1 : enemy.png
+player_projectile_1 : baguette.png
+player_projectile_2 : wine.png
+player_projectile_3 : pot.png
+enemy_projectile_1 : smoke.png
+
+
