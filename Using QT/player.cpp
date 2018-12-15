@@ -6,6 +6,8 @@
 #include "projectile.h"
 #include "collectable.h"
 #include "tools.h"
+#include "enemy.h"
+
 
 Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent)
 {
@@ -80,6 +82,18 @@ void Player::keyPressEvent(QKeyEvent *event)
         throwprojectile(3);
     }
 
+    else if(event->key() == Qt::Key_5)
+    {
+        create_enemy();
+    }
+
+}
+
+
+void Player::create_enemy()
+{   //condition to create enemy... - decide and add and if condition
+        Enemy* enemy = new Enemy(36, pair{x()+2* size,y() -50 }, abs(direction-1));
+        view->scene->addItem(enemy);
 }
 
 void Player::keyReleaseEvent(QKeyEvent *event)

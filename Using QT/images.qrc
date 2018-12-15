@@ -48,5 +48,11 @@
         <file>main_texture_pack/grass.png</file>
         <file>main_texture_pack/face.png</file>
         <file>main_texture_pack/dirt.png</file>
+        <file>main_texture_pack/enemy.png</file>
+        <file>main_texture_pack/.DS_Store</file>
+        <file>main_texture_pack/Level_agathe_001.bmp</file>
+        <file>main_texture_pack/Level_agathe_001.png</file>
+        <file>main_texture_pack/smoke1.png</file>
+        <file>main_texture_pack/SpriteSheet13.12.png</file>
     </qresource>
 </RCC>
