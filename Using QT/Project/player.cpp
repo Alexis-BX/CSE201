@@ -587,6 +587,7 @@ void Player::throwprojectile(int i)
     // for the directino of the projectile: define a "last velocity speed"
     // then the direction is the direction of this last velocity
     pair position{x(),y()};
+
     switch (i)
     {
     case 1:
@@ -630,7 +631,7 @@ void Player::superpower(Collectable collectable)
 
     if (collectable.type == eclair)
     {
-        Projectile* projectile = new Projectile(pair{x() + size, y() + size/4}, direction, Projectile_type{pot});
+        view->scene->addItem(new Player_projectile_3(pair{x(),y()}, direction, size));
     }
 }
 

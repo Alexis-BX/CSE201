@@ -18,13 +18,13 @@ public:
 
     Projectile_state state;
 
-    Projectile(pair position, bool direction, int character_size_x, QGraphicsItem* parent = 0);
+    Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent = 0);
 
 
     // Attributes
     int life;
 
-    pair speed,size;
+    pair speed, size;
 
     QGraphicsRectItem* collision_range_proj;
 

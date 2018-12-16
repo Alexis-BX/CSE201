@@ -8,10 +8,20 @@
 #include "tools.h"
 
 
-Projectile::Projectile(pair position, bool direction, int character_size_x, QGraphicsItem* parent) :
+Projectile::Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
     state = alive;
+
+    this->size = size;
+
+    qDebug() << position.x;
+
+    qDebug() << character_size_x;
+
+    qDebug() << direction;
+
+    qDebug() << size.x;
 
     if(direction)
     {
@@ -21,6 +31,15 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, QGra
     {
         position.x -= size.x;
     }
+
+    qDebug() << position.x;
+
+    qDebug() << character_size_x;
+
+    qDebug() << direction;
+
+    qDebug() << size.x;
+
 
     setPos(position.x, position.y);
 
