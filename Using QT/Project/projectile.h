@@ -18,7 +18,7 @@ private:
 
 public:
 
-    Projectile(pair position, bool direction, Projectile_type type = Projectile_type{baguette},
+    Projectile(pair position, bool direction, int character_size_x, Projectile_type type = Projectile_type{baguette},
                Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
 
 

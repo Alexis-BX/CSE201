@@ -54,5 +54,6 @@
         <file>Textures/Main_texture/wine1.png</file>
         <file>Textures/Troll_texture_1/face.png</file>
         <file>Levels/Sebastien_001.png</file>
+        <file>Textures/Main_texture/names.txt</file>
     </qresource>
 </RCC>

@@ -59,7 +59,7 @@ void Texture::define_main_texture()
 
     texture_temp[player_projectile_2] = "wine.png";
 
-    texture_temp[player_projectile_3] = "pot.png";
+    texture_temp[player_projectile_3] = "face.png";
 
     texture_temp[enemy_projectile_1] = "smoke.png";
 

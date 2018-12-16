@@ -44,4 +44,7 @@ template <typename T> T abs(T a)
     return (a<0) ? -a : a;
 };
 
+void delay(int i);
+
+
 #endif // STRUCTURES_H

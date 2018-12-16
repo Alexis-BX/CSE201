@@ -24,9 +24,9 @@ public:
 
     double_pair world_boundaries;
 
-    bool pressedL{false}, pressedR{false};
+    bool pressedL{false}, pressedR{false}, direction{1};
 
-    int size{36}, M{10}, toMirror{4}, N{8}, direction{1}, block_size{18};
+    int size{36}, M{10}, toMirror{4}, N{8}, block_size{18};
 
     double count;
 

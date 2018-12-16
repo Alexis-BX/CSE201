@@ -34,7 +34,9 @@ SOURCES += \
     coin_counter.cpp \
     enemy.cpp \
     texture.cpp \
-    blocks.cpp
+    blocks.cpp \
+    projectiles.cpp \
+    tools.cpp
 
 HEADERS += \
     player.h \
@@ -48,7 +50,8 @@ HEADERS += \
     enemy.h \
     texture.h \
     global.h \
-    blocks.h
+    blocks.h \
+    projectiles.h
 
 
 

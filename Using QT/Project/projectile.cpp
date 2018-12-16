@@ -5,9 +5,11 @@
 #include "projectile.h"
 #include "player.h"
 #include "view.h"
+#include "tools.h"
 
 
-Projectile::Projectile(pair position, bool direction, Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
+Projectile::Projectile(pair position, bool direction, int character_size_x,
+                       Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
     //Attributes
@@ -17,17 +19,25 @@ Projectile::Projectile(pair position, bool direction, Projectile_type type, Proj
 
     setup_projectile(direction);
 
+    if(direction)
+    {
+        position.x += character_size_x;
+    }
+    else
+    {
+        position.x -= size.x;
+    }
+
     setPos(position.x, position.y);
 
     create_collision_range();
-
-
 
     QTimer * timer = new QTimer();
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(20);
+
 }
 
 void Projectile::setup_projectile(bool direction)
@@ -43,14 +53,7 @@ void Projectile::setup_projectile(bool direction)
 
         size = pair{18,5};
 
-        if (direction == 1)
-        {
-            speed = pair{velocity, 0};
-        }
-        else
-        {
-            speed = pair{-velocity, 0};
-        }
+        speed = pair{velocity * ((direction) ? 1 : -1), 0};
 
         setPixmap(QPixmap(gtexture->get_path_to(player_projectile_1)));
         break;
@@ -62,14 +65,7 @@ void Projectile::setup_projectile(bool direction)
 
         size = pair {18,18};
 
-        if (direction == 1)
-        {
-            speed = pair{velocity, 0};
-        }
-        else
-        {
-            speed = pair{-velocity, 0};
-        }
+        speed = pair{velocity * ((direction) ? 1 : -1), 0};
 
         setPixmap(QPixmap(gtexture->get_path_to(enemy_projectile_1)));
         break;
@@ -81,14 +77,7 @@ void Projectile::setup_projectile(bool direction)
 
         size = pair{18,18};
 
-        if (direction == 1)
-        {
-            speed = pair{velocity,velocity};
-        }
-        else
-        {
-            speed = pair{-velocity,velocity};
-        }
+        speed = pair{velocity * ((direction) ? 1 : -1), velocity};
 
         setPixmap(QPixmap(gtexture->get_path_to(player_projectile_2)));
         break;
@@ -100,14 +89,7 @@ void Projectile::setup_projectile(bool direction)
 
         size = pair{18,18};
 
-        if(direction == 1)
-        {
-            speed = pair{velocity, -velocity + 3};
-        }
-        else
-        {
-            speed = pair{-velocity, -velocity + 3};
-        }
+        speed = pair{velocity * ((direction) ? 1 : -1), -velocity + 3};
 
         setPixmap(QPixmap(gtexture->get_path_to(player_projectile_3)));
         break;
@@ -286,17 +268,15 @@ bool Projectile::collision_t_r()
     return false;
 }
 
-
-void delay(int i) //milliseconds
-{
-    QTime dieTime= QTime::currentTime().addMSecs(i);
-    while (QTime::currentTime() < dieTime)
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
-}
-
 void Projectile::move()
 {
-    if (state == vanish){setPixmap(QPixmap(gtexture->get_path_to(projectile_vanish_effect))); state = dead ; delay(200); QObject::deleteLater();}
+    if (state == vanish)
+    {
+        setPixmap(QPixmap(gtexture->get_path_to(projectile_vanish_effect)));
+        state = dead ;
+        delay(200);
+        QObject::deleteLater();
+    }
 
     life -= 10;
     if(life == 0)
@@ -305,7 +285,11 @@ void Projectile::move()
         setPos(x()+speed.x, y()+speed.y);
         return;
     }
-    if(life == -10){delay(100); QObject::deleteLater();}
+    if(life == -10)
+    {
+        state = vanish;
+        return;
+    }
 
     int ac_vel_x = 2; //after collision velocity (when the projectile bounces)
     int ac_vel_y = 5;

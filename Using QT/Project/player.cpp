@@ -2,6 +2,7 @@
 #include <QTimer>
 #include <cmath>
 #include "projectile.h"
+#include "projectiles.h"
 #include "collectable.h"
 #include "tools.h"
 #include "enemy.h"
@@ -81,7 +82,10 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         throwprojectile(3);
     }
-
+    else if(event->key() == Qt::Key_4)
+    {
+        throwprojectile(4);
+    }
     else if(event->key() == Qt::Key_5)
     {
         create_enemy();
@@ -536,11 +540,6 @@ void Player::move()
         {
             collision_vector.x = (*iter)->x()+block_size-x();
         }
-        else
-        {
-            collision_vector.x = 0;
-        }
-
 
         //set the collision vector y
         if(speed.y > 0)
@@ -551,26 +550,15 @@ void Player::move()
         {
             collision_vector.y = (*iter)->y()+block_size-y();
         }
-        else
-        {
-            collision_vector.y = 0;
-        }
 
         // computer temp ratios
         temp_ratio.x = (speed.x != 0) ? (collision_vector.x)/speed.x : 0;
         temp_ratio.y = (speed.y != 0) ? (collision_vector.y)/speed.y : 0;
 
-        temp_ratio.x = max_of<greal>(temp_ratio);
-        temp_ratio.y = temp_ratio.x;
+        //temp_ratio.x = max_of<greal>(temp_ratio);
+        //temp_ratio.y = temp_ratio.x;
 
-        if(speed.x !=0 && collision_vector.x == 0) //((*iter)->x() >= x()+size)||((*iter)->x()+block_size <= x()))
-        {
-            temp_ratio.y = 1;
-        }
-        if(speed.y !=0 && collision_vector.y == 0) //((*iter)->y() >= y()+size)||((*iter)->y() + block_size <= y()))
-        {
-            temp_ratio.x = 1;
-        }
+
 
         //update fianl ration we want to it be between 1 and -1 (it starts at 1 only decreases and is bounded by -1)
         final_ratio.x = max<greal>(min<greal>(temp_ratio.x,final_ratio.x),-1);
@@ -592,54 +580,38 @@ void Player::move()
 }
 **/
 
+
 void Player::throwprojectile(int i)
 {
 
     // for the directino of the projectile: define a "last velocity speed"
     // then the direction is the direction of this last velocity
-    if(i == 1)
+    pair position{x(),y()};
+    switch (i)
     {
-        if (direction == 1)
-        {   // the player faces right, the projectile is thrown to the right
-            Projectile* projectile = new Projectile(pair{x() + size,y() +  size/4}, direction, Projectile_type{baguette});
-            view->scene->addItem(projectile);
-        }
-        else
-        {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
-            // -19... we would like -projectile.size.x - 1
-            Projectile* projectile = new Projectile(pair{x() -19 ,y() +  size/4}, direction, Projectile_type{baguette});
-            view->scene->addItem(projectile);
-        }
+    case 1:
+    {
+        view->scene->addItem(new Player_projectile_1(position, direction, size));
+        break;
     }
 
-    if(i == 2)
+    case 2:
     {
-        if (direction == 1)
-        {   // the player faces right, the projectile is thrown to the right
-            Projectile* projectile = new Projectile(pair{x() + size ,y() +  size/4}, direction, Projectile_type{wine});
-            view->scene->addItem(projectile);
-        }
-        else
-        {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
-            // -19... we would like -projectile.size.x - 1
-            Projectile* projectile = new Projectile(pair{x() -19 ,y() +  size/4}, direction, Projectile_type{wine});
-            view->scene->addItem(projectile);
-        }
+        view->scene->addItem(new Player_projectile_2(position, direction, size));
+        break;
     }
 
-    if(i == 3)
+    case 3:
     {
-        if (direction == 1)
-        {   // the player faces right, the projectile is thrown to the right
-            Projectile* projectile = new Projectile(pair{x() + size ,y() +  size/4}, direction, Projectile_type{smoke});
-            view->scene->addItem(projectile);
-        }
-        else
-        {   //the player faces left, the projectile is thrown to the left, and initial position just left of the player
-            // -19... we would like -projectile.size.x - 1
-            Projectile* projectile = new Projectile(pair{x() -19 ,y() +  size/4}, direction, Projectile_type{smoke});
-            view->scene->addItem(projectile);
-        }
+        view->scene->addItem(new Player_projectile_3(position, direction, size));
+        break;
+    }
+
+    case 4:
+    {
+        view->scene->addItem(new Enemy_projectile_1(position, direction, size));
+        break;
+    }
     }
 }
 
