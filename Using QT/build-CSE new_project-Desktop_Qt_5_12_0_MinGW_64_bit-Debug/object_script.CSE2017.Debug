@@ -7,6 +7,7 @@ debug/collectable.o
 debug/coin_counter.o
 debug/enemy.o
 debug/texture.o
+debug/blocks.o
 debug/qrc_resources.o
 debug/moc_player.o
 debug/moc_block.o

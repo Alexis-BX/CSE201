@@ -1,6 +1,7 @@
 #include "view.h"
 #include "player.h"
 #include "block.h"
+#include "blocks.h"
 #include "tools.h"
 #include <QDebug>
 #include <cstdlib>
@@ -21,19 +22,32 @@ View::View(pair screen_size, int block_size, QWidget* parent)
     this->screen_size = screen_size;
 
     //Create world
-    set_scene_view();
+    scene = new QGraphicsScene();
 
-    //create_example_world(world_size.right-world_size.left);
+    setScene(scene);
 
-    const char* level = ":/Images/Levels/Level_agathe_001.png";
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setFixedSize(int(screen_size.x),int(screen_size.y));
+
+
+    // load and create level
+    const char* level = ":/Images/Levels/Sebastien_001.png";
     readBMP(level);
 
-    //create_example_world(world_size.right);
-
+    // Create Player
     create_player();
+}
 
+void View::create_block(pair position, Block_type type, Block_texture texture,Block_state state )
+{
+    Block* new_block = new Block(position, type, texture, state);
 
+    new_block->setPos(position.x,position.y-36); // the -36 is temporary
 
+    this->scene->addItem(new_block);
 }
 
 void View::create_basic_world(int width)
@@ -82,15 +96,6 @@ void View::create_basic_world(int width)
     }
 }
 
-void View::create_block(pair position, Block_type type, Block_texture texture,Block_state state )
-{
-    Block* new_block = new Block(position, type, texture, state);
-
-    new_block->setPos(position.x,position.y-36); // the -36 is temporary
-
-    this->scene->addItem(new_block);
-}
-
 void View::create_player(pair position)
 {
     player = new Player();
@@ -104,22 +109,6 @@ void View::create_player(pair position)
     scene->addItem(player);
 
     centerOn(player);
-}
-
-void View::set_scene_view()
-{
-    scene = new QGraphicsScene();
-
-    scene->setSceneRect(world_size.left,world_size.top,world_size.right-world_size.left,world_size.bottom-world_size.top);
-
-    setScene(scene);
-
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setFixedSize(int(screen_size.x),int(screen_size.y));
-
 }
 
 void View::create_example_world(int width) // under construction
@@ -214,7 +203,6 @@ void View::create_example_world(int width) // under construction
     }
 }
 
-
 void View::readBMP(const char* filename)
 {
 
@@ -228,48 +216,9 @@ void View::readBMP(const char* filename)
 
     int width = level.width();
 
+    world_size = double_pair{18-height*block_size,0,18,width*block_size};
 
-
-/** OLD VERSION THAT ONLY WORKED ON WINDOWS USE QT TOOLS TO MAKE IT WORK FOR EVERYTHING
-    std::ifstream image;
-
-    image.open(filename);
-
-    if(!image.is_open())
-    {
-        printf("not open");
-    }
-
-    int height = 0,width = 0;
-
-    for(int i = 0 ; i < 54 ; i++)
-    {
-        if(i == 18)
-        {
-            width = image.get();
-        }
-        else if(i == 22)
-        {
-            height = image.get();
-        }
-        else
-        {
-            image.get();
-        }
-    }
-
-    world_size.bottom = 0;
-    world_size.left = 0;
-    world_size.top = - block_size * height;
-    world_size.right = block_size * width;
-    //std::cout << width << "  " << height << std::endl;
-    **/
-
-    /**
-     * Now data should contain the (R, G, B) values of the pixels. The color of pixel (i, j) is stored at
-     * data[3 * (i * width + j)], data[3 * (i * width + j) + 1] and data[3 * (i * width + j) + 2].
-    **/
-
+    setSceneRect(world_size.left,world_size.top,world_size.right-world_size.left,world_size.bottom-world_size.top);
 
     int R,G,B;
 
@@ -283,14 +232,53 @@ void View::readBMP(const char* filename)
             G = qGreen(pixColor);
             B = qBlue(pixColor);
 
-
-
             //std::cout << i << "   " << j << "   " << R << "   " << G << "   " << B << "   " << std::endl;
             convert (B,G,R,i,j); // careful colors are not stored in correct order so do swap
         }
     }
 
-    /**
+    /** OLD VERSION THAT ONLY WORKED ON WINDOWS USE QT TOOLS TO MAKE IT WORK FOR EVERYTHING
+        std::ifstream image;
+
+        image.open(filename);
+
+        if(!image.is_open())
+        {
+            printf("not open");
+        }
+
+        int height = 0,width = 0;
+
+        for(int i = 0 ; i < 54 ; i++)
+        {
+            if(i == 18)
+            {
+                width = image.get();
+            }
+            else if(i == 22)
+            {
+                height = image.get();
+            }
+            else
+            {
+                image.get();
+            }
+        }
+
+        world_size.bottom = 0;
+        world_size.left = 0;
+        world_size.top = - block_size * height;
+        world_size.right = block_size * width;
+        //std::cout << width << "  " << height << std::endl;
+
+
+
+        Now data should contain the (R, G, B) values of the pixels. The color of pixel (i, j) is stored at
+        data[3 * (i * width + j)], data[3 * (i * width + j) + 1] and data[3 * (i * width + j) + 2].
+
+
+
+
     while(image.good())
     {
         R = image.get();
@@ -415,6 +403,49 @@ void View::convert(int v0, int v1, int v2, int i, int j)
 
     int diff=4;
 
+    pair position = pair{greal(i*block_size),greal(-j*block_size)};
+
+    if (v0<=diff && v1<=diff && v2<=diff)
+    {
+        //CREATE PERMANEMT BLOCK at position (i,j)
+        this->scene->addItem(new Base_block(position));
+    }
+    else if (v0>=255-diff && v1>=255-diff && v2>=255-diff)
+    {
+        //CREATE nothing at position (i,j)
+    }
+    else if (36-diff<=v0 && v0<=36+diff  && 28-diff<=v1 && v1<=28+diff && 237-diff<=v2 && v2<=237+diff)
+    {
+        //CREATE enemy stating point at position (i,j)
+    }
+    else if (87-diff<=v0 && v0<=87+diff  && 122-diff<=v1 && v1<=122+diff && 185-diff<=v2 && v2<=185+diff)
+    {
+        //CREATE ground  at position (i,j)
+        this->scene->addItem(new Special_block_below(position));
+    }
+    else if (76-diff<=v0 && v0<=76+diff  && 177-diff<=v1 && v1<=177+diff && 34-diff<=v2 && v2<=34+diff)
+    {
+        //CREATE grass  at position (i,j)
+        this->scene->addItem(new Special_block_above(position));
+    }
+    else if ( v0<=0+diff  && 242-diff<=v1 && v1<=242+diff && 255-diff<=v2)
+    {
+        //CREATE coin at position (i,j)
+    }
+    else if (204-diff<=v0 && v0<=204+diff  && 72-diff<=v1 && v1<=72+diff && 63-diff<=v2 && v2<=63+diff)
+    {
+        //CREATE ?/active block  at position (i,j)
+        this->scene->addItem(new Active_block(position));
+    }
+    else if (39-diff<=v0 && v0<=39+diff  && 127-diff<=v1 && v1<=127+diff && 255-diff<=v2)
+    {
+        //CREATE breakable block  at position (i,j)
+        this->scene->addItem(new Breakable_block(position));
+    }
+
+    /**
+    int diff=4;
+
 
     if (v0<=diff && v1<=diff && v2<=diff)
     {
@@ -443,6 +474,9 @@ void View::convert(int v0, int v1, int v2, int i, int j)
     else if (76-diff<=v0 && v0<=76+diff  && 177-diff<=v1 && v1<=177+diff && 34-diff<=v2 && v2<=34+diff)
     {
         //CREATE grass  at position (i,j)
+        this->scene->addItem(new Special_block_above(pair{greal(i*block_size),greal(-18-j*block_size)}));
+
+
         Block_type btype = permanent;
         Block_texture btexture = grass;
         Block_state bstate = initial;
@@ -472,6 +506,7 @@ void View::convert(int v0, int v1, int v2, int i, int j)
         Block_state bstate = initial;
         create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
     }
+    **/
 }
 
 

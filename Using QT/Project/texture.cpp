@@ -1,6 +1,7 @@
 #include "texture.h"
 #include <QDebug>
 
+
 Texture::Texture()
 {
     path_to_textures = ":/Images/Textures/";

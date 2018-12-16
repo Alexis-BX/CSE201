@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/Images">
         <file>Textures/Main_texture/Brick.png</file>
-        <file>Levels/Level_agathe_001.bmp</file>
         <file>Levels/Level_agathe_001.png</file>
         <file>Textures/Main_texture/baguette.png</file>
         <file>Textures/Main_texture/big_cheese.png</file>
@@ -54,5 +53,6 @@
         <file>Textures/Main_texture/wine.png</file>
         <file>Textures/Main_texture/wine1.png</file>
         <file>Textures/Troll_texture_1/face.png</file>
+        <file>Levels/Sebastien_001.png</file>
     </qresource>
 </RCC>

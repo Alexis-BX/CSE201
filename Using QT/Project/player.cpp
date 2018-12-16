@@ -22,7 +22,7 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     speed = pair{0,0};
 
-    speedMax = pair{10,15};
+    speedMax = pair{10,25};
 
     block_size = 18;
 
@@ -65,7 +65,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Up)
     {
-        speed.y -= 10;
+        speed.y -= speedMax.y;
     }
     else if(event->key() == Qt::Key_1)
     {
