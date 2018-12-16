@@ -10,16 +10,15 @@ class Projectile : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
-private:
+public:
+
+    constexpr static greal velocity = 5;
 
     Projectile_type type;
 
     Projectile_state state;
 
-public:
-
-    Projectile(pair position, bool direction, int character_size_x, Projectile_type type = Projectile_type{baguette},
-               Projectile_state state = Projectile_state{alive}, QGraphicsItem* parent = 0);
+    Projectile(pair position, bool direction, int character_size_x, QGraphicsItem* parent = 0);
 
 
     // Attributes
@@ -35,8 +34,6 @@ public:
 
     bool collision_right(),collision_left(),collision_down(),collision_up();
     bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
-
-    void setup_projectile(bool direction);
 
     void create_collision_range();
 

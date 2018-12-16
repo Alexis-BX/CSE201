@@ -8,16 +8,10 @@
 #include "tools.h"
 
 
-Projectile::Projectile(pair position, bool direction, int character_size_x,
-                       Projectile_type type, Projectile_state state, QGraphicsItem* parent) :
+Projectile::Projectile(pair position, bool direction, int character_size_x, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
-    //Attributes
-    this -> type = type;
-
-    this -> state = state;
-
-    setup_projectile(direction);
+    state = alive;
 
     if(direction)
     {
@@ -38,63 +32,6 @@ Projectile::Projectile(pair position, bool direction, int character_size_x,
 
     timer->start(20);
 
-}
-
-void Projectile::setup_projectile(bool direction)
-{
-    greal velocity = 5;
-
-    //initializing life and size of projectile depending on it's type
-    switch (type)
-    {
-    case baguette:
-    {
-        life = 1000;
-
-        size = pair{18,5};
-
-        speed = pair{velocity * ((direction) ? 1 : -1), 0};
-
-        setPixmap(QPixmap(gtexture->get_path_to(player_projectile_1)));
-        break;
-    }
-
-    case smoke:
-    {
-        life = 400;
-
-        size = pair {18,18};
-
-        speed = pair{velocity * ((direction) ? 1 : -1), 0};
-
-        setPixmap(QPixmap(gtexture->get_path_to(enemy_projectile_1)));
-        break;
-    }
-
-    case wine:
-    {
-        life = 50000;
-
-        size = pair{18,18};
-
-        speed = pair{velocity * ((direction) ? 1 : -1), velocity};
-
-        setPixmap(QPixmap(gtexture->get_path_to(player_projectile_2)));
-        break;
-    }
-
-    case pot:
-    {
-        life = 200000;
-
-        size = pair{18,18};
-
-        speed = pair{velocity * ((direction) ? 1 : -1), -velocity + 3};
-
-        setPixmap(QPixmap(gtexture->get_path_to(player_projectile_3)));
-        break;
-    }
-    }
 }
 
 void Projectile::create_collision_range()
