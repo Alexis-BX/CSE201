@@ -13,15 +13,13 @@
 
 
 
-View::View(pair screen_size, int block_size, QWidget* parent)
+View::View(pair screen_size, int block_size)
 {
-    world_size = double_pair{-1500,0,0,10000};
-
     this->block_size = block_size;
 
     this->screen_size = screen_size;
 
-    //Create world
+    //scene set up
     scene = new QGraphicsScene();
 
     setScene(scene);
@@ -34,8 +32,9 @@ View::View(pair screen_size, int block_size, QWidget* parent)
 
 
     // load and create level
-    const char* level = ":/Images/Levels/Sebastien_001.png";
+    const char* level = ":/Images/Levels/Level_agathe_001.png";
     readBMP(level);
+
 
     // Create Player
     create_player();

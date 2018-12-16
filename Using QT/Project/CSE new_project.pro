@@ -36,7 +36,8 @@ SOURCES += \
     texture.cpp \
     blocks.cpp \
     projectiles.cpp \
-    tools.cpp
+    tools.cpp \
+    level_load.cpp
 
 HEADERS += \
     player.h \
@@ -51,7 +52,8 @@ HEADERS += \
     texture.h \
     global.h \
     blocks.h \
-    projectiles.h
+    projectiles.h \
+    level_load.h
 
 
 

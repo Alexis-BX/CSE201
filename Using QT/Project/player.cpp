@@ -23,7 +23,7 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     speed = pair{0,0};
 
-    speedMax = pair{10,25};
+    speedMax = pair{10,15};
 
     block_size = 18;
 

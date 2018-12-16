@@ -10,6 +10,7 @@ release/texture.o
 release/blocks.o
 release/projectiles.o
 release/tools.o
+release/level_load.o
 release/qrc_resources.o
 release/moc_player.o
 release/moc_block.o
