@@ -14,7 +14,7 @@
 
 
 
-View::View(pair screen_size, int block_size)
+View::View(pair screen_size, int block_size, QWidget* parent)
 {
     this->block_size = block_size;
 
@@ -33,6 +33,10 @@ View::View(pair screen_size, int block_size)
 
     // Create Player
     create_player();
+
+    //Set the background
+    set_background(parent);
+
 }
 
 void View::create_block(pair position, Block_type type, Block_texture texture,Block_state state )
@@ -521,6 +525,17 @@ void View::start_screen()
 
     scene->addItem(new Start_button(screen_size));
 
+}
+
+void View::set_background(QWidget* parent)
+{
+    QPixmap bkgnd(":/Images/background/Background.png");
+        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+        QPalette palette;
+        palette.setBrush(QPalette::Background, bkgnd);
+        this->setPalette(palette);
+
+    setBackgroundBrush(bkgnd);
 }
 
 

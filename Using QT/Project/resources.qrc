@@ -57,5 +57,6 @@
         <file>Textures/Main_texture/names.txt</file>
         <file>Levels/screen_start.png</file>
         <file>Menu/start_button.png</file>
+        <file>background/Background.png</file>
     </qresource>
 </RCC>
