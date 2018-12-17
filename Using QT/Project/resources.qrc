@@ -55,5 +55,7 @@
         <file>Textures/Troll_texture_1/face.png</file>
         <file>Levels/Sebastien_001.png</file>
         <file>Textures/Main_texture/names.txt</file>
+        <file>Levels/screen_start.png</file>
+        <file>Menu/start_button.png</file>
     </qresource>
 </RCC>

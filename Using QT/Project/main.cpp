@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     QApplication application(argc, argv);
 
-    view = new View(pair{800,500});
+    view = new View(pair{793,505});
 
     view->show();
 

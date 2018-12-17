@@ -41,6 +41,8 @@ public:
     
     void convert (int v0,int v1,int v2, int i, int j);
 
+    void start_screen();
+
 };
 
 #endif // VIEW_H

@@ -3,6 +3,7 @@
 #include "block.h"
 #include "blocks.h"
 #include "tools.h"
+#include "start_button.h"
 #include <QDebug>
 #include <cstdlib>
 #include <math.h>
@@ -24,17 +25,11 @@ View::View(pair screen_size, int block_size)
 
     setScene(scene);
 
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setFixedSize(int(screen_size.x),int(screen_size.y));
-
-
     // load and create level
     const char* level = ":/Images/Levels/Level_agathe_001.png";
     readBMP(level);
 
+    //start_screen();
 
     // Create Player
     create_player();
@@ -204,6 +199,12 @@ void View::create_example_world(int width) // under construction
 
 void View::readBMP(const char* filename)
 {
+
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setFixedSize(int(screen_size.x),int(screen_size.y));
 
     QPixmap imgChar(filename);
 
@@ -506,6 +507,20 @@ void View::convert(int v0, int v1, int v2, int i, int j)
         create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
     }
     **/
+}
+
+void View::start_screen()
+{
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setFixedSize(int(screen_size.x),int(screen_size.y));
+
+    readBMP(":/Images/Levels/screen_start.png");
+
+    scene->addItem(new Start_button(screen_size));
+
 }
 
 

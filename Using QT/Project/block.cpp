@@ -19,7 +19,7 @@ Block::Block(pair position, Block_type type, Block_texture texture, Block_state 
 
     case brick:
     {
-        if(int(position.y+81)%36 < 18)
+        if(int(-position.y)%36 < 9)
         {
             setPixmap(QPixmap(gtexture->get_path_to(base_block_1)));
         }

@@ -37,7 +37,8 @@ SOURCES += \
     blocks.cpp \
     projectiles.cpp \
     tools.cpp \
-    level_load.cpp
+    level_load.cpp \
+    start_button.cpp
 
 HEADERS += \
     player.h \
@@ -53,7 +54,8 @@ HEADERS += \
     global.h \
     blocks.h \
     projectiles.h \
-    level_load.h
+    level_load.h \
+    start_button.h
 
 
 
