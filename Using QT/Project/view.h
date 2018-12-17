@@ -9,12 +9,14 @@
 
 class Player;
 
+class background;
+
 class View : public QGraphicsView
 {
 
 public:
 
-    View(pair screen_size, int block_size = 18);
+    View(pair screen_size, int block_size = 18, QWidget * parent=0);
 
     //attributes
     int block_size;
@@ -26,6 +28,7 @@ public:
     QGraphicsScene * scene;
 
     Player* player;
+    background* bg;
 
     // Create world
     void create_basic_world(int width);
@@ -36,12 +39,14 @@ public:
                       Block_texture texture = Block_texture{brick},Block_state state = Block_state{initial} );
 
     void create_example_world(int width);
-    
+
     void readBMP(const char* filename);
-    
+
     void convert (int v0,int v1,int v2, int i, int j);
 
     void start_screen();
+
+    void set_background(QWidget* parent);
 
 };
 
