@@ -17,7 +17,6 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     setPixmap(animations[0][0]);
 
-
     // Attributes
     count = 0;
 
@@ -126,7 +125,6 @@ bool Player::collision_right()
                     return true;
                 }
             }
-
         }
     }
 
@@ -166,7 +164,6 @@ bool Player::collision_up()
                     return true;
                 }
             }
-
         }
     }
     return false;
@@ -400,18 +397,6 @@ void Player::create_collision_range()
     collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
 
     collision_range->setOpacity(0);
-}
-
-void Player::count_coins(Collectable collectable)
-{
-    int count = 0;
-    if (collectable.type == coin)
-    {
-        if (collectable.state == used)
-        {
-            count += 1;
-        }
-    }
 }
 
 /***

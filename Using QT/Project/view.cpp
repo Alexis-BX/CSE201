@@ -12,8 +12,6 @@
 #include <fstream>
 #include <QRgb>
 
-
-
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
     this->block_size = block_size;

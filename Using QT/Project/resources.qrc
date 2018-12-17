@@ -58,5 +58,6 @@
         <file>Levels/screen_start.png</file>
         <file>Menu/start_button.png</file>
         <file>background/Background.png</file>
+        <file>Levels/sticker-numero-un.jpg</file>
     </qresource>
 </RCC>

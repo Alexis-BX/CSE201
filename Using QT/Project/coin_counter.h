@@ -6,13 +6,14 @@
 #include "collectable.h"
 #include "player.h"
 
-class coin_counter : public QObject, public QGraphicsPixmapItem
+class Coin_counter : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
-    coin_counter();
-    void add_coin(Collectable collectable);
+    Coin_counter();
+    int add_coin(Collectable collectable);
+    void display_counter(int coin);
 
 };
 
