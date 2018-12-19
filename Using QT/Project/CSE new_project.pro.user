@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<<<<<<< HEAD
-<!-- Written by QtCreator 4.8.0, 2018-12-17T16:58:09. -->
+<!-- Written by QtCreator 4.8.0, 2018-12-19T14:50:36. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
   <value type="QByteArray">{1063cf83-2338-433e-9c9e-f3e56ea18fe1}</value>
-=======
-<!-- Written by QtCreator 4.8.0, 2018-12-17T16:12:06. -->
-<qtcreator>
- <data>
-  <variable>EnvironmentId</variable>
-  <value type="QByteArray">{473c4561-16a5-4127-a9c5-e88a66105a59}</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -79,11 +71,7 @@
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/Sebastien/Desktop/project 12152018/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Debug</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Debug</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -139,11 +127,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.1">
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/Sebastien/Desktop/project 12152018/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Release</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Release</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -199,11 +183,7 @@
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.2">
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:/Users/Sebastien/Desktop/project 12152018/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Profile</value>
-=======
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Profile</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
@@ -317,30 +297,18 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">CSE new_project</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Sebastien/Desktop/project 12152018/Using QT/Project/CSE new_project.pro</value>
-=======
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/Project/CSE new_project.pro</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">CSE new_project.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-<<<<<<< HEAD
-=======
-    <value type="bool" key="RunConfiguration.UseDyldImageSuffix">false</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-<<<<<<< HEAD
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Sebastien/Desktop/project 12152018/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Debug</value>
-=======
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Debug/CSE2017.app/Contents/MacOS</value>
->>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

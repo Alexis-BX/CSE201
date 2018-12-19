@@ -13,6 +13,7 @@ release/tools.o
 release/level_load.o
 release/start_button.o
 release/collectables.o
+release/counter.o
 release/qrc_resources.o
 release/moc_player.o
 release/moc_block.o
@@ -21,3 +22,4 @@ release/moc_collectable.o
 release/moc_coin_counter.o
 release/moc_enemy.o
 release/moc_start_button.o
+release/moc_counter.o

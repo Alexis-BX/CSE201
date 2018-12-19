@@ -13,6 +13,7 @@ debug/tools.o
 debug/level_load.o
 debug/start_button.o
 debug/collectables.o
+debug/counter.o
 debug/qrc_resources.o
 debug/moc_player.o
 debug/moc_block.o
@@ -21,3 +22,4 @@ debug/moc_collectable.o
 debug/moc_coin_counter.o
 debug/moc_enemy.o
 debug/moc_start_button.o
+debug/moc_counter.o

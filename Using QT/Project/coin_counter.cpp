@@ -3,13 +3,59 @@
 #include "collectables.h"
 #include "player.h"
 #include "view.h"
+#include "global.h"
 
-Coin_counter::Coin_counter()
+Coin_counter::Coin_counter(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 {
-    setPos (0,0);
+    coins = 0;
 
-    setPixmap(QPixmap(":/Images/Levels/sticker-numero-un.jpg"));
+    Counter* counter = new Counter(pair{150,-150},this);
+
+    qDebug() << "first counter created";
+
+    qDebug() << counter->x();
+
+    qDebug() << counter->y();
+
+    //qDebug() << view->player->x();
+
+
+    qDebug() << "accessed view";
+
+    //view->scene->addItem(counter);
+
+    qDebug() << "counter added to scene";
+
+    counters.push_back(counter);
+
+
+    qDebug() << "heere";
 }
+
+void Coin_counter::add_coin()
+{
+    coins ++;
+
+    update_counter();
+}
+
+void Coin_counter::update_counter()
+{
+    if(coins/(10^int(counters.size()))>=1)
+    {
+        Counter* counter = new Counter(pair{150-36*double(counters.size()),-150},this);
+
+        counters.push_back(counter);
+    }
+
+    for(int i = 0 ; i < int(counters.size()) ; i ++)
+    {
+        counters[i]->update_counter(int(coins/(10^counters.size())));
+    }
+
+}
+
+
 
 /*int Coin_counter::add_coin(Collectable collectable)
 {
@@ -27,10 +73,10 @@ Coin_counter::Coin_counter()
     }
     return count;
 }*/
-
-void Coin_counter::display_counter(int count)
+/**
+void Coin_counter::update_counter()
 {
-    int unit = count % 10;
+    int unit = coins % 10;
     switch (unit)
     {
         case 1:
@@ -43,7 +89,7 @@ void Coin_counter::display_counter(int count)
 
     }
 
-    int tens = (count - count % 10)/10;
+    int tens = (coins - coins % 10)/10;
     switch (tens)
     {
         case 1:
@@ -55,3 +101,4 @@ void Coin_counter::display_counter(int count)
         break;
     }
 }
+**/
