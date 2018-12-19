@@ -22,7 +22,7 @@ public:
 
     // Attributes
     pair size, position, speed;
-    int life;
+    int life; //some collectables have life even though they are not eaten (ex mushroom)
 
     QGraphicsRectItem* collision_range_collec;
 

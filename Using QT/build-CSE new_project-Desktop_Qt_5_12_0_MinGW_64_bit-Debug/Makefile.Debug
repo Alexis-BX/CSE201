@@ -220,6 +220,7 @@ debug/qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/dirt.png \
 		../Project/Menu/start_button.png \
 		../Project/Levels/Level_agathe_001.png \
+		../Project/Levels/sticker-numero-un.jpg \
 		../Project/Levels/Sebastien_001.png \
 		../Project/Levels/screen_start.png \
 		../Project/background/Background.png
@@ -3931,6 +3932,7 @@ debug/coin_counter.o: ../Project/coin_counter.cpp ../Project/coin_counter.h \
 		C:/Qt/5.12.0/mingw73_64/include/QtCore/qfiledevice.h \
 		C:/Qt/5.12.0/mingw73_64/include/QtGui/qvector2d.h \
 		C:/Qt/5.12.0/mingw73_64/include/QtGui/qtouchdevice.h \
+		../Project/collectables.h \
 		../Project/view.h \
 		C:/Qt/5.12.0/mingw73_64/include/QtWidgets/QGraphicsView \
 		C:/Qt/5.12.0/mingw73_64/include/QtWidgets/qgraphicsview.h \

@@ -12,8 +12,6 @@
 #include <fstream>
 #include <QRgb>
 
-
-
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
     this->block_size = block_size;
@@ -530,10 +528,17 @@ void View::start_screen()
 void View::set_background(QWidget* parent)
 {
     QPixmap bkgnd(":/Images/background/Background.png");
-        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        QPalette palette;
-        palette.setBrush(QPalette::Background, bkgnd);
-        this->setPalette(palette);
+
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+
+    QPalette palette;
+
+    palette.setBrush(QPalette::Background, bkgnd);
+
+    this->setPalette(palette);
+
+
 
     setBackgroundBrush(bkgnd);
 }

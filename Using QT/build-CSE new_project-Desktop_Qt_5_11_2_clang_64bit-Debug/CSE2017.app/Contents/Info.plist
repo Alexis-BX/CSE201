@@ -9,11 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-<<<<<<< HEAD
 	<string>com.yourcompany.CSE2017</string>
-=======
-	<string>mek.CSE2017</string>
->>>>>>> 6c3a27d1560d9ecfb8fc6080afa7697daa356228
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>

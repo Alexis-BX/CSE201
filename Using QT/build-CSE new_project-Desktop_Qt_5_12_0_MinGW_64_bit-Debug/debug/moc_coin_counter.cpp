@@ -20,25 +20,25 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_coin_counter_t {
+struct qt_meta_stringdata_Coin_counter_t {
     QByteArrayData data[1];
     char stringdata0[13];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_coin_counter_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_Coin_counter_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_coin_counter_t qt_meta_stringdata_coin_counter = {
+static const qt_meta_stringdata_Coin_counter_t qt_meta_stringdata_Coin_counter = {
     {
-QT_MOC_LITERAL(0, 0, 12) // "coin_counter"
+QT_MOC_LITERAL(0, 0, 12) // "Coin_counter"
 
     },
-    "coin_counter"
+    "Coin_counter"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_coin_counter[] = {
+static const uint qt_meta_data_Coin_counter[] = {
 
  // content:
        8,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_coin_counter[] = {
        0        // eod
 };
 
-void coin_counter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void Coin_counter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     Q_UNUSED(_o);
     Q_UNUSED(_id);
@@ -62,32 +62,32 @@ void coin_counter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject coin_counter::staticMetaObject = { {
+QT_INIT_METAOBJECT const QMetaObject Coin_counter::staticMetaObject = { {
     &QObject::staticMetaObject,
-    qt_meta_stringdata_coin_counter.data,
-    qt_meta_data_coin_counter,
+    qt_meta_stringdata_Coin_counter.data,
+    qt_meta_data_Coin_counter,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *coin_counter::metaObject() const
+const QMetaObject *Coin_counter::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *coin_counter::qt_metacast(const char *_clname)
+void *Coin_counter::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_coin_counter.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_Coin_counter.stringdata0))
         return static_cast<void*>(this);
     if (!strcmp(_clname, "QGraphicsPixmapItem"))
         return static_cast< QGraphicsPixmapItem*>(this);
     return QObject::qt_metacast(_clname);
 }
 
-int coin_counter::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int Coin_counter::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QObject::qt_metacall(_c, _id, _a);
     return _id;

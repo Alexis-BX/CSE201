@@ -25,41 +25,18 @@ Collectable::Collectable(pair position, int creator_object_size_y, pair size, QG
 
     timer->start(20);
 
-
-    if (type == coin){
-            size = pair{18,18};
-            speed = pair{0,0};
-        setPixmap(QPixmap(gtexture->get_path_to(small_collectable)));
-        }
-
-        if (type == star){
-            size = pair{18,18};
-            speed = pair{0,0};
-        setPixmap(QPixmap(gtexture->get_path_to((big_collectable))));
-        }
-
-        if (type == mushroom){
-            size = pair{18,18};
-            speed = pair{1, 0};
-        setPixmap(QPixmap(gtexture->get_path_to(power_up_1)));
-        }
-
-        if (type == eclair){
-            size = pair{18,18};
-            speed = pair{0,0};
-        setPixmap(QPixmap(gtexture->get_path_to(power_up_2)));
-        }
-
 }
 
-void Collectable::collision_range()
+void Collectable::collision_range() //create the collision box in order to do the collisions
 {
         collision_range_collec = new QGraphicsRectItem(this);
+
         collision_range_collec -> setRect(0,0,size.x + size.x/2, size.y + size.y/2);
+
         collision_range_collec -> setPos(0 - size.x/4, 0 -size.y/4);
 }
 
-
+// collision function
 bool Collectable::collision_right()
 {
     // return if the right of the collectable suffers a collision with the player
@@ -139,6 +116,6 @@ bool Collectable::collision_down()
 
 void Collectable::move()
 {
-    QObject::deleteLater();
+    //QObject::deleteLater();
 }
 

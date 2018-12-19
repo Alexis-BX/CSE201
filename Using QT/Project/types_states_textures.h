@@ -32,16 +32,16 @@ enum Block_state
 
 enum Collectable_state  // the collectable can either be used by the player or not
 {
-    decaying,
-    immortal
+    decaying, //means it has a life and can die even though it hasn't been eaten
+    immortal //the collectable doesn't have a life but dissapear whenever the player use it (eat it), ie whenever there is a collision with the player
 };
 
 enum Collectable_type // shows all kinds of collectables that can appear
 {
-    coin,
-    star,
-    mushroom,
-    eclair
+    coin, //to get the points
+    star, //makes you go faster
+    mushroom, //makes you grow bigger
+    eclair //
 };
 
 enum Collectable_texture  // shows if the player meets the same or different collectable

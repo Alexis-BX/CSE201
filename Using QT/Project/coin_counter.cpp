@@ -1,18 +1,57 @@
 #include "coin_counter.h"
 #include "collectable.h"
+#include "collectables.h"
 #include "player.h"
 #include "view.h"
 
-coin_counter::coin_counter()
+Coin_counter::Coin_counter()
 {
+    setPos (0,0);
 
+    setPixmap(QPixmap(":/Images/Levels/sticker-numero-un.jpg"));
 }
 
-void coin_counter::add_coin(Collectable collectable)
+/*int Coin_counter::add_coin(Collectable collectable)
 {
     int count = 0;
     if (collectable.type == coin)
     {
+<<<<<<< HEAD
         count += 1;
+=======
+        if (collision_up() == true || collision_down() == true || collision_left() == true || collision_right() == true)
+        {
+            count += 1;
+        }
+>>>>>>> 4ee68fda1702c7bcb826a1e273a8a77166b6823a
+    }
+    return count;
+}*/
+
+void Coin_counter::display_counter(int count)
+{
+    int unit = count % 10;
+    switch (unit)
+    {
+        case 1:
+        setPixmap(QPixmap(":/Images/Levels/sticker-numero-un.jpg"));
+        //setPos(size of image)
+        break;
+
+    case 2:
+        break;
+
+    }
+
+    int tens = (count - count % 10)/10;
+    switch (tens)
+    {
+        case 1:
+        setPixmap(QPixmap(":/Images/Levels/sticker-numero-un.jpg"));
+        // setPos(size of image)
+        break;
+
+        case 2:
+        break;
     }
 }
