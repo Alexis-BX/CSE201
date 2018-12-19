@@ -13,9 +13,6 @@ void coin_counter::add_coin(Collectable collectable)
     int count = 0;
     if (collectable.type == coin)
     {
-        if (collectable.state == used)
-        {
-            count += 1;
-        }
+        count += 1;
     }
 }

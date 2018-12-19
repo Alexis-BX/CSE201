@@ -38,7 +38,8 @@ SOURCES += \
     projectiles.cpp \
     tools.cpp \
     level_load.cpp \
-    start_button.cpp
+    start_button.cpp \
+    collectables.cpp
 
 HEADERS += \
     player.h \
@@ -55,7 +56,8 @@ HEADERS += \
     blocks.h \
     projectiles.h \
     level_load.h \
-    start_button.h
+    start_button.h \
+    collectables.h
 
 
 

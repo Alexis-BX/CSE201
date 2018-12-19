@@ -407,12 +407,10 @@ void Player::count_coins(Collectable collectable)
     int count = 0;
     if (collectable.type == coin)
     {
-        if (collectable.state == used)
-        {
-            count += 1;
-        }
+        count += 1;
     }
 }
+
 
 /***
  * Trying another move method
@@ -524,6 +522,10 @@ void Player::move()
 
     pair temp_ratio{1,1},final_ratio{1,1},collision_vector;
 
+    if(speed.x == 0 and speed.y == 0)
+    {
+        goto after_collision;
+    }
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
         if((*iter)->x() == x() && (*iter)->y() == y())
@@ -535,10 +537,18 @@ void Player::move()
         if(speed.x > 0)
         {
             collision_vector.x = (*iter)->x()-x()-size;
+            if(collision_vector.x == 0)
+            {
+
+            }
         }
         else if(speed.x < 0)
         {
             collision_vector.x = (*iter)->x()+block_size-x();
+        }
+        else
+        {
+            //do something
         }
 
         //set the collision vector y
@@ -550,10 +560,15 @@ void Player::move()
         {
             collision_vector.y = (*iter)->y()+block_size-y();
         }
+        else
+        {
+            //do something
+        }
+
 
         // computer temp ratios
-        temp_ratio.x = (speed.x != 0) ? (collision_vector.x)/speed.x : 0;
-        temp_ratio.y = (speed.y != 0) ? (collision_vector.y)/speed.y : 0;
+        temp_ratio.x = collision_vector.x/speed.x;
+        temp_ratio.y = collision_vector.y/speed.y;
 
         //temp_ratio.x = max_of<greal>(temp_ratio);
         //temp_ratio.y = temp_ratio.x;
@@ -569,6 +584,7 @@ void Player::move()
     speed.x = int(speed.x * final_ratio.x);
     speed.y = int(speed.y * final_ratio.y);
 
+    after_collision:
 
     //Direction of the player:
     if (pressedR){direction = 1;}
@@ -579,7 +595,6 @@ void Player::move()
     view->centerOn(this);
 }
 **/
-
 
 void Player::throwprojectile(int i)
 {

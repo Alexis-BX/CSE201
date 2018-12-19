@@ -4,18 +4,27 @@
 #include "global.h"
 
 
-Collectable::Collectable(pair position, Collectable_type type, Collectable_state state, Collectable_texture texture, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
+Collectable::Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
     setPos(position.x, position.y);
 
-    this -> type = type;                        // gives the type of the collectable
+    this -> size = size;     // gives the size of the collectable
 
-    this -> state = state;                      // gives the state of the collectable
+    qDebug() << position.y;
 
-    this -> texture = texture;                  // gives the texture of the collectable
+    qDebug() << creator_object_size_y;
 
-    this -> position = position;
+    qDebug() << size.x;
+
+    collision_range();
+
+    QTimer * timer = new QTimer();
+
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+
+    timer->start(20);
+
 
     if (type == coin){
             size = pair{18,18};
@@ -59,14 +68,11 @@ bool Collectable::collision_right()
         {
             if (speed.x > 0) //collectable moves right
             {
-                if (speed.y == 0) //horizontal movement
+                for (int i = 0; i<size.y; i++) //iterate over the whole height of the collectable
                 {
-                    for (int i = 0; i<size.y; i++) //iterate over the whole height of the collectable
+                    if ((*iter)-> contains(QPointF(x() +  (size.x-1)  + (speed.x - 1) - (*iter)->x() , y() + i -(*iter)->y() )))
                     {
-                        if ((*iter)-> contains(QPointF(x() +  (size.x-1)  + (speed.x - 1) - (*iter)->x() , y() + i -(*iter)->y() )))
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             } //END OF FIRST CASE
@@ -81,14 +87,11 @@ bool Collectable::collision_left()
     {
     if (speed.x < 0) //collectable goes backwards
     {
-        if (speed.y ==0) // horizontal left movement
-        {
-            for (int i =0; i< size.y; i++)
-            { //collision of the left of the collectable
-                if ((*iter)-> contains(QPointF(x()  + speed.x   - (*iter)->x() , y() + i  -(*iter)->y() )))
-                {
-                    return true;
-                }
+        for (int i =0; i< size.y; i++)
+        { //collision of the left of the collectable
+            if ((*iter)-> contains(QPointF(x()  + speed.x   - (*iter)->x() , y() + i  -(*iter)->y() )))
+            {
+                return true;
             }
         }
     } //end of case 2
@@ -103,14 +106,11 @@ bool Collectable::collision_up()
     {
         if (speed.y < 0) //collectable goes up
         {
-            if (speed.x == 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the top of the collectable
-                    if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
-                    {
-                        return true;
-                    }
+            for (int i =0; i< size.x; i++)
+            { //collision of the top of the collectable
+                if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() +speed.y -(*iter)->y() )))
+                {
+                    return true;
                 }
             }
         }
@@ -125,14 +125,11 @@ bool Collectable::collision_down()
     {
         if(speed.y > 0) //collectable goes down
         {
-            if (speed.x == 0)
-            {
-                for (int i =0; i< size.x; i++)
-                { //collision of the bottom of the projectile
-                    if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() + (size.y-1) + (speed.y-1) -(*iter)->y() )))
-                    {
-                        return true;
-                    }
+            for (int i =0; i< size.x; i++)
+            { //collision of the bottom of the projectile
+                if ((*iter)-> contains(QPointF(x()  + i  - (*iter)->x() , y() + (size.y-1) + (speed.y-1) -(*iter)->y() )))
+                {
+                    return true;
                 }
             }
         }
@@ -142,9 +139,6 @@ bool Collectable::collision_down()
 
 void Collectable::move()
 {
-    if (state == used)
-    {
-        QObject::deleteLater();
-    }
+    QObject::deleteLater();
 }
 

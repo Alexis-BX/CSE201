@@ -32,8 +32,8 @@ enum Block_state
 
 enum Collectable_state  // the collectable can either be used by the player or not
 {
-    used,
-    unused
+    decaying,
+    immortal
 };
 
 enum Collectable_type // shows all kinds of collectables that can appear
@@ -49,10 +49,6 @@ enum Collectable_texture  // shows if the player meets the same or different col
     same,
     different
 };
-
-
-
-
 
 
 enum Projectile_state

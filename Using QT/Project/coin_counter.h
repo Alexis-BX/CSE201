@@ -11,7 +11,9 @@ class coin_counter : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
+
     coin_counter();
+
     void add_coin(Collectable collectable);
 
 };

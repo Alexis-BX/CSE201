@@ -12,6 +12,7 @@ debug/projectiles.o
 debug/tools.o
 debug/level_load.o
 debug/start_button.o
+debug/collectables.o
 debug/qrc_resources.o
 debug/moc_player.o
 debug/moc_block.o

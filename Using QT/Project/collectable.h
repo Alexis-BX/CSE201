@@ -18,21 +18,18 @@ public:
 
     Collectable_texture texture;       // the player meets the same or different collectable
 
-    pair size;
-    pair position;
-    pair speed;
+    Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent = 0 );
 
-    Collectable(pair position, Collectable_type type = Collectable_type{coin}, Collectable_state state = Collectable_state{unused},
-                Collectable_texture texture = Collectable_texture{same}, QGraphicsItem* parent = 0 );
+    // Attributes
+    pair size, position, speed;
+    int life;
 
-     QGraphicsRectItem* collision_range_collec;
+    QGraphicsRectItem* collision_range_collec;
 
-     void collision_range();
+    // Methods
+    void collision_range();
 
-     bool collision_left();
-     bool collision_down();
-     bool collision_up();
-     bool collision_right();
+    bool collision_left(), collision_down(), collision_up(), collision_right();
 
 public slots:
 
