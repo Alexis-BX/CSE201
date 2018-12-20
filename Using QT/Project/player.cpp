@@ -355,7 +355,7 @@ void Player::move()
     count+=0.15;
 
     setAnimationState(b);
-    std::cout<<state<<direction<<std::endl;
+    std::cout<<super<<direction<<state<<count<<std::endl;
     if (count>=maxFrame[state]){count = 0;}
     if (count< 0){count = maxFrame[state]-0.00001;}
 
@@ -662,7 +662,7 @@ void Player::create_animation()
 
     for (int j = 0; j<M; j++)
     {
-        for (int i = 0; i<N; i++)
+        for (int i = 0; i<maxFrame[j]; i++)
         {
             animations[0][1][j][i] = imgChar.copy(i*size, j*size, size, size);
 
@@ -680,6 +680,8 @@ void Player::create_animation()
             */
         }
     }
+    //For some reason this line is necessary to work
+    animations[0][1][0][0] = imgChar.copy(0, 0, size, size);
 }
 
 
