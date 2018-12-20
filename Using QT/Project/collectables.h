@@ -3,28 +3,28 @@
 #include "collectable.h"
 
 
-class Collectable_1 : public Collectable // coin collectable
+class Small_collectable : public Collectable // coin collectable
 {
 public:
-    Collectable_1(pair position, int creator_object_size_y);
+    Small_collectable(pair position, int creator_object_size_y);
 };
 
-class Collectable_2 : public Collectable // star collectable
+class Big_collectable : public Collectable // star collectable
 {
 public:
-    Collectable_2(pair position, int creator_object_size_y);
+    Big_collectable(pair position, int creator_object_size_y);
 };
 
-class Collectable_3 : public Collectable // mushroom collectable
+class Power_up_1 : public Collectable // mushroom collectable
 {
 public:
-    Collectable_3(pair position, int creator_object_size_y);
+    Power_up_1(pair position, int creator_object_size_y);
 };
 
-class Collectable_4 : public Collectable // eclair collectable
+class Power_up_2 : public Collectable // eclair collectable
 {
 public:
-    Collectable_4(pair position, int creator_object_size_y);
+    Power_up_2(pair position, int creator_object_size_y);
 };
 
 #endif // COLLECTABLES_H

@@ -3,7 +3,7 @@
 #include "texture.h"
 #include <QtDebug>
 
-Collectable_1::Collectable_1(pair position, int creator_object_size_y):
+Small_collectable::Small_collectable(pair position, int creator_object_size_y):
     Collectable(position, creator_object_size_y, pair{18,18})
 {
     type = coin;
@@ -12,16 +12,16 @@ Collectable_1::Collectable_1(pair position, int creator_object_size_y):
     setPixmap(QPixmap(gtexture->get_path_to(small_collectable)));
 }
 
-Collectable_2::Collectable_2(pair position, int creator_object_size_y):
+Big_collectable::Big_collectable(pair position, int creator_object_size_y):
     Collectable(position, creator_object_size_y, pair{18,18})
 {
     type = star;
     state = immortal;
     speed = pair{0,0};
-    setPixmap(QPixmap(gtexture->get_path_to((big_collectable))));
+    setPixmap(QPixmap(gtexture->get_path_to(big_collectable)));
 }
 
-Collectable_3::Collectable_3(pair position, int creator_object_size_y):
+Power_up_1::Power_up_1(pair position, int creator_object_size_y):
     Collectable(position, creator_object_size_y, pair{18,18})
 {
     type = mushroom;
@@ -32,7 +32,7 @@ Collectable_3::Collectable_3(pair position, int creator_object_size_y):
 }
 
 
-Collectable_4::Collectable_4(pair position, int creator_object_size_y):
+Power_up_2::Power_up_2(pair position, int creator_object_size_y):
     Collectable(position, creator_object_size_y, pair{18,18})
 {
     type = eclair;
