@@ -9,6 +9,7 @@
 #include "types_states_textures.h"
 #include "collectable.h"
 
+//list of player states
 enum States{
     stand, run, jumpH, fallH, landH, crouchD, crouch, crouchU, jumpV, fallV, landV, throwA
 };
@@ -28,8 +29,11 @@ public:
 
     double_pair world_boundaries;
 
+    //0: left, 1: right
     bool pressedL{false}, pressedR{false}, direction{1}, super{false};
 
+    //M: amount of character states (linesin sheet)
+    //N: max amount of images per state (longest line)
     int size{36}, M{11}, N{8}, block_size{18};
 
     States state{stand}, oldState{stand};
@@ -37,7 +41,9 @@ public:
     double count;
 
     int maxFrame[12] = {1, 8, 4, 1, 3, 2, 1, 2, 4, 1, 3, 8};
+
                     //[super][direction][state][frame]
+                    //[2][2][M][N]
     QPixmap animations[2][2][11][8];
 
     QGraphicsRectItem* collision_range;

@@ -348,16 +348,28 @@ void Player::move()
     }
 
     //Direction of the player:
-    if (speed.x>0){direction = 1;}
-    else if (speed.x<0){direction = 0;}
+    if (speed.x>0)
+    {
+        direction = 1;
+    }
+    else if (speed.x<0)
+    {
+        direction = 0;
+    }
 
     //animation
-    count+=0.15;
+    count += 0.2;
 
     setAnimationState(b);
-    std::cout<<super<<direction<<state<<count<<std::endl;
-    if (count>=maxFrame[state]){count = 0;}
-    if (count< 0){count = maxFrame[state]-0.00001;}
+
+    if (count>=maxFrame[state])
+    {
+        count = 0;
+    }
+    if (count< 0)
+    {
+        count = maxFrame[state]-0.00001;
+    }
 
     setPixmap(animations[super][direction][state][int(count)]);
 
@@ -598,59 +610,73 @@ void Player::superpower(Collectable collectable)
     }
 }
 
-void Player::setAnimationState(bool b){
+void Player::setAnimationState(bool b)
+{
     switch(state)
     {
         case jumpH:
-            if (count>=maxFrame[jumpH]){
+            if (count>=maxFrame[jumpH])
+            {
                 state = fallH;
             }
             break;
 
         case landH:
-            if (count>=maxFrame[landH]){
+            if (count>=maxFrame[landH])
+            {
                 state = run;
             }
             break;
 
         case jumpV:
-            if (count>=maxFrame[jumpV]){
+            if (count>=maxFrame[jumpV])
+            {
                 state = fallV;
             }
             break;
 
         case landV:
-            if (count>=maxFrame[landV]){
+            if (count>=maxFrame[landV])
+            {
                 state = stand;
             }
             break;
 
         default:
-            if (b){
-                if (state==fallH){
+            if (b)
+            {
+                if (state==fallH)
+                {
                     state = landH;
                 }
-                else if (state == fallV){
+                else if (state == fallV)
+                {
                     state = landV;
                 }
-                else if (speed.x == 0.0){
+                else if (speed.x == 0.0)
+                {
                     state = stand;
                 }
-                else{
+                else
+                {
                     state = run;
                 }
             }
-            else{
-                if (speed.x == 0.0){
+            else
+            {
+                if (speed.x == 0.0)
+                {
                     state = fallV;
                 }
-                else{
+                else
+                {
                     state = fallH;
                 }
             }
     }
 
-    if (state != oldState){
+    if (state != oldState)
+    {
         oldState = state;
         count = 0;
     }
@@ -664,16 +690,19 @@ void Player::create_animation()
     {
         for (int i = 0; i<maxFrame[j]; i++)
         {
+            //generate images looking left
             animations[0][1][j][i] = imgChar.copy(i*size, j*size, size, size);
-            std::cout<<j<<" "<<i<<std::endl;
+
+            //generate images looking right
             QImage img = imgChar.copy(i*size, j*size, size, size).toImage();
             img = img.mirrored(true, false);
             animations[0][0][j][i] = QPixmap::fromImage(img);
 
             /*
-            //Generate super images
+            //Generate super images looking left
             animations[1][1][j][i] = imgChar.copy(i*size, (M+j)*size, size, size);
 
+            //Generate super images looking right
             QImage img = imgChar.copy(i*size, (M+j)*size, size, size).toImage();
             img = img.mirrored(true, false);
             animations[1][0][j][i] = QPixmap::fromImage(img);
