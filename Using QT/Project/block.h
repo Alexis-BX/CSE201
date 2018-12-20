@@ -5,6 +5,8 @@
 #include <QObject>
 #include "tools.h"
 #include "types_states_textures.h"
+#include "collectable.h"
+#include "collectables.h"
 
 class Block : public QObject, public QGraphicsPixmapItem
 {
@@ -23,6 +25,8 @@ public:
           QGraphicsItem* parent = 0);
 
     int image_count;
+
+    void is_hit();
 
 public slots:
 

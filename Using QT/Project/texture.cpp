@@ -45,7 +45,7 @@ void Texture::define_main_texture()
 
     texture_temp[special_block_below] = "dirt.png";
 
-    texture_temp[small_collectable] = "face.png";
+    texture_temp[small_collectable] = "cheese.png";
 
     texture_temp[big_collectable] = "star.png";
 
