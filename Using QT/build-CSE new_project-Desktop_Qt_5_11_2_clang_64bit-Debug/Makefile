@@ -64,14 +64,16 @@ SOURCES       = ../Project/main.cpp \
 		../Project/tools.cpp \
 		../Project/level_load.cpp \
 		../Project/start_button.cpp \
-		../Project/collectables.cpp qrc_resources.cpp \
+		../Project/collectables.cpp \
+		../Project/counter.cpp qrc_resources.cpp \
 		moc_player.cpp \
 		moc_block.cpp \
 		moc_projectile.cpp \
 		moc_collectable.cpp \
 		moc_coin_counter.cpp \
 		moc_enemy.cpp \
-		moc_start_button.cpp
+		moc_start_button.cpp \
+		moc_counter.cpp
 OBJECTS       = main.o \
 		player.o \
 		block.o \
@@ -87,6 +89,7 @@ OBJECTS       = main.o \
 		level_load.o \
 		start_button.o \
 		collectables.o \
+		counter.o \
 		qrc_resources.o \
 		moc_player.o \
 		moc_block.o \
@@ -94,7 +97,8 @@ OBJECTS       = main.o \
 		moc_collectable.o \
 		moc_coin_counter.o \
 		moc_enemy.o \
-		moc_start_button.o
+		moc_start_button.o \
+		moc_counter.o
 DIST          = /Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/qdevice.pri \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/device_config.prf \
@@ -277,7 +281,8 @@ DIST          = /Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/spec_p
 		../Project/projectiles.h \
 		../Project/level_load.h \
 		../Project/start_button.h \
-		../Project/collectables.h ../Project/main.cpp \
+		../Project/collectables.h \
+		../Project/counter.h ../Project/main.cpp \
 		../Project/player.cpp \
 		../Project/block.cpp \
 		../Project/view.cpp \
@@ -291,7 +296,8 @@ DIST          = /Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/spec_p
 		../Project/tools.cpp \
 		../Project/level_load.cpp \
 		../Project/start_button.cpp \
-		../Project/collectables.cpp
+		../Project/collectables.cpp \
+		../Project/counter.cpp
 QMAKE_TARGET  = CSE2017
 DESTDIR       = 
 TARGET        = CSE2017.app/Contents/MacOS/CSE2017
@@ -688,8 +694,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Project/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Project/player.h ../Project/block.h ../Project/view.h ../Project/projectile.h ../Project/collectable.h ../Project/types_states_textures.h ../Project/tools.h ../Project/coin_counter.h ../Project/enemy.h ../Project/texture.h ../Project/global.h ../Project/blocks.h ../Project/projectiles.h ../Project/level_load.h ../Project/start_button.h ../Project/collectables.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Project/main.cpp ../Project/player.cpp ../Project/block.cpp ../Project/view.cpp ../Project/projectile.cpp ../Project/collectable.cpp ../Project/coin_counter.cpp ../Project/enemy.cpp ../Project/texture.cpp ../Project/blocks.cpp ../Project/projectiles.cpp ../Project/tools.cpp ../Project/level_load.cpp ../Project/start_button.cpp ../Project/collectables.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Project/player.h ../Project/block.h ../Project/view.h ../Project/projectile.h ../Project/collectable.h ../Project/types_states_textures.h ../Project/tools.h ../Project/coin_counter.h ../Project/enemy.h ../Project/texture.h ../Project/global.h ../Project/blocks.h ../Project/projectiles.h ../Project/level_load.h ../Project/start_button.h ../Project/collectables.h ../Project/counter.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Project/main.cpp ../Project/player.cpp ../Project/block.cpp ../Project/view.cpp ../Project/projectile.cpp ../Project/collectable.cpp ../Project/coin_counter.cpp ../Project/enemy.cpp ../Project/texture.cpp ../Project/blocks.cpp ../Project/projectiles.cpp ../Project/tools.cpp ../Project/level_load.cpp ../Project/start_button.cpp ../Project/collectables.cpp ../Project/counter.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -771,10 +777,32 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/ground1.png \
 		../Project/Textures/Main_texture/dirt.png \
 		../Project/Menu/start_button.png \
-		../Project/Levels/Level_agathe_001.png \
+		../Project/Levels/number_3.png \
+		../Project/Levels/number_4.png \
+		../Project/Levels/number_5.png \
+		../Project/Levels/number_6.png \
 		../Project/Levels/sticker-numero-un.jpg \
 		../Project/Levels/Sebastien_001.png \
+		../Project/Levels/number_7.png \
+		../Project/Levels/Level_agathe_001.png \
+		../Project/Levels/number_8.png \
+		../Project/Levels/number_9.png \
 		../Project/Levels/screen_start.png \
+		../Project/Levels/README.txt \
+		../Project/Levels/number_0.bmp \
+		../Project/Levels/number_1.bmp \
+		../Project/Levels/number_2.bmp \
+		../Project/Levels/number_3.bmp \
+		../Project/Levels/number_4.bmp \
+		../Project/Levels/number_5.bmp \
+		../Project/Levels/number_6.bmp \
+		../Project/Levels/number_7.bmp \
+		../Project/Levels/number_0.png \
+		../Project/Levels/number_8.bmp \
+		../Project/Levels/number_1.png \
+		../Project/Levels/number_9.bmp \
+		../Project/Levels/number_2.png \
+		../Project/Levels/.DS_Store \
 		../Project/background/Background.png
 	/Users/claramontagnes/Qt/5.11.2/clang_64/bin/rcc -name resources ../Project/resources.qrc -o qrc_resources.cpp
 
@@ -784,9 +812,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.11 -Wall -W -dM -E -o moc_predefs.h /Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_enemy.cpp moc_start_button.cpp
+compiler_moc_header_make_all: moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_enemy.cpp moc_start_button.cpp moc_counter.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_enemy.cpp moc_start_button.cpp
+	-$(DEL_FILE) moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_enemy.cpp moc_start_button.cpp moc_counter.cpp
 moc_player.cpp: /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
@@ -808,6 +836,8 @@ moc_block.cpp: /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../Project/tools.h \
 		../Project/types_states_textures.h \
+		../Project/collectable.h \
+		../Project/collectables.h \
 		../Project/block.h \
 		moc_predefs.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc
@@ -846,6 +876,7 @@ moc_coin_counter.cpp: /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.fra
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Project/counter.h \
 		../Project/coin_counter.h \
 		moc_predefs.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc
@@ -874,6 +905,14 @@ moc_start_button.cpp: /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.fra
 		moc_predefs.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc
 	/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc $(DEFINES) --include '/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Debug/moc_predefs.h' -I/Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/macx-clang -I'/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/Project' -I/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers -I/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/claramontagnes/Qt/5.11.2/clang_64/lib ../Project/start_button.h -o moc_start_button.cpp
+
+moc_counter.cpp: /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		../Project/tools.h \
+		../Project/counter.h \
+		moc_predefs.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc
+	/Users/claramontagnes/Qt/5.11.2/clang_64/bin/moc $(DEFINES) --include '/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Debug/moc_predefs.h' -I/Users/claramontagnes/Qt/5.11.2/clang_64/mkspecs/macx-clang -I'/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/Project' -I/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers -I/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/claramontagnes/Qt/5.11.2/clang_64/lib ../Project/counter.h -o moc_counter.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1027,7 +1066,17 @@ main.o: ../Project/main.cpp /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidge
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
 		../Project/tools.h \
 		../Project/types_states_textures.h \
-		../Project/texture.h
+		../Project/texture.h \
+		../Project/coin_counter.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../Project/collectable.h \
+		../Project/player.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Project/counter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Project/main.cpp
 
 player.o: ../Project/player.cpp /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QtDebug \
@@ -1179,6 +1228,8 @@ player.o: ../Project/player.cpp /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtC
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
 		../Project/texture.h \
+		../Project/coin_counter.h \
+		../Project/counter.h \
 		../Project/global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o player.o ../Project/player.cpp
 
@@ -1189,11 +1240,12 @@ block.o: ../Project/block.cpp ../Project/block.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../Project/tools.h \
 		../Project/types_states_textures.h \
+		../Project/collectable.h \
+		../Project/collectables.h \
 		../Project/player.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../Project/collectable.h \
 		../Project/view.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \
@@ -1325,6 +1377,8 @@ block.o: ../Project/block.cpp ../Project/block.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
 		../Project/texture.h \
+		../Project/coin_counter.h \
+		../Project/counter.h \
 		../Project/global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o block.o ../Project/block.cpp
 
@@ -1462,15 +1516,18 @@ view.o: ../Project/view.cpp ../Project/view.h \
 		../Project/tools.h \
 		../Project/types_states_textures.h \
 		../Project/texture.h \
-		../Project/player.h \
+		../Project/coin_counter.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
-		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../Project/collectable.h \
+		../Project/player.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../Project/collectable.h \
+		../Project/counter.h \
 		../Project/block.h \
+		../Project/collectables.h \
 		../Project/blocks.h \
 		../Project/start_button.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QDebug \
@@ -1628,7 +1685,9 @@ projectile.o: ../Project/projectile.cpp /Users/claramontagnes/Qt/5.11.2/clang_64
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
-		../Project/texture.h
+		../Project/texture.h \
+		../Project/coin_counter.h \
+		../Project/counter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o projectile.o ../Project/projectile.cpp
 
 collectable.o: ../Project/collectable.cpp ../Project/collectable.h \
@@ -1773,6 +1832,8 @@ collectable.o: ../Project/collectable.cpp ../Project/collectable.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
 		../Project/texture.h \
+		../Project/coin_counter.h \
+		../Project/counter.h \
 		../Project/global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collectable.o ../Project/collectable.cpp
 
@@ -1788,6 +1849,7 @@ coin_counter.o: ../Project/coin_counter.cpp ../Project/coin_counter.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Project/counter.h \
 		../Project/collectables.h \
 		../Project/view.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
@@ -1919,7 +1981,8 @@ coin_counter.o: ../Project/coin_counter.cpp ../Project/coin_counter.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
-		../Project/texture.h
+		../Project/texture.h \
+		../Project/global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o coin_counter.o ../Project/coin_counter.cpp
 
 enemy.o: ../Project/enemy.cpp /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QtDebug \
@@ -2070,7 +2133,9 @@ enemy.o: ../Project/enemy.cpp /Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCor
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
-		../Project/texture.h
+		../Project/texture.h \
+		../Project/coin_counter.h \
+		../Project/counter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o enemy.o ../Project/enemy.cpp
 
 texture.o: ../Project/texture.cpp ../Project/texture.h \
@@ -2086,7 +2151,9 @@ blocks.o: ../Project/blocks.cpp ../Project/blocks.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		../Project/tools.h \
-		../Project/types_states_textures.h
+		../Project/types_states_textures.h \
+		../Project/collectable.h \
+		../Project/collectables.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o blocks.o ../Project/blocks.cpp
 
 projectiles.o: ../Project/projectiles.cpp ../Project/projectiles.h \
@@ -2246,11 +2313,19 @@ level_load.o: ../Project/level_load.cpp ../Project/level_load.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
-		../Project/blocks.h \
-		../Project/block.h \
+		../Project/coin_counter.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../Project/collectable.h \
+		../Project/player.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		../Project/counter.h \
+		../Project/blocks.h \
+		../Project/block.h \
+		../Project/collectables.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QPixmap \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/qpixmap.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o level_load.o ../Project/level_load.cpp
@@ -2277,6 +2352,14 @@ collectables.o: ../Project/collectables.cpp ../Project/collectables.h \
 		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qdebug.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collectables.o ../Project/collectables.cpp
 
+counter.o: ../Project/counter.cpp ../Project/counter.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		../Project/tools.h \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/claramontagnes/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/qdebug.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o counter.o ../Project/counter.cpp
+
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
 
@@ -2300,6 +2383,9 @@ moc_enemy.o: moc_enemy.cpp
 
 moc_start_button.o: moc_start_button.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_start_button.o moc_start_button.cpp
+
+moc_counter.o: moc_counter.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_counter.o moc_counter.cpp
 
 ####### Install
 

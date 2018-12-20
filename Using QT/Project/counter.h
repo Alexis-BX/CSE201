@@ -2,6 +2,7 @@
 #define COUNTER_H
 #include <QGraphicsPixmapItem>
 #include "tools.h"
+#include <QObject>
 
 class Counter : public QObject, public QGraphicsPixmapItem
 {

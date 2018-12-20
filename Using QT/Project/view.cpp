@@ -24,14 +24,14 @@ View::View(pair screen_size, int block_size, QWidget* parent)
 
     setScene(scene);
 
+    // Create Player
+    create_player();
+
     // load and create level
     const char* level = ":/Images/Levels/Level_agathe_001.png";
     readBMP(level);
 
     //start_screen();
-
-    // Create Player
-    create_player();
 
     //Set the background
     set_background(parent);
@@ -392,7 +392,7 @@ void View::readBMP(const char* filename)
 
     qDebug() << "before coin_counter creation";
 
-    this->scene->addItem(new Coin_counter());
+    this->scene->addItem(new Coin_counter(player));
 
     qDebug() << "after coin_counter creation";
 }

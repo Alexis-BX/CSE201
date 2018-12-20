@@ -4,12 +4,23 @@
 #include "player.h"
 #include "view.h"
 #include "global.h"
+#include "tools.h"
+#include "types_states_textures.h"
+
+
+
+class View;
+
+extern View* view;
+
 
 Coin_counter::Coin_counter(QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 {
     coins = 0;
 
-    Counter* counter = new Counter(pair{150,-150},this);
+    Counter* counter = new Counter(pair{0 ,-100},this);
+
+    counters.push_back(counter);
 
     qDebug() << "first counter created";
 
@@ -19,17 +30,13 @@ Coin_counter::Coin_counter(QGraphicsItem* parent) : QObject (), QGraphicsPixmapI
 
     //qDebug() << view->player->x();
 
-
     qDebug() << "accessed view";
 
     //view->scene->addItem(counter);
 
     qDebug() << "counter added to scene";
 
-    counters.push_back(counter);
-
-
-    qDebug() << "heere";
+    qDebug() << "here";
 }
 
 void Coin_counter::add_coin()

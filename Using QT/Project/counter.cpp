@@ -2,12 +2,16 @@
 #include "tools.h"
 #include <string>
 #include <QDebug>
+#include <QGraphicsPixmapItem>
+#include <QObject>
+#include <QtGui>
+#include <QLCDNumber>
 
 Counter::Counter(pair position,QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 {
     setPos(position.x,position.y);
 
-    update_counter(0);
+    update_counter(1);
 }
 
 void Counter::update_counter(int counter)
