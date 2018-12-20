@@ -665,7 +665,7 @@ void Player::create_animation()
         for (int i = 0; i<maxFrame[j]; i++)
         {
             animations[0][1][j][i] = imgChar.copy(i*size, j*size, size, size);
-
+            std::cout<<j<<" "<<i<<std::endl;
             QImage img = imgChar.copy(i*size, j*size, size, size).toImage();
             img = img.mirrored(true, false);
             animations[0][0][j][i] = QPixmap::fromImage(img);
@@ -680,8 +680,6 @@ void Player::create_animation()
             */
         }
     }
-    //For some reason this line is necessary to work
-    animations[0][1][0][0] = imgChar.copy(0, 0, size, size);
 }
 
 

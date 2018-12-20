@@ -38,7 +38,7 @@ public:
 
     int maxFrame[12] = {1, 8, 4, 1, 3, 2, 1, 2, 4, 1, 3, 8};
                     //[super][direction][state][frame]
-    QPixmap animations[2][2][10][8];
+    QPixmap animations[2][2][11][8];
 
     QGraphicsRectItem* collision_range;
 
