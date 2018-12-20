@@ -59,5 +59,27 @@
         <file>Menu/start_button.png</file>
         <file>background/Background.png</file>
         <file>Levels/sticker-numero-un.jpg</file>
+        <file>Levels/.DS_Store</file>
+        <file>Levels/number_0.bmp</file>
+        <file>Levels/number_0.png</file>
+        <file>Levels/number_1.bmp</file>
+        <file>Levels/number_1.png</file>
+        <file>Levels/number_2.bmp</file>
+        <file>Levels/number_2.png</file>
+        <file>Levels/number_3.bmp</file>
+        <file>Levels/number_3.png</file>
+        <file>Levels/number_4.bmp</file>
+        <file>Levels/number_4.png</file>
+        <file>Levels/number_5.bmp</file>
+        <file>Levels/number_5.png</file>
+        <file>Levels/number_6.bmp</file>
+        <file>Levels/number_6.png</file>
+        <file>Levels/number_7.bmp</file>
+        <file>Levels/number_7.png</file>
+        <file>Levels/number_8.bmp</file>
+        <file>Levels/number_8.png</file>
+        <file>Levels/number_9.bmp</file>
+        <file>Levels/number_9.png</file>
+        <file>Levels/README.txt</file>
     </qresource>
 </RCC>

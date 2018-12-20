@@ -11,6 +11,7 @@
 #include <cstddef>
 #include <fstream>
 #include <QRgb>
+#include "coin_counter.h"
 
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
@@ -388,6 +389,12 @@ void View::readBMP(const char* filename)
     }
     printf("3");
         **/
+
+    qDebug() << "before coin_counter creation";
+
+    this->scene->addItem(new Coin_counter());
+
+    qDebug() << "after coin_counter creation";
 }
 
 void View::convert(int v0, int v1, int v2, int i, int j)
@@ -528,10 +535,17 @@ void View::start_screen()
 void View::set_background(QWidget* parent)
 {
     QPixmap bkgnd(":/Images/background/Background.png");
-        bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-        QPalette palette;
-        palette.setBrush(QPalette::Background, bkgnd);
-        this->setPalette(palette);
+
+    bkgnd = bkgnd.scaled(this->size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+
+
+    QPalette palette;
+
+    palette.setBrush(QPalette::Background, bkgnd);
+
+    this->setPalette(palette);
+
+
 
     setBackgroundBrush(bkgnd);
 }
