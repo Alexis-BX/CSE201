@@ -4,8 +4,7 @@
 #include "tools.h"
 #include "global.h"
 
-Block::Block(pair position, Block_type type, Block_texture texture, Block_state state, QGraphicsItem* parent) :
-    QObject (), QGraphicsPixmapItem (parent)
+Block::Block(pair position, Block_type type, Block_texture texture, Block_state state, QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
 {
     setPos(position.x,position.y);
 

@@ -116,6 +116,9 @@ bool Collectable::collision_down()
 
 void Collectable::move()
 {
-    //QObject::deleteLater();
+    if (collision_right() == true || collision_up() == true || collision_down() == true || collision_left() == true)
+    {
+        QObject::deleteLater();
+    }
 }
 

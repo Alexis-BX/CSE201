@@ -9,6 +9,10 @@
 #include "types_states_textures.h"
 #include "collectable.h"
 
+enum States{
+    stand, run, jumpH, fallH, landH, crouchD, crouch, crouchU, jumpV, fallV, landV, throwA
+};
+
 class Player : public QObject, public QGraphicsPixmapItem
 {
 
@@ -24,13 +28,17 @@ public:
 
     double_pair world_boundaries;
 
-    bool pressedL{false}, pressedR{false}, direction{1};
+    bool pressedL{false}, pressedR{false}, direction{1}, super{false};
 
-    int size{36}, M{10}, toMirror{4}, N{8}, block_size{18};
+    int size{36}, M{11}, N{8}, block_size{18};
+
+    States state{stand}, oldState{stand};
 
     double count;
 
-    QPixmap animations[10][8];
+    int maxFrame[12] = {1, 8, 4, 1, 3, 2, 1, 2, 4, 1, 3, 8};
+                    //[super][direction][state][frame]
+    QPixmap animations[2][2][11][8];
 
     QGraphicsRectItem* collision_range;
 
@@ -54,6 +62,8 @@ public:
     bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
 
     void create_enemy(); //for the moment the player chooses when the enemy appears while we work on it
+
+    void setAnimationState(bool b);
 
 public slots:
 
