@@ -429,6 +429,6 @@ bool Enemy::throwprojectile()
     qreal player_x = view->player->x();
     qreal player_y = view->player->y();
 
-
+    return 1.0;//to do
 }
 
