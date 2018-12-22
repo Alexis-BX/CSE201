@@ -59,5 +59,6 @@
         <file>Menu/start_button.png</file>
         <file>background/Background.png</file>
         <file>Levels/sticker-numero-un.jpg</file>
+        <file>Textures/Main_texture/SPRITE_SHEET_CHARACTER.png</file>
     </qresource>
 </RCC>

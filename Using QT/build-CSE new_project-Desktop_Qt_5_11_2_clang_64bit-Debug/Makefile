@@ -743,6 +743,7 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/super_character_throw.png \
 		../Project/Textures/Main_texture/question1.png \
 		../Project/Textures/Main_texture/question.png \
+		../Project/Textures/Main_texture/SPRITE_SHEET_CHARACTER.png \
 		../Project/Textures/Main_texture/character_run.png \
 		../Project/Textures/Main_texture/eiffel_tower.png \
 		../Project/Textures/Main_texture/break1.png \

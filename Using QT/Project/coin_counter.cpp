@@ -3,7 +3,6 @@
 #include "collectables.h"
 #include "player.h"
 #include "view.h"
-<<<<<<< HEAD
 #include "global.h"
 #include "tools.h"
 #include "types_states_textures.h"
@@ -14,12 +13,9 @@ class View;
 
 extern View* view;
 
-=======
->>>>>>> e60f3f225943bfff56b37fd66cfa9c9e875cec33
 
 Coin_counter::Coin_counter()
 {
-<<<<<<< HEAD
     coins = 0;
 
     Counter* counter = new Counter(pair{0 ,-100},this);

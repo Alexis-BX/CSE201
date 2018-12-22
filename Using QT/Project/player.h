@@ -29,12 +29,15 @@ public:
     double_pair world_boundaries;
 
     bool pressedL{false}, pressedR{false}, direction{1}, super{false};
-
+    bool super_fast{false};
+    bool super_throw{false};
     int size{36}, M{11}, N{8}, block_size{18};
 
     States state{stand}, oldState{stand};
 
     double count;
+
+    int count_super;
 
     int maxFrame[12] = {1, 8, 4, 1, 3, 2, 1, 2, 4, 1, 3, 8};
                     //[super][direction][state][frame]

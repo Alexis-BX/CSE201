@@ -351,6 +351,34 @@ void Player::move()
     if (speed.x>0){direction = 1;}
     else if (speed.x<0){direction = 0;}
 
+    //superpowers timer
+    if (super)
+    {
+        count_super += 1;
+    }
+    if (count_super > 50)
+    {
+        super = false;
+    }
+
+    if (super_fast)
+    {
+        count_super +=1;
+    }
+    if (count_super > 50)
+    {
+        super_fast = false;
+    }
+
+    if (super_throw)
+    {
+        count_super +=1;
+    }
+    if (count_super > 50)
+    {
+        super_fast = false;
+    }
+
     //animation
     count+=0.15;
 
@@ -581,20 +609,24 @@ void Player::throwprojectile(int i)
 
 void Player::superpower(Collectable collectable)
 {
-    if (collectable.type == star)
+    if (collectable.type == star) //mario clignotte
     {
-        speed.x *= 2;
-        speed.y *= 2;
+        count_super = 0;
+        super = true;
     }
 
     if (collectable.type == mushroom)
     {
-        size *= 2;
+        count_super = 0;
+        speed.x *= 2;
+        super_fast = true;
     }
 
     if (collectable.type == eclair)
     {
+        count_super = 0;
         view->scene->addItem(new Player_projectile_3(pair{x(),y()}, direction, size));
+        super_throw = true;
     }
 }
 
