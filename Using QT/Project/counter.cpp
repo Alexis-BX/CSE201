@@ -4,27 +4,29 @@
 #include <QDebug>
 #include <QGraphicsPixmapItem>
 #include <QObject>
-#include <QtGui>
-#include <QLCDNumber>
 
-Counter::Counter(pair position,QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
+Counter::Counter(int power_of_10, QGraphicsItem* parent) :
+    QObject (), QGraphicsPixmapItem (parent)
 {
-    setPos(position.x,position.y);
+    setPos(-(power_of_10+1)*size.x,0);
 
-    update_counter(1);
+    if(power_of_10 == 0)
+    {
+        update_counter(0);
+    }
+    else
+    {
+        update_counter(1);
+    }
 }
 
 void Counter::update_counter(int counter)
 {
-    qDebug() << "here";
+    std::string path = ":/Images/Textures/Main_texture/number_";
 
-    std::string path = ":/Images/Levels/number_";
-
-    path.append(std::to_string(counter));
+    path.append(std::to_string(counter%2));
 
     path.append(".png");
-
-    qDebug() << path.c_str();
 
     setPixmap(QPixmap(path.c_str()));
 }

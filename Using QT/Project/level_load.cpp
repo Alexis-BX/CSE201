@@ -7,8 +7,18 @@
 #include "blocks.h"
 #include <QPixmap>
 
+Level_load::Level_load(View* view)
+{
+    this->view = view;
+}
+
 void Level_load::read_level_image(const char *filename)
 {
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    view->setFixedSize(int(view->screen_size.x),int(view->screen_size.y));
 
     QPixmap imgChar(filename);
 
@@ -16,11 +26,15 @@ void Level_load::read_level_image(const char *filename)
 
     int height = level.height(), width = level.width();
 
-    view->world_size = double_pair{18-height*view->block_size,0,18,width*view->block_size};
+    view->world_size = double_pair{18-height*view->block_size,
+                                    0,
+                                    18,
+                                    width*view->block_size};
 
-    view->setSceneRect(view->world_size.left,view->world_size.top,
-                 view->world_size.right-view->world_size.left,
-                 view->world_size.bottom-view->world_size.top);
+    view->setSceneRect(view->world_size.left,
+                       view->world_size.top,
+                       view->world_size.right-view->world_size.left,
+                       view->world_size.bottom-view->world_size.top);
 
     int R,G,B;
     QRgb pixColor;

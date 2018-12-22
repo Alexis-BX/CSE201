@@ -6,6 +6,7 @@
 #include "tools.h"
 #include "types_states_textures.h"
 #include "texture.h"
+#include "level_load.h"
 
 class Player;
 
@@ -28,7 +29,10 @@ public:
     QGraphicsScene * scene;
 
     Player* player;
+
     background* bg;
+
+    Level_load* level_load;
 
     // Create world
     void create_basic_world(int width);
@@ -46,7 +50,7 @@ public:
 
     void start_screen();
 
-    void set_background(QWidget* parent);
+    void set_background(QWidget * parent);
 
 };
 

@@ -9,6 +9,7 @@
 #include "types_states_textures.h"
 #include "collectable.h"
 
+//list of player states
 enum States{
     stand, run, jumpH, fallH, landH, crouchD, crouch, crouchU, jumpV, fallV, landV, throwA
 };
@@ -28,19 +29,33 @@ public:
 
     double_pair world_boundaries;
 
+<<<<<<< HEAD
     bool pressedL{false}, pressedR{false}, direction{1}, super{false};
     bool super_fast{false};
     bool super_throw{false};
+=======
+    //direction false = left, true = right
+    bool pressedL{false}, pressedR{false}, direction{true}, super{false};
+
+    //M: amount of character states (linesin sheet)
+    //N: max amount of images per state (longest line)
+>>>>>>> d4fb41363a4f858a3e4c25b09e9d8cc827769ad8
     int size{36}, M{11}, N{8}, block_size{18};
 
     States state{stand}, oldState{stand};
 
     double count;
 
+<<<<<<< HEAD
     int count_super;
 
     int maxFrame[12] = {1, 8, 4, 1, 3, 2, 1, 2, 4, 1, 3, 8};
+=======
+    int maxFrame[12] = {2, 8, 3, 2, 3, 2, 2, 2, 4, 2, 2, 8};
+
+>>>>>>> d4fb41363a4f858a3e4c25b09e9d8cc827769ad8
                     //[super][direction][state][frame]
+                    //[2][2][M][N]
     QPixmap animations[2][2][11][8];
 
     QGraphicsRectItem* collision_range;
@@ -66,7 +81,7 @@ public:
 
     void create_enemy(); //for the moment the player chooses when the enemy appears while we work on it
 
-    void setAnimationState(bool b);
+    void set_animation_state(bool b);
 
 public slots:
 

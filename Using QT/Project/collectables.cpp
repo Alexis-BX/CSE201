@@ -18,17 +18,7 @@ Big_collectable::Big_collectable(pair position, int creator_object_size_y):
     type = star;
     state = immortal;
     speed = pair{0,0};
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> e60f3f225943bfff56b37fd66cfa9c9e875cec33
     setPixmap(QPixmap(gtexture->get_path_to(big_collectable)));
-
->>>>>>> 7b6a471dfbf51f885138b065157edfe8a63cc62d
-    setPixmap(QPixmap(gtexture->get_path_to((big_collectable))));
 }
 
 Power_up_1::Power_up_1(pair position, int creator_object_size_y):

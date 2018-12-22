@@ -25,9 +25,13 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     speedMax = pair{10,15};
 
-    direction = 1; //0 = left, 1 = right
+    direction = true; //false = left, true = right
 
     this->size = size;
+
+
+    // Create collision Range
+    create_collision_range();
 
 
     // Timer
@@ -36,9 +40,6 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(20);
-
-    // Create collision Range
-    create_collision_range();
 }
 
 /**NOTE:
@@ -94,13 +95,6 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         create_enemy();
     }
-
-}
-
-void Player::create_enemy()
-{   //condition to create enemy... - decide and add and if condition
-        Enemy* enemy = new Enemy(36, pair{x()+2* size,y() -50 }, abs(direction-1));
-        view->scene->addItem(enemy);
 }
 
 void Player::keyReleaseEvent(QKeyEvent *event)
@@ -113,6 +107,11 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     {
         pressedR = false;
     }
+}
+
+void Player::create_enemy()
+{   //condition to create enemy... - decide and add and if condition
+        view->scene->addItem(new Enemy(36, pair{x()+2* size,y() -50 }, abs(direction-1)));
 }
 
 bool Player::collision_right()
@@ -271,26 +270,54 @@ bool Player::collision_t_r()
 
 void Player::move()
 {
+    //Accelerate
+    speed.y += 1;
+
+
     //Motion smooth
-    if (pressedL){
-        if (speed.x>-speedMax.x){speed.x -= 1;}
+    if (pressedL)
+    {
+        if (speed.x>-speedMax.x)
+        {
+            speed.x -= 1;
+        }
     }
-    else{
-        if (speed.x<-1){speed.x -= speed.x/2;}
-        else if (speed.x<0){speed.x=0;}
+    else
+    {
+        if (speed.x<-1)
+        {
+            speed.x -= speed.x/2;
+        }
+        else if (speed.x<0)
+        {
+            speed.x=0;
+        }
     }
-    if (pressedR){
-        if (speed.x<speedMax.x){speed.x += 1;}
+
+    if (pressedR)
+    {
+        if (speed.x<speedMax.x)
+        {
+            speed.x += 1;
+        }
     }
-    else{
-        if (speed.x>1){speed.x -= speed.x/2;}
-        else if (speed.x>0){speed.x=0;}
+    else
+    {
+        if (speed.x>1)
+        {
+            speed.x -= speed.x/2;
+        }
+        else if (speed.x>0)
+        {
+            speed.x=0;
+        }
     }
+
     if (speed.y > speedMax.y)
     {
         speed.y = speedMax.y;
     }
-    if (speed.y < -speedMax.y)
+    else if (speed.y < -speedMax.y)
     {
         speed.y = -speedMax.y;
     }
@@ -318,7 +345,7 @@ void Player::move()
         setX(view->world_size.right);
     }
 
-    speed.y += 1;
+
 
     bool r = collision_right();
     bool l = collision_left();
@@ -329,27 +356,48 @@ void Player::move()
     bool tl = collision_t_l();
     bool tr = collision_t_r();
 
-    // movements of the player:
-    if (r == true){speed.x = 0;}
-    if (l == true){speed.x = 0;}
-    if (b == true){speed.y = 0;}
-    if (t == true){speed.y = 0;}
-    if (bl == true || br == true){speed.y = 0; speed.x = speed.x;} //if the bottom corners collide, we maintain the velocity on x, but not on y
-    if (tl == true || tr == true){speed.y = 0; speed.x = speed.x;} //if the top corners collide, we maintain the velocity on x. but not on y
 
-    // check y-velocity is not too big
-    if (speed.y > speedMax.y)
+
+    // movements of the player:
+    if (r == true)
     {
-        speed.y = speedMax.y;
+        speed.x = 0;
     }
-    if (speed.y < -speedMax.y)
+    if (l == true)
     {
-        speed.y = -speedMax.y;
+        speed.x = 0;
     }
+    if (b == true)
+    {
+        speed.y = 0;
+    }
+    if (t == true)
+    {
+        speed.y = 0;
+    }
+    if (bl == true || br == true)
+    {
+        //if the bottom corners collide, we maintain the velocity on x, but not on y
+        speed.y = 0; speed.x = speed.x;
+    }
+    if (tl == true || tr == true)
+    {
+        //if the top corners collide, we maintain the velocity on x. but not on y
+        speed.y = 0; speed.x = speed.x;
+    }
+
+
 
     //Direction of the player:
-    if (speed.x>0){direction = 1;}
-    else if (speed.x<0){direction = 0;}
+    if (speed.x>0)
+    {
+        direction = 1;
+    }
+    else if (speed.x<0)
+    {
+        direction = 0;
+    }
+
 
     //superpowers timer
     if (super)
@@ -380,12 +428,18 @@ void Player::move()
     }
 
     //animation
-    count+=0.15;
+    count += 0.2;
 
-    setAnimationState(b);
-    std::cout<<super<<direction<<state<<count<<std::endl;
-    if (count>=maxFrame[state]){count = 0;}
-    if (count< 0){count = maxFrame[state]-0.00001;}
+    set_animation_state(b);
+
+    if (count >= maxFrame[state])
+    {
+        count = 0;
+    }
+    if (count < 0)
+    {
+        count = maxFrame[state]-0.00001;
+    }
 
     setPixmap(animations[super][direction][state][int(count)]);
 
@@ -630,59 +684,73 @@ void Player::superpower(Collectable collectable)
     }
 }
 
-void Player::setAnimationState(bool b){
+void Player::set_animation_state(bool b)
+{
     switch(state)
     {
         case jumpH:
-            if (count>=maxFrame[jumpH]){
+            if (count>=maxFrame[jumpH])
+            {
                 state = fallH;
             }
             break;
 
         case landH:
-            if (count>=maxFrame[landH]){
+            if (count>=maxFrame[landH])
+            {
                 state = run;
             }
             break;
 
         case jumpV:
-            if (count>=maxFrame[jumpV]){
+            if (count>=maxFrame[jumpV])
+            {
                 state = fallV;
             }
             break;
 
         case landV:
-            if (count>=maxFrame[landV]){
+            if (count>=maxFrame[landV])
+            {
                 state = stand;
             }
             break;
 
         default:
-            if (b){
-                if (state==fallH){
+            if (b)
+            {
+                if (state==fallH)
+                {
                     state = landH;
                 }
-                else if (state == fallV){
+                else if (state == fallV)
+                {
                     state = landV;
                 }
-                else if (speed.x == 0.0){
+                else if (speed.x == 0.0)
+                {
                     state = stand;
                 }
-                else{
+                else
+                {
                     state = run;
                 }
             }
-            else{
-                if (speed.x == 0.0){
+            else
+            {
+                if (speed.x == 0.0)
+                {
                     state = fallV;
                 }
-                else{
+                else
+                {
                     state = fallH;
                 }
             }
     }
 
-    if (state != oldState){
+    if (state != oldState)
+    {
         oldState = state;
         count = 0;
     }
@@ -696,20 +764,23 @@ void Player::create_animation()
     {
         for (int i = 0; i<maxFrame[j]; i++)
         {
+            //generate images looking left
             animations[0][1][j][i] = imgChar.copy(i*size, j*size, size, size);
-            std::cout<<j<<" "<<i<<std::endl;
+
+            //generate images looking right
             QImage img = imgChar.copy(i*size, j*size, size, size).toImage();
             img = img.mirrored(true, false);
             animations[0][0][j][i] = QPixmap::fromImage(img);
 
-            /*
-            //Generate super images
+
+            //Generate super images looking left
             animations[1][1][j][i] = imgChar.copy(i*size, (M+j)*size, size, size);
 
-            QImage img = imgChar.copy(i*size, (M+j)*size, size, size).toImage();
-            img = img.mirrored(true, false);
-            animations[1][0][j][i] = QPixmap::fromImage(img);
-            */
+            //Generate super images looking right
+            QImage imgs = imgChar.copy(i*size, (M+j)*size, size, size).toImage();
+            imgs = imgs.mirrored(true, false);
+            animations[1][0][j][i] = QPixmap::fromImage(imgs);
+
         }
     }
 }

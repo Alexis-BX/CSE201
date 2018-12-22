@@ -32,6 +32,7 @@ SOURCES += \
     projectile.cpp \
     collectable.cpp \
     coin_counter.cpp \
+    counter.cpp \
     enemy.cpp \
     texture.cpp \
     blocks.cpp \
@@ -50,6 +51,7 @@ HEADERS += \
     types_states_textures.h \
     tools.h \
     coin_counter.h \
+    counter.h \
     enemy.h \
     texture.h \
     global.h \

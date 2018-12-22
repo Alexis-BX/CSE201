@@ -10,7 +10,9 @@ class Counter : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Counter(pair position,QGraphicsItem* parent = 0);
+    constexpr static pair size{10,10};
+
+    Counter(int power_of_10, QGraphicsItem* parent = 0);
 
     void update_counter(int counter);
 
