@@ -29,7 +29,7 @@ void Texture::define_main_texture()
         texture_temp.push_back("");
     }
 
-    texture_temp[basic_player] = "SpriteSheet13.12.png";
+    texture_temp[basic_player] = "character22.12.png";
 
     texture_temp[base_block_1] = "ground1.png";
 

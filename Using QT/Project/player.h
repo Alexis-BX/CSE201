@@ -40,7 +40,7 @@ public:
 
     double count;
 
-    int maxFrame[12] = {1, 8, 4, 1, 3, 2, 1, 2, 4, 1, 3, 8};
+    int maxFrame[12] = {2, 8, 3, 2, 3, 2, 2, 2, 4, 2, 2, 8};
 
                     //[super][direction][state][frame]
                     //[2][2][M][N]
