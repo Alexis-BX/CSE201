@@ -177,22 +177,20 @@ debug/qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/thief_walking_casual.png \
 		../Project/Textures/Main_texture/numbers.png \
 		../Project/Textures/Main_texture/enemy.png \
-		../Project/Textures/Main_texture/Mario.png \
 		../Project/Textures/Main_texture/small_cheese.png \
 		../Project/Textures/Main_texture/character22.12R.png \
 		../Project/Textures/Main_texture/pain_au_chocolat.png \
-		../Project/Textures/Main_texture/wine1.png \
-		../Project/Textures/Main_texture/wine.png \
 		../Project/Textures/Main_texture/character22.12.png \
+		../Project/Textures/Main_texture/wine.png \
 		../Project/Textures/Main_texture/smoking_dude.png \
 		../Project/Textures/Main_texture/face.png \
 		../Project/Textures/Main_texture/explosion.png \
 		../Project/Textures/Main_texture/big_cheese.png \
-		../Project/Textures/Main_texture/smoke.png \
 		../Project/Textures/Main_texture/eclair_au_chocolat.png \
 		../Project/Textures/Main_texture/eiffel_tower.png \
+		../Project/Textures/Main_texture/power_ups.png \
 		../Project/Textures/Main_texture/croissant.png \
-		../Project/Textures/Main_texture/rotating_baguette.png \
+		../Project/Textures/Main_texture/projectiles.png \
 		../Project/Textures/Main_texture/blocks.png \
 		../Project/Menu/start_button.png \
 		../Project/Levels/Level_agathe_001.png \

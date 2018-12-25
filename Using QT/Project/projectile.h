@@ -28,7 +28,7 @@ public:
 
     QGraphicsRectItem* collision_range_proj;
 
-
+    double img_count=0;
 
     // Methods
 

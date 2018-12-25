@@ -217,6 +217,13 @@ void Projectile::move()
         QObject::deleteLater();
     }
 
+    img_count = img_count+0.3;
+    if(img_count>=4)
+    {
+        img_count = 0;
+    }
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type, 4)[int(img_count)]);
+
     life -= 10;
     if(life == 0)
     {
@@ -250,7 +257,5 @@ void Projectile::move()
                                                                               //but not on y but we make the projectile almost dead
     if (tl == true || tr == true){speed.y = 0; speed.x = speed.x; life = 10;} //if the top corners collide, we maintain the velocity on x,
                                                                               //but not on y but we make the projectile almost dead
-
-
     setPos(x() + speed.x, y() + speed.y);
 }
