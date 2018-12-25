@@ -29,14 +29,14 @@ void Block::blink()
 
         case 0:
         {
-            setPixmap(QPixmap(gtexture->get_path_to(active_block_2)));
+            setPixmap(gtexture->get_qpixmap_of(blocks, texture, 3)[image_count]);
             image_count = 1;
             break;
         }
 
         case 1:
         {
-            setPixmap(QPixmap(gtexture->get_path_to(active_block_1)));
+            setPixmap(gtexture->get_qpixmap_of(blocks, texture, 3)[image_count]);
             image_count = 0;
             break;
         }

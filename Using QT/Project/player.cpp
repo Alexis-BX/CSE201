@@ -9,7 +9,6 @@
 #include "player.h"
 #include "view.h"
 #include "global.h"
-#include <iostream>
 
 Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent)
 {

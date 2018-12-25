@@ -12,9 +12,9 @@ enum Block_texture
 {
     brick, // graphics texture of the blocks
     grass,
-    crate,
-    question_mark,
     dirt,
+    question_mark,
+    crate = 6,
     //face
 };
 

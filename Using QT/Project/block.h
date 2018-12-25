@@ -22,7 +22,7 @@ public:
 
     Block(pair position, QGraphicsItem* parent = 0);
 
-    int image_count;
+    int image_count{0};
 
     void is_hit();
 

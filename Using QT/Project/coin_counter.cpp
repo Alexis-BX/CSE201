@@ -9,19 +9,8 @@
 #include <QTimer>
 #include <cmath>
 
-<<<<<<< HEAD
-
-
-class View;
-
-extern View* view;
-
-
-Coin_counter::Coin_counter()
-=======
 Coin_counter::Coin_counter(pair position, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
->>>>>>> d4fb41363a4f858a3e4c25b09e9d8cc827769ad8
 {
     coins = 0;
     setPos(position.x,position.y-20);

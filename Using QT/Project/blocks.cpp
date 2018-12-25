@@ -10,15 +10,7 @@ Base_block::Base_block(pair position) :
     texture = brick;
     state = initial;
 
-    if(int(-position.y)%36 < 9)
-    {
-        setPixmap(QPixmap(gtexture->get_path_to(base_block_1)));
-    }
-    else
-    {
-        setPixmap(QPixmap(gtexture->get_path_to(base_block_2)));
-    }
-
+    setPixmap(gtexture->get_qpixmap_of(blocks, texture)[image_count]);
 }
 
 
@@ -29,9 +21,7 @@ Breakable_block::Breakable_block(pair position) :
     texture = crate;
     state = initial;
 
-    setPixmap(QPixmap(gtexture->get_path_to(breakable_block)));
-
-
+    setPixmap(gtexture->get_qpixmap_of(blocks, texture, 6)[image_count]);
 }
 
 Active_block::Active_block(pair position) :
@@ -41,7 +31,7 @@ Active_block::Active_block(pair position) :
     texture = question_mark;
     state = initial;
 
-    setPixmap(QPixmap(gtexture->get_path_to(active_block_1)));
+    setPixmap(gtexture->get_qpixmap_of(blocks, texture, 3)[image_count]);
     image_count = 0;
 
     // Timer
@@ -58,9 +48,7 @@ Special_block_above::Special_block_above(pair position) :
     texture = grass;
     state = initial;
 
-    setPixmap(QPixmap(gtexture->get_path_to(special_block_above)));
-
-
+    setPixmap(gtexture->get_qpixmap_of(blocks, texture)[image_count]);
 }
 
 Special_block_below::Special_block_below(pair position) :
@@ -70,7 +58,5 @@ Special_block_below::Special_block_below(pair position) :
     texture = dirt;
     state = initial;
 
-    setPixmap(QPixmap(gtexture->get_path_to(special_block_below)));
-
-
+    setPixmap(gtexture->get_qpixmap_of(blocks, texture)[image_count]);
 }

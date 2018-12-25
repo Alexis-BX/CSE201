@@ -1,6 +1,6 @@
 #include "texture.h"
 #include <QDebug>
-
+#include "view.h"
 
 Texture::Texture()
 {
@@ -31,31 +31,33 @@ void Texture::define_main_texture()
 
     texture_temp[basic_player] = "character22.12.png";
 
-    texture_temp[base_block_1] = "ground1.png";
+    //texture_temp[base_block_1] = "ground1.png";
 
-    texture_temp[base_block_2] = "ground3.png";
+    //texture_temp[base_block_2] = "ground3.png";
 
-    texture_temp[breakable_block] = "break0.png";
+    //texture_temp[breakable_block] = "break0.png";
 
-    texture_temp[active_block_1] = "question1.png";
+    //texture_temp[active_block_1] = "question1.png";
 
-    texture_temp[active_block_2] = "question0.png";
+    //texture_temp[active_block_2] = "question0.png";
 
-    texture_temp[special_block_above] = "grass.png";
+    //texture_temp[special_block_above] = "grass.png";
 
-    texture_temp[special_block_below] = "dirt.png";
+    //texture_temp[special_block_below] = "dirt.png";
 
-    texture_temp[small_collectable] = "cheese.png";
+    texture_temp[blocks] = "blocks.png";
 
-    texture_temp[big_collectable] = "star.png";
+    texture_temp[small_collectable] = "small_cheese.png";
 
-    texture_temp[power_up_1] = "mushroom.png";
+    texture_temp[big_collectable] = "big_cheese.png";
 
-    texture_temp[power_up_2] = "eclair.png";
+    texture_temp[power_up_1] = "mushroom.png";//doesn't exist
+
+    texture_temp[power_up_2] = "eclair_au_chocolat.png";
 
     texture_temp[enemy_1] = "enemy.png";
 
-    texture_temp[player_projectile_1] = "baguette.png";
+    texture_temp[player_projectile_1] = "rotating_baguette.png";
 
     texture_temp[player_projectile_2] = "wine.png";
 
@@ -94,19 +96,19 @@ void Texture::define_troll_texture_1()
 
     texture_temp[basic_player] = "face.png";
 
-    texture_temp[base_block_1] = "face.png";
+    //texture_temp[base_block_1] = "face.png";
 
-    texture_temp[base_block_2] = "face.png";
+    //texture_temp[base_block_2] = "face.png";
 
-    texture_temp[breakable_block] = "face.png";
+    //texture_temp[breakable_block] = "face.png";
 
-    texture_temp[active_block_1] = "face.png";
+    //texture_temp[active_block_1] = "face.png";
 
-    texture_temp[active_block_2] = "face.png";
+    //texture_temp[active_block_2] = "face.png";
 
-    texture_temp[special_block_above] = "face.png";
+    //texture_temp[special_block_above] = "face.png";
 
-    texture_temp[special_block_below] = "face.png";
+    //texture_temp[special_block_below] = "face.png";
 
     texture_temp[small_collectable] = "face.png";
 
@@ -141,4 +143,18 @@ void Texture::define_troll_texture_1()
 const char* Texture::get_path_to(Object_texture ojb_tex)
 {
     return (path_to_textures+texture_names[current_texture]+object_image_from_texure[current_texture][ojb_tex]).c_str();
+}
+
+std::vector<QPixmap> Texture::get_qpixmap_of(Object_texture sheet, int start, int length, int size)
+{
+    QPixmap img(get_path_to(sheet));
+    int w = img.width()/size;
+    int i{start%w},j{start/w};
+    std::vector<QPixmap> res(length);
+
+    for (int k=0; k<length; k++)
+    {
+        res[k] = img.copy(((i+k)%w)*size, (j+(i+k)/w)*size, size, size);
+    }
+    return res;
 }

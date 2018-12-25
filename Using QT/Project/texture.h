@@ -4,35 +4,36 @@
 #include "cstring"
 #include "string"
 #include "vector"
+#include <QGraphicsPixmapItem>
 
 enum Object_texture
 {
-    basic_player = 0,
-    base_block_1 = 1,
-    base_block_2 = 2,
-    breakable_block = 3,
-    active_block_1 = 4,
-    active_block_2 = 5,
-    special_block_above = 6,
-    special_block_below = 7,
-    small_collectable = 8,
-    big_collectable = 9,
-    power_up_1 = 10,
-    power_up_2 = 11,
-    enemy_1 = 12,
-    player_projectile_1 = 13,
-    player_projectile_2 = 14,
-    player_projectile_3 = 15,
-    enemy_projectile_1 = 16,
-    projectile_vanish_effect = 17,
-    object_texture_count = 18,
+    basic_player,
+    //base_block_1,
+    //base_block_2,
+    //breakable_block,
+    //active_block_1,
+    //active_block_2,
+    //special_block_above,
+    //special_block_below,
+    blocks,
+    small_collectable,
+    big_collectable,
+    power_up_1,
+    power_up_2,
+    enemy_1,
+    player_projectile_1,
+    player_projectile_2,
+    player_projectile_3,
+    enemy_projectile_1,
+    projectile_vanish_effect,
+    object_texture_count,
 
 };
 
 enum Textures
 {
-    main_texture = 0,
-    troll_texture_1,
+    main_texture, troll_texture_1,
 };
 
 /**
@@ -80,6 +81,8 @@ public:
     // Method that return the path to the image of a certain object texture in the current texture
     const char* get_path_to(Object_texture ojb_tex);
 
+    //Method that returns the QPixmap of an image
+    std::vector<QPixmap> get_qpixmap_of(Object_texture sheet, int start=0, int length=1, int size=18);
 };
 
 

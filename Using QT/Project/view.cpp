@@ -230,20 +230,11 @@ for(int i = 0; i < height; i ++)
          value [2]= data[3 * (i * width + j)+2];
          convert (value[0],value[1], value [2],i,j);  //this function creates ther object at position (i,j)
     }
-<<<<<<< HEAD
-    printf("3");
-        **/
-=======
 }
 printf("3");
->>>>>>> d4fb41363a4f858a3e4c25b09e9d8cc827769ad8
 
 int diff=4;
 
-
-<<<<<<< HEAD
-    qDebug() << "after coin_counter creation";
-=======
 if (v0<=diff && v1<=diff && v2<=diff)
 {
     //CREATE PERMANEMT BLOCK at position (i,j)
@@ -251,7 +242,6 @@ if (v0<=diff && v1<=diff && v2<=diff)
     Block_texture btexture = brick;
     Block_state bstate = initial;
     create_block(pair{greal(i*block_size),greal(-18-j*block_size)}, btype, btexture, bstate);
->>>>>>> d4fb41363a4f858a3e4c25b09e9d8cc827769ad8
 }
 else if (v0>=255-diff && v1>=255-diff && v2>=255-diff)
 {
