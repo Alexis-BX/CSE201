@@ -40,7 +40,7 @@ void Coin_counter::update_counter()
 
     for(unsigned long long i = 0 ; i < counters.size() ; i ++)
     {
-        counters[i]->update_counter(coins);
+        counters[i]->update_counter(coins/(std::pow(10, i)));
     }
 }
 

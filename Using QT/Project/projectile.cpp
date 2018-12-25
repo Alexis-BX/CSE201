@@ -15,14 +15,6 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
     this->size = size;
 
-    qDebug() << position.x;
-
-    qDebug() << character_size_x;
-
-    qDebug() << direction;
-
-    qDebug() << size.x;
-
     if(direction)
     {
         position.x += character_size_x;
@@ -31,15 +23,6 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
     {
         position.x -= size.x;
     }
-
-    qDebug() << position.x;
-
-    qDebug() << character_size_x;
-
-    qDebug() << direction;
-
-    qDebug() << size.x;
-
 
     setPos(position.x, position.y);
 

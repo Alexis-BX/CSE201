@@ -9,25 +9,19 @@
 enum Object_texture
 {
     basic_player,
-    //base_block_1,
-    //base_block_2,
-    //breakable_block,
-    //active_block_1,
-    //active_block_2,
-    //special_block_above,
-    //special_block_below,
     blocks,
     small_collectable,
     big_collectable,
     power_up_1,
     power_up_2,
     enemy_1,
-    player_projectile_1,
-    player_projectile_2,
-    player_projectile_3,
-    enemy_projectile_1,
+    //player_projectile_1,
+    //player_projectile_2,
+    //player_projectile_3,
+    //enemy_projectile_1,
+    projectiles,
     projectile_vanish_effect,
-    object_texture_count,
+    object_texture_count
 
 };
 

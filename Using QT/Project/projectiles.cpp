@@ -12,7 +12,7 @@ Player_projectile_1::Player_projectile_1(pair position, bool direction, int char
 
     speed = pair{velocity*((direction) ? 1 : -1), 0};
 
-    setPixmap(QPixmap(gtexture->get_path_to(player_projectile_1)));
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type)[0]);
 }
 
 Player_projectile_2::Player_projectile_2(pair position, bool direction, int character_size_x):
@@ -24,7 +24,7 @@ Player_projectile_2::Player_projectile_2(pair position, bool direction, int char
 
     speed = pair{velocity * ((direction) ? 1 : -1), 0};
 
-    setPixmap(QPixmap(gtexture->get_path_to(enemy_projectile_1)));
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type)[0]);
 }
 
 Player_projectile_3::Player_projectile_3(pair position, bool direction, int character_size_x):
@@ -36,7 +36,7 @@ Player_projectile_3::Player_projectile_3(pair position, bool direction, int char
 
     speed = pair{velocity * ((direction) ? 1 : -1), velocity};
 
-    setPixmap(QPixmap(gtexture->get_path_to(player_projectile_2)));
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type)[0]);
 }
 
 Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int character_size_x):
@@ -48,5 +48,5 @@ Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int charac
 
     speed = pair{velocity * ((direction) ? 1 : -1), -velocity + 3};
 
-    setPixmap(QPixmap(gtexture->get_path_to(player_projectile_3)));
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type)[0]);
 }

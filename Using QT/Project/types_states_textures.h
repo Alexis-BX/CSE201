@@ -8,14 +8,15 @@ enum Block_type
     breakable
 };
 
+//graphics textures of the blocks
+//their value being their starting position in the sprite sheet
 enum Block_texture
 {
-    brick, // graphics texture of the blocks
+    brick,
     grass,
     dirt,
     question_mark,
     crate = 6,
-    //face
 };
 
 enum Block_state
@@ -26,7 +27,6 @@ enum Block_state
     //damaged, //the block is damaged (it has half life basically and the graphics change)
     //dead, // the block is dead and vanishes
 };
-
 
 
 
@@ -60,10 +60,10 @@ enum Projectile_state
 
 enum Projectile_type
 {
-    baguette, //player's projectile : horizantal attack
-    smoke, //enemy's projectile : horizantal attack
     wine, //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
-    pot,
+    baguette=4, //player's projectile : horizantal attack
+    smoke=8, //enemy's projectile : horizantal attack
+    pot=12
 };
 
 #endif // TYPES_STATES_TEXTURES_H

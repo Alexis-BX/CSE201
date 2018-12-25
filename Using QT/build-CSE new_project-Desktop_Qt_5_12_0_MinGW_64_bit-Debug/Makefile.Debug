@@ -175,6 +175,7 @@ debug/qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/names.txt \
 		../Project/Textures/Main_texture/thief_dying_poorthing.png \
 		../Project/Textures/Main_texture/thief_walking_casual.png \
+		../Project/Textures/Main_texture/numbers.png \
 		../Project/Textures/Main_texture/enemy.png \
 		../Project/Textures/Main_texture/Mario.png \
 		../Project/Textures/Main_texture/small_cheese.png \
@@ -193,8 +194,6 @@ debug/qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/croissant.png \
 		../Project/Textures/Main_texture/rotating_baguette.png \
 		../Project/Textures/Main_texture/blocks.png \
-		../Project/Textures/Main_texture/number_0.png \
-		../Project/Textures/Main_texture/number_1.png \
 		../Project/Menu/start_button.png \
 		../Project/Levels/Level_agathe_001.png \
 		../Project/Levels/sticker-numero-un.jpg \
