@@ -23,6 +23,7 @@ Breakable_block::Breakable_block(pair position) :
 
     sprite = gtexture->get_qpixmap_of(blocks, texture, 6);
     setPixmap(sprite[image_count]);
+
 }
 
 Active_block::Active_block(pair position) :
@@ -39,7 +40,6 @@ Active_block::Active_block(pair position) :
     QTimer * timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(blink()));
     timer->start(500);
-
 }
 
 Special_block_above::Special_block_above(pair position) :

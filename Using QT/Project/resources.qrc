@@ -1,6 +1,15 @@
 <RCC>
     <qresource prefix="/Images">
         <file>Levels/Level_agathe_001.png</file>
+        <file>Levels/Sebastien_001.png</file>
+        <file>Levels/screen_start.png</file>
+        <file>Levels/sticker-numero-un.jpg</file>
+
+        <file>Menu/start_button.png</file>
+
+        <file>background/Background.png</file>
+        <file>background/back3.png</file>
+
         <file>Textures/Main_texture/big_cheese.png</file>
         <file>Textures/Main_texture/explosion.png</file>
         <file>Textures/Main_texture/face.png</file>
@@ -8,18 +17,13 @@
         <file>Textures/Main_texture/smoking_dude.png</file>
         <file>Textures/Main_texture/thief_dying_poorthing.png</file>
         <file>Textures/Main_texture/thief_walking_casual.png</file>
-        <file>Textures/Troll_texture_1/face.png</file>
-        <file>Levels/Sebastien_001.png</file>
-        <file>Levels/screen_start.png</file>
-        <file>Menu/start_button.png</file>
-        <file>background/Background.png</file>
-        <file>Levels/sticker-numero-un.jpg</file>
-        <file>background/back3.png</file>
         <file>Textures/Main_texture/character22.12.png</file>
         <file>Textures/Main_texture/character22.12R.png</file>
         <file>Textures/Main_texture/blocks.png</file>
         <file>Textures/Main_texture/numbers.png</file>
         <file>Textures/Main_texture/power_ups.png</file>
         <file>Textures/Main_texture/projectiles.png</file>
+
+        <file>Textures/Troll_texture_1/face.png</file>
     </qresource>
 </RCC>
