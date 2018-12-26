@@ -22,25 +22,10 @@ Block::Block(pair position, QGraphicsItem* parent) :
 
 void Block::blink()
 {
-    if(texture == question_mark)
+    if(texture == question_mark && image_count != 2)
     {
-        switch (image_count)
-        {
-
-        case 0:
-        {
-            setPixmap(gtexture->get_qpixmap_of(blocks, texture, 3)[image_count]);
-            image_count = 1;
-            break;
-        }
-
-        case 1:
-        {
-            setPixmap(gtexture->get_qpixmap_of(blocks, texture, 3)[image_count]);
-            image_count = 0;
-            break;
-        }
-        }
+        setPixmap(sprite[image_count]);
+        image_count++; image_count%=2;
     }
 
 }

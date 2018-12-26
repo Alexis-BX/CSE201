@@ -24,7 +24,9 @@ public:
     // Attributes
     pair speedMax,speed;
 
-    int size{36}, life;
+    int size{36}, count{0}, N{4}, life{100};
+
+    std::vector<QPixmap> sprite[2];
 
     QGraphicsRectItem* collision_range_enemy;
 

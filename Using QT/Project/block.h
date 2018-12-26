@@ -24,6 +24,8 @@ public:
 
     int image_count{0};
 
+    std::vector<QPixmap> sprite;
+
     void is_hit();
 
 public slots:

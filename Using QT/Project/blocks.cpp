@@ -9,8 +9,8 @@ Base_block::Base_block(pair position) :
     type = permanent;
     texture = brick;
     state = initial;
-
-    setPixmap(gtexture->get_qpixmap_of(blocks, texture)[image_count]);
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
+    setPixmap(sprite[image_count]);
 }
 
 
@@ -21,7 +21,8 @@ Breakable_block::Breakable_block(pair position) :
     texture = crate;
     state = initial;
 
-    setPixmap(gtexture->get_qpixmap_of(blocks, texture, 6)[image_count]);
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 6);
+    setPixmap(sprite[image_count]);
 }
 
 Active_block::Active_block(pair position) :
@@ -31,8 +32,8 @@ Active_block::Active_block(pair position) :
     texture = question_mark;
     state = initial;
 
-    setPixmap(gtexture->get_qpixmap_of(blocks, texture, 3)[image_count]);
-    image_count = 0;
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 3);
+    setPixmap(sprite[image_count]);
 
     // Timer
     QTimer * timer = new QTimer();
@@ -48,7 +49,8 @@ Special_block_above::Special_block_above(pair position) :
     texture = grass;
     state = initial;
 
-    setPixmap(gtexture->get_qpixmap_of(blocks, texture)[image_count]);
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
+    setPixmap(sprite[image_count]);
 }
 
 Special_block_below::Special_block_below(pair position) :
@@ -58,5 +60,6 @@ Special_block_below::Special_block_below(pair position) :
     texture = dirt;
     state = initial;
 
-    setPixmap(gtexture->get_qpixmap_of(blocks, texture)[image_count]);
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
+    setPixmap(sprite[image_count]);
 }

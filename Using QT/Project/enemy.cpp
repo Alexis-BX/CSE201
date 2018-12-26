@@ -13,11 +13,17 @@ Enemy::Enemy(int size, pair position, bool direction, QGraphicsItem* parent ) : 
 {
 
     setPos(position.x, position.y);
-    setPixmap(QPixmap(gtexture->get_path_to(enemy_1)));
+
+    //setting animations
+    sprite[1] = gtexture->get_qpixmap_of(enemy_1, 0, N, 36);
+    for (int i=0; i<N; i++){
+        QImage img = sprite[1][i].toImage();
+        img = img.mirrored(true, false);
+        sprite[0][i] = QPixmap::fromImage(img);
+    }
+    setPixmap(sprite[0][0]);
 
     // Attributes
-    int life = 100;
-
     if (direction == 0){ speed = pair{-5,2};}
     else { speed = pair{5,2};}
 
@@ -314,6 +320,12 @@ void Enemy::move()
     //Direction of the player:
     if (speed.x < 0){direction = 0;}
     else{direction = 1;}
+
+    count+=0.2;
+    if (count>=N){
+        count = 0;
+    }
+    setPixmap(sprite[direction][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
 

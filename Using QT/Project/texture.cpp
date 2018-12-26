@@ -37,19 +37,9 @@ void Texture::define_main_texture()
 
     texture_temp[big_collectable] = "big_cheese.png";
 
-    texture_temp[power_up_1] = "croissant.png";
+    texture_temp[power_ups] = "power_ups.png";
 
-    texture_temp[power_up_2] = "eclair_au_chocolat.png";
-
-    texture_temp[enemy_1] = "enemy.png";
-
-    //texture_temp[player_projectile_1] = "rotating_baguette.png";
-
-    //texture_temp[player_projectile_2] = "wine.png";
-
-    //texture_temp[player_projectile_3] = "face.png";
-
-    //texture_temp[enemy_projectile_1] = "smoke.png";
+    texture_temp[enemy_1] = "thief_walking_casual.png";
 
     texture_temp[projectiles] = "projectiles.png";
 
@@ -84,37 +74,17 @@ void Texture::define_troll_texture_1()
 
     texture_temp[basic_player] = "face.png";
 
-    //texture_temp[base_block_1] = "face.png";
-
-    //texture_temp[base_block_2] = "face.png";
-
-    //texture_temp[breakable_block] = "face.png";
-
-    //texture_temp[active_block_1] = "face.png";
-
-    //texture_temp[active_block_2] = "face.png";
-
-    //texture_temp[special_block_above] = "face.png";
-
-    //texture_temp[special_block_below] = "face.png";
+    texture_temp[blocks] = "face.png";
 
     texture_temp[small_collectable] = "face.png";
 
     texture_temp[big_collectable] = "face.png";
 
-    texture_temp[power_up_1] = "face.png";
-
-    texture_temp[power_up_2] = "face.png";
+    texture_temp[power_ups] = "face.png";
 
     texture_temp[enemy_1] = "face.png";
 
-    //texture_temp[player_projectile_1] = "face.png";
-
-    //texture_temp[player_projectile_2] = "face.png";
-
-    //texture_temp[player_projectile_3] = "face.png";
-
-    //texture_temp[enemy_projectile_1] = "face.png";
+    texture_temp[projectiles] = "face.png";
 
     texture_temp[projectile_vanish_effect] = "face.png";
 

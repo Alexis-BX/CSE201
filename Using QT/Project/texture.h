@@ -12,13 +12,8 @@ enum Object_texture
     blocks,
     small_collectable,
     big_collectable,
-    power_up_1,
-    power_up_2,
+    power_ups,
     enemy_1,
-    //player_projectile_1,
-    //player_projectile_2,
-    //player_projectile_3,
-    //enemy_projectile_1,
     projectiles,
     projectile_vanish_effect,
     object_texture_count
@@ -75,7 +70,7 @@ public:
     // Method that return the path to the image of a certain object texture in the current texture
     const char* get_path_to(Object_texture ojb_tex);
 
-    //Method that returns the QPixmap of an image
+    //Method that returns the QPixmap array of a sprite animation
     std::vector<QPixmap> get_qpixmap_of(Object_texture sheet, int start=0, int length=1, int size=18);
 };
 
