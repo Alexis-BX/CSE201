@@ -5,6 +5,7 @@
 #include "texture.h"
 #include "view.h"
 #include "blocks.h"
+#include "projectiles.h"
 #include <QPixmap>
 
 Level_load::Level_load(View* view)
@@ -95,6 +96,7 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
     else if ( B<=0+diff  && 242-diff<=G && G<=242+diff && 255-diff<=R)
     {
         //CREATE coin at position (i,j)
+        view->scene->addItem(new Small_collectable(position,0));
     }
     else if (204-diff<=B && B<=204+diff  && 72-diff<=G && G<=72+diff && 63-diff<=R && R<=63+diff)
     {
