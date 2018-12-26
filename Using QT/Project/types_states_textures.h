@@ -8,14 +8,15 @@ enum Block_type
     breakable
 };
 
+//graphics textures of the blocks
+//their value being their starting position in the sprite sheet
 enum Block_texture
 {
-    brick, // graphics texture of the blocks
+    brick,
     grass,
-    crate,
-    question_mark,
     dirt,
-    //face
+    question_mark,
+    crate = 6,
 };
 
 enum Block_state
@@ -29,7 +30,6 @@ enum Block_state
 
 
 
-
 enum Collectable_state  // the collectable can either be used by the player or not
 {
     decaying, //means it has a life and can die even though it hasn't been eaten
@@ -38,10 +38,15 @@ enum Collectable_state  // the collectable can either be used by the player or n
 
 enum Collectable_type // shows all kinds of collectables that can appear
 {
+    eclair,
+    croissant,
+    chocolatine,
+    mini_eiffel,
+    glass_wine,
+    mushroom, //makes you grow bigger
     coin, //to get the points
     star, //makes you go faster
-    mushroom, //makes you grow bigger
-    eclair //
+    cheese
 };
 
 enum Collectable_texture  // shows if the player meets the same or different collectable
@@ -60,10 +65,10 @@ enum Projectile_state
 
 enum Projectile_type
 {
-    baguette, //player's projectile : horizantal attack
-    smoke, //enemy's projectile : horizantal attack
     wine, //player's projectile : downward attack to kill the thief roding right to left for example, projectile you get after taking a msuhroom maybe
-    pot,
+    baguette=4, //player's projectile : horizantal attack
+    smoke=8, //enemy's projectile : horizantal attack
+    pot=12
 };
 
 #endif // TYPES_STATES_TEXTURES_H

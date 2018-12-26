@@ -15,14 +15,6 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
     this->size = size;
 
-    qDebug() << position.x;
-
-    qDebug() << character_size_x;
-
-    qDebug() << direction;
-
-    qDebug() << size.x;
-
     if(direction)
     {
         position.x += character_size_x;
@@ -31,15 +23,6 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
     {
         position.x -= size.x;
     }
-
-    qDebug() << position.x;
-
-    qDebug() << character_size_x;
-
-    qDebug() << direction;
-
-    qDebug() << size.x;
-
 
     setPos(position.x, position.y);
 
@@ -234,6 +217,13 @@ void Projectile::move()
         QObject::deleteLater();
     }
 
+    img_count = img_count+0.3;
+    if(img_count>=4)
+    {
+        img_count = 0;
+    }
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type, 4)[int(img_count)]);
+
     life -= 10;
     if(life == 0)
     {
@@ -267,7 +257,5 @@ void Projectile::move()
                                                                               //but not on y but we make the projectile almost dead
     if (tl == true || tr == true){speed.y = 0; speed.x = speed.x; life = 10;} //if the top corners collide, we maintain the velocity on x,
                                                                               //but not on y but we make the projectile almost dead
-
-
     setPos(x() + speed.x, y() + speed.y);
 }

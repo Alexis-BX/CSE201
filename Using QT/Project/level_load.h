@@ -1,13 +1,16 @@
 #ifndef LEVEL_LOAD_H
 #define LEVEL_LOAD_H
 
+#include "global.h"
 
 class Level_load
 {
 
 public:
 
-    Level_load();
+    Level_load(View* view);
+
+    View* view;
 
     void read_level_image(const char* filename);
 

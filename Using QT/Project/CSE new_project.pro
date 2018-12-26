@@ -32,6 +32,7 @@ SOURCES += \
     projectile.cpp \
     collectable.cpp \
     coin_counter.cpp \
+    counter.cpp \
     enemy.cpp \
     texture.cpp \
     blocks.cpp \
@@ -39,8 +40,7 @@ SOURCES += \
     tools.cpp \
     level_load.cpp \
     start_button.cpp \
-    collectables.cpp \
-    counter.cpp
+    collectables.cpp
 
 HEADERS += \
     player.h \
@@ -51,6 +51,7 @@ HEADERS += \
     types_states_textures.h \
     tools.h \
     coin_counter.h \
+    counter.h \
     enemy.h \
     texture.h \
     global.h \
@@ -58,8 +59,7 @@ HEADERS += \
     projectiles.h \
     level_load.h \
     start_button.h \
-    collectables.h \
-    counter.h
+    collectables.h
 
 
 

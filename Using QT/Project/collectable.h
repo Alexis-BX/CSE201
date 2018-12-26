@@ -18,6 +18,8 @@ public:
 
     Collectable_texture texture;       // the player meets the same or different collectable
 
+    std::vector<QPixmap> sprite;
+
     Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent = 0 );
 
     // Attributes

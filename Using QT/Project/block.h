@@ -20,11 +20,11 @@ public:
 
     Block_type type;
 
-    Block(pair position, Block_type type = Block_type{permanent},
-          Block_texture texture = Block_texture{brick}, Block_state state = Block_state{initial},
-          QGraphicsItem* parent = 0);
+    Block(pair position, QGraphicsItem* parent = 0);
 
-    int image_count;
+    int image_count{0};
+
+    std::vector<QPixmap> sprite;
 
     void is_hit();
 

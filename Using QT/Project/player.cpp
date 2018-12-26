@@ -15,7 +15,7 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     create_animation();
 
-    setPixmap(animations[0][0]);
+    setPixmap(animations[super][direction][0][0]);
 
     // Attributes
     count = 0;
@@ -24,11 +24,13 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
     speedMax = pair{10,15};
 
-    block_size = 18;
-
-    direction = 1; //0 = left, 1 = right
+    direction = true; //false = left, true = right
 
     this->size = size;
+
+
+    // Create collision Range
+    create_collision_range();
 
 
     // Timer
@@ -37,9 +39,6 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(20);
-
-    // Create collision Range
-    create_collision_range();
 }
 
 /**NOTE:
@@ -66,6 +65,12 @@ void Player::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Up)
     {
         speed.y -= speedMax.y;
+        if (speed.x == 0.0){
+            state = jumpV;
+        }
+        else{
+            state = jumpV;
+        }
     }
     else if(event->key() == Qt::Key_1)
     {
@@ -89,14 +94,6 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
         create_enemy();
     }
-
-}
-
-
-void Player::create_enemy()
-{   //condition to create enemy... - decide and add and if condition
-        Enemy* enemy = new Enemy(36, pair{x()+2* size,y() -50 }, abs(direction-1));
-        view->scene->addItem(enemy);
 }
 
 void Player::keyReleaseEvent(QKeyEvent *event)
@@ -109,6 +106,11 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     {
         pressedR = false;
     }
+}
+
+void Player::create_enemy()
+{   //condition to create enemy... - decide and add and if condition
+        view->scene->addItem(new Enemy(36, pair{x()+2* size,y() -50 }, abs(direction-1)));
 }
 
 bool Player::collision_right()
@@ -267,32 +269,57 @@ bool Player::collision_t_r()
 
 void Player::move()
 {
+    //Accelerate
+    speed.y += 1;
+
 
     //Motion smooth
-    if (pressedL){
-        if (speed.x>-speedMax.x){speed.x -= 1;}
+    if (pressedL)
+    {
+        if (speed.x>-speedMax.x)
+        {
+            speed.x -= 1;
+        }
     }
-    else{
-        if (speed.x<-1){speed.x -= speed.x/2;}
-        else if (speed.x<0){speed.x=0;}
+    else
+    {
+        if (speed.x<-1)
+        {
+            speed.x -= speed.x/2;
+        }
+        else if (speed.x<0)
+        {
+            speed.x=0;
+        }
     }
-    if (pressedR){
-        if (speed.x<speedMax.x){speed.x += 1;}
+
+    if (pressedR)
+    {
+        if (speed.x<speedMax.x)
+        {
+            speed.x += 1;
+        }
     }
-    else{
-        if (speed.x>1){speed.x -= speed.x/2;}
-        else if (speed.x>0){speed.x=0;}
+    else
+    {
+        if (speed.x>1)
+        {
+            speed.x -= speed.x/2;
+        }
+        else if (speed.x>0)
+        {
+            speed.x=0;
+        }
     }
+
     if (speed.y > speedMax.y)
     {
         speed.y = speedMax.y;
     }
-    if (speed.y < -speedMax.y)
+    else if (speed.y < -speedMax.y)
     {
         speed.y = -speedMax.y;
     }
-
-
 
     //in boundaries
     if(y() >= view->world_size.bottom)
@@ -317,39 +344,7 @@ void Player::move()
         setX(view->world_size.right);
     }
 
-    //animation
-    if (speed.x<0){count -= 0.1;}
-    else{count += 0.1;}
 
-    if (count>=N){count = 0;}
-    if (count< 0){count = N-0.00001;}
-
-    if (speed.x<0){
-        if (speed.y<0){
-            setPixmap(animations[7][int(count)]);//flip
-        }
-        else{
-            setPixmap(animations[8][int(count)]);//flip
-        }
-    }
-    else if(speed.x>0){
-        if (speed.y<0){
-            setPixmap(animations[2][int(count)]);
-        }
-        else{
-            setPixmap(animations[3][int(count)]);
-        }
-    }
-    else{
-        if (speed.y<0){
-            setPixmap(animations[1][int(count)]);
-        }
-        else{
-            setPixmap(animations[0][int(count)]);
-        }
-    }
-
-    speed.y += 1;
 
     bool r = collision_right();
     bool l = collision_left();
@@ -361,27 +356,91 @@ void Player::move()
     bool tr = collision_t_r();
 
 
-    // movements of the player:
-    if (r == true){speed.x = 0;}
-    if (l == true){speed.x = 0;}
-    if (b == true){speed.y = 0;}
-    if (t == true){speed.y = 0;}
-    if (bl == true || br == true){speed.y = 0; speed.x = speed.x;} //if the bottom corners collide, we maintain the velocity on x, but not on y
-    if (tl == true || tr == true){speed.y = 0; speed.x = speed.x;} //if the top corners collide, we maintain the velocity on x. but not on y
 
-    // check y-velocity is not too big
-    if (speed.y > speedMax.y)
+    // movements of the player:
+    if (r == true)
     {
-        speed.y = speedMax.y;
+        speed.x = 0;
     }
-    if (speed.y < -speedMax.y)
+    if (l == true)
     {
-        speed.y = -speedMax.y;
+        speed.x = 0;
     }
+    if (b == true)
+    {
+        speed.y = 0;
+    }
+    if (t == true)
+    {
+        speed.y = 0;
+    }
+    if (bl == true || br == true)
+    {
+        //if the bottom corners collide, we maintain the velocity on x, but not on y
+        speed.y = 0; speed.x = speed.x;
+    }
+    if (tl == true || tr == true)
+    {
+        //if the top corners collide, we maintain the velocity on x. but not on y
+        speed.y = 0; speed.x = speed.x;
+    }
+
+
 
     //Direction of the player:
-    if (pressedR){direction = 1;}
-    if (pressedL){direction = 0;}
+    if (speed.x>0)
+    {
+        direction = 1;
+    }
+    else if (speed.x<0)
+    {
+        direction = 0;
+    }
+
+
+    //superpowers timer
+    if (super)
+    {
+        count_super += 1;
+    }
+    if (count_super > 50)
+    {
+        super = false;
+    }
+
+    if (super_fast)
+    {
+        count_super +=1;
+    }
+    if (count_super > 50)
+    {
+        super_fast = false;
+    }
+
+    if (super_throw)
+    {
+        count_super +=1;
+    }
+    if (count_super > 50)
+    {
+        super_fast = false;
+    }
+
+    //animation
+    count += 0.2;
+
+    set_animation_state(b);
+
+    if (count >= maxFrame[state])
+    {
+        count = 0;
+    }
+    if (count < 0)
+    {
+        count = maxFrame[state]-0.00001;
+    }
+
+    setPixmap(animations[super][direction][state][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
 
@@ -478,26 +537,26 @@ void Player::move()
 
     if (speed.x<0){
         if (speed.y<0){
-            setPixmap(animations[7][int(count)]);//flip
+            setPixmap(animations[super][direction][7][int(count)]);//flip
         }
         else{
-            setPixmap(animations[8][int(count)]);//flip
+            setPixmap(animations[super][direction][8][int(count)]);//flip
         }
     }
     else if(speed.x>0){
         if (speed.y<0){
-            setPixmap(animations[2][int(count)]);
+            setPixmap(animations[super][direction][2][int(count)]);
         }
         else{
-            setPixmap(animations[3][int(count)]);
+            setPixmap(animations[super][direction][3][int(count)]);
         }
     }
     else{
         if (speed.y<0){
-            setPixmap(animations[1][int(count)]);
+            setPixmap(animations[super][direction][1][int(count)]);
         }
         else{
-            setPixmap(animations[0][int(count)]);
+            setPixmap(animations[super][direction][0][int(count)]);
         }
     }
 
@@ -509,10 +568,6 @@ void Player::move()
 
     pair temp_ratio{1,1},final_ratio{1,1},collision_vector;
 
-    if(speed.x == 0 and speed.y == 0)
-    {
-        goto after_collision;
-    }
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
         if((*iter)->x() == x() && (*iter)->y() == y())
@@ -524,18 +579,10 @@ void Player::move()
         if(speed.x > 0)
         {
             collision_vector.x = (*iter)->x()-x()-size;
-            if(collision_vector.x == 0)
-            {
-
-            }
         }
         else if(speed.x < 0)
         {
             collision_vector.x = (*iter)->x()+block_size-x();
-        }
-        else
-        {
-            //do something
         }
 
         //set the collision vector y
@@ -547,15 +594,10 @@ void Player::move()
         {
             collision_vector.y = (*iter)->y()+block_size-y();
         }
-        else
-        {
-            //do something
-        }
-
 
         // computer temp ratios
-        temp_ratio.x = collision_vector.x/speed.x;
-        temp_ratio.y = collision_vector.y/speed.y;
+        temp_ratio.x = (speed.x != 0) ? (collision_vector.x)/speed.x : 0;
+        temp_ratio.y = (speed.y != 0) ? (collision_vector.y)/speed.y : 0;
 
         //temp_ratio.x = max_of<greal>(temp_ratio);
         //temp_ratio.y = temp_ratio.x;
@@ -571,7 +613,6 @@ void Player::move()
     speed.x = int(speed.x * final_ratio.x);
     speed.y = int(speed.y * final_ratio.y);
 
-    after_collision:
 
     //Direction of the player:
     if (pressedR){direction = 1;}
@@ -582,6 +623,7 @@ void Player::move()
     view->centerOn(this);
 }
 **/
+
 
 void Player::throwprojectile(int i)
 {
@@ -620,20 +662,96 @@ void Player::throwprojectile(int i)
 
 void Player::superpower(Collectable collectable)
 {
-    if (collectable.type == star)
+    if (collectable.type == star) //mario clignotte
     {
-        speed.x *= 2;
-        speed.y *= 2;
+        count_super = 0;
+        super = true;
     }
 
     if (collectable.type == mushroom)
     {
-        size *= 2;
+        count_super = 0;
+        speed.x *= 2;
+        super_fast = true;
     }
 
     if (collectable.type == eclair)
     {
+        count_super = 0;
         view->scene->addItem(new Player_projectile_3(pair{x(),y()}, direction, size));
+        super_throw = true;
+    }
+}
+
+void Player::set_animation_state(bool b)
+{
+    switch(state)
+    {
+        case jumpH:
+            if (count>=maxFrame[jumpH])
+            {
+                state = fallH;
+            }
+            break;
+
+        case landH:
+            if (count>=maxFrame[landH])
+            {
+                state = run;
+            }
+            break;
+
+        case jumpV:
+            if (count>=maxFrame[jumpV])
+            {
+                state = fallV;
+            }
+            break;
+
+        case landV:
+            if (count>=maxFrame[landV])
+            {
+                state = stand;
+            }
+            break;
+
+        default:
+            if (b)
+            {
+                if (state==fallH)
+                {
+                    state = landH;
+                }
+                else if (state == fallV)
+                {
+                    state = landV;
+                }
+                else if (speed.x == 0.0)
+                {
+                    state = stand;
+                }
+                else
+                {
+                    state = run;
+                }
+            }
+            else
+            {
+                if (speed.x == 0.0)
+                {
+                    state = fallV;
+                }
+                else
+                {
+                    state = fallH;
+                }
+            }
+    }
+
+    if (state != oldState)
+    {
+        oldState = state;
+        count = 0;
     }
 }
 
@@ -641,28 +759,27 @@ void Player::create_animation()
 {
     QPixmap imgChar(gtexture->get_path_to(basic_player));
 
-    for (int j = 0; j<M-toMirror; j++)
+    for (int j = 0; j<M; j++)
     {
-        for (int i = 0; i<N; i++)
+        for (int i = 0; i<maxFrame[j]; i++)
         {
-            animations[j][i] = imgChar.copy(i*size, j*size, size, size);
-        }
-    }
+            //generate images looking left
+            animations[0][1][j][i] = imgChar.copy(i*size, j*size, size, size);
 
-    QImage img = imgChar.toImage();
-    QImage imgM = img.mirrored(true, false);
-    QPixmap mirrored = QPixmap::fromImage(imgM);
+            //generate images looking right
+            QImage img = imgChar.copy(i*size, j*size, size, size).toImage();
+            img = img.mirrored(true, false);
+            animations[0][0][j][i] = QPixmap::fromImage(img);
 
 
-    int lines[toMirror];
+            //Generate super images looking left
+            animations[1][1][j][i] = imgChar.copy(i*size, (M+j)*size, size, size);
 
-    lines[0] = 1; lines[1] = 2; lines[2] = 3; lines[3] = 5;
+            //Generate super images looking right
+            QImage imgs = imgChar.copy(i*size, (M+j)*size, size, size).toImage();
+            imgs = imgs.mirrored(true, false);
+            animations[1][0][j][i] = QPixmap::fromImage(imgs);
 
-    for (int j = 0; j<toMirror; j++)
-    {
-        for (int i = 0; i<N; i++)
-        {
-            animations[j+(M-toMirror)][i] = mirrored.copy(i*size, lines[j]*size, size, size);
         }
     }
 }

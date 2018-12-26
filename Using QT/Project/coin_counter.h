@@ -5,8 +5,8 @@
 #include <QObject>
 #include "collectable.h"
 #include "player.h"
-#include <vector>
 #include "counter.h"
+#include <vector>
 
 class Coin_counter : public QObject, public QGraphicsPixmapItem
 {
@@ -14,16 +14,21 @@ class Coin_counter : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Coin_counter(QGraphicsItem* parent = 0);
+    Coin_counter(pair position, QGraphicsItem* parent = 0);
 
     int coins;
 
-    void add_coin();
+    std::vector<Counter*> counters;
+
+    pair position;
+
+    void add_coin(int amount = 1);
 
     void update_counter();
 
-    std::vector<Counter*> counters;
+public slots:
 
+    void take_this();
 };
 
 #endif // COIN_COUNTER_H

@@ -2,27 +2,20 @@
 #include "tools.h"
 #include <string>
 #include <QDebug>
+#include <QGraphicsPixmapItem>
+#include <QObject>
 
-Counter::Counter(pair position,QGraphicsItem* parent) : QObject (), QGraphicsPixmapItem (parent)
+Counter::Counter(int power_of_10, QGraphicsItem* parent) :
+    QObject (), QGraphicsPixmapItem (parent)
 {
-    setPos(position.x,position.y);
-
-    update_counter(0);
+    setPos(-(power_of_10+1)*size.x,0);
+    update_counter(power_of_10);
 }
 
 void Counter::update_counter(int counter)
 {
-    qDebug() << "here";
-
-    std::string path = ":/Images/Levels/number_";
-
-    path.append(std::to_string(counter));
-
-    path.append(".png");
-
-    qDebug() << path.c_str();
-
-    setPixmap(QPixmap(path.c_str()));
+    std::string path = ":/Images/Textures/Main_texture/numbers.png";
+    setPixmap(QPixmap(path.c_str()).copy(size.x*(counter%10), 0, size.x, size.y));
 }
 
 

@@ -11,12 +11,6 @@ Collectable::Collectable(pair position, int creator_object_size_y, pair size, QG
 
     this -> size = size;     // gives the size of the collectable
 
-    qDebug() << position.y;
-
-    qDebug() << creator_object_size_y;
-
-    qDebug() << size.x;
-
     collision_range();
 
     QTimer * timer = new QTimer();
@@ -116,6 +110,9 @@ bool Collectable::collision_down()
 
 void Collectable::move()
 {
-    //QObject::deleteLater();
+    if (collision_right() == true || collision_up() == true || collision_down() == true || collision_left() == true)
+    {
+        QObject::deleteLater();
+    }
 }
 

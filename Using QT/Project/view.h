@@ -6,7 +6,7 @@
 #include "tools.h"
 #include "types_states_textures.h"
 #include "texture.h"
-#include "coin_counter.h"
+#include "level_load.h"
 
 class Player;
 
@@ -20,9 +20,6 @@ public:
     View(pair screen_size, int block_size = 18, QWidget * parent=0);
 
     //attributes
-
-    Coin_counter* coin_counter;
-
     int block_size;
 
     pair screen_size;
@@ -32,7 +29,10 @@ public:
     QGraphicsScene * scene;
 
     Player* player;
+
     background* bg;
+
+    Level_load* level_load;
 
     // Create world
     void create_basic_world(int width);
@@ -50,7 +50,7 @@ public:
 
     void start_screen();
 
-    void set_background(QWidget* parent);
+    void set_background(QWidget * parent);
 
 };
 
