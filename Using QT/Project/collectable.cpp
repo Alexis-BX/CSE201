@@ -7,11 +7,13 @@
 Collectable::Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
+    qDebug() << position.x << position.y;
+
     setPos(position.x, position.y);
 
     this -> size = size;     // gives the size of the collectable
 
-    collision_range();
+    create_collision_range();
 
     QTimer * timer = new QTimer();
 
@@ -21,20 +23,22 @@ Collectable::Collectable(pair position, int creator_object_size_y, pair size, QG
 
 }
 
-void Collectable::collision_range() //create the collision box in order to do the collisions
+void Collectable::create_collision_range() //create the collision box in order to do the collisions
 {
-        collision_range_collec = new QGraphicsRectItem(this);
+    collision_range = new QGraphicsRectItem(this);
 
-        collision_range_collec -> setRect(0,0,size.x + size.x/2, size.y + size.y/2);
+    collision_range -> setRect(0,0,size.x + size.x/2, size.y + size.y/2);
 
-        collision_range_collec -> setPos(0 - size.x/4, 0 -size.y/4);
+    collision_range -> setPos(0 - size.x/4, 0 -size.y/4);
+
+    collision_range->setOpacity(0);
 }
 
 // collision function
 bool Collectable::collision_right()
 {
     // return if the right of the collectable suffers a collision with the player
-        QList<QGraphicsItem *> colliding_items = collision_range_collec->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
             if (speed.x > 0) //collectable moves right
@@ -53,7 +57,7 @@ bool Collectable::collision_right()
 
 bool Collectable::collision_left()
 {
-    QList<QGraphicsItem *> colliding_items = collision_range_collec->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
     if (speed.x < 0) //collectable goes backwards
@@ -72,7 +76,7 @@ bool Collectable::collision_left()
 
 bool Collectable::collision_up()
 { // return if the up of the collectable suffers a collision with the player
-    QList<QGraphicsItem *> colliding_items = collision_range_collec->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
         if (speed.y < 0) //collectable goes up
@@ -91,7 +95,7 @@ bool Collectable::collision_up()
 
 bool Collectable::collision_down()
 { // return if the down of the collectable suffers a collision with the player
-    QList<QGraphicsItem *> colliding_items = collision_range_collec->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
         if(speed.y > 0) //collectable goes down
@@ -110,6 +114,15 @@ bool Collectable::collision_down()
 
 void Collectable::move()
 {
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
+    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+    {
+        if(typeid((*iter)) == typeid(Player))
+        {
+            QObject::deleteLater();
+        }
+    }
+
     if (collision_right() == true || collision_up() == true || collision_down() == true || collision_left() == true)
     {
         QObject::deleteLater();

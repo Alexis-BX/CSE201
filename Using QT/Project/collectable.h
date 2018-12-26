@@ -26,10 +26,10 @@ public:
     pair size, position, speed;
     int life; //some collectables have life even though they are not eaten (ex mushroom)
 
-    QGraphicsRectItem* collision_range_collec;
+    QGraphicsRectItem* collision_range;
 
     // Methods
-    void collision_range();
+    void create_collision_range();
 
     bool collision_left(), collision_down(), collision_up(), collision_right();
 
