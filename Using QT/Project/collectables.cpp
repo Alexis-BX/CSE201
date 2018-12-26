@@ -28,8 +28,12 @@ Power_up_1::Power_up_1(pair position, int creator_object_size_y):
     state = decaying;
     life = 100;
     speed = pair{2,0};
+<<<<<<< HEAD
     sprite = gtexture->get_qpixmap_of(power_ups, type);
     setPixmap(sprite[0]);
+=======
+    setPixmap(QPixmap(gtexture->get_path_to(power_up_1)));
+>>>>>>> be8dc67cd71c413ceaa2161fffdae1a0e6cada01
 }
 
 
@@ -39,6 +43,10 @@ Power_up_2::Power_up_2(pair position, int creator_object_size_y):
     type = eclair;
     state = immortal;
     speed = pair{0,0};
+<<<<<<< HEAD
     sprite = gtexture->get_qpixmap_of(power_ups, type);
     setPixmap(sprite[0]);
+=======
+    setPixmap(QPixmap(gtexture->get_path_to(power_up_2)));
+>>>>>>> be8dc67cd71c413ceaa2161fffdae1a0e6cada01
 }

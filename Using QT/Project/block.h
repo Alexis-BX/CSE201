@@ -23,8 +23,11 @@ public:
     Block(pair position, QGraphicsItem* parent = 0);
 
     int image_count{0};
+<<<<<<< HEAD
 
     std::vector<QPixmap> sprite;
+=======
+>>>>>>> be8dc67cd71c413ceaa2161fffdae1a0e6cada01
 
     void is_hit();
 
