@@ -115,9 +115,9 @@ bool Collectable::collision_down()
 void Collectable::move()
 {
     QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
+    for(int i = 0; i < colliding_items.size();i++) //ITERATE OVER THE COLLIDING ITEMS
     {
-        if(typeid((*iter)) == typeid(Player))
+        if(typeid(*(colliding_items[i])) == typeid(Player))
         {
             QObject::deleteLater();
         }
