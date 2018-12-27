@@ -17,11 +17,12 @@ Coin_counter::Coin_counter(pair position, QGraphicsItem* parent) :
 
     Counter* counter = new Counter(0, this);
     counters.push_back(counter);
-
+/**
     // Timer
     QTimer * timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(take_this()));
     timer->start(200);
+    **/
 }
 
 void Coin_counter::add_coin(int amount)

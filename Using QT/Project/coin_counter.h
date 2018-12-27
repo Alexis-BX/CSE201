@@ -4,7 +4,6 @@
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include "collectable.h"
-#include "player.h"
 #include "counter.h"
 #include <vector>
 

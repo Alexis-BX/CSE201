@@ -52,7 +52,7 @@ void View::create_player(pair position)
 
     centerOn(player);
 
-    new Coin_counter(pair{greal(player->size),0},player);
+    player->coin_counter = new Coin_counter(pair{greal(player->size),0},player);
 }
 
 void View::start_screen()

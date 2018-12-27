@@ -4,6 +4,7 @@
 #include "projectile.h"
 #include "projectiles.h"
 #include "collectable.h"
+#include "collectables.h"
 #include "tools.h"
 #include "enemy.h"
 #include "player.h"
@@ -384,8 +385,6 @@ void Player::move()
         //if the top corners collide, we maintain the velocity on x. but not on y
         speed.y = 0; speed.x = speed.x;
     }
-
-
 
     //Direction of the player:
     if (speed.x>0)
