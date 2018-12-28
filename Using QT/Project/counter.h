@@ -1,8 +1,6 @@
 #ifndef COUNTER_H
 #define COUNTER_H
-#include <QGraphicsPixmapItem>
-#include "tools.h"
-#include <QObject>
+#include "global.h"
 
 class Counter : public QObject, public QGraphicsPixmapItem
 {

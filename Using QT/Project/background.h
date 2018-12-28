@@ -1,8 +1,7 @@
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
+#include "global.h"
 
-#include <QGraphicsPixmapItem>
-#include "tools.h"
 #include "texture.h"
 
 class background : public QGraphicsPixmapItem

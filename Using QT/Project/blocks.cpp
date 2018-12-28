@@ -1,7 +1,4 @@
-#include "blocks.h"
-#include "global.h"
-#include "texture.h"
-#include <QTimer>
+#include "listheaders.h"
 
 Base_block::Base_block(pair position, QGraphicsItem* parent) :
     Block(position, parent)

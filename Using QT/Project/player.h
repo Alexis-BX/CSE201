@@ -1,12 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "global.h"
 
-#include <QGraphicsPixmapItem>
-#include <QGraphicsItem>
-#include <QObject>
-#include <QKeyEvent>
-#include "tools.h"
-#include "types_states_textures.h"
 #include "collectable.h"
 #include "coin_counter.h"
 

@@ -1,8 +1,4 @@
-#include "block.h"
-#include "player.h"
-#include "view.h"
-#include "tools.h"
-#include "global.h"
+#include "listheaders.h"
 
 Block::Block(pair position, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)

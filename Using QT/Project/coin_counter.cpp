@@ -1,13 +1,4 @@
-#include "coin_counter.h"
-#include "collectable.h"
-#include "collectables.h"
-#include "player.h"
-#include "view.h"
-#include "global.h"
-#include "tools.h"
-#include "types_states_textures.h"
-#include <QTimer>
-#include <cmath>
+#include "listheaders.h"
 
 Coin_counter::Coin_counter(pair position, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)

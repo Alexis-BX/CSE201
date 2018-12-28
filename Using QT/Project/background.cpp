@@ -1,4 +1,4 @@
-#include "background.h"
+#include "listheaders.h"
 
 background::background(const char * img, pair position, int speed_ratio, QGraphicsItem *parent)
     : QGraphicsPixmapItem(parent)

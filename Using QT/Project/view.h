@@ -1,11 +1,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QtWidgets>
-#include "tools.h"
-#include "types_states_textures.h"
+#include "global.h"
 #include "texture.h"
 #include "level_load.h"
 #include "backgrounds.h"

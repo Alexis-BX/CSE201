@@ -1,9 +1,4 @@
-#include "counter.h"
-#include "tools.h"
-#include <string>
-#include <QDebug>
-#include <QGraphicsPixmapItem>
-#include <QObject>
+#include "listheaders.h"
 
 Counter::Counter(int power_of_10, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)

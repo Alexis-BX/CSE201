@@ -1,12 +1,6 @@
 #ifndef BLOCK_H
 #define BLOCK_H
-
-#include <QGraphicsPixmapItem>
-#include <QObject>
-#include "tools.h"
-#include "types_states_textures.h"
-#include "collectable.h"
-#include "collectables.h"
+#include "global.h"
 
 class Block : public QObject, public QGraphicsPixmapItem
 {

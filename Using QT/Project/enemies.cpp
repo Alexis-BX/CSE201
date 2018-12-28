@@ -1,7 +1,4 @@
-#include "enemies.h"
-#include "global.h"
-#include "texture.h"
-#include <QDebug>
+#include "listheaders.h"
 
 Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
     Enemy(position, parent)

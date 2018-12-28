@@ -1,14 +1,4 @@
-#include <QtDebug>
-#include <QTimer>
-#include <cmath>
-#include "projectile.h"
-#include "types_states_textures.h"
-#include "tools.h"
-#include "global.h"
-#include "enemy.h"
-#include "player.h"
-#include "view.h"
-#include "projectiles.h"
+#include "listheaders.h"
 
 Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixmapItem (parent)
 {

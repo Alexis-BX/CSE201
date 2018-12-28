@@ -1,0 +1,28 @@
+#ifndef LISTHEADERS_H
+#define LISTHEADERS_H
+
+//global.h already in most header files
+//already has tools.h
+//and types_states_textures.h
+
+#include "background.h"
+#include "backgrounds.h"
+#include "block.h"
+#include "blocks.h"
+#include "coin_counter.h"
+#include "collectable.h"
+#include "collectables.h"
+#include "counter.h"
+#include "enemy.h"
+#include "enemies.h"
+#include "enemy.h"
+#include "level_load.h"
+#include "player.h"
+#include "projectile.h"
+#include "projectiles.h"
+#include "start_button.h"
+#include "texture.h"
+#include "view.h"
+
+
+#endif // LISTHEADERS_H

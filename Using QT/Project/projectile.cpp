@@ -1,12 +1,4 @@
-#include <QtDebug>
-#include <QTimer>
-#include <QTime>
-#include "global.h"
-#include "projectile.h"
-#include "player.h"
-#include "view.h"
-#include "tools.h"
-
+#include "listheaders.h"
 
 Projectile::Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)

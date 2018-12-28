@@ -1,6 +1,4 @@
-#include "texture.h"
-#include <QDebug>
-#include "view.h"
+#include "listheaders.h"
 
 Texture::Texture()
 {

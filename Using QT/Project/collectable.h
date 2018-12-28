@@ -1,10 +1,6 @@
 #ifndef COLLECTABLE_H
 #define COLLECTABLE_H 
-
-#include <QGraphicsPixmapItem>
-#include <QObject>
-#include "tools.h"
-#include "types_states_textures.h"
+#include "global.h"
 
 class Collectable : public QObject, public QGraphicsPixmapItem
 {

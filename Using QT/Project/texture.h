@@ -1,10 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
-#include "types_states_textures.h"
-#include "cstring"
-#include "string"
-#include "vector"
-#include <QGraphicsPixmapItem>
+
+#include "global.h"
 
 enum Object_texture
 {

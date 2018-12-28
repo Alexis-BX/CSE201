@@ -16,6 +16,7 @@ debug/start_button.o
 debug/collectables.o
 debug/background.o
 debug/backgrounds.o
+debug/enemies.o
 debug/qrc_resources.o
 debug/moc_player.o
 debug/moc_block.o

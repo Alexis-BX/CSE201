@@ -1,15 +1,4 @@
-#include <QtDebug>
-#include <QTimer>
-#include <cmath>
-#include "projectile.h"
-#include "projectiles.h"
-#include "collectable.h"
-#include "collectables.h"
-#include "tools.h"
-#include "enemy.h"
-#include "player.h"
-#include "view.h"
-#include "global.h"
+#include "listheaders.h"
 
 Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent)
 {

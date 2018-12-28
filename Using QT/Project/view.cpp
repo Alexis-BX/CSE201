@@ -1,18 +1,4 @@
-#include "view.h"
-#include "player.h"
-#include "block.h"
-#include "blocks.h"
-#include "tools.h"
-#include "start_button.h"
-#include "coin_counter.h"
-#include <QDebug>
-#include <cstdlib>
-#include <math.h>
-#include <iostream>
-#include <cstddef>
-#include <fstream>
-#include <QRgb>
-#include <QTimer>
+#include "listheaders.h"
 
 View::View(pair screen_size, int block_size, QWidget* parent)
 {

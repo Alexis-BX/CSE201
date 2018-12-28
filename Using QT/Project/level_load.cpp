@@ -1,15 +1,6 @@
-#include "level_load.h"
-#include "tools.h"
-#include "global.h"
-#include "types_states_textures.h"
-#include "texture.h"
-#include "view.h"
-#include "blocks.h"
-#include "projectiles.h"
-#include <QPixmap>
-#include "enemies.h"
+#include "listheaders.h"
 
-//clas used to store colors under the form (R,G,B)
+//clas used to store colors under the "tuple" form (R,G,B)
 class triple{
 public:
     int r,g,b;
@@ -103,7 +94,7 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
     else if (color == triple(237, 28, 36))
     {
         //CREATE enemy stating point at position (i,j)
-        //view->scene()->addItem(new Enemy_1(position));
+        view->scene()->addItem(new Enemy_1(position));
     }
     else if (color == triple(185, 122, 87))
     {

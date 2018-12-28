@@ -1,8 +1,6 @@
 #ifndef BACKGROUNDS_H
 #define BACKGROUNDS_H
-
 #include "background.h"
-#include "tools.h"
 
 class sky: public background
 {

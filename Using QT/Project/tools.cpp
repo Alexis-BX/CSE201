@@ -1,6 +1,4 @@
-#include "tools.h"
-#include <QTime>
-#include <QCoreApplication>
+#include "listheaders.h"
 
 void delay(int i) //milliseconds
 {

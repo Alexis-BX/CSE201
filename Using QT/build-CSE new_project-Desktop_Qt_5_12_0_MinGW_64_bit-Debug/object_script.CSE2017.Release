@@ -16,6 +16,7 @@ release/start_button.o
 release/collectables.o
 release/background.o
 release/backgrounds.o
+release/enemies.o
 release/qrc_resources.o
 release/moc_player.o
 release/moc_block.o

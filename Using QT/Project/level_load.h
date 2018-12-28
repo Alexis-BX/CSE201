@@ -1,6 +1,5 @@
 #ifndef LEVEL_LOAD_H
 #define LEVEL_LOAD_H
-
 #include "global.h"
 
 class Level_load

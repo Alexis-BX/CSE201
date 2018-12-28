@@ -1,14 +1,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
-
-
-#include <QGraphicsPixmapItem>
-#include <QGraphicsItem>
-#include <QObject>
-#include <QKeyEvent>
-#include "types_states_textures.h"
-#include "tools.h"
-
+#include "global.h"
 
 class Enemy : public QObject, public QGraphicsPixmapItem
 {

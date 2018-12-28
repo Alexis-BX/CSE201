@@ -1,7 +1,4 @@
-#include <QApplication>
-#include "view.h"
-#include "tools.h"
-#include "texture.h"
+#include "listheaders.h"
 
 View* view;
 

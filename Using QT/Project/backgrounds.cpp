@@ -1,6 +1,4 @@
-#include "backgrounds.h"
-#include "global.h"
-#include "texture.h"
+#include "listheaders.h"
 
 sky::sky(pair pos): background(pos)
 {

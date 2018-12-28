@@ -1,10 +1,6 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
-
-#include <QGraphicsPixmapItem>
-#include <QObject>
-#include "tools.h"
-#include "types_states_textures.h"
+#include "global.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {

@@ -1,8 +1,6 @@
 #ifndef START_BUTTON_H
 #define START_BUTTON_H
-#include <QGraphicsPixmapItem>
-#include <QObject>
-#include "tools.h"
+#include "global.h"
 
 class Start_button: public QObject, public QGraphicsPixmapItem
 {

@@ -42,7 +42,8 @@ SOURCES += \
     start_button.cpp \
     collectables.cpp \
     background.cpp \
-    backgrounds.cpp
+    backgrounds.cpp \
+    enemies.cpp
     enemies.cpp
 
 HEADERS += \
@@ -64,7 +65,9 @@ HEADERS += \
     start_button.h \
     collectables.h \
     background.h \
-    backgrounds.h
+    backgrounds.h \
+    listheaders.h \
+    enemies.h
     enemies.h
 
 

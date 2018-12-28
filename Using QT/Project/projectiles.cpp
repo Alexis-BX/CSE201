@@ -1,7 +1,4 @@
-#include "projectiles.h"
-#include "global.h"
-#include "texture.h"
-#include <QtDebug>
+#include "listheaders.h"
 
 Player_projectile_1::Player_projectile_1(pair position, bool direction, int character_size_x):
     Projectile(position, direction, character_size_x, pair{18,5})

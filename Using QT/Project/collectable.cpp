@@ -1,8 +1,4 @@
-#include "collectable.h"
-#include "player.h"
-#include "view.h"
-#include "global.h"
-
+#include "listheaders.h"
 
 Collectable::Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)

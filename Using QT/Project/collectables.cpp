@@ -1,7 +1,4 @@
-#include "collectables.h"
-#include "global.h"
-#include "texture.h"
-#include <QtDebug>
+#include "listheaders.h"
 
 Small_collectable::Small_collectable(pair position, int creator_object_size_y):
     Collectable(position, creator_object_size_y, pair{18,18})
