@@ -1,5 +1,8 @@
 #include "listheaders.h"
+#include "color_triple.h"
+#include "color_triple_definition.h"
 
+/**
 //clas used to store colors under the "tuple" form (R,G,B)
 class triple{
 public:
@@ -18,10 +21,19 @@ public:
         return false;
     }
 };
+**/
 
 Level_load::Level_load(View* view)
 {
     this->view = view;
+
+    color_triples.push_back(new Color_triple<Base_block>(0,0,0,view));
+    color_triples.push_back(new Color_triple<Enemy_1>(237, 28, 36,view));
+    color_triples.push_back(new Color_triple<Special_block_below>(185, 122, 87,view));
+    color_triples.push_back(new Color_triple<Special_block_above>(34, 177, 76,view));
+    color_triples.push_back(new Color_triple<Small_collectable>(255, 242, 00,view));
+    color_triples.push_back(new Color_triple<Active_block>(63, 72, 204,view));
+    color_triples.push_back(new Color_triple<Breakable_block>(255, 127, 39,view));
 }
 
 void Level_load::read_level_image(const char *filename)
@@ -61,13 +73,17 @@ void Level_load::read_level_image(const char *filename)
             G = qGreen(pixColor);
             R = qRed(pixColor);
 
-            color_to_object(B,G,R,x,y);
+            color_to_object(B,G,R,pair{greal(x*view->block_size),-greal(y*view->block_size)});
         }
     }
 }
 
-void Level_load::color_to_object(int B, int G, int R, int x, int y)
+void Level_load::color_to_object(int B, int G, int R, pair position)
 {
+    for(unsigned long long i = 0; i < color_triples.size(); i++)
+    {
+        (*color_triples[i]).test(R,G,B,position);
+    }
 
     /*** we have the following legend take these values +/- a difference chosen so that we can dram with not exactly the same red or blue and it not be a promblem
      * black --> brick --> 0,0,0
@@ -79,8 +95,7 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
      * green --> grass --> 76,177,34
      * brown --> ground --> 87 122 185
     ***/
-
-    pair position = pair{greal(x*view->block_size),greal(-y*view->block_size)};
+    /**
     triple color(R,G,B);
 
     if (color == triple(0, 0, 0))
@@ -106,7 +121,7 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
     }
     else if (color == triple(255, 242, 0))
     {
-        view->scene()->addItem(new Small_collectable(position,0));
+        view->scene()->addItem(new Small_collectable(position));
     }
     else if (color == triple(63, 72, 204))
     {
@@ -116,4 +131,5 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
     {
         view->scene()->addItem(new Breakable_block(position));
     }
+    **/
 }

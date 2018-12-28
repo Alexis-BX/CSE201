@@ -67,7 +67,9 @@ HEADERS += \
     background.h \
     backgrounds.h \
     listheaders.h \
-    enemies.h
+    enemies.h \
+    color_triple.h \
+    color_triple_definition.h
     enemies.h
 
 
