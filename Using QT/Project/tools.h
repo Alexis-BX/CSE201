@@ -44,6 +44,8 @@ template <typename T> T abs(T a)
     return (a<0) ? -a : a;
 };
 
+greal distance(pair a, pair b);
+
 void delay(int i);
 
 

@@ -38,6 +38,8 @@ public:
     //N: max amount of images per state (longest line)
     int size{36}, M{11}, N{8}, block_size{18}, count_super;
 
+    int times_jumped{0}, max_consecutive_jumps{2};
+
     States state{stand}, oldState{stand};
 
     double count;

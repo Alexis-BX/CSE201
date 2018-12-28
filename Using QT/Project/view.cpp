@@ -16,12 +16,12 @@
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
     this->block_size = block_size;
+
     this->screen_size = screen_size;
 
 
     //scene set up
-    scene = new QGraphicsScene();
-    setScene(scene);
+    setScene(new QGraphicsScene());
 
 
     //Set the background
@@ -48,7 +48,7 @@ void View::create_player(pair position)
 
     player->setFocus();
 
-    scene->addItem(player);
+    scene()->addItem(player);
 
     centerOn(player);
 
@@ -65,7 +65,7 @@ void View::start_screen()
 
     level_load->read_level_image(":/Images/Levels/screen_start.png");
 
-    scene->addItem(new Start_button(screen_size));
+    scene()->addItem(new Start_button(screen_size));
 
 }
 

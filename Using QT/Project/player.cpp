@@ -65,6 +65,11 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Up)
     {
+        if(times_jumped >= max_consecutive_jumps)
+        {
+            return;
+        }
+        times_jumped ++;
         speed.y -= speedMax.y;
         if (speed.x == 0.0){
             state = jumpV;
@@ -111,7 +116,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 
 void Player::create_enemy()
 {   //condition to create enemy... - decide and add and if condition
-        view->scene->addItem(new Enemy(36, pair{x()+2* size,y() -50 }, abs(direction-1)));
+        view->scene()->addItem(new Enemy(pair{x()+2* size,y() -50 }));
 }
 
 bool Player::collision_right()
@@ -346,6 +351,7 @@ void Player::move()
     }
 
 
+    collision_range->setPos(speed.x,speed.y);
 
     bool r = collision_right();
     bool l = collision_left();
@@ -385,6 +391,13 @@ void Player::move()
         //if the top corners collide, we maintain the velocity on x. but not on y
         speed.y = 0; speed.x = speed.x;
     }
+
+    //Jump reset
+    if(b)
+    {
+        times_jumped = 0;
+    }
+
 
     //Direction of the player:
     if (speed.x>0)
@@ -446,6 +459,7 @@ void Player::move()
     view->centerOn(this);
 }
 
+/**
 void Player::create_collision_range()
 {
     collision_range = new QGraphicsRectItem(this);
@@ -456,12 +470,13 @@ void Player::create_collision_range()
 
     collision_range->setOpacity(0);
 }
+**/
 
 /***
  * Trying another move method
  ***/
 
-/**
+
 void Player::create_collision_range()
 {
     collision_range = new QGraphicsRectItem(this);
@@ -472,7 +487,7 @@ void Player::create_collision_range()
 
     //collision_range->setPen(QPen(Qt::NoPen));
 }
-
+/**
 void Player::move()
 {
 
@@ -635,25 +650,25 @@ void Player::throwprojectile(int i)
     {
     case 1:
     {
-        view->scene->addItem(new Player_projectile_1(position, direction, size));
+        view->scene()->addItem(new Player_projectile_1(position, direction, size));
         break;
     }
 
     case 2:
     {
-        view->scene->addItem(new Player_projectile_2(position, direction, size));
+        view->scene()->addItem(new Player_projectile_2(position, direction, size));
         break;
     }
 
     case 3:
     {
-        view->scene->addItem(new Player_projectile_3(position, direction, size));
+        view->scene()->addItem(new Player_projectile_3(position, direction, size));
         break;
     }
 
     case 4:
     {
-        view->scene->addItem(new Enemy_projectile_1(position, direction, size));
+        view->scene()->addItem(new Enemy_projectile_1(position, direction, size));
         break;
     }
     }
@@ -677,7 +692,7 @@ void Player::superpower(Collectable collectable)
     if (collectable.type == eclair)
     {
         count_super = 0;
-        view->scene->addItem(new Player_projectile_3(pair{x(),y()}, direction, size));
+        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, direction, size));
         super_throw = true;
     }
 }

@@ -26,8 +26,6 @@ public:
 
     double_pair world_size;
 
-    QGraphicsScene * scene;
-
     Player* player;
 
     background* bg;
