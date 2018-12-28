@@ -1,8 +1,7 @@
 #ifndef VIEW_H
 #define VIEW_H
-
 #include "global.h"
-#include "texture.h"
+
 #include "level_load.h"
 #include "backgrounds.h"
 

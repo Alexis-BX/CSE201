@@ -2,7 +2,6 @@
 #define ENEMIES_H
 #include "enemy.h"
 
-
 class Enemy_1: public Enemy
 {
 public:

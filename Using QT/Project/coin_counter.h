@@ -2,7 +2,6 @@
 #define COIN_COUNTER_H
 #include "global.h"
 
-#include "collectable.h"
 #include "counter.h"
 
 class Coin_counter : public QObject, public QGraphicsPixmapItem
