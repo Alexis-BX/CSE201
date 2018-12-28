@@ -43,6 +43,7 @@ SOURCES += \
     collectables.cpp \
     background.cpp \
     backgrounds.cpp
+    enemies.cpp
 
 HEADERS += \
     player.h \
@@ -64,6 +65,7 @@ HEADERS += \
     collectables.h \
     background.h \
     backgrounds.h
+    enemies.h
 
 
 

@@ -5,35 +5,35 @@
 class Base_block: public Block
 {
 public:
-    Base_block(pair position);
+    Base_block(pair position, QGraphicsItem* parent = 0);
 };
 
 
 class Breakable_block: public Block
 {
 public:
-    Breakable_block(pair position);
+    Breakable_block(pair position, QGraphicsItem* parent = 0);
 };
 
 
 class Active_block: public Block
 {
 public:
-    Active_block(pair position);
+    Active_block(pair position, QGraphicsItem* parent = 0);
 };
 
 
 class Special_block_above: public Block
 {
 public:
-    Special_block_above(pair position);
+    Special_block_above(pair position, QGraphicsItem* parent = 0);
 };
 
 
 class Special_block_below: public Block
 {
 public:
-    Special_block_below(pair position);
+    Special_block_below(pair position, QGraphicsItem* parent = 0);
 };
 
 #endif // BLOCKS_H

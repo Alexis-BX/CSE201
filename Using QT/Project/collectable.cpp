@@ -7,8 +7,6 @@
 Collectable::Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
-    qDebug() << position.x << position.y;
-
     setPos(position.x, position.y);
 
     this -> size = size;     // gives the size of the collectable
@@ -119,7 +117,11 @@ void Collectable::move()
     {
         if(typeid(*(colliding_items[i])) == typeid(Player))
         {
-            QObject::deleteLater();
+            if(type == cheese)
+            {
+                view->player->coin_counter->add_coin();
+                QObject::deleteLater();
+            }
         }
     }
 

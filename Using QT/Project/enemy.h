@@ -17,18 +17,28 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Enemy(int size = 36, pair position = pair{0,0}, bool direction = 0, QGraphicsItem* parent = 0);
-
-    bool direction = 0;
+    Enemy(pair position, QGraphicsItem* parent = 0);
 
     // Attributes
-    pair speedMax,speed;
+    bool direction{false};
 
-    int size{36}, count{0}, N{4}, life{100};
+    pair speedMax, speed, size;
 
-    std::vector<QPixmap> sprite[2];
+    int number_of_frames, life;
 
-    QGraphicsRectItem* collision_range_enemy;
+    double count{0};
+
+    QTimer* projectile_timer;
+
+    std::vector<QPixmap> animation[2];
+
+    QGraphicsRectItem* collision_range;
+
+    Enemy_type type;
+
+    Enemy_state state;
+
+    Enemy_texture texture;
 
 
     // Methods
@@ -38,7 +48,7 @@ public:
 
     bool player_pos_t_l(), player_pos_t_r(), player_pos_b_l(), player_pos_b_r();
 
-    bool throwprojectile();
+    void create_collision_range();
 
 
 public slots:
@@ -46,5 +56,6 @@ public slots:
     // Slot for timer
     void move();
 
+    void throw_projectile();
 };
 #endif // ENEMY_H

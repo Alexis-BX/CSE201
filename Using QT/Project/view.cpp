@@ -17,22 +17,22 @@
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
     this->block_size = block_size;
+
     this->screen_size = screen_size;
 
     //scene set up
-    scene = new QGraphicsScene();
-    setScene(scene);
+    setScene(new QGraphicsScene());
 
 
     //Set the background layers (paralax background)
     sky = new class sky(pair {0,-screen_size.y});
-    scene->addItem(sky);
+    scene()->addItem(sky);
 
     monuments = new monument(pair{0,qreal(-450)});
-    scene->addItem(monuments);
+    scene()->addItem(monuments);
 
     buildings = new class buildings(pair{0,qreal(-300)});
-    scene->addItem(buildings);
+    scene()->addItem(buildings);
 
     // Create Player
     create_player();
@@ -53,11 +53,11 @@ void View::create_player(pair position)
 
     player->setFocus();
 
-    scene->addItem(player);
+    scene()->addItem(player);
 
     centerOn(player);
 
-    new Coin_counter(pair{greal(player->size),0},player);
+    player->coin_counter = new Coin_counter(pair{greal(player->size),0},player);
 }
 
 void View::start_screen()
@@ -70,7 +70,7 @@ void View::start_screen()
 
     level_load->read_level_image(":/Images/Levels/screen_start.png");
 
-    scene->addItem(new Start_button(screen_size));
+    scene()->addItem(new Start_button(screen_size));
 
 }
 

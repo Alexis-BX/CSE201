@@ -46,7 +46,7 @@ Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int charac
 
     life = 200000;
 
-    speed = pair{velocity * ((direction) ? 1 : -1), -velocity + 3};
+    speed = pair{velocity * ((direction) ? 1 : -1), 0};
 
     setPixmap(gtexture->get_qpixmap_of(projectiles, type)[img_count]);
 }

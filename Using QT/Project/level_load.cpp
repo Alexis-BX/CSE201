@@ -7,6 +7,7 @@
 #include "blocks.h"
 #include "projectiles.h"
 #include <QPixmap>
+#include "enemies.h"
 
 //clas used to store colors under the form (R,G,B)
 class triple{
@@ -93,7 +94,7 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
 
     if (color == triple(0, 0, 0))
     {
-        view->scene->addItem(new Base_block(position));
+        view->scene()->addItem(new Base_block(position));
     }
     else if (color == triple(255, 255, 255))
     {
@@ -102,25 +103,26 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
     else if (color == triple(237, 28, 36))
     {
         //CREATE enemy stating point at position (i,j)
+        //view->scene()->addItem(new Enemy_1(position));
     }
     else if (color == triple(185, 122, 87))
     {
-        view->scene->addItem(new Special_block_below(position));
+        view->scene()->addItem(new Special_block_below(position));
     }
     else if (color == triple(34, 177, 76))
     {
-        view->scene->addItem(new Special_block_above(position));
+        view->scene()->addItem(new Special_block_above(position));
     }
     else if (color == triple(255, 242, 0))
     {
-        view->scene->addItem(new Small_collectable(position,0));
+        view->scene()->addItem(new Small_collectable(position,0));
     }
     else if (color == triple(63, 72, 204))
     {
-        view->scene->addItem(new Active_block(position));
+        view->scene()->addItem(new Active_block(position));
     }
     else if (color == triple(255, 127, 39))
     {
-        view->scene->addItem(new Breakable_block(position));
+        view->scene()->addItem(new Breakable_block(position));
     }
 }

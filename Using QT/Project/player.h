@@ -8,6 +8,7 @@
 #include "tools.h"
 #include "types_states_textures.h"
 #include "collectable.h"
+#include "coin_counter.h"
 
 //list of player states
 enum States{
@@ -23,6 +24,7 @@ public:
 
     Player(QGraphicsItem* parent = 0, int size = 36);
 
+    Coin_counter* coin_counter;
 
     // Attributes
     pair speedMax,speed;
@@ -35,6 +37,8 @@ public:
     //M: amount of character states (linesin sheet)
     //N: max amount of images per state (longest line)
     int size{36}, M{11}, N{8}, block_size{18}, count_super;
+
+    int times_jumped{0}, max_consecutive_jumps{2};
 
     States state{stand}, oldState{stand};
 

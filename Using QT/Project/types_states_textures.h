@@ -71,4 +71,20 @@ enum Projectile_type
     pot=12
 };
 
+enum Enemy_type
+{
+    basic
+};
+
+enum Enemy_state
+{
+    passiv,
+    aggressiv
+};
+
+enum Enemy_texture
+{
+    normal
+};
+
 #endif // TYPES_STATES_TEXTURES_H

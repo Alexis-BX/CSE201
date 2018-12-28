@@ -8,47 +8,23 @@
 #include "enemy.h"
 #include "player.h"
 #include "view.h"
+#include "projectiles.h"
 
-Enemy::Enemy(int size, pair position, bool direction, QGraphicsItem* parent ) : QObject (), QGraphicsPixmapItem (parent)
+Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixmapItem (parent)
 {
 
     setPos(position.x, position.y);
 
-    //setting animations
-    sprite[1] = gtexture->get_qpixmap_of(enemy_1, 0, N, 36);
-    for (int i=0; i<N; i++){
-        QImage img = sprite[1][i].toImage();
-        img = img.mirrored(true, false);
-        sprite[0][i] = QPixmap::fromImage(img);
-    }
-    setPixmap(sprite[0][0]);
-
-    // Attributes
-    if (direction == 0){ speed = pair{-5,2};}
-    else { speed = pair{5,2};}
-
-    speedMax = pair{10,15};
-
-    direction = 0; //0 = left, 1 = right
-
-    this->size = size;
-
-    // Create collision Range
-    collision_range_enemy = new QGraphicsRectItem(this);
-    collision_range_enemy->setRect(0,0, 1.5* size, 1.5 * size);
-
-    collision_range_enemy->setPos(0 - size/4,0 - size/4); //we readjust the position of the collision box so that is centers the player
-
-    collision_range_enemy->setOpacity(0.5);
-
-    // Timer
+    // Timers
     QTimer * timer = new QTimer();
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(20);
 
+    projectile_timer = new QTimer();
 
+    QObject::connect(projectile_timer,SIGNAL(timeout()),this,SLOT(throw_projectile()));
 }
 
 //coordinates of the player:
@@ -58,12 +34,12 @@ bool Enemy::collision_right()
 {
     if (speed.x > 0)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            for (int i = 0; i < size; i += 1)
+            for (int i = 0; i < size.y; i += 1)
             {
-                if ((*iter)-> contains(QPointF(x() + (size) + (speed.x-1)  - (*iter)->x() , y() + i    -(*iter)->y() )))
+                if ((*iter)-> contains(QPointF(x() + (size.y) + (speed.x-1)  - (*iter)->x() , y() + i    -(*iter)->y() )))
                 {
                     return true;
                 }
@@ -79,10 +55,10 @@ bool Enemy::collision_left()
 {
     if (speed.x < 0)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            for (int i = 0; i< size; i += 1)
+            for (int i = 0; i< size.y; i += 1)
             {
                 if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + i   -(*iter)->y() )))
                 {
@@ -98,10 +74,10 @@ bool Enemy::collision_up()
 {
     if (speed.y < 0)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            for (int i = 0; i< size; i += 1)
+            for (int i = 0; i< size.x; i += 1)
             {
                 if ((*iter)-> contains(QPointF(x() + i  - (*iter)->x() , y() + (speed.y)  -(*iter)->y() )))
                 {
@@ -118,12 +94,12 @@ bool Enemy::collision_down()
 {
     if (speed.y > 0)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
-            for (int i = 0; i<size; i += 1)
+            for (int i = 0; i<size.x; i += 1)
             {
-                if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + (size) + (speed.y-1 )  - (*iter)->y() )))
+                if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + (size.x) + (speed.y-1 )  - (*iter)->y() )))
                 {
                     return true;
                 }
@@ -140,11 +116,11 @@ bool Enemy::collision_b_l() //spots if the bottom left corner endures a collisio
     bool b = collision_down();
     if(speed.y > 0 && speed.x < 0 && l == false && b == false)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
             //(bottom left, (0,36)
-            if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + (size) + (speed.y - 1)   -(*iter)->y() )))
+            if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + (size.y) + (speed.y - 1)   -(*iter)->y() )))
             {
                 return true;
             }
@@ -159,11 +135,11 @@ bool Enemy::collision_b_r() // spots if the bottom right corner endures a collis
     bool b = collision_down();
     if(speed.y > 0 && speed.x > 0 && r == false && b == false)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
             //(bottom right, (36,36)
-            if ((*iter)-> contains(QPointF(x() + size + (speed.x - 1)  - (*iter)->x() , y() + (size) + (speed.y - 1)   -(*iter)->y() )))
+            if ((*iter)-> contains(QPointF(x() + size.y + (speed.x - 1)  - (*iter)->x() , y() + (size.y) + (speed.y - 1)   -(*iter)->y() )))
             {
                 return true;
             }
@@ -178,7 +154,7 @@ bool Enemy::collision_t_l()
     bool t = collision_up();
     if(speed.y < 0 && speed.x < 0 && l == false && t == false)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
             //(top left (0,0))
@@ -197,11 +173,11 @@ bool Enemy::collision_t_r()
     bool t = collision_up();
     if(speed.y < 0 && speed.x > 0 && r == false && t == false)
     {
-        QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
         for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
         {
             //(top right (36,0))
-            if ((*iter)-> contains(QPointF(x() + size + speed.x-1 - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
+            if ((*iter)-> contains(QPointF(x() + size.y + speed.x-1 - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
             {
                 return true;
             }
@@ -226,6 +202,22 @@ void Enemy::move()
     }
 
     speed.y += 1;
+
+    collision_range->setPos(speed.x,speed.y);
+
+    //Player in range
+    greal distance_to_player = distance(pair{view->player->x(),view->player->y()},pair{x(),y()});
+
+    if(distance_to_player < 30000 && state == passiv)
+    {
+        state = aggressiv;
+        projectile_timer->start(500);
+    }
+    else if(distance_to_player > 60000 and state == aggressiv)
+    {
+        state = passiv;
+        projectile_timer->stop();
+    }
 
     bool play_tl = player_pos_t_l();
     bool play_tr = player_pos_t_r();
@@ -318,14 +310,20 @@ void Enemy::move()
     }
 
     //Direction of the player:
-    if (speed.x < 0){direction = 0;}
-    else{direction = 1;}
+    if (speed.x < 0)
+    {
+        direction = 0;
+    }
+    else
+    {
+        direction = 1;
+    }
 
     count+=0.2;
-    if (count>=N){
+    if (count >= number_of_frames){
         count = 0;
     }
-    setPixmap(sprite[direction][int(count)]);
+    setPixmap(animation[direction][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
 
@@ -333,12 +331,12 @@ void Enemy::move()
 
 bool Enemy::block_right()
 {
-    QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
-        for (int i = 0; i < size; i += 1)
+        for (int i = 0; i < size.y; i += 1)
         {
-            if ((*iter)-> contains(QPointF(x() + (size) - (*iter)->x() , y() + i    -(*iter)->y() )))
+            if ((*iter)-> contains(QPointF(x() + (size.y) - (*iter)->x() , y() + i    -(*iter)->y() )))
             {
                 return true;
             }
@@ -350,10 +348,10 @@ bool Enemy::block_right()
 
 bool Enemy::block_left()
 {
-    QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
-        for (int i = 0; i < size; i += 1)
+        for (int i = 0; i < size.y; i += 1)
         {
             if ((*iter)-> contains(QPointF(x() -1 - (*iter)->x() , y() + i    -(*iter)->y() )))
             {
@@ -368,12 +366,12 @@ bool Enemy::block_left()
 
 bool Enemy::block_down()
 {
-    QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
-        for (int i = 0; i < size; i += 1)
+        for (int i = 0; i < size.y; i += 1)
         {
-            if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + size    -(*iter)->y() )))
+            if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + size.y    -(*iter)->y() )))
             {
                 return true;
             }
@@ -385,10 +383,10 @@ bool Enemy::block_down()
 
 bool Enemy::block_up()
 {
-    QList<QGraphicsItem *> colliding_items = collision_range_enemy->collidingItems();
+    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
     for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
     {
-        for (int i = 0; i < size; i += 1)
+        for (int i = 0; i < size.y; i += 1)
         {
             if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() -1   -(*iter)->y() )))
             {
@@ -402,7 +400,7 @@ bool Enemy::block_up()
 
 bool Enemy::player_pos_b_l() //is the player at the bottom left of the enemy? (not colliding though)
 {
-    if (view->player->x() + size < x() && view->player->y() > y() + size ) //here size should be player.size in the x part
+    if (view->player->x() + size.y < x() && view->player->y() > y() + size.y ) //here size.y should be player.size.y in the x part
     {
         return true;
     }
@@ -411,7 +409,7 @@ bool Enemy::player_pos_b_l() //is the player at the bottom left of the enemy? (n
 
 bool Enemy::player_pos_b_r() //is the player at the bottom right of the enemy? (not colliding though)
 {
-    if (view->player->x() > x() + size  && view->player->y() > y() + size )
+    if (view->player->x() > x() + size.y  && view->player->y() > y() + size.y )
     {
         return true;
     }
@@ -420,7 +418,7 @@ bool Enemy::player_pos_b_r() //is the player at the bottom right of the enemy? (
 
 bool Enemy::player_pos_t_l() //is the player at the top left of the enemy? (horizontal included) (not colliding though)
 {
-    if (view->player->x() + size < x() && view->player->y()+ size <= y() + size) //here size should be player.size in the x part
+    if (view->player->x() + size.y < x() && view->player->y()+ size.y <= y() + size.y) //here size.y should be player.size.y in the x part
     {
         return true;
     }
@@ -429,18 +427,26 @@ bool Enemy::player_pos_t_l() //is the player at the top left of the enemy? (hori
 
 bool Enemy::player_pos_t_r() //is the player at the top right of the enemy? (horizontal included) (not colliding though)
 {
-    if (view->player->x() > x() + size && view->player->y() <= y() + size )
+    if (view->player->x() > x() + size.y && view->player->y() <= y() + size.y )
     {
         return true;
     }
     return false;
 }
 
-bool Enemy::throwprojectile()
-{
-    qreal player_x = view->player->x();
-    qreal player_y = view->player->y();
+void Enemy::throw_projectile()
+{    
+    //pair position{view->player->x(),view->player->y()};
+    view->scene()->addItem(new Enemy_projectile_1(pair{x(),y()},direction,size.x));
+}
 
-    return 1.0;//to do
+void Enemy::create_collision_range()
+{
+    // Create collision Range
+    collision_range = new QGraphicsRectItem(this);
+
+    collision_range->setRect(0,0, size.x, size.y);
+
+    collision_range->setOpacity(0);
 }
 

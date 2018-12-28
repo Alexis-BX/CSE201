@@ -22,7 +22,7 @@ public:
 
     Block(pair position, QGraphicsItem* parent = 0);
 
-    int image_count{0};
+    unsigned long long image_count{0};
 
     std::vector<QPixmap> sprite;
 

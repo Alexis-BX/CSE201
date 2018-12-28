@@ -3,8 +3,8 @@
 #include "texture.h"
 #include <QTimer>
 
-Base_block::Base_block(pair position) :
-    Block(position)
+Base_block::Base_block(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
 {
     type = permanent;
     texture = brick;
@@ -14,8 +14,8 @@ Base_block::Base_block(pair position) :
 }
 
 
-Breakable_block::Breakable_block(pair position) :
-    Block(position)
+Breakable_block::Breakable_block(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
 {
     type = breakable;
     texture = crate;
@@ -26,8 +26,8 @@ Breakable_block::Breakable_block(pair position) :
 
 }
 
-Active_block::Active_block(pair position) :
-    Block(position)
+Active_block::Active_block(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
 {
     type = active;
     texture = question_mark;
@@ -42,8 +42,8 @@ Active_block::Active_block(pair position) :
     timer->start(500);
 }
 
-Special_block_above::Special_block_above(pair position) :
-    Block(position)
+Special_block_above::Special_block_above(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
 {
     type = permanent;
     texture = grass;
@@ -53,8 +53,8 @@ Special_block_above::Special_block_above(pair position) :
     setPixmap(sprite[image_count]);
 }
 
-Special_block_below::Special_block_below(pair position) :
-    Block(position)
+Special_block_below::Special_block_below(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
 {
     type = permanent;
     texture = dirt;

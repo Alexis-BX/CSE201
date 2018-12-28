@@ -23,5 +23,10 @@
         <file>background/bg.png</file>
         <file>background/buildings.png</file>
         <file>background/eiffel.png</file>
+        <file>Levels/test_world_enemies2.png</file>
+        <file>Levels/Basic_world.png</file>
+        <file>Levels/level_guid.png</file>
+        <file>Levels/test_world_enemies.bmp</file>
+        <file>Levels/test_world_enemies.png</file>
     </qresource>
 </RCC>
