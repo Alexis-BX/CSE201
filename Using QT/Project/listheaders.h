@@ -1,7 +1,7 @@
 #ifndef LISTHEADERS_H
 #define LISTHEADERS_H
 
-//global.h already in most header files
+//global.h already in header files so no need in cpp
 //already has tools.h
 //and types_states_textures.h
 
