@@ -8,6 +8,25 @@
 #include "projectiles.h"
 #include <QPixmap>
 
+//clas used to store colors under the form (R,G,B)
+class triple{
+public:
+    int r,g,b;
+
+    triple(int x, int y, int z){
+        r = x; g = y; b = z;
+    }
+
+    bool operator ==(triple other){
+        int diff = 4;
+        int R{other.r}, B{other.b}, G{other.g};
+        if (abs(R-r)<=diff && abs(G-g)<=diff && abs(B-b)<=diff){
+            return true;
+        }
+        return false;
+    }
+};
+
 Level_load::Level_load(View* view)
 {
     this->view = view;
@@ -69,40 +88,38 @@ void Level_load::color_to_object(int B, int G, int R, int x, int y)
      * brown --> ground --> 87 122 185
     ***/
 
-    int diff=4;
     pair position = pair{greal(x*view->block_size),greal(-y*view->block_size)};
+    triple color(R,G,B);
 
-
-    if (B<=diff && G<=diff && R<=diff)
+    if (color == triple(0, 0, 0))
     {
         view->scene->addItem(new Base_block(position));
     }
-    else if (B>=255-diff && G>=255-diff && R>=255-diff)
+    else if (color == triple(255, 255, 255))
     {
         //CREATE nothing at position (i,j)
     }
-    else if (36-diff<=B && B<=36+diff  && 28-diff<=G && G<=28+diff && 237-diff<=R && R<=237+diff)
+    else if (color == triple(237, 28, 36))
     {
         //CREATE enemy stating point at position (i,j)
     }
-    else if (87-diff<=B && B<=87+diff  && 122-diff<=G && G<=122+diff && 185-diff<=R && R<=185+diff)
+    else if (color == triple(185, 122, 87))
     {
         view->scene->addItem(new Special_block_below(position));
     }
-    else if (76-diff<=B && B<=76+diff  && 177-diff<=G && G<=177+diff && 34-diff<=R && R<=34+diff)
+    else if (color == triple(34, 177, 76))
     {
         view->scene->addItem(new Special_block_above(position));
     }
-    else if ( B<=0+diff  && 242-diff<=G && G<=242+diff && 255-diff<=R)
+    else if (color == triple(255, 242, 0))
     {
-        //CREATE coin at position (i,j)
         view->scene->addItem(new Small_collectable(position,0));
     }
-    else if (204-diff<=B && B<=204+diff  && 72-diff<=G && G<=72+diff && 63-diff<=R && R<=63+diff)
+    else if (color == triple(63, 72, 204))
     {
         view->scene->addItem(new Active_block(position));
     }
-    else if (39-diff<=B && B<=39+diff  && 127-diff<=G && G<=127+diff && 255-diff<=R)
+    else if (color == triple(255, 127, 39))
     {
         view->scene->addItem(new Breakable_block(position));
     }

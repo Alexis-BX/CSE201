@@ -98,9 +98,24 @@ void Texture::define_troll_texture_1()
     object_image_from_texure[troll_texture_1] = texture_temp;
 }
 
+void Texture::define_background()
+{
+    names_background[Tsky] = "bg.png";
+
+    names_background[Tmonument] = "eiffel.png";
+
+    names_background[Tbuildings] = "buildings.png";
+
+}
+
 const char* Texture::get_path_to(Object_texture ojb_tex)
 {
     return (path_to_textures+texture_names[current_texture]+object_image_from_texure[current_texture][ojb_tex]).c_str();
+}
+
+const char* Texture::get_path_to(Backgrounds bg)
+{
+    return (":Images/background/"+names_background[bg]).c_str();
 }
 
 std::vector<QPixmap> Texture::get_qpixmap_of(Object_texture sheet, int start, int length, int size)

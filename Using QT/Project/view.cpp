@@ -12,21 +12,27 @@
 #include <cstddef>
 #include <fstream>
 #include <QRgb>
+#include <QTimer>
 
 View::View(pair screen_size, int block_size, QWidget* parent)
 {
     this->block_size = block_size;
     this->screen_size = screen_size;
 
-
     //scene set up
     scene = new QGraphicsScene();
     setScene(scene);
 
 
-    //Set the background
-    set_background(parent);
+    //Set the background layers (paralax background)
+    sky = new class sky(pair {0,-screen_size.y});
+    scene->addItem(sky);
 
+    monuments = new monument(pair{0,qreal(-450)});
+    scene->addItem(monuments);
+
+    buildings = new class buildings(pair{0,qreal(-300)});
+    scene->addItem(buildings);
 
     // Create Player
     create_player();
@@ -35,7 +41,6 @@ View::View(pair screen_size, int block_size, QWidget* parent)
     level_load = new Level_load(this);
 
     level_load->read_level_image(":/Images/Levels/Level_agathe_001.png");
-
 }
 
 void View::create_player(pair position)
@@ -69,19 +74,16 @@ void View::start_screen()
 
 }
 
-void View::set_background(QWidget * parent)
+void View::update_bg()
 {
-    QPixmap bkgnd(":/Images/background/back3.png");
+    applyParallax(sky);
+    applyParallax(monuments);
+    applyParallax(buildings);
+}
 
-    //bkgnd = bkgnd.scaled(size(), Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-
-    QPalette palette;
-
-    palette.setBrush(QPalette::Background, bkgnd);
-
-    setPalette(palette);
-
-    setBackgroundBrush(bkgnd);
+void View::applyParallax(background* item) {
+    double speed = player->speed.x/item->speed_ratio;
+    item->setX(item->x()-speed);
 }
 
 /** OLD VERSION THAT ONLY WORKED ON WINDOWS USE QT TOOLS TO MAKE IT WORK FOR EVERYTHING

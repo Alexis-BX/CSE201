@@ -2,15 +2,15 @@
 #define VIEW_H
 
 #include <QGraphicsView>
+#include <QGraphicsScene>
 #include <QtWidgets>
 #include "tools.h"
 #include "types_states_textures.h"
 #include "texture.h"
 #include "level_load.h"
+#include "backgrounds.h"
 
 class Player;
-
-class background;
 
 class View : public QGraphicsView
 {
@@ -30,9 +30,14 @@ public:
 
     Player* player;
 
-    background* bg;
-
     Level_load* level_load;
+
+    //backgrounds
+    class sky * sky;
+    class monument * monuments;
+    class buildings * buildings;
+
+    void applyParallax(background* item);
 
     // Create world
     void create_basic_world(int width);
@@ -50,8 +55,7 @@ public:
 
     void start_screen();
 
-    void set_background(QWidget * parent);
-
+    void update_bg();
 };
 
 #endif // VIEW_H

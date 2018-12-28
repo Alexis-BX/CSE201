@@ -445,6 +445,7 @@ void Player::move()
     setPos(x()+speed.x,y()+speed.y);
 
     view->centerOn(this);
+    view->update_bg();
 }
 
 void Player::create_collision_range()
