@@ -1,7 +1,6 @@
 #ifndef LEVEL_LOAD_H
 #define LEVEL_LOAD_H
 #include "global.h"
-#include <vector>
 #include "color_triple.h"
 
 

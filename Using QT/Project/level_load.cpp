@@ -1,6 +1,4 @@
 #include "listheaders.h"
-#include "color_triple.h"
-#include "color_triple_definition.h"
 
 /**
 //clas used to store colors under the "tuple" form (R,G,B)

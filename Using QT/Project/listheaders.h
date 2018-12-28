@@ -12,6 +12,8 @@
 #include "coin_counter.h"
 #include "collectable.h"
 #include "collectables.h"
+#include "color_triple.h"
+#include "color_triple_definition.h"
 #include "counter.h"
 #include "enemy.h"
 #include "enemies.h"

@@ -1,7 +1,6 @@
 #ifndef COLOR_TRIPLE_H
 #define COLOR_TRIPLE_H
 #include "global.h"
-#include "tools.h"
 
 class Base_color_triple
 {
