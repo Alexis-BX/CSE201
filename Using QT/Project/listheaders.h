@@ -24,7 +24,6 @@
 #include "player.h"
 #include "projectile.h"
 #include "projectiles.h"
-#include "start_button.h"
 #include "texture.h"
 #include "view.h"
 

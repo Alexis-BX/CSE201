@@ -108,22 +108,5 @@ bool Collectable::collision_down()
 
 void Collectable::move()
 {
-    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-    for(int i = 0; i < colliding_items.size();i++) //ITERATE OVER THE COLLIDING ITEMS
-    {
-        if(typeid(*(colliding_items[i])) == typeid(Player))
-        {
-            if(type == cheese)
-            {
-                view->player->coin_counter->add_coin();
-                QObject::deleteLater();
-            }
-        }
-    }
-
-    if (collision_right() == true || collision_up() == true || collision_down() == true || collision_left() == true)
-    {
-        QObject::deleteLater();
-    }
 }
 

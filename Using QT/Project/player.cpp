@@ -1,25 +1,10 @@
 #include "listheaders.h"
 
-Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapItem (parent)
+Player::Player(QGraphicsItem* parent) :
+    QObject (), QGraphicsPixmapItem (parent)
 {
-
     create_animation();
 
-    setPixmap(animations[super][direction][0][0]);
-
-    // Attributes
-    count = 0;
-
-    speed = pair{0,0};
-
-    speedMax = pair{10,15};
-
-    direction = true; //false = left, true = right
-
-    this->size = size;
-
-
-    // Create collision Range
     create_collision_range();
 
 
@@ -40,69 +25,48 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left)
+    switch (event->key())
     {
-        pressedL=true;
+    case Qt::Key_Left:
+    {
+        pressed_left = true;
+        break;
     }
-    else if (event->key() == Qt::Key_Right)
+    case Qt::Key_Right:
     {
-        pressedR=true;
+        pressed_right = true;
+        break;
     }
-    else if (event->key() == Qt::Key_Up)
+    case Qt::Key_Up:
     {
-        if(times_jumped >= max_consecutive_jumps)
-        {
-            return;
-        }
-        times_jumped ++;
-        speed.y -= speedMax.y;
-        if (speed.x == 0.0){
-            state = jumpV;
-        }
-        else{
-            state = jumpV;
-        }
+        jump();
+        break;
     }
-    else if(event->key() == Qt::Key_1)
+    case Qt::Key_Space:
     {
-        throwprojectile(1);
+        throw_projectile();
+        break;
     }
-
-    else if(event->key() == Qt::Key_2)
-    {
-        throwprojectile(2);
-    }
-
-    else if(event->key() == Qt::Key_3)
-    {
-        throwprojectile(3);
-    }
-    else if(event->key() == Qt::Key_4)
-    {
-        throwprojectile(4);
-    }
-    else if(event->key() == Qt::Key_5)
-    {
-        create_enemy();
     }
 }
 
 void Player::keyReleaseEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_Left)
+    switch(event->key())
     {
-        pressedL = false;
+    case Qt::Key_Left:
+    {
+        pressed_left = false;
+        break;
     }
-    else if (event->key() == Qt::Key_Right)
+    case Qt::Key_Right:
     {
-        pressedR = false;
+        pressed_right = false;
+        break;
+    }
     }
 }
-
-void Player::create_enemy()
-{   //condition to create enemy... - decide and add and if condition
-        view->scene()->addItem(new Enemy(pair{x()+2* size,y() -50 }));
-}
+/**
 
 bool Player::collision_right()
 {
@@ -257,7 +221,7 @@ bool Player::collision_t_r()
     }
     return false;
 }
-
+**/
 void Player::move()
 {
     //Accelerate
@@ -265,51 +229,43 @@ void Player::move()
 
 
     //Motion smooth
-    if (pressedL)
+    if (pressed_left)
     {
-        if (speed.x>-speedMax.x)
+        if (speed.x>-max_speed.x)
         {
             speed.x -= 1;
         }
     }
     else
     {
-        if (speed.x<-1)
+        if (speed.x<0)
         {
-            speed.x -= speed.x/2;
-        }
-        else if (speed.x<0)
-        {
-            speed.x=0;
+            speed.x = (speed.x < -1) ? speed.x/2 : 0;
         }
     }
 
-    if (pressedR)
+    if (pressed_right)
     {
-        if (speed.x<speedMax.x)
+        if (speed.x<max_speed.x)
         {
             speed.x += 1;
         }
     }
     else
     {
-        if (speed.x>1)
+        if (speed.x>0)
         {
-            speed.x -= speed.x/2;
-        }
-        else if (speed.x>0)
-        {
-            speed.x=0;
+            speed.x = (speed.x > 1) ? speed.x/2 : 0;
         }
     }
 
-    if (speed.y > speedMax.y)
+    if (speed.y > max_speed.y)
     {
-        speed.y = speedMax.y;
+        speed.y = max_speed.y;
     }
-    else if (speed.y < -speedMax.y)
+    else if (speed.y < -max_speed.y)
     {
-        speed.y = -speedMax.y;
+        speed.y = -max_speed.y;
     }
 
     //in boundaries
@@ -335,48 +291,75 @@ void Player::move()
         setX(view->world_size.right);
     }
 
+    collision_ranges[0]->setRect(0,1,speed.x,size-1);
+    collision_ranges[0]->setPos((speed.x > 0) ? size+1 : -1,0);
 
-    collision_range->setPos(speed.x,speed.y);
+    collision_ranges[1]->setRect(1,0,size-1,speed.y);
+    collision_ranges[1]->setPos(0,(speed.y > 0) ? size+1 : -1);
 
-    bool r = collision_right();
-    bool l = collision_left();
-    bool t = collision_up();
-    bool b = collision_down();
-    bool bl = collision_b_l();
-    bool br = collision_b_r();
-    bool tl = collision_t_l();
-    bool tr = collision_t_r();
+    collision_ranges[2]->setRect(0,0,speed.x,speed.y);
+    collision_ranges[2]->setPos((speed.x > 0) ? size+1 : -1, (speed.y > 0) ? size+1 : -1);
+
+    std::vector<QList<QGraphicsItem *>> colliding_items;
+
+    for(int i = 0; i < 3 ; i ++)
+    {
+        colliding_items.push_back(collision_ranges[i]->collidingItems());
+    }
+
+    std::vector<bool> collision;
+
+    for(int i = 0; i < 3 ; i ++)
+    {
+        collision.push_back(false);
+    }
+
+    for(int i = 0; i < 3 ; i ++)
+    {
+        for(int j = 0; j < colliding_items[i].size(); j++)
+        {
+            if(typeid(*(colliding_items[i][j])) == typeid(Small_collectable))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                coin_counter->add_coin();
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(QGraphicsRectItem))
+            {
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Collectable))
+            {
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Projectile))
+            {
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Counter))
+            {
+                continue;
+            }
+            collision[i] = true;
+        }
+    }
 
     // movements of the player:
-    if (r == true)
+    if (collision[0])
     {
         speed.x = 0;
     }
-    if (l == true)
-    {
-        speed.x = 0;
-    }
-    if (b == true)
+    if (collision[1])
     {
         speed.y = 0;
     }
-    if (t == true)
+    if (collision[2] && !collision[1] && !collision[0])
     {
         speed.y = 0;
-    }
-    if (bl == true || br == true)
-    {
-        //if the bottom corners collide, we maintain the velocity on x, but not on y
-        speed.y = 0; speed.x = speed.x;
-    }
-    if (tl == true || tr == true)
-    {
-        //if the top corners collide, we maintain the velocity on x. but not on y
-        speed.y = 0; speed.x = speed.x;
     }
 
     //Jump reset
-    if(b)
+    if(collision[1] && speed.y >= 0)
     {
         times_jumped = 0;
     }
@@ -385,11 +368,11 @@ void Player::move()
     //Direction of the player:
     if (speed.x>0)
     {
-        direction = 1;
+        facing = Right;
     }
     else if (speed.x<0)
     {
-        direction = 0;
+        facing = Left;
     }
 
 
@@ -424,7 +407,7 @@ void Player::move()
     //animation
     count += 0.2;
 
-    set_animation_state(b);
+    set_animation_state(true);
 
     if (count >= maxFrame[state])
     {
@@ -435,224 +418,54 @@ void Player::move()
         count = maxFrame[state]-0.00001;
     }
 
-    setPixmap(animations[super][direction][state][int(count)]);
+    setPixmap(animations[super][facing][state][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
 
     view->centerOn(this);
+
     view->update_background();
 }
 
-/**
 void Player::create_collision_range()
 {
-    collision_range = new QGraphicsRectItem(this);
-
-    collision_range->setRect(0,0,size + size/2, size + size/2);
-
-    collision_range->setPos(x() - size /4 ,y() - size / 4); //we readjust the position of the collision box so that is centers the player
-
-    collision_range->setOpacity(0);
+    for(int i = 0; i < 3 ; i ++)
+    {
+        collision_ranges.push_back(new QGraphicsRectItem(this));
+        collision_ranges[i]->setPen(QPen(Qt::NoPen));
+    }
 }
-**/
 
-/***
- * Trying another move method
- ***/
-
-
-void Player::create_collision_range()
-{
-    collision_range = new QGraphicsRectItem(this);
-
-    collision_range->setRect(0, 0, size, size);
-
-    collision_range->setPos(0, 0); //we readjust the position of the collision box so that is centers the player
-
-    //collision_range->setPen(QPen(Qt::NoPen));
-}
-/**
-void Player::move()
-{
-
-    speed.y += 1;
-
-    //Motion smooth
-    if (pressedL){
-        if (speed.x>-speedMax.x){speed.x -= 1;}
-    }
-    else{
-        if (speed.x<-1){speed.x -= speed.x/2;}
-        else if (speed.x<0){speed.x=0;}
-    }
-    if (pressedR){
-        if (speed.x<speedMax.x){speed.x += 1;}
-    }
-    else{
-        if (speed.x>1){speed.x -= speed.x/2;}
-        else if (speed.x>0){speed.x=0;}
-    }
-    if (speed.y > speedMax.y)
-    {
-        speed.y = speedMax.y;
-    }
-    if (speed.y < -speedMax.y)
-    {
-        speed.y = -speedMax.y;
-    }
-
-
-
-    //in boundaries
-    if(y() >= view->world_size.bottom)
-    {
-        speed.y = (0 > speed.y) ? speed.y : 0 ;
-        setY(view->world_size.bottom);
-    }
-    else if(y() <= view->world_size.top)
-    {
-        speed.y = (0 < speed.y) ? speed.y : 0 ;
-        setY(view->world_size.top);
-    }
-
-    if(x()<=view->world_size.left)
-    {
-        speed.x = (0 < speed.x) ? speed.x : 0 ;
-        setX(view->world_size.left);
-    }
-    else if(x() >= view->world_size.right)
-    {
-        speed.x = (0 > speed.x) ? speed.x : 0 ;
-        setX(view->world_size.right);
-    }
-
-    //animation
-    if (speed.x<0){count -= 0.1;}
-    else{count += 0.1;}
-
-    if (count>=N){count = 0;}
-    if (count< 0){count = N-0.00001;}
-
-    if (speed.x<0){
-        if (speed.y<0){
-            setPixmap(animations[super][direction][7][int(count)]);//flip
-        }
-        else{
-            setPixmap(animations[super][direction][8][int(count)]);//flip
-        }
-    }
-    else if(speed.x>0){
-        if (speed.y<0){
-            setPixmap(animations[super][direction][2][int(count)]);
-        }
-        else{
-            setPixmap(animations[super][direction][3][int(count)]);
-        }
-    }
-    else{
-        if (speed.y<0){
-            setPixmap(animations[super][direction][1][int(count)]);
-        }
-        else{
-            setPixmap(animations[super][direction][0][int(count)]);
-        }
-    }
-
-
-    collision_range->setPos(speed.x,speed.y);
-
-    QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-
-
-    pair temp_ratio{1,1},final_ratio{1,1},collision_vector;
-
-    for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-    {
-        if((*iter)->x() == x() && (*iter)->y() == y())
-        {
-            continue;
-        }
-
-        //set the collision vector x
-        if(speed.x > 0)
-        {
-            collision_vector.x = (*iter)->x()-x()-size;
-        }
-        else if(speed.x < 0)
-        {
-            collision_vector.x = (*iter)->x()+block_size-x();
-        }
-
-        //set the collision vector y
-        if(speed.y > 0)
-        {
-            collision_vector.y =(*iter)->y()-y()-size;
-        }
-        else if(speed.y < 0)
-        {
-            collision_vector.y = (*iter)->y()+block_size-y();
-        }
-
-        // computer temp ratios
-        temp_ratio.x = (speed.x != 0) ? (collision_vector.x)/speed.x : 0;
-        temp_ratio.y = (speed.y != 0) ? (collision_vector.y)/speed.y : 0;
-
-        //temp_ratio.x = max_of<greal>(temp_ratio);
-        //temp_ratio.y = temp_ratio.x;
-
-
-
-        //update fianl ration we want to it be between 1 and -1 (it starts at 1 only decreases and is bounded by -1)
-        final_ratio.x = max<greal>(min<greal>(temp_ratio.x,final_ratio.x),-1);
-        final_ratio.y = max<greal>(min<greal>(temp_ratio.y,final_ratio.y),-1);
-    }
-
-    //update speed
-    speed.x = int(speed.x * final_ratio.x);
-    speed.y = int(speed.y * final_ratio.y);
-
-
-    //Direction of the player:
-    if (pressedR){direction = 1;}
-    if (pressedL){direction = 0;}
-
-    setPos(x()+speed.x,y()+speed.y);
-
-    view->centerOn(this);
-}
-**/
-
-
-void Player::throwprojectile(int i)
+void Player::throw_projectile()
 {
 
     // for the directino of the projectile: define a "last velocity speed"
     // then the direction is the direction of this last velocity
     pair position{x(),y()};
 
-    switch (i)
+    switch (current_projectile)
     {
     case 1:
     {
-        view->scene()->addItem(new Player_projectile_1(position, direction, size));
+        view->scene()->addItem(new Player_projectile_1(position, facing, size));
         break;
     }
 
     case 2:
     {
-        view->scene()->addItem(new Player_projectile_2(position, direction, size));
+        view->scene()->addItem(new Player_projectile_2(position, facing, size));
         break;
     }
 
     case 3:
     {
-        view->scene()->addItem(new Player_projectile_3(position, direction, size));
+        view->scene()->addItem(new Player_projectile_3(position, facing, size));
         break;
     }
 
     case 4:
     {
-        view->scene()->addItem(new Enemy_projectile_1(position, direction, size));
+        view->scene()->addItem(new Enemy_projectile_1(position, facing, size));
         break;
     }
     }
@@ -676,7 +489,7 @@ void Player::superpower(Collectable collectable)
     if (collectable.type == eclair)
     {
         count_super = 0;
-        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, direction, size));
+        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, facing, size));
         super_throw = true;
     }
 }
@@ -746,10 +559,28 @@ void Player::set_animation_state(bool b)
             }
     }
 
-    if (state != oldState)
+    if (state != old_state)
     {
-        oldState = state;
+        old_state = state;
         count = 0;
+    }
+}
+
+void Player::jump()
+{
+    if(times_jumped >= max_consecutive_jumps)
+    {
+        return;
+    }
+    times_jumped ++;
+    speed.y -= max_speed.y;
+    if (speed.x == 0.0)
+    {
+        state = jumpV;
+    }
+    else
+    {
+        state = jumpV;
     }
 }
 
@@ -757,7 +588,7 @@ void Player::create_animation()
 {
     QPixmap imgChar(gtexture->get_path_to(basic_player));
 
-    for (int j = 0; j<M; j++)
+    for (int j = 0; j<number_of_character_states; j++)
     {
         for (int i = 0; i<maxFrame[j]; i++)
         {
@@ -771,10 +602,10 @@ void Player::create_animation()
 
 
             //Generate super images looking left
-            animations[1][1][j][i] = imgChar.copy(i*size, (M+j)*size, size, size);
+            animations[1][1][j][i] = imgChar.copy(i*size, (number_of_character_states+j)*size, size, size);
 
             //Generate super images looking right
-            QImage imgs = imgChar.copy(i*size, (M+j)*size, size, size).toImage();
+            QImage imgs = imgChar.copy(i*size, (number_of_character_states+j)*size, size, size).toImage();
             imgs = imgs.mirrored(true, false);
             animations[1][0][j][i] = QPixmap::fromImage(imgs);
 

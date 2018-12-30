@@ -21,10 +21,6 @@ public:
     void add_coin(int amount = 1);
 
     void update_counter();
-
-public slots:
-
-    void take_this();
 };
 
 #endif // COIN_COUNTER_H

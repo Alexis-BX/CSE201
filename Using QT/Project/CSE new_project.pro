@@ -39,7 +39,6 @@ SOURCES += \
     projectiles.cpp \
     tools.cpp \
     level_load.cpp \
-    start_button.cpp \
     collectables.cpp \
     background.cpp \
     backgrounds.cpp \
@@ -64,7 +63,6 @@ HEADERS += \
     blocks.h \
     projectiles.h \
     level_load.h \
-    start_button.h \
     collectables.h \
     background.h \
     backgrounds.h \

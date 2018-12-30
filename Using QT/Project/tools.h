@@ -12,6 +12,12 @@ struct pair
     greal x,y;
 };
 
+enum Direction
+{
+    Left,
+    Right
+};
+
 template <typename T> T min(T a, T b)
 {
     return (a > b) ? b : a;

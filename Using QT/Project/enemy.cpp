@@ -201,7 +201,7 @@ void Enemy::move()
     if(distance_to_player < 30000 && state == passiv)
     {
         state = aggressiv;
-        projectile_timer->start(500);
+        projectile_timer->start(1000);
     }
     else if(distance_to_player > 60000 and state == aggressiv)
     {
