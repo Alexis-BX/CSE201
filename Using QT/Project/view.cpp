@@ -1,75 +1,22 @@
 #include "listheaders.h"
 
-View::View(pair screen_size, int block_size, QWidget* parent)
+View::View(pair screen_size, int block_size, QWidget* parent) :
+    QGraphicsView(parent), block_size(block_size), screen_size(screen_size)
 {
-    this->block_size = block_size;
-
-    this->screen_size = screen_size;
-
     //scene set up
     setScene(new QGraphicsScene());
 
-
-    //Set the background layers (paralax background)
-    sky = new class sky(pair {0,-screen_size.y});
-    scene()->addItem(sky);
-
-    monuments = new monument(pair{0,qreal(-450)});
-    scene()->addItem(monuments);
-
-    buildings = new class buildings(pair{0,qreal(-300)});
-    scene()->addItem(buildings);
-
-    // Create Player
-    create_player();
-
     // load and create level
     level_load = new Level_load(this);
-
-    level_load->read_level_image(":/Images/Levels/Level_agathe_001.png");
+    level_load->load_level(":/Images/Levels/Level_agathe_001.png");
 }
 
-void View::create_player(pair position)
+void View::update_background()
 {
-    player = new Player();
-
-    player->setPos(position.x,position.y);
-
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-
-    player->setFocus();
-
-    scene()->addItem(player);
-
-    centerOn(player);
-
-    player->coin_counter = new Coin_counter(pair{greal(player->size),0},player);
-}
-
-void View::start_screen()
-{
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setFixedSize(int(screen_size.x),int(screen_size.y));
-
-    level_load->read_level_image(":/Images/Levels/screen_start.png");
-
-    scene()->addItem(new Start_button(screen_size));
-
-}
-
-void View::update_bg()
-{
-    applyParallax(sky);
-    applyParallax(monuments);
-    applyParallax(buildings);
-}
-
-void View::applyParallax(background* item) {
-    double speed = player->speed.x/item->speed_ratio;
-    item->setX(item->x()-speed);
+    for(unsigned long long i = 0 ; i < backgrounds.size(); i++)
+    {
+        backgrounds[i]->setX(backgrounds[i]->x()-player->speed.x/backgrounds[i]->speed_ratio);
+    }
 }
 
 /** OLD VERSION THAT ONLY WORKED ON WINDOWS USE QT TOOLS TO MAKE IT WORK FOR EVERYTHING

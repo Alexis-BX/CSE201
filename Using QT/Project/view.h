@@ -26,11 +26,15 @@ public:
     Level_load* level_load;
 
     //backgrounds
-    class sky * sky;
-    class monument * monuments;
-    class buildings * buildings;
+    std::vector<Background*> backgrounds;
 
-    void applyParallax(background* item);
+    /**
+    class Background_far * Background_far;
+    class Background_middle * monuments;
+    class Background_close * buildings;
+    **/
+
+    void applyParallax(Background* item);
 
     // Create world
     void create_basic_world(int width);
@@ -48,7 +52,7 @@ public:
 
     void start_screen();
 
-    void update_bg();
+    void update_background();
 };
 
 #endif // VIEW_H

@@ -2,22 +2,22 @@
 #define BACKGROUNDS_H
 #include "background.h"
 
-class sky: public background
+class Background_far: public Background
 {
 public:
-    sky(pair pos);
+    Background_far(pair position);
 };
 
-class monument: public background
+class Background_middle: public Background
 {
 public:
-    monument(pair pos);
+    Background_middle(pair position);
 };
 
-class buildings: public background
+class Background_close: public Background
 {
 public:
-    buildings(pair pos);
+    Background_close(pair position);
 };
 
 #endif // BACKGROUNDS_H

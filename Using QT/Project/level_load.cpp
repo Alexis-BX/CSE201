@@ -1,30 +1,7 @@
 #include "listheaders.h"
 
-/**
-//clas used to store colors under the "tuple" form (R,G,B)
-class triple{
-public:
-    int r,g,b;
-
-    triple(int x, int y, int z){
-        r = x; g = y; b = z;
-    }
-
-    bool operator ==(triple other){
-        int diff = 4;
-        int R{other.r}, B{other.b}, G{other.g};
-        if (abs(R-r)<=diff && abs(G-g)<=diff && abs(B-b)<=diff){
-            return true;
-        }
-        return false;
-    }
-};
-**/
-
-Level_load::Level_load(View* view)
+Level_load::Level_load(View* view) : view(view)
 {
-    this->view = view;
-
     color_triples.push_back(new Color_triple<Base_block>(0,0,0,view));
     color_triples.push_back(new Color_triple<Enemy_1>(237, 28, 36,view));
     color_triples.push_back(new Color_triple<Special_block_below>(185, 122, 87,view));
@@ -32,16 +9,42 @@ Level_load::Level_load(View* view)
     color_triples.push_back(new Color_triple<Small_collectable>(255, 242, 00,view));
     color_triples.push_back(new Color_triple<Active_block>(63, 72, 204,view));
     color_triples.push_back(new Color_triple<Breakable_block>(255, 127, 39,view));
+    color_triples.push_back(new Color_triple_player(181, 230, 29,view));
 }
 
-void Level_load::read_level_image(const char *filename)
+void Level_load::load_level(const char *filename)
+{
+    setup_view();
+
+    setup_background();
+
+    read_level_image(filename);
+}
+
+void Level_load::setup_view()
 {
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     view->setFixedSize(int(view->screen_size.x),int(view->screen_size.y));
+}
 
+void Level_load::setup_background()
+{
+    //Set the background layers (paralax background)
+    view->backgrounds.push_back(new Background_far(pair{0,-view->screen_size.y}));
+    view->backgrounds.push_back(new Background_middle(pair{0,qreal(-450)}));
+    view->backgrounds.push_back(new Background_close(pair{0,qreal(-300)}));
+
+    for(unsigned long long i = 0 ; i < view->backgrounds.size(); i++)
+    {
+        view->scene()->addItem(view->backgrounds[i]);
+    }
+}
+
+void Level_load::read_level_image(const char* filename)
+{
     QPixmap imgChar(filename);
 
     QImage level = imgChar.toImage().mirrored(false, true);

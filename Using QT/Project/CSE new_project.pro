@@ -43,7 +43,9 @@ SOURCES += \
     collectables.cpp \
     background.cpp \
     backgrounds.cpp \
-    enemies.cpp
+    enemies.cpp \
+    base_color_triple.cpp \
+    color_triple_player.cpp
     enemies.cpp
 
 HEADERS += \
@@ -69,7 +71,9 @@ HEADERS += \
     listheaders.h \
     enemies.h \
     color_triple.h \
-    color_triple_definition.h
+    color_triple_definition.h \
+    base_color_triple.h \
+    color_triple_player.h
     enemies.h
 
 

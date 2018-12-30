@@ -2,16 +2,14 @@
 #define BACKGROUND_H
 #include "global.h"
 
-class background : public QGraphicsPixmapItem
+class Background : public QGraphicsPixmapItem
 {
+
 public:
-    QPixmap sprite;
 
-    int speed_ratio, width;
+    int speed_ratio;
 
-    background(const char * img, pair position, int speed_ratio, QGraphicsItem *parent = 0);
-
-    background(pair position, QGraphicsItem *parent = 0);
+    Background(pair position, QGraphicsItem *parent = 0);
 
     virtual QPainterPath shape() const;
 };

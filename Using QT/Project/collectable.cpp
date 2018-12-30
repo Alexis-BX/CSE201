@@ -3,7 +3,7 @@
 Collectable::Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
-    setPos(position.x, position.y);
+    setPos(position.x, position.y-creator_object_size_y);
 
     this -> size = size;     // gives the size of the collectable
 

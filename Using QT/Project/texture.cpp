@@ -4,11 +4,15 @@ Texture::Texture()
 {
     path_to_textures = ":/Images/Textures/";
 
+    path_to_backgrounds = ":/Images/Backgrounds/";
+
     current_texture = main_texture;
+
+    current_background = main_background;
 
     define_main_texture();
 
-    define_troll_texture_1();
+    define_main_background();
 }
 
 void Texture::define_main_texture()
@@ -27,21 +31,21 @@ void Texture::define_main_texture()
         texture_temp.push_back("");
     }
 
-    texture_temp[basic_player] = "character22.12.png";
+    texture_temp[basic_player] = "character22.12";
 
-    texture_temp[blocks] = "blocks.png";
+    texture_temp[blocks] = "blocks";
 
-    texture_temp[small_collectable] = "small_cheese.png";
+    texture_temp[small_collectable] = "small_cheese";
 
-    texture_temp[big_collectable] = "big_cheese.png";
+    texture_temp[big_collectable] = "big_cheese";
 
-    texture_temp[power_ups] = "power_ups.png";
+    texture_temp[power_ups] = "power_ups";
 
-    texture_temp[enemy_1] = "thief_walking_casual.png";
+    texture_temp[enemy_1] = "thief_walking_casual";
 
-    texture_temp[projectiles] = "projectiles.png";
+    texture_temp[projectiles] = "projectiles";
 
-    texture_temp[projectile_vanish_effect] = "explosion.png";
+    texture_temp[projectile_vanish_effect] = "explosion";
 
     std::vector<std::string> x;
 
@@ -54,78 +58,63 @@ void Texture::define_main_texture()
 
 }
 
-void Texture::define_troll_texture_1()
+void Texture::define_main_background()
 {
-    while(texture_names.size() <= troll_texture_1)
+    while(background_names.size() <= main_background)
     {
-        texture_names.push_back("");
+        background_names.push_back("");
     }
 
-    texture_names[troll_texture_1] = "Troll_texture_1/";
+    background_names[main_background] = "Main_background/";
 
-    std::vector<std::string> texture_temp;
+    std::vector<std::string> background_temp;
 
-    while( texture_temp.size() < object_texture_count)
+    while( background_temp.size() < background_texture_count)
     {
-        texture_temp.push_back("");
+        background_temp.push_back("");
     }
 
-    texture_temp[basic_player] = "face.png";
+    background_temp[background_far] = "bg";
 
-    texture_temp[blocks] = "face.png";
+    background_temp[background_middle] = "eiffel";
 
-    texture_temp[small_collectable] = "face.png";
-
-    texture_temp[big_collectable] = "face.png";
-
-    texture_temp[power_ups] = "face.png";
-
-    texture_temp[enemy_1] = "face.png";
-
-    texture_temp[projectiles] = "face.png";
-
-    texture_temp[projectile_vanish_effect] = "face.png";
+    background_temp[background_close] = "buildings";
 
     std::vector<std::string> x;
 
-    while( object_image_from_texure.size() <= troll_texture_1)
+    while( background_image_from_background.size() <= main_background)
     {
-        object_image_from_texure.push_back(x);
+        background_image_from_background.push_back(x);
     }
 
-    object_image_from_texure[troll_texture_1] = texture_temp;
-}
-
-void Texture::define_background()
-{
-    names_background[Tsky] = "bg.png";
-
-    names_background[Tmonument] = "eiffel.png";
-
-    names_background[Tbuildings] = "buildings.png";
+    background_image_from_background[main_background] = background_temp;
 
 }
 
 const char* Texture::get_path_to(Object_texture ojb_tex)
 {
-    return (path_to_textures+texture_names[current_texture]+object_image_from_texure[current_texture][ojb_tex]).c_str();
+    return (path_to_textures+texture_names[current_texture]+object_image_from_texure[current_texture][ojb_tex]+".png").c_str();
 }
 
-const char* Texture::get_path_to(Backgrounds bg)
+const char* Texture::get_path_to(Background_texture bg_tex)
 {
-    return (":Images/background/"+names_background[bg]).c_str();
+    return (path_to_backgrounds+background_names[current_background]+background_image_from_background[current_background][bg_tex]+".png").c_str();
 }
 
 std::vector<QPixmap> Texture::get_qpixmap_of(Object_texture sheet, int start, int length, int size)
 {
     QPixmap img(get_path_to(sheet));
+
     int w = img.width()/size;
+
     int i{start%w},j{start/w};
+
     std::vector<QPixmap> res(length);
 
     for (int k=0; k<length; k++)
     {
         res[k] = img.copy(((i+k)%w)*size, (j+(i+k)/w)*size, size, size);
     }
+
     return res;
 }

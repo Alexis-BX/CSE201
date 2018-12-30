@@ -7,6 +7,7 @@
 
 #include "background.h"
 #include "backgrounds.h"
+#include "base_color_triple.h"
 #include "block.h"
 #include "blocks.h"
 #include "coin_counter.h"
@@ -14,6 +15,7 @@
 #include "collectables.h"
 #include "color_triple.h"
 #include "color_triple_definition.h"
+#include "color_triple_player.h"
 #include "counter.h"
 #include "enemy.h"
 #include "enemies.h"
@@ -25,6 +27,7 @@
 #include "start_button.h"
 #include "texture.h"
 #include "view.h"
+
 
 
 #endif // LISTHEADERS_H

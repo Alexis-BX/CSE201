@@ -5,7 +5,6 @@
         <file>Levels/screen_start.png</file>
         <file>Levels/sticker-numero-un.jpg</file>
         <file>Menu/start_button.png</file>
-        <file>background/back3.png</file>
         <file>Textures/Main_texture/big_cheese.png</file>
         <file>Textures/Main_texture/explosion.png</file>
         <file>Textures/Main_texture/face.png</file>
@@ -20,13 +19,18 @@
         <file>Textures/Main_texture/power_ups.png</file>
         <file>Textures/Main_texture/projectiles.png</file>
         <file>Textures/Troll_texture_1/face.png</file>
-        <file>background/bg.png</file>
-        <file>background/buildings.png</file>
-        <file>background/eiffel.png</file>
         <file>Levels/test_world_enemies2.png</file>
         <file>Levels/Basic_world.png</file>
         <file>Levels/level_guid.png</file>
         <file>Levels/test_world_enemies.bmp</file>
         <file>Levels/test_world_enemies.png</file>
+        <file>Backgrounds/Main_background/arc.png</file>
+        <file>Backgrounds/Main_background/back2.png</file>
+        <file>Backgrounds/Main_background/back3.png</file>
+        <file>Backgrounds/Main_background/bg.png</file>
+        <file>Backgrounds/Main_background/eiffel.png</file>
+        <file>Backgrounds/Main_background/nd.png</file>
+        <file>Backgrounds/Main_background/buildings.png</file>
+        <file>Backgrounds/Main_background/buildings2.png</file>
     </qresource>
 </RCC>

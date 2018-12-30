@@ -351,8 +351,6 @@ void Player::move()
     bool tl = collision_t_l();
     bool tr = collision_t_r();
 
-
-
     // movements of the player:
     if (r == true)
     {
@@ -446,7 +444,7 @@ void Player::move()
     setPos(x()+speed.x,y()+speed.y);
 
     view->centerOn(this);
-    view->update_bg();
+    view->update_background();
 }
 
 /**
