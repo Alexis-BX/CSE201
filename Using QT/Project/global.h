@@ -1,6 +1,8 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+#include <iostream>
+
 #include <QApplication>
 #include <QGraphicsItem>
 #include <QGraphicsPixmapItem>
@@ -42,5 +44,5 @@ extern Texture* gtexture;
 #include <QTime>
 #include <cstddef>
 #include <cstdlib>
-#include <iostream>
+
 */

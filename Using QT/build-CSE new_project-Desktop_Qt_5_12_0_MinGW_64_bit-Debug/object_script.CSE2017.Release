@@ -17,6 +17,8 @@ release/collectables.o
 release/background.o
 release/backgrounds.o
 release/enemies.o
+release/base_color_triple.o
+release/color_triple_player.o
 release/qrc_resources.o
 release/moc_player.o
 release/moc_block.o

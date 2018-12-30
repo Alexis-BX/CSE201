@@ -27,6 +27,7 @@ public:
 
     //backgrounds
     std::vector<Background*> backgrounds;
+    std::vector<Background_far*> backgrounds_far;
 
     /**
     class Background_far * Background_far;

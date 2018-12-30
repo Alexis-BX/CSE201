@@ -7,7 +7,9 @@ class Background : public QGraphicsPixmapItem
 
 public:
 
-    int speed_ratio;
+    int speed_ratio, width, hight;
+
+    QPixmap sprite;
 
     Background(pair position, QGraphicsItem *parent = 0);
 

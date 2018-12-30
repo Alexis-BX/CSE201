@@ -36,10 +36,6 @@ Player::Player(QGraphicsItem* parent, int size ) : QObject (), QGraphicsPixmapIt
  * the designs i made are shit and i know it but again its just to test
  *
  * - adrien
- *
- *
- *
- *
  * **/
 
 void Player::keyPressEvent(QKeyEvent *event)
