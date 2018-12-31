@@ -16,7 +16,7 @@ public:
 
     std::vector<QPixmap> sprite;
 
-    Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent = 0 );
+    Collectable(pair position, int creator_object_size_y, QGraphicsItem* parent = 0 );
 
     // Attributes
     pair size, position, speed;

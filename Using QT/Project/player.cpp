@@ -9,6 +9,13 @@ Player::Player(QGraphicsItem* parent) :
 
     this->setZValue(layer_player);
 
+    for(int i = 0 ; i < 3 ; i ++)
+    {
+        colliding_items.push_back(QList<QGraphicsItem *>{});
+        collision.push_back(true);
+    }
+
+
     // Timer
     QTimer * timer = new QTimer();
 
@@ -301,21 +308,13 @@ void Player::move()
     collision_ranges[2]->setRect(0,0,speed.x,speed.y);
     collision_ranges[2]->setPos((speed.x > 0) ? size+1 : -1, (speed.y > 0) ? size+1 : -1);
 
-    std::vector<QList<QGraphicsItem *>> colliding_items;
-
     for(int i = 0; i < 3 ; i ++)
     {
-        colliding_items.push_back(collision_ranges[i]->collidingItems());
+        colliding_items[i] = collision_ranges[i]->collidingItems();
+        collision[i] = false;
     }
 
-    std::vector<bool> collision;
-
-    for(int i = 0; i < 3 ; i ++)
-    {
-        collision.push_back(false);
-    }
-
-    for(int i = 0; i < 3 ; i ++)
+    for(unsigned int i = 0; i < 3 ; i ++)
     {
         for(int j = 0; j < colliding_items[i].size(); j++)
         {
@@ -323,6 +322,46 @@ void Player::move()
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 coin_counter->add_coin();
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_1))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_2))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_3))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_4))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_5))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_6))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_7))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_8))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
             if(typeid(*(colliding_items[i][j])) == typeid(QGraphicsRectItem))
@@ -339,6 +378,24 @@ void Player::move()
             }
             if(typeid(*(colliding_items[i][j])) == typeid(Counter))
             {
+                continue;
+            }
+            if(typeid(*(colliding_items[i][j])) == typeid(Active_block))
+            {
+
+                view->scene()->addItem(new Activated_block(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()}));
+                view->scene()->addItem(new Small_collectable(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size));
+                view->scene()->addItem(new Power_up_1(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*2));
+                view->scene()->addItem(new Power_up_2(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*3));
+                view->scene()->addItem(new Power_up_3(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*4));
+                view->scene()->addItem(new Power_up_4(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*5));
+                view->scene()->addItem(new Power_up_5(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*6));
+                view->scene()->addItem(new Power_up_6(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*7));
+                view->scene()->addItem(new Power_up_7(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*8));
+                view->scene()->addItem(new Power_up_8(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*9));
+
+
+                view->scene()->removeItem(colliding_items[i][j]);
                 continue;
             }
             collision[i] = true;
@@ -497,7 +554,6 @@ void Player::superpower(Collectable collectable)
 
 void Player::set_animation_state()
 {
-    bool b = true; //is player touching the ground?
     switch(state)
     {
         case jumpH:
@@ -529,7 +585,7 @@ void Player::set_animation_state()
             break;
 
         default:
-            if (b)
+            if (collision[1] && speed.y >= 0)
             {
                 if (state==fallH)
                 {

@@ -16,6 +16,7 @@ enum Block_texture
     grass,
     dirt,
     question_mark,
+    activated = 5,
     crate = 6,
 };
 

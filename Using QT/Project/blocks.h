@@ -36,4 +36,10 @@ public:
     Special_block_below(pair position, QGraphicsItem* parent = 0);
 };
 
+class Activated_block: public Block
+{
+public:
+    Activated_block(pair position, QGraphicsItem* parent = 0);
+};
+
 #endif // BLOCKS_H

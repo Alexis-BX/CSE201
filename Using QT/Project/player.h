@@ -50,9 +50,9 @@ public:
 
     std::vector<QGraphicsRectItem*> collision_ranges;
 
-    QGraphicsRectItem* vertical_collision_range;
-    QGraphicsRectItem* horizontal_collision_range;
-    QGraphicsRectItem* diagonal_collision_range;
+    std::vector<QList<QGraphicsItem *>> colliding_items;
+
+    std::vector<bool> collision;
 
     Coin_counter* coin_counter;
 

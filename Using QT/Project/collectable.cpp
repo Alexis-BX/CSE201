@@ -1,11 +1,11 @@
 #include "listheaders.h"
 
-Collectable::Collectable(pair position, int creator_object_size_y, pair size, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
+Collectable::Collectable(pair position, int creator_object_size_y, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
     setPos(position.x, position.y-creator_object_size_y);
 
-    this -> size = size;     // gives the size of the collectable
+    size = pair{18,18};     // gives the size of the collectable
 
     this->setZValue(layer_collectable);
 

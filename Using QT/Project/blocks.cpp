@@ -60,3 +60,14 @@ Special_block_below::Special_block_below(pair position, QGraphicsItem* parent) :
     sprite = gtexture->get_qpixmap_of(blocks, texture);
     setPixmap(sprite[image_count]);
 }
+
+Activated_block::Activated_block(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = activated;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
+    setPixmap(sprite[image_count]);
+}
