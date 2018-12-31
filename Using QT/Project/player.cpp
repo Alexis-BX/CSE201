@@ -7,6 +7,7 @@ Player::Player(QGraphicsItem* parent) :
 
     create_collision_range();
 
+    this->setZValue(layer_player);
 
     // Timer
     QTimer * timer = new QTimer();
@@ -405,9 +406,9 @@ void Player::move()
     }
 
     //animation
-    count += 0.2;
+    count += 0.4;
 
-    set_animation_state(true);
+    set_animation_state();
 
     if (count >= maxFrame[state])
     {
@@ -422,7 +423,7 @@ void Player::move()
 
     setPos(x()+speed.x,y()+speed.y);
 
-    view->centerOn(this);
+    view->centerOn(this->x(), 0);
 
     view->update_background();
 }
@@ -494,8 +495,9 @@ void Player::superpower(Collectable collectable)
     }
 }
 
-void Player::set_animation_state(bool b)
+void Player::set_animation_state()
 {
+    bool b = true; //is player touching the ground?
     switch(state)
     {
         case jumpH:

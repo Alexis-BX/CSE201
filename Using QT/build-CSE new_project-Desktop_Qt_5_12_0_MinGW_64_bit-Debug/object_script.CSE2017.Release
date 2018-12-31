@@ -12,7 +12,6 @@ release/blocks.o
 release/projectiles.o
 release/tools.o
 release/level_load.o
-release/start_button.o
 release/collectables.o
 release/background.o
 release/backgrounds.o
@@ -27,4 +26,3 @@ release/moc_collectable.o
 release/moc_coin_counter.o
 release/moc_counter.o
 release/moc_enemy.o
-release/moc_start_button.o

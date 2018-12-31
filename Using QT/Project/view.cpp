@@ -3,6 +3,9 @@
 View::View(pair screen_size, int block_size, QWidget* parent) :
     QGraphicsView(parent), block_size(block_size), screen_size(screen_size)
 {
+    //fluidifies image adition in the background along with some animations
+    setViewportUpdateMode(MinimalViewportUpdate);//if problems: FullViewportUpdate
+
     //scene set up
     setScene(new QGraphicsScene());
 
@@ -13,28 +16,46 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
 void View::update_background()
 {
-    for(unsigned long long i = 0 ; i < backgrounds_far.size(); i++)
-    {
-        backgrounds_far[i]->setX((backgrounds_far[i]->x())-(player->speed.x)/(backgrounds_far[i]->speed_ratio));
-    }
-    if (backgrounds_far[0]->x() > player->x()-screen_size.x/2){
-        backgrounds_far.insert(backgrounds_far.begin(), new Background_far(pair{backgrounds_far[0]->x()-(backgrounds_far[0]->width),-view->screen_size.y}));
-        backgrounds_far[0]->setZValue(-1);
-        scene()->addItem(view->backgrounds_far[0]);
-    }
-
-    double temp = backgrounds_far.back()->x()+backgrounds_far.back()->width;
-    if (temp < player->x()+screen_size.x/2){
-        backgrounds_far.push_back(new Background_far(pair{temp,-view->screen_size.y}));
-        backgrounds_far.back()->setZValue(-1);
-        scene()->addItem(view->backgrounds_far.back());
-    }
-    //remove backgrounds not in view
-    //setup all the z values
-
-
-    for(unsigned long long i = 0 ; i < backgrounds.size(); i++)
-    {
-        backgrounds[i]->setX((backgrounds[i]->x())-(player->speed.x)/(backgrounds[i]->speed_ratio));
-    }
+    backgrounds_far = update_single_bg<Background_far>(backgrounds_far, view->screen_size.y);
+    backgrounds_middle = update_single_bg<Background_middle>(backgrounds_middle, 500);
+    backgrounds_close = update_single_bg<Background_close>(backgrounds_close, 256);
 }
+
+template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> list, double offset)
+{
+    for(unsigned long long i = 0 ; i < list.size(); i++)
+    {
+        list[i]->setX((list[i]->x())-(player->speed.x)/(list[i]->speed_ratio));
+    }
+
+    if (list[0]->x() > player->x()-screen_size.x/2)
+    {
+        list.insert(list.begin(), new BG(pair{list[0]->x()-(backgrounds_far[0]->width),-offset}));
+        scene()->addItem(list[0]);
+    }                                                      //don't put /2 because player not always centered
+    else if (list[0]->x() + list[0]->width < player->x() - screen_size.x)
+    {
+        //need actually delete backgrounds before erasing elements
+        //list.erase(list.begin());
+    }
+
+    if (list.back()->x() + list.back()->width < player->x() + screen_size.x/2)
+    {
+        list.push_back(new BG(pair{list.back()->x()+list.back()->width,-offset}));
+        scene()->addItem(list.back());
+    }
+    else if (list.back()->x() > player->x() + screen_size.x)
+    {
+        //need actually delete backgrounds before erasing elements
+        //list.erase(list.end());
+    }
+
+    return list;
+}
+
+
+
+
+
+
+

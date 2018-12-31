@@ -26,16 +26,10 @@ public:
     Level_load* level_load;
 
     //backgrounds
-    std::vector<Background*> backgrounds;
+    //std::vector<Background*> backgrounds;
     std::vector<Background_far*> backgrounds_far;
-
-    /**
-    class Background_far * Background_far;
-    class Background_middle * monuments;
-    class Background_close * buildings;
-    **/
-
-    void applyParallax(Background* item);
+    std::vector<Background_middle*> backgrounds_middle;
+    std::vector<Background_close*> backgrounds_close;
 
     // Create world
     void create_basic_world(int width);
@@ -54,6 +48,8 @@ public:
     void start_screen();
 
     void update_background();
+
+    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list, double offset);
 };
 
 #endif // VIEW_H

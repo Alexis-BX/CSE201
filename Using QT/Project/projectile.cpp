@@ -7,6 +7,8 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
     this->size = size;
 
+    this->setZValue(layer_projectile);
+
     if(direction)
     {
         position.x += character_size_x;

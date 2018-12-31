@@ -12,7 +12,6 @@ debug/blocks.o
 debug/projectiles.o
 debug/tools.o
 debug/level_load.o
-debug/start_button.o
 debug/collectables.o
 debug/background.o
 debug/backgrounds.o
@@ -27,4 +26,3 @@ debug/moc_collectable.o
 debug/moc_coin_counter.o
 debug/moc_counter.o
 debug/moc_enemy.o
-debug/moc_start_button.o

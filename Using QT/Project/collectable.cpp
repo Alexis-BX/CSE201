@@ -7,6 +7,8 @@ Collectable::Collectable(pair position, int creator_object_size_y, pair size, QG
 
     this -> size = size;     // gives the size of the collectable
 
+    this->setZValue(layer_collectable);
+
     create_collision_range();
 
     QTimer * timer = new QTimer();

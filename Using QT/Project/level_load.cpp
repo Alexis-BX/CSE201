@@ -36,13 +36,11 @@ void Level_load::setup_background()
     view->backgrounds_far.push_back(new Background_far(pair{0,-view->screen_size.y}));
     view->scene()->addItem(view->backgrounds_far[0]);
 
-    view->backgrounds.push_back(new Background_middle(pair{0,qreal(-500)}));
-    view->backgrounds.push_back(new Background_close(pair{0,-256}));
+    view->backgrounds_middle.push_back(new Background_middle(pair{0,-500}));
+    view->scene()->addItem(view->backgrounds_middle[0]);
 
-    for(unsigned long long i = 0 ; i < view->backgrounds.size(); i++)
-    {
-        view->scene()->addItem(view->backgrounds[i]);
-    }
+    view->backgrounds_close.push_back(new Background_close(pair{0,-256}));
+    view->scene()->addItem(view->backgrounds_close[0]);
 }
 
 void Level_load::read_level_image(const char* filename)

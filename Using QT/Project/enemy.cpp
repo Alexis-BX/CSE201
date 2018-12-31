@@ -5,6 +5,8 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
 
     setPos(position.x, position.y);
 
+    this->setZValue(layer_enemy);
+
     // Timers
     QTimer * timer = new QTimer();
 

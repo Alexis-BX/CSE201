@@ -4,6 +4,7 @@ Block::Block(pair position, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
     setPos(position.x,position.y);
+    this->setZValue(layer_block);
 }
 
 void Block::blink()

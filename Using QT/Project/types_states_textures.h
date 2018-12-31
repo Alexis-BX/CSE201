@@ -87,4 +87,16 @@ enum Enemy_texture
     normal
 };
 
+enum screne_layers
+{
+    layer_background_far,
+    layer_background_middle,
+    layer_background_close,
+    layer_block,
+    layer_collectable,
+    layer_projectile,
+    layer_enemy,
+    layer_player
+};
+
 #endif // TYPES_STATES_TEXTURES_H

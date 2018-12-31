@@ -73,7 +73,7 @@ public:
     bool collision_left(), collision_right(), collision_up(), collision_down();
     bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
 
-    void set_animation_state(bool block_below);
+    void set_animation_state();
 
     void jump();
 
