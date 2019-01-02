@@ -12,7 +12,7 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
-    timer->start(20);
+    timer->start(30);
 
     projectile_timer = new QTimer();
 
@@ -203,7 +203,7 @@ void Enemy::move()
     if(distance_to_player < 30000 && state == passiv)
     {
         state = aggressiv;
-        projectile_timer->start(1000);
+        projectile_timer->start(3000);
     }
     else if(distance_to_player > 60000 and state == aggressiv)
     {

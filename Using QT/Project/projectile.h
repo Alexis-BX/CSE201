@@ -8,7 +8,7 @@ class Projectile : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    constexpr static greal velocity = 5;
+    constexpr static greal velocity = 20;
 
     Projectile_type type;
 

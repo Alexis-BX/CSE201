@@ -11,7 +11,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
     // load and create level
     level_load = new Level_load(this);
-    level_load->load_level(":/Images/Levels/Level_agathe_002.png");
+    level_load->load_level(":/Images/Levels/test_world_enemies.png");
 }
 
 void View::update_background()

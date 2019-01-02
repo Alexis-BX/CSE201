@@ -26,7 +26,7 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
-    timer->start(20);
+    timer->start(40);
 
 }
 

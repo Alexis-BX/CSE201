@@ -21,7 +21,7 @@ Player::Player(QGraphicsItem* parent) :
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
-    timer->start(20);
+    timer->start(30);
 }
 
 /**NOTE:
@@ -235,6 +235,33 @@ void Player::move()
     //Accelerate
     speed.y += 1;
 
+    if(count_super_fast > 0)
+    {
+        if(count_super_fast >= 10000)
+        {
+            count_super_fast = 0;
+            max_speed = absolute_max_speed;
+        }
+        else
+        {
+            count_super_fast ++;
+        }
+    }
+
+    if(count_super_throw > 0)
+    {
+        if(count_super_throw >= 10000)
+        {
+            count_super_throw = 0;
+            current_projectile = 1;
+        }
+        else
+        {
+            count_super_throw ++;
+        }
+    }
+
+
 
     //Motion smooth
     if (pressed_left)
@@ -254,7 +281,7 @@ void Player::move()
 
     if (pressed_right)
     {
-        if (speed.x<max_speed.x)
+        if (speed.x<max_speed.x*((super_fast) ? 2 : 1))
         {
             speed.x += 1;
         }
@@ -318,87 +345,110 @@ void Player::move()
     {
         for(int j = 0; j < colliding_items[i].size(); j++)
         {
-            if(typeid(*(colliding_items[i][j])) == typeid(Small_collectable))
+            if(typeid(*(colliding_items[i][j])) == typeid(Base_block))
+            {
+                collision[i] = true;
+
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Small_collectable))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 coin_counter->add_coin();
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_1))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_1))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+
+                count_super_fast = 1;
+
+                max_speed.x = absolute_max_speed.x*2;
+
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_2))
+            {
+                view->scene()->removeItem((colliding_items[i][j]));
+
+                current_projectile = 2;
+
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_3))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_2))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_4))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_3))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_5))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_4))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_6))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_5))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_7))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_6))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_8))
             {
                 view->scene()->removeItem((colliding_items[i][j]));
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_7))
-            {
-                view->scene()->removeItem((colliding_items[i][j]));
-                continue;
-            }
-            if(typeid(*(colliding_items[i][j])) == typeid(Power_up_8))
-            {
-                view->scene()->removeItem((colliding_items[i][j]));
-                continue;
-            }
-            if(typeid(*(colliding_items[i][j])) == typeid(QGraphicsRectItem))
+            else if(typeid(*(colliding_items[i][j])) == typeid(QGraphicsRectItem))
             {
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Collectable))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Collectable))
             {
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Projectile))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Enemy_projectile_1))
+            {
+                view->setScene(new QGraphicsScene());
+                view->level_load->load_level(":/Images/Levels/test_world_enemies.png");
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_1))
             {
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Counter))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_2))
             {
                 continue;
             }
-            if(typeid(*(colliding_items[i][j])) == typeid(Active_block))
+            else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_3))
+            {
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Projectile))
+            {
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Counter))
+            {
+                continue;
+            }
+            else if(typeid(*(colliding_items[i][j])) == typeid(Active_block))
             {
 
                 view->scene()->addItem(new Activated_block(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()}));
-                view->scene()->addItem(new Small_collectable(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size));
-                view->scene()->addItem(new Power_up_1(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*2));
-                view->scene()->addItem(new Power_up_2(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*3));
-                view->scene()->addItem(new Power_up_3(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*4));
-                view->scene()->addItem(new Power_up_4(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*5));
-                view->scene()->addItem(new Power_up_5(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*6));
-                view->scene()->addItem(new Power_up_6(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*7));
-                view->scene()->addItem(new Power_up_7(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*8));
-                view->scene()->addItem(new Power_up_8(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size*9));
 
+                view->scene()->addItem(new Power_up_1(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size));
 
                 view->scene()->removeItem(colliding_items[i][j]);
                 continue;
             }
-            collision[i] = true;
         }
     }
 
