@@ -24,7 +24,7 @@ public:
 
     // Attributes
 
-    pair max_speed{10,15},speed{0,0};
+    pair max_speed{10,15}, absolute_max_speed{10,15},speed{0,0};
 
     double_pair world_boundaries;
 
@@ -32,9 +32,14 @@ public:
     bool pressed_left{false}, pressed_right{false},
     super{false}, super_fast{false}, super_throw{false};
 
-    int size{36}, number_of_character_states{11}, max_images_per_state{8},
-    block_size{18}, count_super{0}, times_jumped{0}, max_consecutive_jumps{2},
-    maxFrame[12] = {2, 8, 3, 2, 3, 2, 2, 2, 4, 2, 2, 8};
+    int size{36}, block_size{18},
+
+    count_super_fast{0}, count_super_throw{0},count_super{0},
+
+    times_jumped{0}, max_consecutive_jumps{2},
+
+    maxFrame[12] = {2, 8, 3, 2, 3, 2, 2, 2, 4, 2, 2, 8},
+    number_of_character_states{11}, max_images_per_state{8};
 
     int current_projectile{1};
 
@@ -55,6 +60,8 @@ public:
     std::vector<bool> collision;
 
     Coin_counter* coin_counter;
+
+    QTimer* timer_super_fast, timer_super_throw, timer_super;
 
 
     // Methods
@@ -81,7 +88,6 @@ public slots:
 
     // Slot for timer
     void move();
-
 };
 
 #endif // PLAYER_H
