@@ -47,8 +47,8 @@ public:
 
     Texture();
 
-
     //Attributes
+    int amount_close_backgrounds{2};
 
     // This will store which texture is currently being used
     Textures current_texture;

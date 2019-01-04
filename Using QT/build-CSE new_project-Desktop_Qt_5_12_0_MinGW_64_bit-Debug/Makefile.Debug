@@ -214,10 +214,11 @@ debug/qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Levels/test_world_enemies.bmp \
 		../Project/Levels/Level_agathe_002.png \
 		../Project/Backgrounds/Main_background/nd.png \
-		../Project/Backgrounds/Main_background/buildings.png \
 		../Project/Backgrounds/Main_background/arc.png \
+		../Project/Backgrounds/Main_background/building2.png \
 		../Project/Backgrounds/Main_background/eiffel.png \
 		../Project/Backgrounds/Main_background/back3.png \
+		../Project/Backgrounds/Main_background/building1.png \
 		../Project/Backgrounds/Main_background/bg.png \
 		../Project/Backgrounds/Main_background/back2.png
 	D:\Qt\5.12.0\mingw73_64\bin\rcc.exe -name resources ..\Project\resources.qrc -o debug\qrc_resources.cpp

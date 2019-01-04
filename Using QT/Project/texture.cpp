@@ -91,15 +91,15 @@ void Texture::define_main_background()
 
     std::vector<std::string> background_close_temp;
 
-    while( background_close_temp.size() < 2)
+    while( background_close_temp.size() < amount_close_backgrounds)
     {
         background_close_temp.push_back("");
     }
 
-    background_close_temp[0] = "buildings";
-
-    background_close_temp[1] = "buildings2";
-
+    for (int i=0; i<amount_close_backgrounds; i++)
+    {
+        background_close_temp[i] = "building" + std::to_string(i+1);
+    }
 
     while( background_image_from_background_close.size() <= main_background)
     {

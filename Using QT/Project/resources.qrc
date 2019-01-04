@@ -30,8 +30,8 @@
         <file>Backgrounds/Main_background/bg.png</file>
         <file>Backgrounds/Main_background/eiffel.png</file>
         <file>Backgrounds/Main_background/nd.png</file>
-        <file>Backgrounds/Main_background/buildings.png</file>
         <file>Levels/Level_agathe_002.png</file>
-        <file>Backgrounds/Main_background/buildings2.png</file>
+        <file>Backgrounds/Main_background/building1.png</file>
+        <file>Backgrounds/Main_background/building2.png</file>
     </qresource>
 </RCC>

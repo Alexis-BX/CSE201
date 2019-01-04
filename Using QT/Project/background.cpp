@@ -11,8 +11,4 @@ QPainterPath Background::shape() const
     return QPainterPath();
 }
 
-Background::~Background()
-{
-    //delete pixmap
-    //remove from scene
-}
+Background::~Background(){}
