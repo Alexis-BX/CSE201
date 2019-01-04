@@ -78,8 +78,6 @@ void Texture::define_main_background()
 
     background_temp[background_middle] = "eiffel";
 
-    background_temp[background_close] = "buildings";
-
     std::vector<std::string> x;
 
     while( background_image_from_background.size() <= main_background)
@@ -88,6 +86,27 @@ void Texture::define_main_background()
     }
 
     background_image_from_background[main_background] = background_temp;
+
+    //loading different buildings
+
+    std::vector<std::string> background_close_temp;
+
+    while( background_close_temp.size() < 2)
+    {
+        background_close_temp.push_back("");
+    }
+
+    background_close_temp[0] = "buildings";
+
+    background_close_temp[1] = "buildings2";
+
+
+    while( background_image_from_background_close.size() <= main_background)
+    {
+        background_image_from_background_close.push_back(x);
+    }
+
+    background_image_from_background_close[main_background] = background_close_temp;
 
 }
 
@@ -98,6 +117,11 @@ const char* Texture::get_path_to(Object_texture ojb_tex)
 
 const char* Texture::get_path_to(Background_texture bg_tex)
 {
+    if (bg_tex == background_close)
+    {
+        int pos = (std::time(nullptr))%background_image_from_background_close[current_background].size();
+        return (path_to_backgrounds+background_names[current_background]+background_image_from_background_close[current_background][pos]+".png").c_str();
+    }
     return (path_to_backgrounds+background_names[current_background]+background_image_from_background[current_background][bg_tex]+".png").c_str();
 }
 

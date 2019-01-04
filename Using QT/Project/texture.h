@@ -71,6 +71,7 @@ public:
     **/
     std::vector<std::vector<std::string>> object_image_from_texure;
     std::vector<std::vector<std::string>> background_image_from_background;
+    std::vector<std::vector<std::string>> background_image_from_background_close;
 
     //Define main texture
     void define_main_texture();

@@ -14,6 +14,8 @@ public:
     Background(pair position, QGraphicsItem *parent = 0);
 
     virtual QPainterPath shape() const;
+
+    ~Background();
 };
 
 #endif // BACKGROUND_H

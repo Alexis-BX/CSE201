@@ -41,8 +41,7 @@ extern Texture* gtexture;
 #include "string"
 #include <QDebug>
 #include <QtDebug>
-#include <QTime>
 #include <cstddef>
 #include <cstdlib>
-
+#include <QTime>
 */

@@ -28,14 +28,15 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
         list[i]->setX((list[i]->x())-(player->speed.x)/(list[i]->speed_ratio));
     }
 
-    if (list[0]->x() > player->x()-screen_size.x/2)
+    if (list[0]->x() > player->x()-screen_size.x)
     {
         list.insert(list.begin(), new BG(pair{list[0]->x()-(backgrounds_far[0]->width),-offset}));
         scene()->addItem(list[0]);
-    }                                                      //don't put /2 because player not always centered
+    }
     else if (list[0]->x() + list[0]->width < player->x() - screen_size.x)
     {
-        //need actually delete backgrounds before erasing elements
+        //for some reason deleting slows down and doesn't accelerate
+        //scene()->removeItem(list[0]);
         //list.erase(list.begin());
     }
 
@@ -46,7 +47,8 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
     }
     else if (list.back()->x() > player->x() + screen_size.x)
     {
-        //need actually delete backgrounds before erasing elements
+        //for some reason deleting slows down and doesn't accelerate
+        //scene()->removeItem(list[list.size()-1]);
         //list.erase(list.end());
     }
 
