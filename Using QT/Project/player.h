@@ -30,11 +30,11 @@ public:
 
     //direction false = left, true = right
     bool pressed_left{false}, pressed_right{false},
-    super{false}, super_fast{false}, super_throw{false};
+    super{false}, super_fast{false}, super_throw{false}, super_big{false};
 
     int size{36}, block_size{18},
 
-    count_super_fast{0}, count_super_throw{0},count_super{0},
+    count_super_fast{0}, count_super_throw{0},count_super{0}, count_super_big{0},
 
     times_jumped{0}, max_consecutive_jumps{2},
 

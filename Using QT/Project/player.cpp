@@ -587,18 +587,57 @@ void Player::superpower(Collectable collectable)
         super = true;
     }
 
-    if (collectable.type == mushroom)
+    if (collectable.type == mushroom) // mario goes two times faster
     {
-        count_super = 0;
+        count_super_fast = 0;
         speed.x *= 2;
         super_fast = true;
     }
 
-    if (collectable.type == eclair)
+    if (collectable.type == eclair) //mario has a new projectile
     {
-        count_super = 0;
+        count_super_throw = 0;
         view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, facing, size));
         super_throw = true;
+    }
+
+    if (collectable.type == cheese) //Mario invicible ?
+    {
+        count_super = 0;
+
+    }
+
+    if (collectable.type == croissant) //mario slower
+    {
+        count_super_fast = 0;
+        speed.x = speed.x/2;
+        super_fast = true;
+    }
+
+    if (collectable.type == chocolatine) //mario grows two times bigger
+    {
+        count_super_big = 0;
+        super_big = true;
+    }
+
+    if (collectable.type == mini_eiffel) //new projectile
+    {
+        count_super_throw = 0;
+        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, facing, size));
+        super_throw = true;
+    }
+
+    if (collectable.type == glass_wine) //mario grows two times bigger + clignotte
+    {
+        count_super_big = 0;
+        size*=2;
+        super_big = true;
+        super = true;
+    }
+
+    if (collectable.type == coin) // no superpower, use for the coincounter to count the points
+    {
+
     }
 }
 
