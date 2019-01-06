@@ -44,7 +44,8 @@ SOURCES += \
     backgrounds.cpp \
     enemies.cpp \
     base_color_triple.cpp \
-    color_triple_player.cpp
+    color_triple_player.cpp \
+    start_screen.cpp
     enemies.cpp
 
 HEADERS += \
@@ -71,7 +72,8 @@ HEADERS += \
     color_triple.h \
     color_triple_definition.h \
     base_color_triple.h \
-    color_triple_player.h
+    color_triple_player.h \
+    start_screen.h
     enemies.h
 
 

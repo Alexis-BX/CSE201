@@ -54,10 +54,3 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
 
     return list;
 }
-
-
-
-
-
-
-

@@ -635,7 +635,7 @@ void Player::superpower(Collectable collectable)
     if (collectable.type == cheese) //Mario invincible to everything (blocks and projectiles)
     {
         count_super_invincible = 0;
-
+        
         super_invincible = true;
     }
 
@@ -653,6 +653,7 @@ void Player::superpower(Collectable collectable)
     }
 
     if (collectable.type == mini_eiffel) //mario invincible to the projectiles
+    {
         count_super_invincible = 0;
         super_invincible = true;
     }
