@@ -52,8 +52,13 @@ void Test::Test_Blocks() {
 
 //coin_counter tests
 
+<<<<<<< HEAD
 /*
 bool Test::Test_AddCoin(){
+=======
+
+/*bool Test::Test_AddCoin(){
+>>>>>>> 75d0c7dfd18410ff74e5422f1ba946f0f9c03c3e
     Coin_counter current_count;
     for(int i = 0; i < 20; i++){
         current_count.add_coin();
