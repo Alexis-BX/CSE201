@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
+    test.cpp \
     player.cpp \
     block.cpp \
     view.cpp \
@@ -49,6 +50,7 @@ SOURCES += \
     enemies.cpp
 
 HEADERS += \
+    test.h \
     player.h \
     block.h \
     view.h \
