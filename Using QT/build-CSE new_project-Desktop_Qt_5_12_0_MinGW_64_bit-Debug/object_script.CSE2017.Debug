@@ -18,6 +18,7 @@ debug/backgrounds.o
 debug/enemies.o
 debug/base_color_triple.o
 debug/color_triple_player.o
+debug/start_screen.o
 debug/qrc_resources.o
 debug/moc_player.o
 debug/moc_block.o
