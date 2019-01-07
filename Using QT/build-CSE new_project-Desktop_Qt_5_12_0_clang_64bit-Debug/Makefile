@@ -51,6 +51,7 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Project/main.cpp \
+		../Project/test.cpp \
 		../Project/player.cpp \
 		../Project/block.cpp \
 		../Project/view.cpp \
@@ -69,7 +70,9 @@ SOURCES       = ../Project/main.cpp \
 		../Project/backgrounds.cpp \
 		../Project/enemies.cpp \
 		../Project/base_color_triple.cpp \
-		../Project/color_triple_player.cpp qrc_resources.cpp \
+		../Project/color_triple_player.cpp \
+		../Project/start_screen.cpp qrc_resources.cpp \
+		moc_test.cpp \
 		moc_player.cpp \
 		moc_block.cpp \
 		moc_projectile.cpp \
@@ -78,6 +81,7 @@ SOURCES       = ../Project/main.cpp \
 		moc_counter.cpp \
 		moc_enemy.cpp
 OBJECTS       = main.o \
+		test.o \
 		player.o \
 		block.o \
 		view.o \
@@ -97,7 +101,9 @@ OBJECTS       = main.o \
 		enemies.o \
 		base_color_triple.o \
 		color_triple_player.o \
+		start_screen.o \
 		qrc_resources.o \
+		moc_test.o \
 		moc_player.o \
 		moc_block.o \
 		moc_projectile.o \
@@ -298,7 +304,8 @@ DIST          = /Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/spec_p
 		/Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/exceptions.prf \
 		/Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/yacc.prf \
 		/Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/lex.prf \
-		../Project/CSE new_project.pro ../Project/player.h \
+		../Project/CSE new_project.pro ../Project/test.h \
+		../Project/player.h \
 		../Project/block.h \
 		../Project/view.h \
 		../Project/projectile.h \
@@ -321,7 +328,9 @@ DIST          = /Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/spec_p
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/base_color_triple.h \
-		../Project/color_triple_player.h ../Project/main.cpp \
+		../Project/color_triple_player.h \
+		../Project/start_screen.h ../Project/main.cpp \
+		../Project/test.cpp \
 		../Project/player.cpp \
 		../Project/block.cpp \
 		../Project/view.cpp \
@@ -340,7 +349,8 @@ DIST          = /Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/spec_p
 		../Project/backgrounds.cpp \
 		../Project/enemies.cpp \
 		../Project/base_color_triple.cpp \
-		../Project/color_triple_player.cpp
+		../Project/color_triple_player.cpp \
+		../Project/start_screen.cpp
 QMAKE_TARGET  = CSE2017
 DESTDIR       = 
 TARGET        = CSE2017.app/Contents/MacOS/CSE2017
@@ -790,8 +800,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Project/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Project/player.h ../Project/block.h ../Project/view.h ../Project/projectile.h ../Project/collectable.h ../Project/types_states_textures.h ../Project/tools.h ../Project/coin_counter.h ../Project/counter.h ../Project/enemy.h ../Project/texture.h ../Project/global.h ../Project/blocks.h ../Project/projectiles.h ../Project/level_load.h ../Project/collectables.h ../Project/background.h ../Project/backgrounds.h ../Project/listheaders.h ../Project/enemies.h ../Project/color_triple.h ../Project/color_triple_definition.h ../Project/base_color_triple.h ../Project/color_triple_player.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Project/main.cpp ../Project/player.cpp ../Project/block.cpp ../Project/view.cpp ../Project/projectile.cpp ../Project/collectable.cpp ../Project/coin_counter.cpp ../Project/counter.cpp ../Project/enemy.cpp ../Project/texture.cpp ../Project/blocks.cpp ../Project/projectiles.cpp ../Project/tools.cpp ../Project/level_load.cpp ../Project/collectables.cpp ../Project/background.cpp ../Project/backgrounds.cpp ../Project/enemies.cpp ../Project/base_color_triple.cpp ../Project/color_triple_player.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Project/test.h ../Project/player.h ../Project/block.h ../Project/view.h ../Project/projectile.h ../Project/collectable.h ../Project/types_states_textures.h ../Project/tools.h ../Project/coin_counter.h ../Project/counter.h ../Project/enemy.h ../Project/texture.h ../Project/global.h ../Project/blocks.h ../Project/projectiles.h ../Project/level_load.h ../Project/collectables.h ../Project/background.h ../Project/backgrounds.h ../Project/listheaders.h ../Project/enemies.h ../Project/color_triple.h ../Project/color_triple_definition.h ../Project/base_color_triple.h ../Project/color_triple_player.h ../Project/start_screen.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Project/main.cpp ../Project/test.cpp ../Project/player.cpp ../Project/block.cpp ../Project/view.cpp ../Project/projectile.cpp ../Project/collectable.cpp ../Project/coin_counter.cpp ../Project/counter.cpp ../Project/enemy.cpp ../Project/texture.cpp ../Project/blocks.cpp ../Project/projectiles.cpp ../Project/tools.cpp ../Project/level_load.cpp ../Project/collectables.cpp ../Project/background.cpp ../Project/backgrounds.cpp ../Project/enemies.cpp ../Project/base_color_triple.cpp ../Project/color_triple_player.cpp ../Project/start_screen.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -825,12 +835,9 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/numbers.png \
 		../Project/Textures/Main_texture/thief_walking_casual.png \
 		../Project/Textures/Main_texture/power_ups.png \
-		../Project/Textures/Main_texture/big_cheese.png \
 		../Project/Textures/Main_texture/character22.12R.png \
 		../Project/Textures/Main_texture/explosion.png \
 		../Project/Textures/Main_texture/smoking_dude.png \
-		../Project/Textures/Main_texture/face.png \
-		../Project/Textures/Main_texture/small_cheese.png \
 		../Project/Textures/Main_texture/blocks.png \
 		../Project/Textures/Main_texture/projectiles.png \
 		../Project/Menu/start_button.png \
@@ -860,9 +867,16 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_counter.cpp moc_enemy.cpp
+compiler_moc_header_make_all: moc_test.cpp moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_counter.cpp moc_enemy.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_counter.cpp moc_enemy.cpp
+	-$(DEL_FILE) moc_test.cpp moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_counter.cpp moc_enemy.cpp
+moc_test.cpp: /Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../Project/test.h \
+		moc_predefs.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/bin/moc
+	/Users/claramontagnes/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/claramontagnes/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/claramontagnes/Desktop/Bachelor/Year 2/CSE201/Project/Using QT/Project' -I/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/claramontagnes/Qt/5.12.0/clang_64/lib ../Project/test.h -o moc_test.cpp
+
 moc_player.cpp: ../Project/global.h \
 		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
@@ -2102,6 +2116,166 @@ main.o: ../Project/main.cpp ../Project/listheaders.h \
 		../Project/projectiles.h \
 		../Project/texture.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Project/main.cpp
+
+test.o: ../Project/test.cpp ../Project/test.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../Project/blocks.h \
+		../Project/block.h \
+		../Project/global.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QRgb \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QtWidgets \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractitemview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractslider.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qaccessiblewidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qactiongroup.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qbuttongroup.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcalendarwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolordialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolormap.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolumnview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcommandlinkbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcommonstyle.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcompleter.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdatawidgetmapper.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdatetimeedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdial.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdialogbuttonbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdirmodel.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdrawutil.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qerrormessage.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfileiconprovider.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfocusframe.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfontcombobox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfontdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgesture.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgesturerecognizer.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsanchorlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicseffect.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsgridlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitemanimation.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslayoutitem.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslinearlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsproxywidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicssceneevent.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicstransform.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicswidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qheaderview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qinputdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qitemdelegate.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qitemeditorfactory.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qkeyeventtransition.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qkeysequenceedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlayoutitem.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlcdnumber.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmdiarea.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmdisubwindow.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmouseeventtransition.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qopenglwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qplaintextedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qprogressdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qproxystyle.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qrubberband.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscroller.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollerproperties.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qshortcut.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsizegrip.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsizepolicy.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qslider.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsplashscreen.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsplitter.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstackedlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstatusbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyle.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleditemdelegate.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstylefactory.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleoption.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstylepainter.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleplugin.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsystemtrayicon.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtabbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtableview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtooltip.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreeview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidgetitemiterator.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundogroup.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundostack.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundoview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwhatsthis.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		../Project/tools.h \
+		../Project/types_states_textures.h \
+		../Project/coin_counter.h \
+		../Project/counter.h \
+		../Project/collectable.h \
+		../Project/player.h \
+		../Project/view.h \
+		../Project/level_load.h \
+		../Project/color_triple.h \
+		../Project/base_color_triple.h \
+		../Project/backgrounds.h \
+		../Project/background.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o test.o ../Project/test.cpp
 
 player.o: ../Project/player.cpp ../Project/listheaders.h \
 		../Project/background.h \
@@ -5265,8 +5439,180 @@ color_triple_player.o: ../Project/color_triple_player.cpp ../Project/color_tripl
 		../Project/counter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o color_triple_player.o ../Project/color_triple_player.cpp
 
+start_screen.o: ../Project/start_screen.cpp ../Project/start_screen.h \
+		../Project/global.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QRgb \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QtWidgets \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractitemview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractslider.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qaccessiblewidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qactiongroup.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qbuttongroup.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcalendarwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolordialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolormap.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolumnview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcommandlinkbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcommonstyle.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcompleter.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdatawidgetmapper.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdatetimeedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdial.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdialogbuttonbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdirmodel.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdrawutil.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qerrormessage.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfileiconprovider.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfocusframe.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfontcombobox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfontdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgesture.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgesturerecognizer.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsanchorlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicseffect.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsgridlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitemanimation.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslayoutitem.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslinearlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsproxywidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicssceneevent.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicstransform.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicswidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qheaderview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qinputdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qitemdelegate.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qitemeditorfactory.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qkeyeventtransition.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qkeysequenceedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlayoutitem.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlcdnumber.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmdiarea.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmdisubwindow.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmouseeventtransition.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qopenglwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qplaintextedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qprogressdialog.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qproxystyle.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qrubberband.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscroller.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollerproperties.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qshortcut.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsizegrip.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsizepolicy.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qslider.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsplashscreen.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsplitter.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstackedlayout.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstatusbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyle.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleditemdelegate.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstylefactory.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleoption.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstylepainter.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleplugin.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsystemtrayicon.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtabbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtableview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbox.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtooltip.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreeview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidgetitemiterator.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundogroup.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundostack.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundoview.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwhatsthis.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
+		/Users/claramontagnes/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		../Project/tools.h \
+		../Project/types_states_textures.h \
+		../Project/listheaders.h \
+		../Project/background.h \
+		../Project/backgrounds.h \
+		../Project/base_color_triple.h \
+		../Project/block.h \
+		../Project/blocks.h \
+		../Project/coin_counter.h \
+		../Project/counter.h \
+		../Project/collectable.h \
+		../Project/collectables.h \
+		../Project/color_triple.h \
+		../Project/color_triple_definition.h \
+		../Project/view.h \
+		../Project/level_load.h \
+		../Project/color_triple_player.h \
+		../Project/enemy.h \
+		../Project/enemies.h \
+		../Project/player.h \
+		../Project/projectile.h \
+		../Project/projectiles.h \
+		../Project/texture.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o start_screen.o ../Project/start_screen.cpp
+
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
+
+moc_test.o: moc_test.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_test.o moc_test.cpp
 
 moc_player.o: moc_player.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_player.o moc_player.cpp

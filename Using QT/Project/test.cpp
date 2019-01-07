@@ -52,9 +52,9 @@ void Test::Test_Blocks() {
 
 //coin_counter tests
 
-
+/*
 bool Test::Test_AddCoin(){
-    coin_counter current_count;
+    Coin_counter current_count;
     for(int i = 0; i < 20; i++){
         current_count.add_coin();
     }
@@ -88,7 +88,7 @@ bool Test::Test_ColRight(){
         }
         std::cout << "collision_right not working" << std::endl;
         return false;
-    }
+    }*/
     /*QList<QGraphicsItem *> colliding_items = (collectable.collision_range_collec)->collidingItems();
     for(auto other_object = colliding_items.begin(); other_object != colliding_items.end(); other_object++){
         for(int i = 0; i < collectable.size.y; i++){
@@ -100,13 +100,13 @@ bool Test::Test_ColRight(){
                 std::cout << "collision_right not working" << std::endl;
                 return false;
             }
-        }
-    }*/
+        }*/
+
     /*if(!collectable.collision_right()){
         std::cout << "working" << std::endl;
         return true;
     }
     std::cout << "working" << std::endl;
     return false;*/
-}
+
 

@@ -64,7 +64,7 @@ public:
 
     /***
 
-    This is a vector of vectore of strings and so object_image_from_texure[texture]
+    This is a vector of vectors of strings and so object_image_from_texure[texture]
     is a vectore of strings with the names of the png files for each type of object
     that can be accessed by using object_image_from_texure[texture][obj_texture]
 

@@ -235,7 +235,7 @@ void Player::move()
     //Accelerate
     speed.y += 1;
 
-    if(count_super_fast > 0)
+    /*if(count_super_fast > 0)
     {
         if(count_super_fast >= 10000)
         {
@@ -272,8 +272,7 @@ void Player::move()
         {
             count_super_big ++;
         }
-    }
-
+    }*/
 
 
     //Motion smooth
