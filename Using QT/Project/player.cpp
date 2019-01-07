@@ -428,8 +428,7 @@ void Player::move()
             }
             else if(typeid(*(colliding_items[i][j])) == typeid(Enemy_projectile_1))
             {
-                view->setScene(new QGraphicsScene());
-                view->level_load->load_level(":/Images/Levels/test_world_enemies.png");
+
                 continue;
             }
             else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_1))

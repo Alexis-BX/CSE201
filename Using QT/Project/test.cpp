@@ -53,8 +53,8 @@ void Test::Test_Blocks() {
 //coin_counter tests
 
 
-bool Test::Test_AddCoin(){
-    coin_counter current_count;
+/*bool Test::Test_AddCoin(){
+    Coin_counter current_count;
     for(int i = 0; i < 20; i++){
         current_count.add_coin();
     }
@@ -108,5 +108,5 @@ bool Test::Test_ColRight(){
     }
     std::cout << "working" << std::endl;
     return false;*/
-}
+
 
