@@ -460,6 +460,7 @@ void Player::move()
                 view->scene()->removeItem(colliding_items[i][j]);
                 continue;
             }
+            collision[i] = true;
         }
     }
 
