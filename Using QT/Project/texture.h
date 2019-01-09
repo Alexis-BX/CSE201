@@ -16,28 +16,13 @@ enum Object_texture
 
 };
 
-enum Background_texture{
+enum Background_texture
+{
     background_far,
     background_middle,
     background_close,
     background_texture_count
 };
-
-enum Textures
-{
-    main_texture,
-    troll_texture_1
-};
-
-enum Backgrounds
-{
-    main_background
-};
-
-/**
- * This class was implemented to facilitate changes of texture
- */
-
 
 
 class Texture
@@ -48,42 +33,33 @@ public:
     Texture();
 
     //Attributes
-    int amount_close_backgrounds{2};
 
     // This will store which texture is currently being used
-    Textures current_texture;
-    Backgrounds current_background;
+    QString current_texture2;
+    QString current_background2;
 
     //This is a string with the path to the texture folder
-    std::string path_to_textures;
-    std::string path_to_backgrounds;
-
-    //This is a vector of stings that holds the names of the folders for each texture
-    std::vector<std::string> texture_names;
-    std::vector<std::string> background_names;
+    QString path_to_textures2 = ":/Images/Textures/";
+    QString path_to_backgrounds2 = ":/Images/Backgrounds/";
 
     /***
-
     This is a vector of vectors of strings and so object_image_from_texure[texture]
     is a vectore of strings with the names of the png files for each type of object
     that can be accessed by using object_image_from_texure[texture][obj_texture]
-
     **/
-    std::vector<std::vector<std::string>> object_image_from_texure;
-    std::vector<std::vector<std::string>> background_image_from_background;
-    std::vector<std::vector<std::string>> background_image_from_background_close;
+    QMap<QString,QList<QString>> object_image_from_texure2;
+    QMap<QString,QList<QString>> background_image_from_background2;
+    QMap<QString,QList<QString>> background_image_from_background_close2;
 
-    //Define main texture
-    void define_main_texture();
+    void read_texture_from_file(QString filename);
 
-    //Define the backgrounds
-    void define_main_background();
+    void read_background_from_file(QString filename, int amount_close_backgrounds = 2);
 
     // Method that return the path to the image of a certain object texture in the current texture
-    const char* get_path_to(Object_texture ojb_tex);
+    QString get_path_to(Object_texture ojb_tex);
 
     // Method that return the path to a background
-    const char* get_path_to(Background_texture bg_tex);
+    QString get_path_to(Background_texture bg_tex);
 
     //Method that returns the QPixmap array of a sprite animation
     std::vector<QPixmap> get_qpixmap_of(Object_texture sheet, int start=0, int length=1, int size=18);
