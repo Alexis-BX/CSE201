@@ -1,11 +1,5 @@
 #include "test.h"
-#include "blocks.h"
-#include "tools.h"
-#include "coin_counter.h"
-#include "collectable.h"
-#include "player.h"
-#include "view.h"
-#include "global.h"
+#include "listheaders.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <iostream>
@@ -16,26 +10,48 @@ Test::Test(){}
 
 //block and blocks classes tests
 
-/*
+
 bool Test::Test_Blink() {
     pair position = {double(rand() % 739), double(rand() % 505)};
     Active_block testquestion_mark(position);
-    int x = testquestion_mark.image_count;
+    unsigned long long x = testquestion_mark.image_count;
     testquestion_mark.blink();
     if(testquestion_mark.image_count != x){
         return true;
     }
-    std::cout << "Blink() is not working :(" << std::endl;
+    std::cout << "Blink() is not working :( " << std::endl;
     return false;
 }
 
 //test if for a block that has texture question mark blink changes its image_count
+/* the idea is that every 0.5 seconds the image count should change;
+ * checking this once does not work (due to delays, order of execution, who knows),
+ * so I tried checking it 10 times and see if works more than half the times
+ * spoiler, still not working - but we can clearly see in the game that the function works
+ * will come back to this later */
 bool Test::Test_Blink2() {
     pair position = {double(rand() % 739), double(rand() % 505)};
     Active_block anotherquestion_mark(position);
-    int x = anotherquestion_mark.image_count;
-    usleep(700000);
-    if(anotherquestion_mark.image_count != x){
+    int res[10];
+    int i = 9;
+    unsigned long long x = anotherquestion_mark.image_count;
+    while(i>=0){
+        usleep(520000);
+        if(anotherquestion_mark.image_count != x){
+            res[i] = 1;
+        }
+        else{
+            res[i] = 0;
+        }
+        i -= 1;
+        x = anotherquestion_mark.image_count;
+    }
+    int sum = 0;
+    for(int j=0; j<10; j++){
+        sum += res[j];
+    }
+    if(sum>5){
+        std::cout << "Blink() inside question_mark is working :)" << std::endl;
         return true;
     }
     std::cout << "Blink() inside question_mark is not working :(" << std::endl;
@@ -47,69 +63,41 @@ void Test::Test_Blocks() {
     if(testobj.Test_Blink() == true && testobj.Test_Blink2() == true){
         std::cout << "Blocks class is succesful!" << std::endl;
     }
-}*/
-
-
-//coin_counter tests
-
-
-/*
-
-bool Test::Test_AddCoin(){
->>>>>>> 75d0c7dfd18410ff74e5422f1ba946f0f9c03c3e
-    Coin_counter current_count;
-    for(int i = 0; i < 20; i++){
-        current_count.add_coin();
-    }
-    if(current_count.coin_count == 20){
-        return true;
-    }
-    std::cout << "Coin_counter does not work :(" << std::endl;
-    return false;
 }
 
 
-//collectable tests
+//coin counter tests
 
-
-bool Test::Test_ColRight(){
+bool Test::Test_AddCoin(){
     pair position = {double(rand() % 739), double(rand() % 505)};
-    Collectable_type types[4];
-    types[0] = coin;
-    types[1] = mushroom;
-    types[2] = eclair;
-    types[3] = star;
-    int index = rand() % 3;
-    Collectable collectable(position, types[index], Collectable_state{unused}, Collectable_texture{same});
-    collectable.setPos(position.x, position.y);
-    std::cout << collectable.speed.x << " " << collectable.speed.y << std::endl;
-    std::cout << collectable.collision_right() << std::endl;
-    if(collectable.speed.x <= 0 || collectable.speed.y != 0){
-        if(collectable.collision_right() == false){
-            std::cout << "working" << std::endl;
-            return true;
-        }
-        std::cout << "collision_right not working" << std::endl;
-        return false;
-    }*/
-    /*QList<QGraphicsItem *> colliding_items = (collectable.collision_range_collec)->collidingItems();
-    for(auto other_object = colliding_items.begin(); other_object != colliding_items.end(); other_object++){
-        for(int i = 0; i < collectable.size.y; i++){
-            if ((*other_object) -> contains( QPointF(collectable.x() +  (collectable.size.x - 1)  + (collectable.speed.x - 1) - (*other_object)->x(), collectable.y() + i -(*other_object)->y() ))){
-                if(collectable.collision_right() == true){
-                    std::cout << "working" << std::endl;
-                    return true;
-                }
-                std::cout << "collision_right not working" << std::endl;
-                return false;
-            }
-        }*/
-
-    /*if(!collectable.collision_right()){
-        std::cout << "working" << std::endl;
+    Coin_counter counter(position);
+    counter.coins = rand() % 20;
+    int x = counter.coins;      //check the initial amount of coins
+    int amount = rand() % 10;       //how many coins we add
+    counter.add_coin(amount);
+    if(counter.coins - x == amount){
         return true;
     }
-    std::cout << "working" << std::endl;
-    return false;*/
+    std::cout << "Add_coin is not working :(" << std::endl;
+    return false;
+}
 
+bool Test::Test_UpdateCounter(){                //tests update counter but from the add_coin point of view
+    pair position = {double(rand() % 739), double(rand() % 505)};
+    Coin_counter counter(position);
+    counter.coins = 9;      //i only need counters of length 1 for 9 coins
+    counter.counters.push_back(new Counter(1));     //initialize counters of length 1
+    counter.add_coin(3);     //for 12 coins, we will need another counter
+    if(counter.counters.size() == 2){
+        return true;
+    }
+    std::cout << "Update_counter does not work :(" << std::endl;
+    return false;
+}
 
+void Test::Test_CoinCount() {
+    Test testobj;
+    if(testobj.Test_AddCoin() == true && testobj.Test_UpdateCounter() == true){
+        std::cout << "Coin_counter class is succesful!" << std::endl;
+    }
+}

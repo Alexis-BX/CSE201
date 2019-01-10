@@ -16,6 +16,8 @@ public:
 
     //tests for coin_counter class
     bool Test_AddCoin();
+    bool Test_UpdateCounter();
+    void Test_CoinCount();
 
     //tests for collectable class
     bool Test_ColUp();

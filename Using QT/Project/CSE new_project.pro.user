@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
 <<<<<<< HEAD
+<!-- Written by QtCreator 4.8.0, 2019-01-07T18:38:20. -->
+=======
+<<<<<<< HEAD
 <!-- Written by QtCreator 4.8.0, 2019-01-07T21:38:44. -->
 =======
 <!-- Written by QtCreator 4.8.0, 2019-01-09T08:14:31. -->
 >>>>>>> 1cb681c18fa35c4e9bbd764a2e2b53e49588430a
+>>>>>>> 4219a963b4ad872ed30aa9fba32b2a876566e438
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -301,7 +305,11 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">CSE new_project</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+<<<<<<< HEAD
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/maria/Desktop/PROOOO/CSE201/Using QT/Project/CSE new_project.pro</value>
+=======
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/Sebastien/Desktop/GitHub/CSE201/Using QT/Project/CSE new_project.pro</value>
+>>>>>>> 4219a963b4ad872ed30aa9fba32b2a876566e438
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">CSE new_project.pro</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
@@ -312,7 +320,11 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
+<<<<<<< HEAD
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/maria/Desktop/PROOOO/CSE201/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Debug</value>
+=======
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Sebastien/Desktop/GitHub/CSE201/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Debug</value>
+>>>>>>> 4219a963b4ad872ed30aa9fba32b2a876566e438
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
