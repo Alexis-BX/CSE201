@@ -1,0 +1,8 @@
+basic_player : character22.12
+blocks : blocks
+small_collectable : small_cheese
+big_collectable : big_cheese
+power_ups : power_ups
+enemy_1 : thief_walking_casual
+projectiles : projectiles
+projectile_vanish_effect : explosion

@@ -1,0 +1,4 @@
+background_far : bg
+background_middle : eiffel
+background_close1 : building1
+background_close2 : building2
