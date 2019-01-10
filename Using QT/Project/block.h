@@ -14,7 +14,7 @@ public:
 
     Block_type type;
 
-    Block(pair position, QGraphicsItem* parent = 0);
+    Block(pair position, QGraphicsItem* parent = nullptr);
 
     unsigned long long image_count{0};
 

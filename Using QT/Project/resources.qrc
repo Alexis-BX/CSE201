@@ -32,5 +32,6 @@
         <file>Backgrounds/Main_background/building2.png</file>
         <file>Textures/Main_texture/Main_texture_list.txt</file>
         <file>Backgrounds/Main_background/Main_background_list.txt</file>
+        <file>Rules/Collisions.txt</file>
     </qresource>
 </RCC>

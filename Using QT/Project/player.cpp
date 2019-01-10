@@ -1,11 +1,15 @@
 #include "listheaders.h"
 
 Player::Player(QGraphicsItem* parent) :
-    QObject (), QGraphicsPixmapItem (parent)
+    QObject(), QGraphicsPixmapItem (parent)
 {
     create_animation();
 
-    collision_master = new Collision_master(this);
+    for(int i = 0; i < 3 ; i ++)
+    {
+        collision_ranges.push_back(new QGraphicsRectItem(this));
+        //collision_ranges[i]->setPen(QPen(Qt::NoPen));
+    }
 
     this->setZValue(layer_player);
 
@@ -228,46 +232,6 @@ void Player::move()
     //Accelerate
     speed.y += 1;
 
-    /*if(count_super_fast > 0)
-    {
-        if(count_super_fast >= 10000)
-        {
-            count_super_fast = 0;
-            max_speed = absolute_max_speed;
-        }
-        else
-        {
-            count_super_fast ++;
-        }
-    }
-
-    if(count_super_throw > 0)
-    {
-        if(count_super_throw >= 10000)
-        {
-            count_super_throw = 0;
-            current_projectile = 1;
-        }
-        else
-        {
-            count_super_throw ++;
-        }
-    }
-
-    if(count_super_big > 0)
-    {
-        if(count_super_big >= 10000)
-        {
-            count_super_big = 0;
-            size *= 2;
-        }
-        else
-        {
-            count_super_big ++;
-        }
-    }*/
-
-
     //Motion smooth
     if (pressed_left)
     {
@@ -331,127 +295,71 @@ void Player::move()
         setX(view->world_size.right);
     }
 
-    collision_master->collision_ranges[0]->setRect(0,1,speed.x,size-1);
-    collision_master->collision_ranges[0]->setPos((speed.x > 0) ? size+1 : -1,0);
 
-    collision_master->collision_ranges[1]->setRect(1,0,size-1,speed.y);
-    collision_master->collision_ranges[1]->setPos(0,(speed.y > 0) ? size+1 : -1);
+    collision_ranges[0]->setRect(0,1,speed.x,size.y-1);
+    collision_ranges[0]->setPos((speed.x > 0) ? size.x+1 : -1,0);
 
-    collision_master->collision_ranges[2]->setRect(0,0,speed.x,speed.y);
-    collision_master->collision_ranges[2]->setPos((speed.x > 0) ? size+1 : -1, (speed.y > 0) ? size+1 : -1);
+    collision_ranges[1]->setRect(1,0,size.x-1,speed.y);
+    collision_ranges[1]->setPos(0,(speed.y > 0) ? size.y+1 : -1);
+
+    collision_ranges[2]->setRect(0,0,speed.x,speed.y);
+    collision_ranges[2]->setPos((speed.x > 0) ? size.x+1 : -1, (speed.y > 0) ? size.y+1 : -1);
 
     {
+    QString temp_collision_type;
     QList<QGraphicsItem*> colliding_items;
     collision = QList<bool>{false,false,false};
+
     for(int i = 0; i < 3 ; i ++)
     {
-        colliding_items = collision_master->collision_ranges[i]->collidingItems();
+        colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
         {
-            qDebug() << typeid(*colliding_items[j]).name();
-            if(typeid(*colliding_items[j]) == typeid(Base_block))
+            temp_collision_type = collision_master->collide(QString(typeid(*colliding_items[j]).name()));
+            if(temp_collision_type == "simple_collision")
             {
                 collision[i] = true;
                 continue;
             }
-            else if(typeid(*colliding_items[j]) == typeid(Small_collectable))
+            if(temp_collision_type == "active_collision") //deactivates an active block
             {
-                view->scene()->removeItem((colliding_items[j]));
+                collision[i] = true;
+                view->scene()->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
+
+                view->scene()->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+
+                view->scene()->removeItem(colliding_items[j]);
+
+                continue;
+            }
+            if(temp_collision_type == "add_coin") //collision with cheese
+            {
+                view->scene()->removeItem(colliding_items[j]);
                 coin_counter->add_coin();
                 continue;
             }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_1))
+
+            if(temp_collision_type == "power") //collision with power up
             {
                 view->scene()->removeItem(colliding_items[j]);
-
-                count_super_fast = 1;
-
-                max_speed.x = absolute_max_speed.x*2;
-
+                //super_power(temp_collision_type);
                 continue;
             }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_2))
+
+            //if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
+            //{
+            //    view->scene()->removeItem(colliding_items[j]);
+            //    continue;
+            //}
+
+            /**
+            if(temp_collision_type == "damage_block") //collision with breakable
             {
                 view->scene()->removeItem(colliding_items[j]);
-
-                current_projectile = 2;
-
+                coin_counter->add_coin();
                 continue;
             }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_3))
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_4))
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_5))
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_6))
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_7))
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Power_up_8))
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(QGraphicsRectItem))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Collectable))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Enemy_projectile_1))
-            {
-
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Player_projectile_1))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Player_projectile_2))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Player_projectile_3))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Projectile))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Counter))
-            {
-                continue;
-            }
-            else if(typeid(*colliding_items[j]) == typeid(Active_block))
-            {
-
-                view->scene()->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
-
-                view->scene()->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size));
-
-                view->scene()->removeItem(colliding_items[j]);
-                continue;
-            }
-            collision[i] = true;
+            **/
         }
     }
     }
@@ -568,25 +476,25 @@ void Player::throw_projectile()
     {
     case 1:
     {
-        view->scene()->addItem(new Player_projectile_1(position, facing, size));
+        view->scene()->addItem(new Player_projectile_1(position, facing, size.x));
         break;
     }
 
     case 2:
     {
-        view->scene()->addItem(new Player_projectile_2(position, facing, size));
+        view->scene()->addItem(new Player_projectile_2(position, facing, size.x));
         break;
     }
 
     case 3:
     {
-        view->scene()->addItem(new Player_projectile_3(position, facing, size));
+        view->scene()->addItem(new Player_projectile_3(position, facing, size.x));
         break;
     }
 
     case 4:
     {
-        view->scene()->addItem(new Enemy_projectile_1(position, facing, size));
+        view->scene()->addItem(new Enemy_projectile_1(position, facing, size.x));
         break;
     }
     }
@@ -610,7 +518,7 @@ void Player::superpower(Collectable collectable)
     if (collectable.type == eclair) //mario has a new projectile
     {
         count_super_throw = 0;
-        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, facing, size));
+        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, facing, size.x));
         super_throw = true;
     }
 
@@ -643,7 +551,8 @@ void Player::superpower(Collectable collectable)
     if (collectable.type == glass_wine) //mario grows two times bigger + clignotte
     {
         count_super_big = 0;
-        size*=2;
+        size.x*=2;
+        size.y*=2;
         super_big = true;
         super = true;
     }
@@ -752,19 +661,19 @@ void Player::create_animation()
         for (int i = 0; i<maxFrame[j]; i++)
         {
             //generate images looking left
-            animations[0][1][j][i] = imgChar.copy(i*size, j*size, size, size);
+            animations[0][1][j][i] = imgChar.copy(int(i*size.x), int(j*size.y), int(size.x), int(size.y));
 
             //generate images looking right
-            QImage img = imgChar.copy(i*size, j*size, size, size).toImage();
+            QImage img = imgChar.copy(int(i*size.x), int(j*size.y), int(size.x), int(size.y)).toImage();
             img = img.mirrored(true, false);
             animations[0][0][j][i] = QPixmap::fromImage(img);
 
 
             //Generate super images looking left
-            animations[1][1][j][i] = imgChar.copy(i*size, (number_of_character_states+j)*size, size, size);
+            animations[1][1][j][i] = imgChar.copy(int(i*size.x), int((number_of_character_states+j)*size.y), int(size.x), int(size.y));
 
             //Generate super images looking right
-            QImage imgs = imgChar.copy(i*size, (number_of_character_states+j)*size, size, size).toImage();
+            QImage imgs = imgChar.copy(int(i*size.x), int((number_of_character_states+j)*size.y), int(size.x), int(size.y)).toImage();
             imgs = imgs.mirrored(true, false);
             animations[1][0][j][i] = QPixmap::fromImage(imgs);
 

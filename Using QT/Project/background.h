@@ -11,7 +11,7 @@ public:
 
     QPixmap sprite;
 
-    Background(pair position, QGraphicsItem *parent = 0);
+    Background(pair position, QGraphicsItem *parent = nullptr);
 
     virtual QPainterPath shape() const;
 

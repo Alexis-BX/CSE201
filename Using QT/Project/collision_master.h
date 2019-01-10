@@ -3,16 +3,19 @@
 #include "global.h"
 
 
-class Collision_master : public QObject, public QGraphicsRectItem
+class Collision_master
 {
 
 public:
 
-    Collision_master(QGraphicsItem *parent);
+    Collision_master();
 
-    void create_collision_range();
+    void read_rules_from_file(QString name);
 
-    QList<QGraphicsRectItem*> collision_ranges;
+    QString collide(QString colliding_with);
+
+    QMap<QString,QString> rules;
 };
+
 
 #endif // COLLISION_MASTER_H

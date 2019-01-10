@@ -3,8 +3,7 @@
 #include "global.h"
 #include "collectable.h"
 #include "coin_counter.h"
-
-class Collision_master;
+#include "collision_master.h"
 
 //list of player states
 enum States
@@ -21,12 +20,14 @@ class Player : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Player(QGraphicsItem* parent = 0);
+    Player(QGraphicsItem* parent = nullptr);
 
 
     // Attributes
 
-    pair max_speed{10,15}, absolute_max_speed{10,15},speed{0,0};
+    QList<QGraphicsRectItem*> collision_ranges;
+
+    pair max_speed{10,15}, absolute_max_speed{10,15}, size{36,36}, speed{0,0}, block_size{18,18};
 
     double_pair world_boundaries;
 
@@ -34,9 +35,7 @@ public:
     bool pressed_left{false}, pressed_right{false},
     super{false}, super_fast{false}, super_throw{false}, super_big{false}, super_invincible{false};
 
-    int size{36}, block_size{18},
-
-    count_super_fast{0}, count_super_throw{0},count_super{0}, count_super_big{0}, count_super_invincible{0},
+    int count_super_fast{0}, count_super_throw{0},count_super{0}, count_super_big{0}, count_super_invincible{0},
 
     times_jumped{0}, max_consecutive_jumps{2},
 
@@ -59,8 +58,6 @@ public:
 
     Coin_counter* coin_counter;
 
-    Collision_master* collision_master;
-
     QTimer* timer_super_fast, timer_super_throw, timer_super;
 
 
@@ -72,8 +69,6 @@ public:
     void throw_projectile();
 
     void create_animation();
-
-    void create_collision_range();
 
     void superpower(Collectable collectable);
 

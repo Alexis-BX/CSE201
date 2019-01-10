@@ -25,6 +25,10 @@ class Texture;
 
 extern Texture* gtexture;
 
+class Collision_master;
+
+extern Collision_master* collision_master;
+
 #endif // GLOBAL_H
 
 

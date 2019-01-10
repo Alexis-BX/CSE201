@@ -26,6 +26,6 @@ void Color_triple_player::test(int R, int G, int B, pair &position)
 
         view->centerOn(view->player);
 
-        view->player->coin_counter = new Coin_counter(pair{greal(view->player->size),0},view->player);
+        view->player->coin_counter = new Coin_counter(pair{view->player->size.x,0},view->player);
     }
 }

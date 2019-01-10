@@ -21,6 +21,7 @@ release/base_color_triple.o
 release/color_triple_player.o
 release/start_screen.o
 release/collision_master.o
+release/collisionable.o
 release/qrc_resources.o
 release/moc_test.o
 release/moc_player.o
@@ -30,3 +31,4 @@ release/moc_collectable.o
 release/moc_coin_counter.o
 release/moc_counter.o
 release/moc_enemy.o
+release/moc_collision_master.o

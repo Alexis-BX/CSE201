@@ -1,0 +1,30 @@
+#Player
+
+Base_block : simple_collision
+Special_block_above : simple_collision
+Special_block_below : simple_collision
+Activated_block : simple_collision
+Small_collectable : add_coin
+Breakable_block : damage_block
+Power_up_1 : power
+Power_up_2 : power
+Power_up_3 : power
+Power_up_4 : power
+Power_up_5 : power
+Power_up_6 : power
+Power_up_7 : power
+Power_up_8 : power
+Enemy_projectile_1 : lose_life
+Player_projectile_1 : nothing
+Player_projectile_2 : nothing
+Player_projectile_3 : nothing
+Counter : nothing
+Active_block : active_collision
+
+#Enemy
+
+TBD
+
+#Collectable
+
+TBD

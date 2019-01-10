@@ -21,6 +21,7 @@ debug/base_color_triple.o
 debug/color_triple_player.o
 debug/start_screen.o
 debug/collision_master.o
+debug/collisionable.o
 debug/qrc_resources.o
 debug/moc_test.o
 debug/moc_player.o
@@ -30,3 +31,4 @@ debug/moc_collectable.o
 debug/moc_coin_counter.o
 debug/moc_counter.o
 debug/moc_enemy.o
+debug/moc_collision_master.o
