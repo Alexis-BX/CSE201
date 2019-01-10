@@ -828,6 +828,7 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Levels/sticker-numero-un.jpg \
 		../Project/Levels/Sebastien_001.png \
 		../Project/Levels/test_world_enemies.png \
+		../Project/Levels/Level_clara_002.png \
 		../Project/Levels/test_world_enemies2.png \
 		../Project/Levels/screen_start.png \
 		../Project/Levels/test_world_enemies.bmp \

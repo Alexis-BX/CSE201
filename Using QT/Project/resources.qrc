@@ -32,6 +32,10 @@
         <file>Backgrounds/Main_background/building2.png</file>
         <file>Textures/Main_texture/Main_texture_list.txt</file>
         <file>Backgrounds/Main_background/Main_background_list.txt</file>
+<<<<<<< HEAD
         <file>Rules/Collisions.txt</file>
+=======
+        <file>Levels/Level_clara_002.png</file>
+>>>>>>> 8cfcdfa7d5c586cb05a4e6d91c2cdcd8dc0229dd
     </qresource>
 </RCC>
