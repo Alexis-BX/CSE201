@@ -11,11 +11,7 @@ Base_block::Base_block(pair position, QGraphicsItem* parent) :
 }
 
 
-<<<<<<< HEAD
 Breakable_block_1::Breakable_block_1(pair position, QGraphicsItem* parent) :
-=======
-Breakable_block::Breakable_block(pair position, QGraphicsItem* parent) :
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
     Block(position, parent)
 {
     type = breakable;
@@ -27,7 +23,6 @@ Breakable_block::Breakable_block(pair position, QGraphicsItem* parent) :
 
 }
 
-<<<<<<< HEAD
 Breakable_block_2::Breakable_block_2(pair position, QGraphicsItem* parent) :
     Block(position, parent)
 {
@@ -52,8 +47,6 @@ Breakable_block_3::Breakable_block_3(pair position, QGraphicsItem* parent) :
 
 }
 
-=======
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
 Active_block::Active_block(pair position, QGraphicsItem* parent) :
     Block(position, parent)
 {

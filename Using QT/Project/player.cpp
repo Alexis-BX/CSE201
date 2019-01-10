@@ -8,11 +8,7 @@ Player::Player(QGraphicsItem* parent) :
     for(int i = 0; i < 3 ; i ++)
     {
         collision_ranges.push_back(new QGraphicsRectItem(this));
-<<<<<<< HEAD
         collision_ranges[i]->setPen(QPen(Qt::NoPen));
-=======
-        //collision_ranges[i]->setPen(QPen(Qt::NoPen));
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
     }
 
     this->setZValue(layer_player);
@@ -25,16 +21,13 @@ Player::Player(QGraphicsItem* parent) :
     timer->start(30);
 }
 
-<<<<<<< HEAD
 
-=======
 /**NOTE:
  *  FOR THE moment i made it so the player chooses the items he throws just for testing collisions
  * the designs i made are shit and i know it but again its just to test
  *
  * - adrien
  * **/
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
@@ -304,25 +297,15 @@ void Player::move()
     }
 
 
-<<<<<<< HEAD
     collision_ranges[0]->setRect(0,0,speed.x,size.y-2); //horizontal movement
     collision_ranges[0]->setPos((speed.x > 0) ? size.x : -1 ,0);
 
     collision_ranges[1]->setRect(0,0,size.x-2,speed.y); //vertical movement
-    collision_ranges[1]->setPos(0,(speed.y > 0) ? size.y : -1); //change to -1 (it was 0 before)
+    collision_ranges[1]->setPos(0,(speed.y > 0) ? size.y : -1);
 
     collision_ranges[2]->setRect(0,0,speed.x,speed.y); // corners
     collision_ranges[2]->setPos((speed.x > 0) ? size.x : -1, (speed.y > 0) ? size.y : -1);
-=======
-    collision_ranges[0]->setRect(0,1,speed.x,size.y-1);
-    collision_ranges[0]->setPos((speed.x > 0) ? size.x+1 : -1,0);
 
-    collision_ranges[1]->setRect(1,0,size.x-1,speed.y);
-    collision_ranges[1]->setPos(0,(speed.y > 0) ? size.y+1 : -1);
-
-    collision_ranges[2]->setRect(0,0,speed.x,speed.y);
-    collision_ranges[2]->setPos((speed.x > 0) ? size.x+1 : -1, (speed.y > 0) ? size.y+1 : -1);
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
 
     {
     QString temp_collision_type;
@@ -335,6 +318,7 @@ void Player::move()
         for(int j = 0; j < colliding_items.size(); j++)
         {
             temp_collision_type = collision_master->collide(QString(typeid(*colliding_items[j]).name()));
+
             if(temp_collision_type == "simple_collision")
             {
                 collision[i] = true;
@@ -371,7 +355,6 @@ void Player::move()
             //    continue;
             //}
 
-<<<<<<< HEAD
 
             if(temp_collision_type == "damage_block_1") //collision with breakable block
             {
@@ -403,17 +386,6 @@ void Player::move()
                 continue;
             }
 
-
-=======
-            /**
-            if(temp_collision_type == "damage_block") //collision with breakable
-            {
-                view->scene()->removeItem(colliding_items[j]);
-                coin_counter->add_coin();
-                continue;
-            }
-            **/
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
         }
     }
     }

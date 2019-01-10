@@ -51,6 +51,7 @@ SOURCES += \
     collisionable.cpp
     enemies.cpp
 
+
 HEADERS += \
     test.h \
     player.h \
@@ -81,6 +82,7 @@ HEADERS += \
     collision_master.h \
     collisionable.h
     enemies.h
+
 
 
 

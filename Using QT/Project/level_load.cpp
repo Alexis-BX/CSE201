@@ -8,11 +8,7 @@ Level_load::Level_load(View* view) : view(view)
     color_triples.push_back(new Color_triple<Special_block_above>(34, 177, 76,view));
     color_triples.push_back(new Color_triple<Small_collectable>(255, 242, 00,view));
     color_triples.push_back(new Color_triple<Active_block>(63, 72, 204,view));
-<<<<<<< HEAD
     color_triples.push_back(new Color_triple<Breakable_block_1>(255, 127, 39,view));
-=======
-    color_triples.push_back(new Color_triple<Breakable_block>(255, 127, 39,view));
->>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
     color_triples.push_back(new Color_triple_player(181, 230, 29,view));
     color_triples.push_back(new Color_triple<End_block>(255, 0, 255,view));
 
