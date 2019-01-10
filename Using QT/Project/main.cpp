@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
 
     view = new View(pair{793,505});
 
+    view->level_load->load_level(":/Images/Levels/Level_agathe_002.png");
+
     view->show();
 
     return application.exec();

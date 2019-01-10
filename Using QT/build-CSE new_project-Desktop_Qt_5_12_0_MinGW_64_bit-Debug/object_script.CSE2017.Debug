@@ -20,6 +20,7 @@ debug/enemies.o
 debug/base_color_triple.o
 debug/color_triple_player.o
 debug/start_screen.o
+debug/collision_master.o
 debug/qrc_resources.o
 debug/moc_test.o
 debug/moc_player.o

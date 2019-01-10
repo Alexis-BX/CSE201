@@ -20,6 +20,7 @@ release/enemies.o
 release/base_color_triple.o
 release/color_triple_player.o
 release/start_screen.o
+release/collision_master.o
 release/qrc_resources.o
 release/moc_test.o
 release/moc_player.o
