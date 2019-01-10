@@ -8,7 +8,7 @@ class Counter : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    constexpr static pair size{18,18};
+    pair size{18,18};
 
     Counter(int power_of_10, QGraphicsItem* parent = 0);
 

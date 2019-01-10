@@ -5,10 +5,7 @@
         <file>Levels/screen_start.png</file>
         <file>Levels/sticker-numero-un.jpg</file>
         <file>Menu/start_button.png</file>
-        <file>Textures/Main_texture/big_cheese.png</file>
         <file>Textures/Main_texture/explosion.png</file>
-        <file>Textures/Main_texture/face.png</file>
-        <file>Textures/Main_texture/small_cheese.png</file>
         <file>Textures/Main_texture/smoking_dude.png</file>
         <file>Textures/Main_texture/thief_dying_poorthing.png</file>
         <file>Textures/Main_texture/thief_walking_casual.png</file>
@@ -33,5 +30,7 @@
         <file>Levels/Level_agathe_002.png</file>
         <file>Backgrounds/Main_background/building1.png</file>
         <file>Backgrounds/Main_background/building2.png</file>
+        <file>Textures/Main_texture/Main_texture_list.txt</file>
+        <file>Backgrounds/Main_background/Main_background_list.txt</file>
     </qresource>
 </RCC>

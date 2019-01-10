@@ -39,15 +39,15 @@ enum Collectable_state  // the collectable can either be used by the player or n
 
 enum Collectable_type // shows all kinds of collectables that can appear
 {
-    eclair,
-    croissant,
-    chocolatine,
-    mini_eiffel,
-    glass_wine,
-    mushroom, //makes you grow bigger
+    eclair, //mario get a new projectile
+    croissant, //mario get slower
+    chocolatine, //mario grows two times bigger
+    mini_eiffel, //mario invincible to the projectile
+    glass_wine, //mario grows two timers bigger and blinks
+    mushroom, //mario goes two times faster
     coin, //to get the points
-    star, //makes you go faster
-    cheese
+    star, //mario blinks
+    cheese //Mario is invincible to everything (blocks and projectiles)
 };
 
 enum Collectable_texture  // shows if the player meets the same or different collectable

@@ -19,7 +19,7 @@ bool Test::Test_Blink() {
     if(testquestion_mark.image_count != x){
         return true;
     }
-    std::cout << "Blink() is not working :( 1" << std::endl;
+    std::cout << "Blink() is not working :( " << std::endl;
     return false;
 }
 

@@ -42,4 +42,10 @@ public:
     Activated_block(pair position, QGraphicsItem* parent = 0);
 };
 
+class End_block: public Block
+{
+public:
+    End_block(pair position, QGraphicsItem* parent = 0);
+};
+
 #endif // BLOCKS_H

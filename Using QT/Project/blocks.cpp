@@ -71,3 +71,15 @@ Activated_block::Activated_block(pair position, QGraphicsItem* parent) :
     sprite = gtexture->get_qpixmap_of(blocks, texture);
     setPixmap(sprite[image_count]);
 }
+
+
+End_block::End_block(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = grass;            //RANDOM TEXTURE FOR NOW
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
+    setPixmap(sprite[image_count]);
+}

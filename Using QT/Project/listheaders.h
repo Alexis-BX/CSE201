@@ -13,6 +13,7 @@
 #include "coin_counter.h"
 #include "collectable.h"
 #include "collectables.h"
+#include "collision_master.h"
 #include "color_triple.h"
 #include "color_triple_definition.h"
 #include "color_triple_player.h"

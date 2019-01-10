@@ -5,16 +5,9 @@ Player::Player(QGraphicsItem* parent) :
 {
     create_animation();
 
-    create_collision_range();
+    collision_master = new Collision_master(this);
 
     this->setZValue(layer_player);
-
-    for(int i = 0 ; i < 3 ; i ++)
-    {
-        colliding_items.push_back(QList<QGraphicsItem *>{});
-        collision.push_back(true);
-    }
-
 
     // Timer
     QTimer * timer = new QTimer();
@@ -235,7 +228,7 @@ void Player::move()
     //Accelerate
     speed.y += 1;
 
-    if(count_super_fast > 0)
+    /*if(count_super_fast > 0)
     {
         if(count_super_fast >= 10000)
         {
@@ -272,8 +265,7 @@ void Player::move()
         {
             count_super_big ++;
         }
-    }
-
+    }*/
 
 
     //Motion smooth
@@ -339,40 +331,38 @@ void Player::move()
         setX(view->world_size.right);
     }
 
-    collision_ranges[0]->setRect(0,1,speed.x,size-1);
-    collision_ranges[0]->setPos((speed.x > 0) ? size+1 : -1,0);
+    collision_master->collision_ranges[0]->setRect(0,1,speed.x,size-1);
+    collision_master->collision_ranges[0]->setPos((speed.x > 0) ? size+1 : -1,0);
 
-    collision_ranges[1]->setRect(1,0,size-1,speed.y);
-    collision_ranges[1]->setPos(0,(speed.y > 0) ? size+1 : -1);
+    collision_master->collision_ranges[1]->setRect(1,0,size-1,speed.y);
+    collision_master->collision_ranges[1]->setPos(0,(speed.y > 0) ? size+1 : -1);
 
-    collision_ranges[2]->setRect(0,0,speed.x,speed.y);
-    collision_ranges[2]->setPos((speed.x > 0) ? size+1 : -1, (speed.y > 0) ? size+1 : -1);
+    collision_master->collision_ranges[2]->setRect(0,0,speed.x,speed.y);
+    collision_master->collision_ranges[2]->setPos((speed.x > 0) ? size+1 : -1, (speed.y > 0) ? size+1 : -1);
 
+    {
+    QList<QGraphicsItem*> colliding_items;
+    collision = QList<bool>{false,false,false};
     for(int i = 0; i < 3 ; i ++)
     {
-        colliding_items[i] = collision_ranges[i]->collidingItems();
-        collision[i] = false;
-    }
-
-    for(unsigned int i = 0; i < 3 ; i ++)
-    {
-        for(int j = 0; j < colliding_items[i].size(); j++)
+        colliding_items = collision_master->collision_ranges[i]->collidingItems();
+        for(int j = 0; j < colliding_items.size(); j++)
         {
-            if(typeid(*(colliding_items[i][j])) == typeid(Base_block))
+            qDebug() << typeid(*colliding_items[j]).name();
+            if(typeid(*colliding_items[j]) == typeid(Base_block))
             {
                 collision[i] = true;
-
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Small_collectable))
+            else if(typeid(*colliding_items[j]) == typeid(Small_collectable))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem((colliding_items[j]));
                 coin_counter->add_coin();
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_1))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_1))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
 
                 count_super_fast = 1;
 
@@ -380,89 +370,90 @@ void Player::move()
 
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_2))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_2))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
 
                 current_projectile = 2;
 
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_3))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_3))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_4))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_4))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_5))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_5))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_6))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_6))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_7))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_7))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Power_up_8))
+            else if(typeid(*colliding_items[j]) == typeid(Power_up_8))
             {
-                view->scene()->removeItem((colliding_items[i][j]));
+                view->scene()->removeItem(colliding_items[j]);
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(QGraphicsRectItem))
-            {
-                continue;
-            }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Collectable))
+            else if(typeid(*colliding_items[j]) == typeid(QGraphicsRectItem))
             {
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Enemy_projectile_1))
-            {
-                view->setScene(new QGraphicsScene());
-                view->level_load->load_level(":/Images/Levels/test_world_enemies.png");
-                continue;
-            }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_1))
+            else if(typeid(*colliding_items[j]) == typeid(Collectable))
             {
                 continue;
             }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_2))
-            {
-                continue;
-            }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Player_projectile_3))
-            {
-                continue;
-            }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Projectile))
-            {
-                continue;
-            }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Counter))
-            {
-                continue;
-            }
-            else if(typeid(*(colliding_items[i][j])) == typeid(Active_block))
+            else if(typeid(*colliding_items[j]) == typeid(Enemy_projectile_1))
             {
 
-                view->scene()->addItem(new Activated_block(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()}));
-
-                view->scene()->addItem(new Power_up_1(pair{(*(colliding_items[i][j])).x(),(*(colliding_items[i][j])).y()},block_size));
-
-                view->scene()->removeItem(colliding_items[i][j]);
                 continue;
             }
+            else if(typeid(*colliding_items[j]) == typeid(Player_projectile_1))
+            {
+                continue;
+            }
+            else if(typeid(*colliding_items[j]) == typeid(Player_projectile_2))
+            {
+                continue;
+            }
+            else if(typeid(*colliding_items[j]) == typeid(Player_projectile_3))
+            {
+                continue;
+            }
+            else if(typeid(*colliding_items[j]) == typeid(Projectile))
+            {
+                continue;
+            }
+            else if(typeid(*colliding_items[j]) == typeid(Counter))
+            {
+                continue;
+            }
+            else if(typeid(*colliding_items[j]) == typeid(Active_block))
+            {
+
+                view->scene()->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
+
+                view->scene()->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size));
+
+                view->scene()->removeItem(colliding_items[j]);
+                continue;
+            }
+            collision[i] = true;
         }
+    }
     }
 
     // movements of the player:
@@ -564,15 +555,6 @@ void Player::move()
     view->centerOn(this->x(), 0);
 
     view->update_background();
-}
-
-void Player::create_collision_range()
-{
-    for(int i = 0; i < 3 ; i ++)
-    {
-        collision_ranges.push_back(new QGraphicsRectItem(this));
-        collision_ranges[i]->setPen(QPen(Qt::NoPen));
-    }
 }
 
 void Player::throw_projectile()
