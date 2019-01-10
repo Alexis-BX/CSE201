@@ -10,12 +10,12 @@ MAKEFILE      = Makefile
 
 ####### Compiler, tools and options
 
-CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
-CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+CC            = /Library/Developer/CommandLineTools/usr/bin/clang
+CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../Project -I. -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -F/Users/devulpian/Qt/5.12.0/clang_64/lib
+CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
+INCPATH       = -I../Project -I. -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -F/Users/devulpian/Qt/5.12.0/clang_64/lib
 QMAKE         = /Users/devulpian/Qt/5.12.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,11 +36,11 @@ TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = CSE20171.0.0
 DISTDIR = /Users/devulpian/Documents/year\ 2/CSE\ 201/project_7/Using\ QT/build-CSE\ new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/.tmp/CSE20171.0.0
-LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/devulpian/Qt/5.12.0/clang_64/lib
+LINK          = /Library/Developer/CommandLineTools/usr/bin/clang++
+LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/devulpian/Qt/5.12.0/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Users/devulpian/Qt/5.12.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework OpenGL -framework AGL   
-AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
-RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
+AR            = /Library/Developer/CommandLineTools/usr/bin/ar cq
+RANLIB        = /Library/Developer/CommandLineTools/usr/bin/ranlib -s
 SED           = sed
 STRIP         = strip
 
@@ -269,7 +269,6 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
-		../Project/.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -351,7 +350,7 @@ TARGET        = CSE2017.app/Contents/MacOS/CSE2017
 ####### Custom Variables
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 10.14
-EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
+EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Library/Developer/CommandLineTools
 EXPORT_VALID_ARCHS = x86_64
 EXPORT_ACTIVE_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(ARCHS))
 EXPORT_ARCH_ARGS = $(foreach arch, $(if $(EXPORT_ACTIVE_ARCHS), $(EXPORT_ACTIVE_ARCHS), $(EXPORT_VALID_ARCHS)), -arch $(arch))
@@ -523,7 +522,6 @@ Makefile: ../Project/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/mk
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -715,7 +713,6 @@ Makefile: ../Project/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/mk
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf:
@@ -790,7 +787,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r CSE2017.app
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -848,7 +844,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
+	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_test.cpp moc_player.cpp moc_block.cpp moc_projectile.cpp moc_collectable.cpp moc_coin_counter.cpp moc_counter.cpp moc_enemy.cpp
 compiler_moc_header_clean:
@@ -858,7 +854,7 @@ moc_test.cpp: /Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/Q
 		../Project/test.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/test.h -o moc_test.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/test.h -o moc_test.cpp
 
 moc_player.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1011,7 +1007,7 @@ moc_player.cpp: ../Project/global.h \
 		../Project/player.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/player.h -o moc_player.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/player.h -o moc_player.cpp
 
 moc_block.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1161,7 +1157,7 @@ moc_block.cpp: ../Project/global.h \
 		../Project/block.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/block.h -o moc_block.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/block.h -o moc_block.cpp
 
 moc_projectile.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1311,7 +1307,7 @@ moc_projectile.cpp: ../Project/global.h \
 		../Project/projectile.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/projectile.h -o moc_projectile.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/projectile.h -o moc_projectile.cpp
 
 moc_collectable.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1461,7 +1457,7 @@ moc_collectable.cpp: ../Project/global.h \
 		../Project/collectable.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/collectable.h -o moc_collectable.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/collectable.h -o moc_collectable.cpp
 
 moc_coin_counter.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1612,7 +1608,7 @@ moc_coin_counter.cpp: ../Project/global.h \
 		../Project/coin_counter.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/coin_counter.h -o moc_coin_counter.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/coin_counter.h -o moc_coin_counter.cpp
 
 moc_counter.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1762,7 +1758,7 @@ moc_counter.cpp: ../Project/global.h \
 		../Project/counter.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/counter.h -o moc_counter.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/counter.h -o moc_counter.cpp
 
 moc_enemy.cpp: ../Project/global.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1912,7 +1908,7 @@ moc_enemy.cpp: ../Project/global.h \
 		../Project/enemy.h \
 		moc_predefs.h \
 		/Users/devulpian/Qt/5.12.0/clang_64/bin/moc
-	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/enemy.h -o moc_enemy.cpp
+	/Users/devulpian/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include '/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/moc_predefs.h' -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -I'/Users/devulpian/Documents/year 2/CSE 201/project_7/Using QT/Project' -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include -F/Users/devulpian/Qt/5.12.0/clang_64/lib ../Project/enemy.h -o moc_enemy.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
