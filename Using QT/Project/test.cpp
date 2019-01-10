@@ -16,7 +16,7 @@ Test::Test(){}
 
 //block and blocks classes tests
 
-
+/*
 bool Test::Test_Blink() {
     pair position = {double(rand() % 739), double(rand() % 505)};
     Active_block testquestion_mark(position);
@@ -47,7 +47,7 @@ void Test::Test_Blocks() {
     if(testobj.Test_Blink() == true && testobj.Test_Blink2() == true){
         std::cout << "Blocks class is succesful!" << std::endl;
     }
-}
+}*/
 
 
 //coin_counter tests
