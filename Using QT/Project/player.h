@@ -4,6 +4,8 @@
 #include "collectable.h"
 #include "coin_counter.h"
 
+class Collision_master;
+
 //list of player states
 enum States
 {
@@ -53,13 +55,11 @@ public:
                     //[2][2][number_of_character_states][max_images_per_state]
     QPixmap animations[2][2][11][8];
 
-    std::vector<QGraphicsRectItem*> collision_ranges;
-
-    std::vector<QList<QGraphicsItem *>> colliding_items;
-
-    std::vector<bool> collision;
+    QList<bool> collision;
 
     Coin_counter* coin_counter;
+
+    Collision_master* collision_master;
 
     QTimer* timer_super_fast, timer_super_throw, timer_super;
 

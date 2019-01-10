@@ -16,7 +16,7 @@ Test::Test(){}
 
 //block and blocks classes tests
 
-
+/*
 bool Test::Test_Blink() {
     pair position = {double(rand() % 739), double(rand() % 505)};
     Active_block testquestion_mark(position);
@@ -47,13 +47,16 @@ void Test::Test_Blocks() {
     if(testobj.Test_Blink() == true && testobj.Test_Blink2() == true){
         std::cout << "Blocks class is succesful!" << std::endl;
     }
-}
+}*/
 
 
 //coin_counter tests
 
 
-/*bool Test::Test_AddCoin(){
+/*
+
+bool Test::Test_AddCoin(){
+>>>>>>> 75d0c7dfd18410ff74e5422f1ba946f0f9c03c3e
     Coin_counter current_count;
     for(int i = 0; i < 20; i++){
         current_count.add_coin();
@@ -88,7 +91,7 @@ bool Test::Test_ColRight(){
         }
         std::cout << "collision_right not working" << std::endl;
         return false;
-    }
+    }*/
     /*QList<QGraphicsItem *> colliding_items = (collectable.collision_range_collec)->collidingItems();
     for(auto other_object = colliding_items.begin(); other_object != colliding_items.end(); other_object++){
         for(int i = 0; i < collectable.size.y; i++){
@@ -100,8 +103,8 @@ bool Test::Test_ColRight(){
                 std::cout << "collision_right not working" << std::endl;
                 return false;
             }
-        }
-    }*/
+        }*/
+
     /*if(!collectable.collision_right()){
         std::cout << "working" << std::endl;
         return true;

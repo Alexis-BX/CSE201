@@ -71,7 +71,8 @@ SOURCES       = ../Project/main.cpp \
 		../Project/enemies.cpp \
 		../Project/base_color_triple.cpp \
 		../Project/color_triple_player.cpp \
-		../Project/start_screen.cpp qrc_resources.cpp \
+		../Project/start_screen.cpp \
+		../Project/collision_master.cpp qrc_resources.cpp \
 		moc_test.cpp \
 		moc_player.cpp \
 		moc_block.cpp \
@@ -102,6 +103,7 @@ OBJECTS       = main.o \
 		base_color_triple.o \
 		color_triple_player.o \
 		start_screen.o \
+		collision_master.o \
 		qrc_resources.o \
 		moc_test.o \
 		moc_player.o \
@@ -321,7 +323,8 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		../Project/color_triple_definition.h \
 		../Project/base_color_triple.h \
 		../Project/color_triple_player.h \
-		../Project/start_screen.h ../Project/main.cpp \
+		../Project/start_screen.h \
+		../Project/collision_master.h ../Project/main.cpp \
 		../Project/test.cpp \
 		../Project/player.cpp \
 		../Project/block.cpp \
@@ -342,7 +345,8 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		../Project/enemies.cpp \
 		../Project/base_color_triple.cpp \
 		../Project/color_triple_player.cpp \
-		../Project/start_screen.cpp
+		../Project/start_screen.cpp \
+		../Project/collision_master.cpp
 QMAKE_TARGET  = CSE2017
 DESTDIR       = 
 TARGET        = CSE2017.app/Contents/MacOS/CSE2017
@@ -776,8 +780,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Project/resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Project/test.h ../Project/player.h ../Project/block.h ../Project/view.h ../Project/projectile.h ../Project/collectable.h ../Project/types_states_textures.h ../Project/tools.h ../Project/coin_counter.h ../Project/counter.h ../Project/enemy.h ../Project/texture.h ../Project/global.h ../Project/blocks.h ../Project/projectiles.h ../Project/level_load.h ../Project/collectables.h ../Project/background.h ../Project/backgrounds.h ../Project/listheaders.h ../Project/enemies.h ../Project/color_triple.h ../Project/color_triple_definition.h ../Project/base_color_triple.h ../Project/color_triple_player.h ../Project/start_screen.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Project/main.cpp ../Project/test.cpp ../Project/player.cpp ../Project/block.cpp ../Project/view.cpp ../Project/projectile.cpp ../Project/collectable.cpp ../Project/coin_counter.cpp ../Project/counter.cpp ../Project/enemy.cpp ../Project/texture.cpp ../Project/blocks.cpp ../Project/projectiles.cpp ../Project/tools.cpp ../Project/level_load.cpp ../Project/collectables.cpp ../Project/background.cpp ../Project/backgrounds.cpp ../Project/enemies.cpp ../Project/base_color_triple.cpp ../Project/color_triple_player.cpp ../Project/start_screen.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Project/test.h ../Project/player.h ../Project/block.h ../Project/view.h ../Project/projectile.h ../Project/collectable.h ../Project/types_states_textures.h ../Project/tools.h ../Project/coin_counter.h ../Project/counter.h ../Project/enemy.h ../Project/texture.h ../Project/global.h ../Project/blocks.h ../Project/projectiles.h ../Project/level_load.h ../Project/collectables.h ../Project/background.h ../Project/backgrounds.h ../Project/listheaders.h ../Project/enemies.h ../Project/color_triple.h ../Project/color_triple_definition.h ../Project/base_color_triple.h ../Project/color_triple_player.h ../Project/start_screen.h ../Project/collision_master.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Project/main.cpp ../Project/test.cpp ../Project/player.cpp ../Project/block.cpp ../Project/view.cpp ../Project/projectile.cpp ../Project/collectable.cpp ../Project/coin_counter.cpp ../Project/counter.cpp ../Project/enemy.cpp ../Project/texture.cpp ../Project/blocks.cpp ../Project/projectiles.cpp ../Project/tools.cpp ../Project/level_load.cpp ../Project/collectables.cpp ../Project/background.cpp ../Project/backgrounds.cpp ../Project/enemies.cpp ../Project/base_color_triple.cpp ../Project/color_triple_player.cpp ../Project/start_screen.cpp ../Project/collision_master.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -811,12 +815,10 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/numbers.png \
 		../Project/Textures/Main_texture/thief_walking_casual.png \
 		../Project/Textures/Main_texture/power_ups.png \
-		../Project/Textures/Main_texture/big_cheese.png \
+		../Project/Textures/Main_texture/Main_texture_list.txt \
 		../Project/Textures/Main_texture/character22.12R.png \
 		../Project/Textures/Main_texture/explosion.png \
 		../Project/Textures/Main_texture/smoking_dude.png \
-		../Project/Textures/Main_texture/face.png \
-		../Project/Textures/Main_texture/small_cheese.png \
 		../Project/Textures/Main_texture/blocks.png \
 		../Project/Textures/Main_texture/projectiles.png \
 		../Project/Menu/start_button.png \
@@ -835,6 +837,7 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Backgrounds/Main_background/building2.png \
 		../Project/Backgrounds/Main_background/eiffel.png \
 		../Project/Backgrounds/Main_background/back3.png \
+		../Project/Backgrounds/Main_background/Main_background_list.txt \
 		../Project/Backgrounds/Main_background/building1.png \
 		../Project/Backgrounds/Main_background/bg.png \
 		../Project/Backgrounds/Main_background/back2.png
@@ -2083,6 +2086,7 @@ main.o: ../Project/main.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -2411,6 +2415,7 @@ player.o: ../Project/player.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -2579,6 +2584,7 @@ block.o: ../Project/block.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -2747,6 +2753,7 @@ view.o: ../Project/view.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -2915,6 +2922,7 @@ projectile.o: ../Project/projectile.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -3083,6 +3091,7 @@ collectable.o: ../Project/collectable.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -3251,6 +3260,7 @@ coin_counter.o: ../Project/coin_counter.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -3419,6 +3429,7 @@ counter.o: ../Project/counter.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -3587,6 +3598,7 @@ enemy.o: ../Project/enemy.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -3755,6 +3767,7 @@ texture.o: ../Project/texture.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -3923,6 +3936,7 @@ blocks.o: ../Project/blocks.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -4091,6 +4105,7 @@ projectiles.o: ../Project/projectiles.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -4259,6 +4274,7 @@ tools.o: ../Project/tools.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -4427,6 +4443,7 @@ level_load.o: ../Project/level_load.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -4595,6 +4612,7 @@ collectables.o: ../Project/collectables.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -4763,6 +4781,7 @@ background.o: ../Project/background.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -4931,6 +4950,7 @@ backgrounds.o: ../Project/backgrounds.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -5099,6 +5119,7 @@ enemies.o: ../Project/enemies.cpp ../Project/listheaders.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -5574,6 +5595,7 @@ start_screen.o: ../Project/start_screen.cpp ../Project/start_screen.h \
 		../Project/counter.h \
 		../Project/collectable.h \
 		../Project/collectables.h \
+		../Project/collision_master.h \
 		../Project/color_triple.h \
 		../Project/color_triple_definition.h \
 		../Project/view.h \
@@ -5586,6 +5608,175 @@ start_screen.o: ../Project/start_screen.cpp ../Project/start_screen.h \
 		../Project/projectiles.h \
 		../Project/texture.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o start_screen.o ../Project/start_screen.cpp
+
+collision_master.o: ../Project/collision_master.cpp ../Project/listheaders.h \
+		../Project/background.h \
+		../Project/global.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsItem \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitem.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsPixmapItem \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsScene \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsscene.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QGraphicsView \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QRgb \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qrgb.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTimer \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qtimer.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QtWidgets \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractbutton.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractitemview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractslider.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qaccessiblewidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qaction.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qactiongroup.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qbuttongroup.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcalendarwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcheckbox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolordialog.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolormap.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcolumnview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcombobox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcommandlinkbutton.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcommonstyle.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qcompleter.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdatawidgetmapper.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdatetimeedit.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdesktopwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdial.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdialog.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdialogbuttonbox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdirmodel.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdockwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qdrawutil.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qerrormessage.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfiledialog.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfileiconprovider.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfilesystemmodel.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfocusframe.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfontcombobox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qfontdialog.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qformlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qframe.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgesture.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgesturerecognizer.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsanchorlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicseffect.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsgridlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsitemanimation.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslayoutitem.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicslinearlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicsproxywidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicssceneevent.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicstransform.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgraphicswidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qgroupbox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qheaderview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qinputdialog.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qitemdelegate.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qitemeditorfactory.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qkeyeventtransition.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qkeysequenceedit.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlayoutitem.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlcdnumber.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlistview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmdiarea.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmdisubwindow.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmenu.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmenubar.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmessagebox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qmouseeventtransition.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qopenglwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qplaintextedit.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qprogressdialog.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qproxystyle.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qrubberband.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollarea.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollbar.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscroller.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qscrollerproperties.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qshortcut.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsizegrip.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsizepolicy.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qslider.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qspinbox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsplashscreen.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsplitter.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstackedlayout.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstackedwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstatusbar.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyle.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleditemdelegate.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstylefactory.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleoption.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstylepainter.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qstyleplugin.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qsystemtrayicon.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtabbar.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtableview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtablewidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtabwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtextedit.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbar.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbox.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtoolbutton.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtooltip.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreeview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtreewidgetitemiterator.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundogroup.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundostack.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qundoview.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwhatsthis.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
+		/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		../Project/tools.h \
+		../Project/types_states_textures.h \
+		../Project/backgrounds.h \
+		../Project/base_color_triple.h \
+		../Project/block.h \
+		../Project/blocks.h \
+		../Project/coin_counter.h \
+		../Project/counter.h \
+		../Project/collectable.h \
+		../Project/collectables.h \
+		../Project/collision_master.h \
+		../Project/color_triple.h \
+		../Project/color_triple_definition.h \
+		../Project/view.h \
+		../Project/level_load.h \
+		../Project/color_triple_player.h \
+		../Project/enemy.h \
+		../Project/enemies.h \
+		../Project/player.h \
+		../Project/projectile.h \
+		../Project/projectiles.h \
+		../Project/texture.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o collision_master.o ../Project/collision_master.cpp
 
 qrc_resources.o: qrc_resources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resources.o qrc_resources.cpp
