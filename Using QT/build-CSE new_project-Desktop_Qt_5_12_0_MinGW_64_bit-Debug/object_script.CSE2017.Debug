@@ -31,4 +31,3 @@ debug/moc_collectable.o
 debug/moc_coin_counter.o
 debug/moc_counter.o
 debug/moc_enemy.o
-debug/moc_collision_master.o

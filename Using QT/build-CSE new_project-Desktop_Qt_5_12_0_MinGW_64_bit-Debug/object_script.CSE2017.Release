@@ -31,4 +31,3 @@ release/moc_collectable.o
 release/moc_coin_counter.o
 release/moc_counter.o
 release/moc_enemy.o
-release/moc_collision_master.o
