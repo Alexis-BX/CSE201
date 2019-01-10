@@ -18,9 +18,9 @@ void Coin_counter::add_coin(int amount)
 
 void Coin_counter::update_counter()
 {
-    if(coins/(std::pow(10,int(counters.size())))>=1)
+    if(coins/(std::pow(10,int(counters.size())))>=1) //if there is a counter missing
     {
-        Counter* counter = new Counter(int(counters.size()), this);
+        Counter* counter = new Counter(int(counters.size()), this); //create new counter in the right place
         counters.push_back(counter);
     }
 
