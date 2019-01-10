@@ -9,6 +9,7 @@ public:
 };
 
 
+<<<<<<< HEAD
 class Breakable_block_1: public Block
 {
 public:
@@ -25,6 +26,12 @@ class Breakable_block_3: public Block
 {
 public:
     Breakable_block_3(pair position, QGraphicsItem* parent = 0);
+=======
+class Breakable_block: public Block
+{
+public:
+    Breakable_block(pair position, QGraphicsItem* parent = 0);
+>>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
 };
 
 

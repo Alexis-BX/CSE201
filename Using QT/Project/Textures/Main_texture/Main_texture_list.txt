@@ -5,4 +5,8 @@ big_collectable : big_cheese
 power_ups : power_ups
 enemy_1 : thief_walking_casual
 projectiles : projectiles
+<<<<<<< HEAD
 projectile_vanish_effect : explosion
+=======
+projectile_vanish_effect : explosion
+>>>>>>> 85cdf7b5c2fa4321352667f886d01e7d69b95ab6
