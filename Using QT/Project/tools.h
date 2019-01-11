@@ -64,6 +64,8 @@ template <typename T> QList<QGraphicsRectItem*> create_collision_range(T* parent
     return temp_list;
 }
 
+void create_random_powerup(pair position, double x_offset);
+
 void update_collision_range(QList<QGraphicsRectItem*> &collision_ranges,pair &size, pair &speed);
 
 greal distance(pair a, pair b);

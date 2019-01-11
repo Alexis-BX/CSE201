@@ -58,6 +58,8 @@ public:
 
     Coin_counter* coin_counter;
 
+    QTimer* timer;
+
     // Methods
     void keyPressEvent(QKeyEvent * event);
 
@@ -74,6 +76,8 @@ public:
     void set_animation_state();
 
     void jump();
+
+    ~Player();
 
 public slots:
 

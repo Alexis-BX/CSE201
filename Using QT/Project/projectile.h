@@ -20,6 +20,7 @@ public:
 
     Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent = 0);
 
+    QTimer* timer;
 
     // Attributes
     int life;
@@ -27,6 +28,8 @@ public:
     pair speed, size;
 
     double img_count=0;
+
+    ~Projectile();
 
 public slots:
 

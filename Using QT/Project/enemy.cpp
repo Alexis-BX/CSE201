@@ -11,16 +11,12 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
     collision_ranges = create_collision_range<Enemy>(this);
 
     // Timers
-    QTimer * timer = new QTimer();
+    timer = new QTimer();
 
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(timer_connect()));
 
     timer->start(30);
 
-
-    projectile_timer = new QTimer();
-
-    QObject::connect(projectile_timer,SIGNAL(timeout()),this,SLOT(throw_projectile()));
 }
 
 void Enemy::jump()
@@ -31,6 +27,31 @@ void Enemy::jump()
     }
     times_jumped ++;
     speed.y = -speedMax.y;
+}
+
+Enemy::~Enemy()
+{
+    timer->stop();
+    timer->deleteLater();
+    for(int i = 0; i < collision_ranges.size(); i++)
+    {
+        delete(collision_ranges[i]);
+    }
+}
+
+void Enemy::timer_connect()
+{
+    move();
+
+    if(state == aggressiv)
+    {
+        projectile_count += 1;
+        if(projectile_count == 100)
+        {
+            projectile_count = 0;
+            throw_projectile();
+        }
+    }
 }
 
 void Enemy::move()
@@ -44,12 +65,10 @@ void Enemy::move()
     if(distance_to_player < 30000 && state == passiv)
     {
         state = aggressiv;
-        projectile_timer->start(3000);
     }
     else if(distance_to_player > 60000 and state == aggressiv)
     {
         state = passiv;
-        projectile_timer->stop();
     }
 
     if(state == aggressiv)
@@ -200,6 +219,5 @@ void Enemy::move()
 
 void Enemy::throw_projectile()
 {    
-    //pair position{view->player->x(),view->player->y()};
     view->scene->addItem(new Enemy_projectile_1(pair{x(),y()},facing,size.x));
 }

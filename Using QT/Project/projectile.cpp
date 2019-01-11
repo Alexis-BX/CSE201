@@ -17,12 +17,23 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
 
     //Timer
-    QTimer * timer = new QTimer();
+    timer = new QTimer();
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(view->ms_between_updates);
 
+}
+
+Projectile::~Projectile()
+{
+    timer->stop();
+    timer->deleteLater();
+
+    for(int i = 0; i < collision_ranges.size(); i++)
+    {
+        delete(collision_ranges[i]);
+    }
 }
 
 void Projectile::move()

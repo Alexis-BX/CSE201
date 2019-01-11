@@ -21,9 +21,19 @@ void Collectable::set_movement()
     if(type == eclair)
     {
         //Timer
-        QTimer * timer = new QTimer();
-        QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-        timer->start(30);
+        move_timer = new QTimer();
+        QObject::connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
+        move_timer->start(30);
+    }
+}
+
+Collectable::~Collectable()
+{
+    move_timer->stop();
+    move_timer->deleteLater();
+    for(int i = 0; i < collision_ranges.size(); i++)
+    {
+        delete(collision_ranges[i]);
     }
 }
 

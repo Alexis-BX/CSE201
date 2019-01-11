@@ -27,11 +27,13 @@ public:
     pair size, position, speed;
     int life; //some collectables have life even though they are not eaten (ex mushroom)
 
-    QGraphicsRectItem* collision_range;
-
     Direction facing{Right};
 
     void set_movement();
+
+    QTimer* move_timer;
+
+    ~Collectable();
 
 public slots:
 

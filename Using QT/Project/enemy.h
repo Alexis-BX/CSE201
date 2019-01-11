@@ -22,11 +22,13 @@ public:
 
     int number_of_frames, life,
 
-    times_jumped{0}, max_consecutive_jumps{2};
+    times_jumped{0}, max_consecutive_jumps{2},
+
+    projectile_count{0};
 
     double count{0};
 
-    QTimer* projectile_timer;
+    QTimer* timer;
 
     std::vector<QPixmap> animation[2];
 
@@ -38,12 +40,16 @@ public:
 
     void jump();
 
+    void move();
+
+    void throw_projectile();
+
+    ~Enemy();
 
 public slots:
 
     // Slot for timer
-    void move();
+    void timer_connect();
 
-    void throw_projectile();
 };
 #endif // ENEMY_H
