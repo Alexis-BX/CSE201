@@ -164,6 +164,13 @@ void Player::move()
                     view->scene()->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
 
                     view->scene()->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Power_up_2(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Power_up_3(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Power_up_4(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Power_up_5(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Power_up_6(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Power_up_8(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene()->addItem(new Small_collectable(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
 
                     view->scene()->removeItem(colliding_items[j]);
                 }
@@ -400,10 +407,7 @@ void Player::superpower(QString collision_type)
         speed.x *= 2;
         super_fast = true;
     }
-    else if(collision_type == "10Power_up_7")
-    {
 
-    }
     else if(collision_type == "10Power_up_8")
     {
         count_super = 0;
