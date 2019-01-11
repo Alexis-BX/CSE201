@@ -29,6 +29,8 @@ bool Test::Test_Blink() {
  * so I tried checking it 10 times and see if works more than half the times
  * spoiler, still not working - but we can clearly see in the game that the function works
  * will come back to this later */
+
+
 bool Test::Test_Blink2() {
     pair position = {double(rand() % 739), double(rand() % 505)};
     Active_block anotherquestion_mark(position);

@@ -15,7 +15,7 @@ public:
     View(pair screen_size, int block_size = 18, QWidget * parent=0);
 
     //attributes
-    int block_size;
+    int block_size, ms_between_updates{30};
 
     pair screen_size;
 

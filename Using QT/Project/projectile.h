@@ -8,7 +8,11 @@ class Projectile : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    constexpr static greal velocity = 20;
+    QList<QGraphicsRectItem*> collision_ranges;
+
+    QList<bool> collision;
+
+    constexpr static greal velocity = 15;
 
     Projectile_type type;
 
@@ -22,17 +26,7 @@ public:
 
     pair speed, size;
 
-    QGraphicsRectItem* collision_range_proj;
-
     double img_count=0;
-
-    // Methods
-
-    bool collision_right(),collision_left(),collision_down(),collision_up();
-    bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
-
-    void create_collision_range();
-
 
 public slots:
 

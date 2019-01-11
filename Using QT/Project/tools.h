@@ -1,6 +1,9 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
 #define greal double
+#include <QList>
+#include <QGraphicsRectItem>
+#include <QPen>
 
 struct double_pair
 {
@@ -49,6 +52,19 @@ template <typename T> T abs(T a)
 {
     return (a<0) ? -a : a;
 };
+
+template <typename T> QList<QGraphicsRectItem*> create_collision_range(T* parent)
+{
+    QList<QGraphicsRectItem*> temp_list;
+    for(int i = 0; i < 3 ; i ++)
+    {
+        temp_list.push_back(new QGraphicsRectItem(parent));
+        temp_list[i]->setPen(QPen(Qt::NoPen));
+    }
+    return temp_list;
+}
+
+void update_collision_range(QList<QGraphicsRectItem*> &collision_ranges,pair &size, pair &speed);
 
 greal distance(pair a, pair b);
 

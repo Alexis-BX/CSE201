@@ -25,8 +25,37 @@ Active_block : active_collision
 
 #Enemy
 
-TBD
+Base_block : simple_collision
+Special_block_above : simple_collision
+Special_block_below : simple_collision
+Activated_block : simple_collision
+Small_collectable : simple_collision
+Breakable_block_1 : simple_collision
+Breakable_block_2 : simple_collision
+Breakable_block_3 : simple_collision
+Active_block : simple_collision
 
 #Collectable
 
-TBD
+Base_block : simple_collision
+Special_block_above : simple_collision
+Special_block_below : simple_collision
+Activated_block : simple_collision
+Small_collectable : simple_collision
+Breakable_block_1 : simple_collision
+Breakable_block_2 : simple_collision
+Breakable_block_3 : simple_collision
+Active_block : simple_collision
+
+#Projectile
+
+Base_block : simple_collision
+Special_block_above : simple_collision
+Special_block_below : simple_collision
+Activated_block : simple_collision
+Small_collectable : simple_collision
+Breakable_block_1 : simple_collision
+Breakable_block_2 : simple_collision
+Breakable_block_3 : simple_collision
+Active_block : simple_collision
+Enemy : simple_collision

@@ -8,6 +8,11 @@ class Collectable : public QObject, public QGraphicsPixmapItem
 
 public:
 
+
+    QList<QGraphicsRectItem*> collision_ranges;
+
+    QList<bool> collision;
+
     Collectable_type type;             // shows the kind of collectable the player meets
 
     Collectable_state state;           // shows if the collectable is used or unused
@@ -24,10 +29,9 @@ public:
 
     QGraphicsRectItem* collision_range;
 
-    // Methods
-    void create_collision_range();
+    Direction facing{Right};
 
-    bool collision_left(), collision_down(), collision_up(), collision_right();
+    void set_movement();
 
 public slots:
 

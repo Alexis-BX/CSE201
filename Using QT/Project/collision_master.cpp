@@ -2,10 +2,10 @@
 
 Collision_master::Collision_master()
 {
-    read_rules_from_file("Player");
+    read_rules_from_file();
 }
 
-void Collision_master::read_rules_from_file(QString name)
+void Collision_master::read_rules_from_file()
 {
     QFile file(":/Images/Rules/Collisions.txt");
 
@@ -17,40 +17,60 @@ void Collision_master::read_rules_from_file(QString name)
 
     QTextStream in(&file);
 
-    QString buffer_string;
-
-    do
-    {
-        buffer_string = in.readLine().trimmed();
-        qDebug() << buffer_string;
-
-    } while (buffer_string != "#"+name);
-    in.readLine();
+    QString buffer_string, name;
 
     QList<QString> buffer_list;
 
-    while(true)
+    QMap<QString,QString> buffer_map;
+
+    for(int i = 0 ; i < 3 ; i ++)
     {
-        buffer_list = in.readLine().split(':');
-        if(buffer_list.size() == 1)
+        do
         {
-            break;
+            buffer_string = in.readLine().trimmed();
+            if(buffer_string.isNull())
+            {
+                return;
+            }
+            else
+            {
+                qDebug() << buffer_string[0];
+            }
+        } while (buffer_string[0] != "#");
+
+        name = buffer_string.trimmed();
+
+        in.readLine();
+
+        while(true)
+        {
+            buffer_list = in.readLine().split(':');
+            if(buffer_list.size() != 2)
+            {
+                break;
+            }
+            buffer_list[0] = buffer_list[0].trimmed();
+            buffer_list[0].prepend(QString::number(buffer_list[0].size()));
+            buffer_map.insert(buffer_list[0],buffer_list[1].trimmed());
         }
-        buffer_list[0] = buffer_list[0].trimmed();
-        buffer_list[0].prepend(QString::number(buffer_list[0].size()));
-        rules.insert(buffer_list[0],buffer_list[1].trimmed());
-        qDebug() << buffer_list[0] << buffer_list[1].trimmed();
+
+        rules.insert(name,buffer_map);
     }
 
     file.close();
 }
 
-QString Collision_master::collide(QString colliding_with)
+QString Collision_master::collide(QString name, QString colliding_with)
 {
-    if( rules.find(colliding_with) == rules.end())
+    name.prepend("#");
+    if( rules.find(name) == rules.end())
     {
         return "nothing";
     }
-    return rules.find(colliding_with).value();
+    if( rules.find(name).value().find(colliding_with) == rules.find(name).value().end())
+    {
+        return "nothing";
+    }
+    return rules.find(name).value().find(colliding_with).value();
 }
 

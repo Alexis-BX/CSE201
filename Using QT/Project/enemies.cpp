@@ -25,9 +25,6 @@ Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
         animation[0].push_back(temp);
     }
     setPixmap(animation[0][0]);
-
-
-    create_collision_range();
 }
 
 Enemy_2::Enemy_2(pair position, QGraphicsItem* parent) :
