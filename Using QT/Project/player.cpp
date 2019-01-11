@@ -161,39 +161,39 @@ void Player::move()
 
                 if(speed.y < -5)
                 {
-                    view->scene()->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
+                    view->scene->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
 
-                    view->scene()->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Power_up_2(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Power_up_3(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Power_up_4(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Power_up_5(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Power_up_6(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Power_up_8(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
-                    view->scene()->addItem(new Small_collectable(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    view->scene->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Power_up_2(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Power_up_3(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Power_up_4(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Power_up_5(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Power_up_6(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Power_up_8(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                    //view->scene->addItem(new Small_collectable(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
 
-                    view->scene()->removeItem(colliding_items[j]);
+                    view->scene->removeItem(colliding_items[j]);
                 }
 
                 continue;
             }
             else if(temp_collision_type == "add_coin") //collision with cheese
             {
-                view->scene()->removeItem(colliding_items[j]);
+                view->scene->removeItem(colliding_items[j]);
                 coin_counter->add_coin();
                 continue;
             }
 
             else if(temp_collision_type == "power") //collision with power up
             {
-                view->scene()->removeItem(colliding_items[j]);
+                view->scene->removeItem(colliding_items[j]);
                 superpower(QString(typeid(*colliding_items[j]).name()));
                 continue;
             }
 
             //else if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
             //{
-            //    view->scene()->removeItem(colliding_items[j]);
+            //    view->scene->removeItem(colliding_items[j]);
             //    continue;
             //}
 
@@ -202,8 +202,8 @@ void Player::move()
             {
                 collision[i] = true;
                 if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
-                    view->scene()->removeItem(colliding_items[j]);
-                    view->scene()->addItem(new Breakable_block_2(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
+                    view->scene->removeItem(colliding_items[j]);
+                    view->scene->addItem(new Breakable_block_2(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
                 }
                 continue;
             }
@@ -212,8 +212,8 @@ void Player::move()
             {
                 collision[i] = true;
                 if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
-                    view->scene()->removeItem(colliding_items[j]);
-                    view->scene()->addItem(new Breakable_block_3(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
+                    view->scene->removeItem(colliding_items[j]);
+                    view->scene->addItem(new Breakable_block_3(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
                 }
 
                 continue;
@@ -223,7 +223,7 @@ void Player::move()
             {
                 collision[i] = true;
                 if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
-                    view->scene()->removeItem(colliding_items[j]);
+                    view->scene->removeItem(colliding_items[j]);
                 }
                 continue;
             }
@@ -344,25 +344,25 @@ void Player::throw_projectile()
     {
     case 1:
     {
-        view->scene()->addItem(new Player_projectile_1(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_1(position, facing, size.x));
         break;
     }
 
     case 2:
     {
-        view->scene()->addItem(new Player_projectile_2(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_2(position, facing, size.x));
         break;
     }
 
     case 3:
     {
-        view->scene()->addItem(new Player_projectile_3(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_3(position, facing, size.x));
         break;
     }
 
     case 4:
     {
-        view->scene()->addItem(new Enemy_projectile_1(position, facing, size.x));
+        view->scene->addItem(new Enemy_projectile_1(position, facing, size.x));
         break;
     }
     }
@@ -533,5 +533,3 @@ void Player::create_animation()
         }
     }
 }
-
-

@@ -22,7 +22,7 @@ void Color_triple_player::test(int R, int G, int B, pair &position)
 
         view->player->setFocus();
 
-        view->scene()->addItem(view->player);
+        view->scene->addItem(view->player);
 
         view->centerOn(view->player);
 

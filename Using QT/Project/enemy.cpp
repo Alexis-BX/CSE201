@@ -201,5 +201,5 @@ void Enemy::move()
 void Enemy::throw_projectile()
 {    
     //pair position{view->player->x(),view->player->y()};
-    view->scene()->addItem(new Enemy_projectile_1(pair{x(),y()},facing,size.x));
+    view->scene->addItem(new Enemy_projectile_1(pair{x(),y()},facing,size.x));
 }

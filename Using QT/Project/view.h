@@ -25,6 +25,8 @@ public:
 
     Level_load* level_load;
 
+    QGraphicsScene *scene  = new QGraphicsScene();
+
     //backgrounds
     //std::vector<Background*> backgrounds;
     std::vector<Background_far*> backgrounds_far;

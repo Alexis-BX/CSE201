@@ -7,7 +7,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     setViewportUpdateMode(MinimalViewportUpdate);//if problems: FullViewportUpdate
 
     //scene set up
-    setScene(new QGraphicsScene());
+    setScene(scene);
 
     // load and create level
     level_load = new Level_load(this);
@@ -31,24 +31,24 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
     if (list[0]->x() > player->x()-screen_size.x)
     {
         list.insert(list.begin(), new BG(pair{list[0]->x()-(backgrounds_far[0]->width),-offset}));
-        scene()->addItem(list[0]);
+        scene->addItem(list[0]);
     }
     else if (list[0]->x() + list[0]->width < player->x() - screen_size.x)
     {
         //for some reason deleting slows down and doesn't accelerate
-        //scene()->removeItem(list[0]);
+        //scene->removeItem(list[0]);
         //list.erase(list.begin());
     }
 
     if (list.back()->x() + list.back()->width < player->x() + screen_size.x/2)
     {
         list.push_back(new BG(pair{list.back()->x()+list.back()->width,-offset}));
-        scene()->addItem(list.back());
+        scene->addItem(list.back());
     }
     else if (list.back()->x() > player->x() + screen_size.x)
     {
         //for some reason deleting slows down and doesn't accelerate
-        //scene()->removeItem(list[list.size()-1]);
+        //scene->removeItem(list[list.size()-1]);
         //list.erase(list.end());
     }
 
