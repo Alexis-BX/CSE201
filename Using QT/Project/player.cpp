@@ -156,7 +156,7 @@ void Player::move()
     QList<QGraphicsItem*> colliding_items;
     collision = QList<bool>{false,false,false};
 
-    for(int i = 0; i < 3 ; i ++)
+    for(int i = (super_invincible && i==0) ? 1 : 0; i < 3 ; i ++)
     {
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
@@ -275,7 +275,7 @@ void Player::move()
     {
         count_super += 1;
     }
-    if (count_super > 50)
+    if (count_super > 100)
     {
         super = false;
     }
@@ -314,6 +314,15 @@ void Player::move()
     if (count_super_invincible >50)
     {
         super_invincible = false;
+    }
+
+    if(super_invincible2)
+    {
+        count_super_invincible2 +=1;
+    }
+    if (count_super_invincible2 >50)
+    {
+        super_invincible2 = false;
     }
 
     //animation
@@ -377,44 +386,52 @@ void Player::throw_projectile()
 void Player::superpower(QString collision_type)
 {
     qDebug() << collision_type;
-    if(collision_type == "10Power_up_1")
+    if(collision_type == "10Power_up_1") //eclair
     {
         count_super_throw = 0;
         current_projectile = 3;
         super_throw = true;
     }
-    else if(collision_type == "10Power_up_2")
+    else if(collision_type == "10Power_up_2") //croissant
     {
         count_super_fast = 0;
         speed.x = speed.x/2;
         super_fast = true;
     }
-    else if(collision_type == "10Power_up_3")
+    else if(collision_type == "10Power_up_3") //chocolatine
     {
-        count_super_big = 0;
-        super_big = true;
+        count_super_invincible2 = 0;
+        super_invincible2 = true;
     }
-    else if(collision_type == "10Power_up_4")
+    else if(collision_type == "10Power_up_4") //mini_eiffel
     {
         count_super_invincible = 0;
         super_invincible = true;
     }
-    else if(collision_type == "10Power_up_5")
+    else if(collision_type == "10Power_up_5") //glass_wine
     {
-        count_super_big = 0;
-        size.x*=2;
-        size.y*=2;
-        super_big = true;
+        count_super = 0;
         super = true;
+        count_super_fast = 0;
+        speed.x *= 2;
+        super_fast = true;
+
     }
-    else if(collision_type == "10Power_up_6")
+    else if(collision_type == "10Power_up_6") //mushroom
     {
         count_super_fast = 0;
         speed.x *= 2;
         super_fast = true;
     }
 
-    else if(collision_type == "10Power_up_8")
+    else if (collision_type == "10Power_up_7") //coin
+    {
+        count_super_throw = 0;
+        current_projectile = 1;
+        super_throw = true;
+    }
+
+    else if(collision_type == "10Power_up_8") //star
     {
         count_super = 0;
         super = true;
