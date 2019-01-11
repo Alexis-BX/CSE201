@@ -34,5 +34,6 @@
         <file>Backgrounds/Main_background/Main_background_list.txt</file>
         <file>Rules/Collisions.txt</file>
         <file>Levels/Level_clara_002.png</file>
+        <file>Backgrounds/Main_background/game_over.png</file>
     </qresource>
 </RCC>

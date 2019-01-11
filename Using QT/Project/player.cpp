@@ -70,6 +70,11 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 
 void Player::move()
 {
+
+    if (y()>500){
+        view->game_over();
+    }
+
     //Accelerate
     speed.y += 1;
 

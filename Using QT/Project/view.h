@@ -26,6 +26,7 @@ public:
     Level_load* level_load;
 
     QGraphicsScene *scene  = new QGraphicsScene();
+    QGraphicsScene *scene_game_over  = new QGraphicsScene();
 
     //backgrounds
     //std::vector<Background*> backgrounds;
@@ -50,6 +51,8 @@ public:
     void start_screen();
 
     void update_background();
+
+    void game_over();
 
     template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list, double offset);
 };

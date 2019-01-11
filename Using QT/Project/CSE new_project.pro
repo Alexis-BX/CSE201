@@ -47,7 +47,8 @@ SOURCES += \
     base_color_triple.cpp \
     color_triple_player.cpp \
     start_screen.cpp \
-    collision_master.cpp
+    collision_master.cpp \
+    game_over.cpp
     enemies.cpp
 
 
@@ -78,7 +79,8 @@ HEADERS += \
     base_color_triple.h \
     color_triple_player.h \
     start_screen.h \
-    collision_master.h
+    collision_master.h \
+    game_over.h
     enemies.h
 
 

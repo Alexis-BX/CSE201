@@ -21,6 +21,7 @@
 #include "enemy.h"
 #include "enemies.h"
 #include "enemy.h"
+#include "game_over.h"
 #include "level_load.h"
 #include "player.h"
 #include "projectile.h"
