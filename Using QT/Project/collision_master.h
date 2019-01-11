@@ -10,11 +10,11 @@ public:
 
     Collision_master();
 
-    void read_rules_from_file(QString name);
+    void read_rules_from_file();
 
-    QString collide(QString colliding_with);
+    QString collide(QString name,QString colliding_with);
 
-    QMap<QString,QString> rules;
+    QMap<QString,QMap<QString,QString>> rules;
 };
 
 

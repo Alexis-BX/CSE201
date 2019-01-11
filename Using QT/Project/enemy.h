@@ -9,14 +9,20 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 
 public:
 
+    QList<QGraphicsRectItem*> collision_ranges;
+
+    QList<bool> collision;
+
     Enemy(pair position, QGraphicsItem* parent = 0);
 
     // Attributes
-    bool direction{false};
+    Direction facing{Right};
 
     pair speedMax, speed, size;
 
-    int number_of_frames, life;
+    int number_of_frames, life,
+
+    times_jumped{0}, max_consecutive_jumps{2};
 
     double count{0};
 
@@ -24,23 +30,13 @@ public:
 
     std::vector<QPixmap> animation[2];
 
-    QGraphicsRectItem* collision_range;
-
     Enemy_type type;
 
     Enemy_state state;
 
     Enemy_texture texture;
 
-
-    // Methods
-    bool collision_left(), collision_right(), collision_up(), collision_down();
-    bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
-    bool block_left(), block_right(), block_up(), block_down();
-
-    bool player_pos_t_l(), player_pos_t_r(), player_pos_b_l(), player_pos_b_r();
-
-    void create_collision_range();
+    void jump();
 
 
 public slots:

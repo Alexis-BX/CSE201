@@ -5,11 +5,7 @@ Player::Player(QGraphicsItem* parent) :
 {
     create_animation();
 
-    for(int i = 0; i < 3 ; i ++)
-    {
-        collision_ranges.push_back(new QGraphicsRectItem(this));
-        //collision_ranges[i]->setPen(QPen(Qt::NoPen));
-    }
+    collision_ranges = create_collision_range<Player>(this);
 
     this->setZValue(layer_player);
 
@@ -18,7 +14,7 @@ Player::Player(QGraphicsItem* parent) :
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
-    timer->start(30);
+    timer->start(view->ms_between_updates);
 }
 
 /**NOTE:
@@ -71,162 +67,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     }
     }
 }
-/**
 
-bool Player::collision_right()
-{
-    if (speed.x > 0)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            for (int i = 0; i < size; i += 1)
-            {
-                if ((*iter)-> contains(QPointF(x() + (size) + (speed.x-1)  - (*iter)->x() , y() + i    -(*iter)->y() )))
-                {
-                    return true;
-                }
-            }
-        }
-    }
-
-    return false;
-}
-
-bool Player::collision_left()
-{
-    if (speed.x < 0)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            for (int i = 0; i< size; i += 1)
-            {
-                if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + i   -(*iter)->y() )))
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-bool Player::collision_up()
-{
-    if (speed.y < 0)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            for (int i = 0; i< size; i += 1)
-            {
-                if ((*iter)-> contains(QPointF(x() + i  - (*iter)->x() , y() + (speed.y)  -(*iter)->y() )))
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
-}
-
-bool Player::collision_down()
-{
-    if (speed.y > 0)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            for (int i = 0; i<size; i += 1)
-            {
-                if ((*iter)-> contains(QPointF(x() + i - (*iter)->x() , y() + (size) + (speed.y-1 )  - (*iter)->y() )))
-                {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
-
-}
-
-bool Player::collision_b_l() //spots if the bottom left corner endures a collision both from the left and the bottom
-{
-    bool l = collision_left();
-    bool b = collision_down();
-    if(speed.y > 0 && speed.x < 0 && l == false && b == false)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            //(bottom left, (0,36)
-            if ((*iter)-> contains(QPointF(x() + (speed.x)  - (*iter)->x() , y() + (size) + (speed.y - 1)   -(*iter)->y() )))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-bool Player::collision_b_r() // spots if the bottom right corner endures a collision both from the right and the bottom
-{
-    bool r = collision_right();
-    bool b = collision_down();
-    if(speed.y > 0 && speed.x > 0 && r == false && b == false)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            //(bottom right, (36,36)
-            if ((*iter)-> contains(QPointF(x() + size + (speed.x - 1)  - (*iter)->x() , y() + (size) + (speed.y - 1)   -(*iter)->y() )))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-bool Player::collision_t_l()
-{
-    bool l = collision_left();
-    bool t = collision_up();
-    if(speed.y < 0 && speed.x < 0 && l == false && t == false)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            //(top left (0,0))
-            if ((*iter)-> contains(QPointF(x() + speed.x - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-bool Player::collision_t_r()
-{
-    bool r = collision_right();
-    bool t = collision_up();
-    if(speed.y < 0 && speed.x > 0 && r == false && t == false)
-    {
-        QList<QGraphicsItem *> colliding_items = collision_range->collidingItems();
-        for(auto iter = colliding_items.begin(); iter != colliding_items.end();iter++) //ITERATE OVER THE COLLIDING ITEMS
-        {
-            //(top right (36,0))
-            if ((*iter)-> contains(QPointF(x() + size + speed.x-1 - (*iter)->x() , y() + speed.y   -(*iter)->y() )))
-            {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-**/
 void Player::move()
 {
     //Accelerate
@@ -295,15 +136,7 @@ void Player::move()
         setX(view->world_size.right);
     }
 
-
-    collision_ranges[0]->setRect(0,1,speed.x,size.y-1);
-    collision_ranges[0]->setPos((speed.x > 0) ? size.x+1 : -1,0);
-
-    collision_ranges[1]->setRect(1,0,size.x-1,speed.y);
-    collision_ranges[1]->setPos(0,(speed.y > 0) ? size.y+1 : -1);
-
-    collision_ranges[2]->setRect(0,0,speed.x,speed.y);
-    collision_ranges[2]->setPos((speed.x > 0) ? size.x+1 : -1, (speed.y > 0) ? size.y+1 : -1);
+    update_collision_range(collision_ranges, size, speed);
 
     {
     QString temp_collision_type;
@@ -315,51 +148,79 @@ void Player::move()
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
         {
-            temp_collision_type = collision_master->collide(QString(typeid(*colliding_items[j]).name()));
+            temp_collision_type = collision_master->collide("Player",QString(typeid(*colliding_items[j]).name()));
+
             if(temp_collision_type == "simple_collision")
             {
                 collision[i] = true;
                 continue;
             }
-            if(temp_collision_type == "active_collision") //deactivates an active block
+            else if(temp_collision_type == "active_collision") //deactivates an active block
             {
                 collision[i] = true;
-                view->scene->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
 
-                view->scene->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                if(speed.y < -5)
+                {
+                    view->scene->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
 
-                view->scene->removeItem(colliding_items[j]);
+                    view->scene->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+
+                    view->scene->removeItem(colliding_items[j]);
+                }
 
                 continue;
             }
-            if(temp_collision_type == "add_coin") //collision with cheese
+            else if(temp_collision_type == "add_coin") //collision with cheese
             {
                 view->scene->removeItem(colliding_items[j]);
                 coin_counter->add_coin();
                 continue;
             }
 
-            if(temp_collision_type == "power") //collision with power up
+            else if(temp_collision_type == "power") //collision with power up
             {
                 view->scene->removeItem(colliding_items[j]);
-                //super_power(temp_collision_type);
+                superpower(QString(typeid(*colliding_items[j]).name()));
                 continue;
             }
 
-            //if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
+            //else if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
             //{
             //    view->scene->removeItem(colliding_items[j]);
             //    continue;
             //}
 
-            /**
-            if(temp_collision_type == "damage_block") //collision with breakable
+
+            else if(temp_collision_type == "damage_block_1") //collision with breakable block
             {
-                view->scene->removeItem(colliding_items[j]);
-                coin_counter->add_coin();
+                collision[i] = true;
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                    view->scene->removeItem(colliding_items[j]);
+                    view->scene->addItem(new Breakable_block_2(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
+                }
                 continue;
             }
-            **/
+
+            else if(temp_collision_type == "damage_block_2") //collision with breakable block
+            {
+                collision[i] = true;
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                    view->scene->removeItem(colliding_items[j]);
+                    view->scene->addItem(new Breakable_block_3(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
+                }
+
+                continue;
+            }
+
+            else if(temp_collision_type == "damage_block_3") //collision with breakable block
+            {
+                collision[i] = true;
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                    view->scene->removeItem(colliding_items[j]);
+                }
+                continue;
+            }
+
         }
     }
     }
@@ -500,55 +361,32 @@ void Player::throw_projectile()
     }
 }
 
-void Player::superpower(Collectable collectable)
+void Player::superpower(QString collision_type)
 {
-    if (collectable.type == star) //mario clignotte
-    {
-        count_super = 0;
-        super = true;
-    }
-
-    if (collectable.type == mushroom) // mario goes two times faster
-    {
-        count_super_fast = 0;
-        speed.x *= 2;
-        super_fast = true;
-    }
-
-    if (collectable.type == eclair) //mario has a new projectile
+    qDebug() << collision_type;
+    if(collision_type == "10Power_up_1")
     {
         count_super_throw = 0;
-        view->scene->addItem(new Player_projectile_3(pair{x(),y()}, facing, size.x));
+        current_projectile = 3;
         super_throw = true;
     }
-
-    if (collectable.type == cheese) //Mario invincible to everything (blocks and projectiles)
-    {
-        count_super_invincible = 0;
-        
-        super_invincible = true;
-    }
-
-    if (collectable.type == croissant) //mario slower
+    else if(collision_type == "10Power_up_2")
     {
         count_super_fast = 0;
         speed.x = speed.x/2;
         super_fast = true;
     }
-
-    if (collectable.type == chocolatine) //mario grows two times bigger
+    else if(collision_type == "10Power_up_3")
     {
         count_super_big = 0;
         super_big = true;
     }
-
-    if (collectable.type == mini_eiffel) //mario invincible to the projectiles
+    else if(collision_type == "10Power_up_4")
     {
         count_super_invincible = 0;
         super_invincible = true;
     }
-
-    if (collectable.type == glass_wine) //mario grows two times bigger + clignotte
+    else if(collision_type == "10Power_up_5")
     {
         count_super_big = 0;
         size.x*=2;
@@ -556,9 +394,20 @@ void Player::superpower(Collectable collectable)
         super_big = true;
         super = true;
     }
-
-    if (collectable.type == coin) // no superpower, use for the coincounter to count the points
+    else if(collision_type == "10Power_up_6")
     {
+        count_super_fast = 0;
+        speed.x *= 2;
+        super_fast = true;
+    }
+    else if(collision_type == "10Power_up_7")
+    {
+
+    }
+    else if(collision_type == "10Power_up_8")
+    {
+        count_super = 0;
+        super = true;
     }
 }
 
@@ -641,7 +490,7 @@ void Player::jump()
         return;
     }
     times_jumped ++;
-    speed.y -= max_speed.y;
+    speed.y = -max_speed.y;
     if (speed.x == 0.0)
     {
         state = jumpV;
@@ -680,5 +529,3 @@ void Player::create_animation()
         }
     }
 }
-
-

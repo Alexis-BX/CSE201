@@ -8,11 +8,22 @@ public:
     Base_block(pair position, QGraphicsItem* parent = 0);
 };
 
-
-class Breakable_block: public Block
+class Breakable_block_1: public Block
 {
 public:
-    Breakable_block(pair position, QGraphicsItem* parent = 0);
+    Breakable_block_1(pair position, QGraphicsItem* parent = 0);
+};
+
+class Breakable_block_2: public Block
+{
+public:
+    Breakable_block_2(pair position, QGraphicsItem* parent = 0);
+};
+
+class Breakable_block_3: public Block
+{
+public:
+    Breakable_block_3(pair position, QGraphicsItem* parent = 0);
 };
 
 

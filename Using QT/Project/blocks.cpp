@@ -11,11 +11,35 @@ Base_block::Base_block(pair position, QGraphicsItem* parent) :
 }
 
 
-Breakable_block::Breakable_block(pair position, QGraphicsItem* parent) :
+Breakable_block_1::Breakable_block_1(pair position, QGraphicsItem* parent) :
     Block(position, parent)
 {
     type = breakable;
     texture = crate;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 6);
+    setPixmap(sprite[image_count]);
+
+}
+
+Breakable_block_2::Breakable_block_2(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = breakable;
+    texture = crate_2; //should be crate_2
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 6);
+    setPixmap(sprite[image_count]);
+
+}
+
+Breakable_block_3::Breakable_block_3(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = breakable;
+    texture = crate_3; // should be crate_3
     state = initial;
 
     sprite = gtexture->get_qpixmap_of(blocks, texture, 6);

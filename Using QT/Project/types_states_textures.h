@@ -18,6 +18,9 @@ enum Block_texture
     question_mark,
     activated = 5,
     crate = 6,
+    crate_2 = 8,
+    crate_3 = 11
+
 };
 
 enum Block_state

@@ -26,6 +26,8 @@ Power_up_1::Power_up_1(pair position, int creator_object_size_y):
     life = 100;
     speed = pair{2,0};
     setPixmap(gtexture->get_qpixmap_of(power_ups,type)[0]);
+
+    set_movement();
 }
 
 Power_up_2::Power_up_2(pair position, int creator_object_size_y):

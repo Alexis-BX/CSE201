@@ -27,12 +27,14 @@ public:
 
     QList<QGraphicsRectItem*> collision_ranges;
 
+    QList<bool> collision;
+
     pair max_speed{10,15}, absolute_max_speed{10,15}, size{36,36}, speed{0,0}, block_size{18,18};
 
     double_pair world_boundaries;
 
-    //direction false = left, true = right
     bool pressed_left{false}, pressed_right{false},
+
     super{false}, super_fast{false}, super_throw{false}, super_big{false}, super_invincible{false};
 
     int count_super_fast{0}, count_super_throw{0},count_super{0}, count_super_big{0}, count_super_invincible{0},
@@ -54,12 +56,7 @@ public:
                     //[2][2][number_of_character_states][max_images_per_state]
     QPixmap animations[2][2][11][8];
 
-    QList<bool> collision;
-
     Coin_counter* coin_counter;
-
-    QTimer* timer_super_fast, timer_super_throw, timer_super;
-
 
     // Methods
     void keyPressEvent(QKeyEvent * event);
@@ -70,10 +67,7 @@ public:
 
     void create_animation();
 
-    void superpower(Collectable collectable);
-
-    bool collision_left(), collision_right(), collision_up(), collision_down();
-    bool collision_b_l(), collision_b_r(), collision_t_l(), collision_t_r();
+    void superpower(QString collision_type);
 
     void set_animation_state();
 

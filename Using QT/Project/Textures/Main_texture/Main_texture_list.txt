@@ -6,3 +6,4 @@ power_ups : power_ups
 enemy_1 : thief_walking_casual
 projectiles : projectiles
 projectile_vanish_effect : explosion
+

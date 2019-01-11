@@ -4,7 +4,7 @@ Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
     Enemy(position, parent)
 {
     speed = pair{-5,2};
-    speedMax = pair{10,15};
+    speedMax = pair{5,15};
 
     type = basic;
     state = passiv;
@@ -25,9 +25,6 @@ Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
         animation[0].push_back(temp);
     }
     setPixmap(animation[0][0]);
-
-
-    create_collision_range();
 }
 
 Enemy_2::Enemy_2(pair position, QGraphicsItem* parent) :
