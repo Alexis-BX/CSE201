@@ -21,12 +21,12 @@ void View::update_background()
     backgrounds_close = update_single_bg<Background_close>(backgrounds_close, 256);
 }
 
-void View::game_over(){
-    setScene(view->scene_game_over);//scene set up
-    Game_over();
-    scene->clear();
+void View::game_over()
+{
+    setScene(scene_game_over);//scene set up
+    Game_over *GO = new Game_over();
+    scene_game_over->addItem(GO);
 }
-
 
 
 template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> list, double offset)
