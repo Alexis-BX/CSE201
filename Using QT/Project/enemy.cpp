@@ -23,6 +23,16 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
     QObject::connect(projectile_timer,SIGNAL(timeout()),this,SLOT(throw_projectile()));
 }
 
+void Enemy::jump()
+{
+    if(times_jumped >= max_consecutive_jumps)
+    {
+        return;
+    }
+    times_jumped ++;
+    speed.y = -speedMax.y;
+}
+
 void Enemy::move()
 {
     //Accelerate
@@ -131,6 +141,7 @@ void Enemy::move()
             if (collision[0])
             {
                 speed.x = 0;
+                jump();
             }
             if (collision[1])
             {
@@ -147,6 +158,7 @@ void Enemy::move()
             if (collision[0])
             {
                 speed.x = 0;
+                facing = (facing == Right) ? Left : Right;
             }
             if (collision[1])
             {
@@ -160,17 +172,10 @@ void Enemy::move()
     }
     }
 
-    if (collision[0])
+    //Jump reset
+    if(collision[1] && speed.y >= 0)
     {
-        speed.x = 0;
-    }
-    if (collision[1])
-    {
-        speed.y = 0;
-    }
-    if (collision[2] && !collision[1] && !collision[0])
-    {
-        speed.y = 0;
+        times_jumped = 0;
     }
 
     //Direction of the player:

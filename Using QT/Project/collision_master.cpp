@@ -23,7 +23,7 @@ void Collision_master::read_rules_from_file()
 
     QMap<QString,QString> buffer_map;
 
-    for(int i = 0 ; i < 3 ; i ++)
+    for(int i = 0 ; i < 4 ; i ++)
     {
         do
         {

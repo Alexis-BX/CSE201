@@ -4,7 +4,7 @@ Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
     Enemy(position, parent)
 {
     speed = pair{-5,2};
-    speedMax = pair{10,15};
+    speedMax = pair{5,15};
 
     type = basic;
     state = passiv;

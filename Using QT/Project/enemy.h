@@ -20,7 +20,9 @@ public:
 
     pair speedMax, speed, size;
 
-    int number_of_frames, life;
+    int number_of_frames, life,
+
+    times_jumped{0}, max_consecutive_jumps{2};
 
     double count{0};
 
@@ -33,6 +35,8 @@ public:
     Enemy_state state;
 
     Enemy_texture texture;
+
+    void jump();
 
 
 public slots:
