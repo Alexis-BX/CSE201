@@ -429,7 +429,7 @@ bool Enemy::player_pos_t_r() //is the player at the top right of the enemy? (hor
 void Enemy::throw_projectile()
 {    
     //pair position{view->player->x(),view->player->y()};
-    view->scene()->addItem(new Enemy_projectile_1(pair{x(),y()},direction,size.x));
+    view->scene->addItem(new Enemy_projectile_1(pair{x(),y()},direction,size.x));
 }
 
 void Enemy::create_collision_range()

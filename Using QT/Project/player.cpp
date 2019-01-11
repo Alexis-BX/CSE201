@@ -324,38 +324,38 @@ void Player::move()
             if(temp_collision_type == "active_collision") //deactivates an active block
             {
                 collision[i] = true;
-                view->scene()->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
+                view->scene->addItem(new Activated_block(pair{colliding_items[j]->x(),colliding_items[j]->y()}));
 
-                view->scene()->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
+                view->scene->addItem(new Power_up_1(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.x));
 
-                view->scene()->removeItem(colliding_items[j]);
+                view->scene->removeItem(colliding_items[j]);
 
                 continue;
             }
             if(temp_collision_type == "add_coin") //collision with cheese
             {
-                view->scene()->removeItem(colliding_items[j]);
+                view->scene->removeItem(colliding_items[j]);
                 coin_counter->add_coin();
                 continue;
             }
 
             if(temp_collision_type == "power") //collision with power up
             {
-                view->scene()->removeItem(colliding_items[j]);
+                view->scene->removeItem(colliding_items[j]);
                 //super_power(temp_collision_type);
                 continue;
             }
 
             //if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
             //{
-            //    view->scene()->removeItem(colliding_items[j]);
+            //    view->scene->removeItem(colliding_items[j]);
             //    continue;
             //}
 
             /**
             if(temp_collision_type == "damage_block") //collision with breakable
             {
-                view->scene()->removeItem(colliding_items[j]);
+                view->scene->removeItem(colliding_items[j]);
                 coin_counter->add_coin();
                 continue;
             }
@@ -476,25 +476,25 @@ void Player::throw_projectile()
     {
     case 1:
     {
-        view->scene()->addItem(new Player_projectile_1(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_1(position, facing, size.x));
         break;
     }
 
     case 2:
     {
-        view->scene()->addItem(new Player_projectile_2(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_2(position, facing, size.x));
         break;
     }
 
     case 3:
     {
-        view->scene()->addItem(new Player_projectile_3(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_3(position, facing, size.x));
         break;
     }
 
     case 4:
     {
-        view->scene()->addItem(new Enemy_projectile_1(position, facing, size.x));
+        view->scene->addItem(new Enemy_projectile_1(position, facing, size.x));
         break;
     }
     }
@@ -518,7 +518,7 @@ void Player::superpower(Collectable collectable)
     if (collectable.type == eclair) //mario has a new projectile
     {
         count_super_throw = 0;
-        view->scene()->addItem(new Player_projectile_3(pair{x(),y()}, facing, size.x));
+        view->scene->addItem(new Player_projectile_3(pair{x(),y()}, facing, size.x));
         super_throw = true;
     }
 
