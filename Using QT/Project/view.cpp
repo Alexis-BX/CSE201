@@ -4,7 +4,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     QGraphicsView(parent), block_size(block_size), screen_size(screen_size)
 {
     //fluidifies image adition in the background along with some animations
-    setViewportUpdateMode(MinimalViewportUpdate);//if problems: FullViewportUpdate
+    setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
     //scene set up
     setScene(scene);
@@ -23,9 +23,9 @@ void View::update_background()
 
 void View::game_over()
 {
+    //clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
     setScene(scene_game_over);//scene set up
-    Game_over *GO = new Game_over();
-    scene_game_over->addItem(GO);
+    new Game_over();
 }
 
 

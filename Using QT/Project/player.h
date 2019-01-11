@@ -33,7 +33,7 @@ public:
 
     double_pair world_boundaries;
 
-    bool pressed_left{false}, pressed_right{false},
+    bool pressed_left{false}, pressed_right{false}, playing{true},
 
     super{false}, super_fast{false}, super_throw{false}, super_big{false}, super_invincible{false};
 
@@ -63,6 +63,8 @@ public:
 
     void keyReleaseEvent(QKeyEvent * event);
 
+    void move();
+
     void throw_projectile();
 
     void create_animation();
@@ -76,7 +78,7 @@ public:
 public slots:
 
     // Slot for timer
-    void move();
+    void update();
 };
 
 #endif // PLAYER_H

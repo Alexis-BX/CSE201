@@ -12,7 +12,7 @@ Player::Player(QGraphicsItem* parent) :
     // Timer
     QTimer * timer = new QTimer();
 
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
 
     timer->start(view->ms_between_updates);
 }
@@ -68,15 +68,19 @@ void Player::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
+void Player::update()
+{
+    if (playing){
+        move();
+    }
+    else
+    {
+        view->centerOn(0, 0);
+    }
+}
+
 void Player::move()
 {
-
-    if (y()>0){
-        view->game_over();
-    }
-
-    std::cout << y() <<std::endl;
-
     //Accelerate
     speed.y += 1;
 
@@ -125,11 +129,13 @@ void Player::move()
     {
         speed.y = (0 > speed.y) ? speed.y : 0 ;
         setY(view->world_size.bottom);
+        view->game_over();
     }
     else if(y() <= view->world_size.top)
     {
-        speed.y = (0 < speed.y) ? speed.y : 0 ;
-        setY(view->world_size.top);
+        //please stop blocking us at the top, it's anoying
+        //speed.y = (0 < speed.y) ? speed.y : 0 ;
+        //setY(view->world_size.top);
     }
 
     if(x()<=view->world_size.left)
@@ -137,10 +143,10 @@ void Player::move()
         speed.x = (0 < speed.x) ? speed.x : 0 ;
         setX(view->world_size.left);
     }
-    else if(x() >= view->world_size.right)
+    else if(x() >= view->world_size.right-size.x)
     {
         speed.x = (0 > speed.x) ? speed.x : 0 ;
-        setX(view->world_size.right);
+        setX(view->world_size.right-size.x);
     }
 
     update_collision_range(collision_ranges, size, speed);
