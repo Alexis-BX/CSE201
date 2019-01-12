@@ -59,7 +59,7 @@ template <typename T> QList<QGraphicsRectItem*> create_collision_range(T* parent
     for(int i = 0; i < 3 ; i ++)
     {
         temp_list.push_back(new QGraphicsRectItem(parent));
-        temp_list[i]->setPen(QPen(Qt::NoPen));
+        //temp_list[i]->setPen(QPen(Qt::NoPen));
     }
     return temp_list;
 }

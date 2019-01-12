@@ -1,4 +1,5 @@
 #include "listheaders.h"
+#include <QList>
 
 View::View(pair screen_size, int block_size, QWidget* parent) :
     QGraphicsView(parent), block_size(block_size), screen_size(screen_size)
@@ -24,8 +25,9 @@ void View::update_background()
 void View::game_over()
 {
     //clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
-    setScene(scene_game_over);//scene set up
-    new Game_over();
+    scene->clear();
+    scene_game_over->addItem(new Game_over());
+    setScene(scene_game_over);//scene set up;
 }
 
 

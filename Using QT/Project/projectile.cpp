@@ -27,6 +27,8 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
 Projectile::~Projectile()
 {
+    qDebug() << "Pojectile_deletion";
+
     timer->stop();
     timer->deleteLater();
 
@@ -36,26 +38,20 @@ Projectile::~Projectile()
     }
 }
 
+void Projectile::explode()
+{
+    setPixmap(QPixmap(gtexture->get_path_to(projectile_vanish_effect)));
+
+    setPos(x()-10,y()-10);
+
+    delay(200);
+
+    QObject::deleteLater();
+}
+
 void Projectile::move()
 {
-    if (state == vanish)
-    {
-        setPixmap(QPixmap(gtexture->get_path_to(projectile_vanish_effect)));
-
-        delay(200);
-
-        QObject::deleteLater();
-
-        return;
-    }
-
-    //in boundaries
-    if(y() >= view->world_size.bottom || y() <= view->world_size.top
-            || x()<=view->world_size.left || x() >= view->world_size.right)
-    {
-        state = vanish;
-        return;
-    }
+    life -= 1;
 
     update_collision_range(collision_ranges, size, speed);
 
@@ -80,44 +76,20 @@ void Projectile::move()
     }
     }
 
-    // movements of the player:
-    if (collision[0])
+    // If it has collided or gone outside the world or is out of life it explodes
+    if (collision[0] || collision[1] || collision[2]
+            || y() >= view->world_size.bottom || y() <= view->world_size.top
+            || x() <= view->world_size.left || x() >= view->world_size.right
+            || life == 0)
     {
-        state = vanish;
+        explode();
 
         return;
     }
-    if (collision[1])
-    {
-        state = vanish;
-
-        return;
-    }
-    if (collision[2] && !collision[1] && !collision[0])
-    {
-        state = vanish;
-
-        return;
-    }
-
 
     setPos(x()+speed.x,y()+speed.y);
 
-    img_count += 0.3;
-
-    if(img_count>=4)
-    {
-        img_count = 0;
-    }
+    img_count  += (img_count >= 3.7) ? -img_count : 0.3;
 
     setPixmap(gtexture->get_qpixmap_of(projectiles, type, 4)[img_count]);
-
-    life -= 1;
-
-    if(life == 0)
-    {
-        state = vanish;
-
-        return;
-    }
 }

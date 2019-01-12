@@ -8,6 +8,19 @@ class Projectile : public QObject, public QGraphicsPixmapItem
 
 public:
 
+    Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent = 0);
+
+    ~Projectile();
+
+    void explode();
+
+    // Attributes
+    int life;
+
+    pair speed, size;
+
+    double img_count = 0;
+
     QList<QGraphicsRectItem*> collision_ranges;
 
     QList<bool> collision;
@@ -18,22 +31,11 @@ public:
 
     Projectile_state state;
 
-    Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent = 0);
-
     QTimer* timer;
-
-    // Attributes
-    int life;
-
-    pair speed, size;
-
-    double img_count=0;
-
-    ~Projectile();
 
 public slots:
 
-    void move(); //next position of the projectile depending on their way of moving
+    void move();
 
 };
 

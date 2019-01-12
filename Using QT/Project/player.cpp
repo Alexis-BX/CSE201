@@ -158,7 +158,7 @@ void Player::move()
     QList<QGraphicsItem*> colliding_items;
     collision = QList<bool>{false,false,false};
 
-    for(int i = (super_powers->super_invincible && i==0) ? 1 : 0; i < 3 ; i ++)
+    for(int i = (super_powers->supers_b[super_invincible] && i==0) ? 1 : 0; i < 3 ; i ++)
     {
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
@@ -195,7 +195,8 @@ void Player::move()
             else if(temp_collision_type == "power") //collision with power up
             {
                 view->scene->removeItem(colliding_items[j]);
-                super_powers->power_up(QString(typeid(*colliding_items[j]).name()));
+                qDebug() << (QString(typeid(*colliding_items[j]).name()))[11];
+                super_powers->power_up(0);
                 continue;
             }
 
@@ -288,7 +289,7 @@ void Player::move()
 
     super_powers->update_counters();
 
-    setPixmap(animations[super_powers->super][facing][state][int(count)]);
+    setPixmap(animations[super_powers->supers_b[super]][facing][state][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
 

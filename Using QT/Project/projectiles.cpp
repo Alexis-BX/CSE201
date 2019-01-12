@@ -1,7 +1,7 @@
 #include "listheaders.h"
 
 Player_projectile_1::Player_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier):
-    Projectile(position, direction, character_size_x, pair{18,5})
+    Projectile(position, direction, character_size_x, pair{18,18})
 {
     type = baguette;
 
@@ -41,7 +41,7 @@ Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int charac
 {
     type = smoke;
 
-    life = 200000;
+    life = 20000;
 
     speed = pair{velocity * ((direction) ? 1 : -1), 0};
 
