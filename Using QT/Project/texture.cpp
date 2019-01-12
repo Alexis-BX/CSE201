@@ -41,7 +41,7 @@ void Texture::read_texture_from_file(QString filename)
 
 //Reads the list of names of images from the list.txt file
 // and stores it as a dictionary
-void Texture::read_background_from_file(QString filename, int amount_close_backgrounds)
+void Texture::read_background_from_file(QString filename)
 {
     QFile file(":/Images/Backgrounds/"+filename+'/'+filename+"_list.txt");
 
@@ -63,7 +63,7 @@ void Texture::read_background_from_file(QString filename, int amount_close_backg
 
     QList<QString> temp_list_close;
 
-    for(int i = 0; i < amount_close_backgrounds ; i++)
+    for(int i = 0; i < number_close_backgrounds ; i++)
     {
         temp_list_close.push_back(in.readLine().split(":")[1].trimmed());
     }
@@ -88,7 +88,7 @@ QString Texture::get_path_to(Background_texture bg_tex)
 {
     if (bg_tex == background_close)
     {
-        int pos = (std::time(nullptr))%background_image_from_background_close2.find(current_background2).value().size();
+        int pos = rand()%background_image_from_background_close2.find(current_background2).value().size();
         return path_to_backgrounds2+current_background2+'/'+background_image_from_background_close2.find(current_background2).value()[pos]+".png";
     }
     return path_to_backgrounds2+current_background2+'/'+background_image_from_background2.find(current_background2).value()[bg_tex]+".png";

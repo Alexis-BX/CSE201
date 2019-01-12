@@ -33,6 +33,7 @@ public:
     Texture();
 
     //Attributes
+    int number_close_backgrounds = 4;
 
     // This will store which texture is currently being used
     QString current_texture2;
@@ -53,7 +54,9 @@ public:
 
     void read_texture_from_file(QString filename);
 
-    void read_background_from_file(QString filename, int amount_close_backgrounds = 2);
+    //Method that reads the text file that has all the information about which pictures to use for
+    // a specific background
+    void read_background_from_file(QString filename);
 
     // Method that return the path to the image of a certain object texture in the current texture
     QString get_path_to(Object_texture ojb_tex);

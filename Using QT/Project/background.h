@@ -7,7 +7,7 @@ class Background : public QGraphicsPixmapItem
 
 public:
 
-    int speed_ratio, width, hight;
+    int speed_ratio, width, height;
 
     QPixmap sprite;
 

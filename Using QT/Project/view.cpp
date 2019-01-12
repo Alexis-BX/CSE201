@@ -16,9 +16,9 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
 void View::update_background()
 {
-    backgrounds_far = update_single_bg<Background_far>(backgrounds_far, view->screen_size.y);
-    backgrounds_middle = update_single_bg<Background_middle>(backgrounds_middle, 500);
-    backgrounds_close = update_single_bg<Background_close>(backgrounds_close, 256);
+    backgrounds_far = update_single_bg<Background_far>(backgrounds_far);
+    backgrounds_middle = update_single_bg<Background_middle>(backgrounds_middle);
+    backgrounds_close = update_single_bg<Background_close>(backgrounds_close);
 }
 
 void View::game_over()
@@ -29,7 +29,7 @@ void View::game_over()
 }
 
 
-template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> list, double offset)
+template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> list)
 {
     for(unsigned long long i = 0 ; i < list.size(); i++)
     {
@@ -38,7 +38,7 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
 
     if (list[0]->x() > player->x()-screen_size.x)
     {
-        list.insert(list.begin(), new BG(pair{list[0]->x()-(backgrounds_far[0]->width),-offset}));
+        list.insert(list.begin(), new BG(pair{list[0]->x()-(list[0]->width),0}));
         scene->addItem(list[0]);
     }
     else if (list[0]->x() + list[0]->width < player->x() - screen_size.x)
@@ -50,7 +50,7 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
 
     if (list.back()->x() + list.back()->width < player->x() + screen_size.x/2)
     {
-        list.push_back(new BG(pair{list.back()->x()+list.back()->width,-offset}));
+        list.push_back(new BG(pair{list.back()->x()+list.back()->width,0}));
         scene->addItem(list.back());
     }
     else if (list.back()->x() > player->x() + screen_size.x)

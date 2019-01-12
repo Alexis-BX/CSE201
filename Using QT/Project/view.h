@@ -54,7 +54,7 @@ public:
 
     void game_over();
 
-    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list, double offset);
+    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list);
 };
 
 #endif // VIEW_H

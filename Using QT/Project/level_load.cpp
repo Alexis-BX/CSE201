@@ -35,13 +35,13 @@ void Level_load::setup_view()
 void Level_load::setup_background()
 {
     //Set the background layers (paralax background)
-    view->backgrounds_far.push_back(new Background_far(pair{0,-view->screen_size.y}));
+    view->backgrounds_far.push_back(new Background_far(pair{0,0}));
     view->scene->addItem(view->backgrounds_far[0]);
 
-    view->backgrounds_middle.push_back(new Background_middle(pair{0,-500}));
+    view->backgrounds_middle.push_back(new Background_middle(pair{0,0}));
     view->scene->addItem(view->backgrounds_middle[0]);
 
-    view->backgrounds_close.push_back(new Background_close(pair{0,-256}));
+    view->backgrounds_close.push_back(new Background_close(pair{0,0}));
     view->scene->addItem(view->backgrounds_close[0]);
 }
 

@@ -4,7 +4,8 @@ Background_far::Background_far(pair position): Background(position)
 {
     sprite = QPixmap(gtexture->get_path_to(background_far));
     width = sprite.width();
-    hight = sprite.height();
+    height = sprite.height();
+    setPos(position.x,position.y-height+18);
     this->setZValue(layer_background_far);
     setPixmap(sprite);
     this->speed_ratio = 10;
@@ -13,8 +14,9 @@ Background_far::Background_far(pair position): Background(position)
 Background_middle::Background_middle(pair position): Background(position)
 {
     sprite = QPixmap(gtexture->get_path_to(background_middle));
-    width = sprite.width();
-    hight = sprite.height();
+    width = sprite.width()*5;
+    height = sprite.height();
+    setPos(position.x,position.y-height-50);
     this->setZValue(layer_background_middle);
     setPixmap(sprite);
     this->speed_ratio = 8;
@@ -23,8 +25,9 @@ Background_middle::Background_middle(pair position): Background(position)
 Background_close::Background_close(pair position): Background(position)
 {
     sprite = QPixmap(gtexture->get_path_to(background_close));
-    width = sprite.width();
-    hight = sprite.height();
+    width = sprite.width()*2;
+    height = sprite.height();
+    setPos(position.x,position.y-height-30);
     this->setZValue(layer_background_close);
     setPixmap(sprite);
     this->speed_ratio = 4;
