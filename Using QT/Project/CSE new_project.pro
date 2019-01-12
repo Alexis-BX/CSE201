@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = CSE2017
@@ -49,7 +51,8 @@ SOURCES += \
     start_screen.cpp \
     collision_master.cpp \
     game_over.cpp \
-    super_powers.cpp
+    super_powers.cpp \
+    music.cpp
     enemies.cpp
 
 
@@ -82,7 +85,8 @@ HEADERS += \
     start_screen.h \
     collision_master.h \
     game_over.h \
-    super_powers.h
+    super_powers.h \
+    music.h
     enemies.h
 
 
