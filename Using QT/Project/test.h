@@ -19,11 +19,11 @@ public:
     bool Test_UpdateCounter();
     void Test_CoinCount();
 
-    //tests for collectable class
-    bool Test_ColUp();
-    bool Test_ColDown();
-    bool Test_ColRight();
-    bool Test_ColLeft();
+    //tests for tools
+    bool Test_CreateColRange();
+    bool Test_UpdateColRange();
+    bool Test_Delay();
+    void Test_Tools();
 
 };
 

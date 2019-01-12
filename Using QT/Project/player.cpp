@@ -195,8 +195,19 @@ void Player::move()
             else if(temp_collision_type == "power") //collision with power up
             {
                 view->scene->removeItem(colliding_items[j]);
-                qDebug() << (QString(typeid(*colliding_items[j]).name()))[11];
-                super_powers->power_up(0);
+
+                QChar last_char = (QString(typeid(*colliding_items[j]).name()))[11];
+
+                for(int i = 0; i < supers_count;i++)
+                {
+                    //qDebug() << (char(i) == last_char);
+                    //qDebug() << char(i);
+                    //qDebug() << last_char;
+                    if(QChar(i) == last_char)
+                    {
+                        super_powers->power_up(i);
+                    }
+                }
                 continue;
             }
 
@@ -309,25 +320,19 @@ void Player::throw_projectile()
     {
     case 1:
     {
-        view->scene->addItem(new Player_projectile_1(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_1(position, facing, size.x, super_powers->get_throw_speed()));
         break;
     }
 
     case 2:
     {
-        view->scene->addItem(new Player_projectile_2(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_2(position, facing, size.x, super_powers->get_throw_speed()));
         break;
     }
 
     case 3:
     {
-        view->scene->addItem(new Player_projectile_3(position, facing, size.x));
-        break;
-    }
-
-    case 4:
-    {
-        view->scene->addItem(new Enemy_projectile_1(position, facing, size.x));
+        view->scene->addItem(new Player_projectile_3(position, facing, size.x, super_powers->get_throw_speed()));
         break;
     }
     }

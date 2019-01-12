@@ -31,3 +31,10 @@ double Super_powers::get_speed()
 {
     return ((supers_b[super_fast]) ? 2 : 1);
 }
+
+double Super_powers::get_throw_speed()
+{
+    return (supers_b[super_throw]) ? 2 : 1;
+}
+
+

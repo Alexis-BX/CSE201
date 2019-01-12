@@ -27,8 +27,6 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
 Projectile::~Projectile()
 {
-    qDebug() << "Pojectile_deletion";
-
     timer->stop();
     timer->deleteLater();
 

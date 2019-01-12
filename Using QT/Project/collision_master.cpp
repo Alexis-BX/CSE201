@@ -34,7 +34,7 @@ void Collision_master::read_rules_from_file()
             }
             else
             {
-                qDebug() << buffer_string[0];
+                //qDebug() << buffer_string[0];
             }
         } while (buffer_string[0] != "#");
 

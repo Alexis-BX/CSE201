@@ -31,6 +31,8 @@ public:
     void power_up(int i);
 
     double get_speed();
+
+    double get_throw_speed();
 };
 
 #endif // SUPER_POWERS_H
