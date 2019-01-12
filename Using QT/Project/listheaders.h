@@ -26,6 +26,7 @@
 #include "player.h"
 #include "projectile.h"
 #include "projectiles.h"
+#include "super_powers.h"
 #include "texture.h"
 #include "view.h"
 

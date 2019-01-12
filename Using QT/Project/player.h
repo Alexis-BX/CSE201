@@ -4,6 +4,7 @@
 #include "collectable.h"
 #include "coin_counter.h"
 #include "collision_master.h"
+#include "super_powers.h"
 
 //list of player states
 enum States
@@ -33,16 +34,14 @@ public:
 
     double_pair world_boundaries;
 
-    bool pressed_left{false}, pressed_right{false}, playing{true},
+    bool pressed_left{false}, pressed_right{false}, playing{true};
 
-    super{false}, super_fast{false}, super_throw{false}, super_big{false}, super_invincible{false}, super_invincible2{false};
-
-    int count_super_fast{0}, count_super_throw{0},count_super{0}, count_super_big{0}, count_super_invincible{0}, count_super_invincible2{0},
-
-    times_jumped{0}, max_consecutive_jumps{2},
+    int times_jumped{0}, max_consecutive_jumps{2},
 
     maxFrame[12] = {2, 8, 3, 2, 3, 2, 2, 2, 4, 2, 2, 8},
     number_of_character_states{11}, max_images_per_state{8};
+
+    Super_powers* super_powers;
 
     int current_projectile{1};
 
@@ -70,8 +69,6 @@ public:
     void throw_projectile();
 
     void create_animation();
-
-    void superpower(QString collision_type);
 
     void set_animation_state();
 

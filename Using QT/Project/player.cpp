@@ -9,6 +9,8 @@ Player::Player(QGraphicsItem* parent) :
 
     this->setZValue(layer_player);
 
+    super_powers = new Super_powers();
+
     // Timer
     timer = new QTimer();
 
@@ -87,7 +89,7 @@ void Player::move()
     //Motion smooth
     if (pressed_left)
     {
-        if (speed.x>-max_speed.x)
+        if (speed.x>-max_speed.x*super_powers->get_speed())
         {
             speed.x -= 1;
         }
@@ -102,7 +104,7 @@ void Player::move()
 
     if (pressed_right)
     {
-        if (speed.x<max_speed.x*((super_fast) ? 2 : 1))
+        if (speed.x<max_speed.x*super_powers->get_speed())
         {
             speed.x += 1;
         }
@@ -156,7 +158,7 @@ void Player::move()
     QList<QGraphicsItem*> colliding_items;
     collision = QList<bool>{false,false,false};
 
-    for(int i = (super_invincible && i==0) ? 1 : 0; i < 3 ; i ++)
+    for(int i = (super_powers->super_invincible && i==0) ? 1 : 0; i < 3 ; i ++)
     {
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
@@ -193,7 +195,7 @@ void Player::move()
             else if(temp_collision_type == "power") //collision with power up
             {
                 view->scene->removeItem(colliding_items[j]);
-                superpower(QString(typeid(*colliding_items[j]).name()));
+                super_powers->power_up(QString(typeid(*colliding_items[j]).name()));
                 continue;
             }
 
@@ -270,61 +272,6 @@ void Player::move()
     }
 
 
-    //superpowers timer
-    if (super)
-    {
-        count_super += 1;
-    }
-    if (count_super > 100)
-    {
-        super = false;
-    }
-
-    if (super_fast)
-    {
-        count_super_fast +=1;
-    }
-    if (count_super > 50)
-    {
-        super_fast = false;
-    }
-
-    if (super_throw)
-    {
-        count_super_throw +=1;
-    }
-    if (count_super > 50)
-    {
-        super_throw = false;
-    }
-
-    if (super_big)
-    {
-        count_super_big +=1;
-    }
-    if (count_super_big >50)
-    {
-        super_big = false;
-    }
-
-    if (super_invincible)
-    {
-        count_super_invincible +=1;
-    }
-    if (count_super_invincible >50)
-    {
-        super_invincible = false;
-    }
-
-    if(super_invincible2)
-    {
-        count_super_invincible2 +=1;
-    }
-    if (count_super_invincible2 >50)
-    {
-        super_invincible2 = false;
-    }
-
     //animation
     count += 0.4;
 
@@ -339,7 +286,9 @@ void Player::move()
         count = maxFrame[state]-0.00001;
     }
 
-    setPixmap(animations[super][facing][state][int(count)]);
+    super_powers->update_counters();
+
+    setPixmap(animations[super_powers->super][facing][state][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
 
@@ -380,61 +329,6 @@ void Player::throw_projectile()
         view->scene->addItem(new Enemy_projectile_1(position, facing, size.x));
         break;
     }
-    }
-}
-
-void Player::superpower(QString collision_type)
-{
-    qDebug() << collision_type;
-    if(collision_type == "10Power_up_1") //eclair
-    {
-        count_super_throw = 0;
-        current_projectile = 3;
-        super_throw = true;
-    }
-    else if(collision_type == "10Power_up_2") //croissant
-    {
-        count_super_fast = 0;
-        speed.x = speed.x/2;
-        super_fast = true;
-    }
-    else if(collision_type == "10Power_up_3") //chocolatine
-    {
-        count_super_invincible2 = 0;
-        super_invincible2 = true;
-    }
-    else if(collision_type == "10Power_up_4") //mini_eiffel
-    {
-        count_super_invincible = 0;
-        super_invincible = true;
-    }
-    else if(collision_type == "10Power_up_5") //glass_wine
-    {
-        count_super = 0;
-        super = true;
-        count_super_fast = 0;
-        speed.x *= 2;
-        super_fast = true;
-
-    }
-    else if(collision_type == "10Power_up_6") //mushroom
-    {
-        count_super_fast = 0;
-        speed.x *= 2;
-        super_fast = true;
-    }
-
-    else if (collision_type == "10Power_up_7") //coin
-    {
-        count_super_throw = 0;
-        current_projectile = 1;
-        super_throw = true;
-    }
-
-    else if(collision_type == "10Power_up_8") //star
-    {
-        count_super = 0;
-        super = true;
     }
 }
 

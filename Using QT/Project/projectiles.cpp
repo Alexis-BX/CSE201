@@ -1,6 +1,6 @@
 #include "listheaders.h"
 
-Player_projectile_1::Player_projectile_1(pair position, bool direction, int character_size_x):
+Player_projectile_1::Player_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier):
     Projectile(position, direction, character_size_x, pair{18,5})
 {
     type = baguette;
@@ -12,7 +12,7 @@ Player_projectile_1::Player_projectile_1(pair position, bool direction, int char
     setPixmap(gtexture->get_qpixmap_of(projectiles, type)[img_count]);
 }
 
-Player_projectile_2::Player_projectile_2(pair position, bool direction, int character_size_x):
+Player_projectile_2::Player_projectile_2(pair position, bool direction, int character_size_x, double speed_multiplier):
     Projectile(position, direction, character_size_x, pair{18,18})
 {
     type = wine;
@@ -24,7 +24,7 @@ Player_projectile_2::Player_projectile_2(pair position, bool direction, int char
     setPixmap(gtexture->get_qpixmap_of(projectiles, type)[img_count]);
 }
 
-Player_projectile_3::Player_projectile_3(pair position, bool direction, int character_size_x):
+Player_projectile_3::Player_projectile_3(pair position, bool direction, int character_size_x, double speed_multiplier):
     Projectile(position, direction, character_size_x, pair{18,18})
 {
     type = pot;
@@ -36,7 +36,7 @@ Player_projectile_3::Player_projectile_3(pair position, bool direction, int char
     setPixmap(gtexture->get_qpixmap_of(projectiles, type)[img_count]);
 }
 
-Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int character_size_x):
+Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier):
     Projectile(position, direction, character_size_x, pair{18,18})
 {
     type = smoke;
