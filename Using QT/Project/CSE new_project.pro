@@ -48,11 +48,12 @@ SOURCES += \
     enemies.cpp \
     base_color_triple.cpp \
     color_triple_player.cpp \
-    start_screen.cpp \
     collision_master.cpp \
     game_over.cpp \
     super_powers.cpp \
-    music.cpp
+    menu.cpp \
+    button.cpp \
+    music.cpp \
     enemies.cpp
 
 
@@ -86,7 +87,9 @@ HEADERS += \
     collision_master.h \
     game_over.h \
     super_powers.h \
-    music.h
+    menu.h \
+    button.h \
+    music.h \
     enemies.h
 
 

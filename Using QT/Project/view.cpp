@@ -7,12 +7,16 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     //fluidifies image adition in the background along with some animations
     setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
+    start_game();
+
+}
+
+void View::start_game(){
     //scene set up
     setScene(scene);
 
     // load and create level
     level_load = new Level_load(this);
-
 }
 
 void View::update_background()
