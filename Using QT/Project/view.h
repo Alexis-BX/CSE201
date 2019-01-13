@@ -4,6 +4,7 @@
 
 #include "level_load.h"
 #include "backgrounds.h"
+#include "music.h"
 
 class Player;
 
@@ -24,6 +25,8 @@ public:
     Player* player;
 
     Level_load* level_load;
+
+    Music * music;
 
     QGraphicsScene *scene_menu  = new QGraphicsScene();
     QGraphicsScene *scene  = new QGraphicsScene();

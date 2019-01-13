@@ -9,4 +9,5 @@ Game_over::Game_over(QGraphicsItem* parent):
     QPixmap img(":/Images/Backgrounds/Main_background/game_over.png");
     img = img.scaled(view->screen_size.x, view->screen_size.y);
     setPixmap(img);
+    view->music->stop();
 }

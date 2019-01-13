@@ -30,8 +30,6 @@ int main(int argc, char *argv[])
 
     view->show();
 
-    QSound::play("://Images/Backgrounds/Main_background/song.wav");
-
     return application.exec();
 
 }

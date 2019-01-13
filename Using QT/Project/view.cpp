@@ -15,6 +15,8 @@ void View::start_game(){
     //scene set up
     setScene(scene);
 
+    music = new Music();
+
     // load and create level
     level_load = new Level_load(this);
 }

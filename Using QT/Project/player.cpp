@@ -74,8 +74,6 @@ void Player::update()
 {
     if (playing){
         move();
-        new Music();
-
     }
     else
     {

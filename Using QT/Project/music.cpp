@@ -10,9 +10,16 @@
 Music::Music(QObject* parent):
     QMediaPlayer (parent)
 {
-    QUrl url = QUrl(":/Images/Backgrounds/Main_background/song.wav");
-    QMediaPlayer* music = new QMediaPlayer;
-       music->setMedia(url);
-       music->setVolume(100);
-       music->play();
+ /*QUrl url = QUrl(":/Images/Backgrounds/Main_background/song.wav");
+   QMediaPlayer* music = new QMediaPlayer;
+   music->setMedia(url);
+   music->setVolume(100);
+   music->play();*/
+
+   QSound::play("://Images/Backgrounds/Main_background/song.wav");
+}
+
+void Music::stop()
+{
+    //
 }
