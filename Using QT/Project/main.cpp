@@ -9,7 +9,7 @@ Texture* gtexture;
 
 Collision_master* collision_master;
 
-    void main_start_game(){
+void main_start_game(){
     view->start_game();
     view->level_load->load_level(":/Images/Levels/Level_clara_002.png");
 }
