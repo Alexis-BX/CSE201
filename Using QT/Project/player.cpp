@@ -451,19 +451,19 @@ void Player::create_animation()
     {
         for (int i = 0; i<maxFrame[j]; i++)
         {
-            //generate images looking left
+            //generate images looking right
             animations[0][1][j][i] = imgChar.copy(int(i*size.x), int(j*size.y), int(size.x), int(size.y));
 
-            //generate images looking right
+            //generate images looking left
             QImage img = imgChar.copy(int(i*size.x), int(j*size.y), int(size.x), int(size.y)).toImage();
             img = img.mirrored(true, false);
             animations[0][0][j][i] = QPixmap::fromImage(img);
 
 
-            //Generate super images looking left
+            //Generate super images looking right
             animations[1][1][j][i] = imgChar.copy(int(i*size.x), int((number_of_character_states+j)*size.y), int(size.x), int(size.y));
 
-            //Generate super images looking right
+            //Generate super images looking left
             QImage imgs = imgChar.copy(int(i*size.x), int((number_of_character_states+j)*size.y), int(size.x), int(size.y)).toImage();
             imgs = imgs.mirrored(true, false);
             animations[1][0][j][i] = QPixmap::fromImage(imgs);
