@@ -220,3 +220,143 @@ void Test::Test_Tools(){
         std::cout << "Tools are succesful!" << std::endl;
     }
 }
+
+//enemy class tests
+
+bool Test::Test_Jump(){
+    pair position = {double(rand() % 739), double(rand() % 505)};
+    Enemy_1* enemy = new Enemy_1(position);
+
+    int res[2]; //two cases, as before res[i] = 1 means succes 0 otherwise
+
+    //case I, the enemy jumped the maximum amount already
+    enemy->times_jumped = enemy->max_consecutive_jumps;
+    int x = enemy->times_jumped;
+    enemy->jump();
+    if(x == enemy->times_jumped){
+        res[0] = 1;
+    }
+    else{
+        res[0] = 0;
+    }
+
+    //case II, the enemy can still jump
+    enemy->times_jumped = 1;
+    enemy->speedMax.y = 2;
+    enemy->jump();
+    if(enemy->times_jumped == 2 && enemy->speed.y == -2){
+        res[1] = 1;
+    }
+    else{
+        res[1] = 0;
+    }
+
+    int sum = 0;
+    for(int i = 0; i < 2; i++){
+        sum += res[i];
+    }
+    if(sum == 2){
+        std::cout << "Jump works :)" << std::endl;
+        return true;
+    }
+    std::cout << "Jump does not work :(" << std::endl;
+    return false;
+}
+
+//tests the first part of the move() function
+
+bool Test::Test_Move_First(){
+    Player* player = new Player();
+    player->pos() = {double(rand() % 739), double(rand() % 505)};   //player at a random place
+    pair position = {double(rand() % 739), double(rand() % 505)};
+    Enemy_1* enemy = new Enemy_1(position);                             //enemy at a random place
+    double dist = distance(pair{player->x(),player->y()},pair{enemy->x(),enemy->y()});    //the distance between the random places
+
+    int res[2]; //Just as before, res[i] is 1 if success 0 otherwise
+
+    //Case I: increase of speed.y and state is passive
+    double speed = enemy->speed.y;
+    enemy->move();
+    if(enemy->speed.y == speed + 1){
+        if(dist < 30000){
+            if(enemy->state == aggressiv){
+                res[0] = 1;
+            }
+            else{
+                res[0] = 0;
+            }
+        }
+        else{
+            if(enemy->facing == Right){
+                if(enemy->speed.x == enemy->speedMax.x){
+                    res[0] = 1;
+                }
+                else{res[0] = 0;}
+            }
+            else{
+                if(enemy->speed.x == -enemy->speedMax.x){
+                    res[0] = 1;
+                }
+                else{res[0] = 0;}
+            }
+        }
+    }
+    else{
+        res[0] = 0;
+    }
+
+    //Case II: state is aggressiv and motion smooth
+    pair position2 = {double(rand() % 739), double(rand() % 505)};
+    Enemy_1* enemy2 = new Enemy_1(position2);                             //new enemy that did not move
+    double dist2 = distance(pair{player->x(),player->y()},pair{enemy2->x(),enemy2->y()});  //the distance between new enemy and player
+    enemy2->speed.y = rand() % 5;
+    enemy2->state = aggressiv;
+    int x = (player->x() >= enemy2->x()) ? 0 : -1; //if player.x >= enemy2.x, x = 0; else, x = -1
+    int y = (enemy->speed.y > enemy->speedMax.y) ? 0 : -1; //y=0 if (...) true and -1 otherwise
+    enemy2->move();
+    if(y == 0){
+        if(enemy->speed.y == enemy->speedMax.y){
+            if(dist2 > 60000){
+                if(enemy2->state == passiv){
+                    res[1] = 1;
+                }
+                else{res[1] = 0;}
+            }
+            else{
+                if(x == 0){
+                    if(enemy2->speed.x == enemy->speedMax.x){
+                        res[1] = 1;
+                    }
+                    else{res[1] = 0;}
+                }
+                else{
+                    if(enemy2->speed.x == -enemy->speedMax.x){
+                        res[1] = 1;
+                    }
+                    else{res[1] = 0;}
+                }
+            }
+        }
+        else{res[1] = 0;}
+    }
+    else{
+        if(enemy->speed.y == -enemy->speedMax.y){
+            res[1] = 1;
+        }
+        else{res[1] = 0;}
+    }
+
+    int sum = 0;
+    for(int i = 0; i < 2; i++){
+        sum += res[i];
+    }
+    if(sum == 2){
+        std::cout << "Move I works :)" << std::endl;
+        return true;
+    }
+    std::cout << "Move I does not work :(" << std::endl;
+    return false;
+
+}
+
+
