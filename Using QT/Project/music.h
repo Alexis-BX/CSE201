@@ -3,7 +3,7 @@
 #include "global.h"
 #include <QtMultimedia>
 
-class Music: public QObject, public QMediaPlayer
+class Music:  public QMediaPlayer
 {
 public:
     Music(QObject *parent = nullptr);

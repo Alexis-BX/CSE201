@@ -83,7 +83,6 @@ HEADERS += \
     color_triple_definition.h \
     base_color_triple.h \
     color_triple_player.h \
-    start_screen.h \
     collision_master.h \
     game_over.h \
     super_powers.h \

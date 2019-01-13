@@ -8,7 +8,7 @@
 
 
 Music::Music(QObject* parent):
-    QObject(), QMediaPlayer (parent)
+    QMediaPlayer (parent)
 {
     QUrl url = QUrl(":/Images/Backgrounds/Main_background/song.wav");
     QMediaPlayer* music = new QMediaPlayer;
