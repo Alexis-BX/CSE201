@@ -25,6 +25,7 @@ public:
 
     Level_load* level_load;
 
+    QGraphicsScene *scene_menu  = new QGraphicsScene();
     QGraphicsScene *scene  = new QGraphicsScene();
     QGraphicsScene *scene_game_over  = new QGraphicsScene();
 
@@ -35,6 +36,8 @@ public:
     std::vector<Background_close*> backgrounds_close;
 
     // Create world
+    void start_game();
+
     void create_basic_world(int width);
 
     void create_player(pair position = pair{300,-300});

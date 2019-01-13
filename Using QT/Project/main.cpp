@@ -7,6 +7,11 @@ Texture* gtexture;
 
 Collision_master* collision_master;
 
+void main_start_game(){
+    view->start_game();
+    view->level_load->load_level(":/Images/Levels/Level_clara_002.png");
+}
+
 int main(int argc, char *argv[])
 {
 
@@ -18,7 +23,8 @@ int main(int argc, char *argv[])
 
     view = new View(pair{793,505});
 
-    view->level_load->load_level(":/Images/Levels/Level_clara_002.png");
+    //main_start_game();
+    new Menu();
 
     view->show();
 
@@ -27,3 +33,5 @@ int main(int argc, char *argv[])
     return application.exec();
 
 }
+
+
