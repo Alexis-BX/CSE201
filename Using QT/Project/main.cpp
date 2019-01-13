@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
 
     view = new View(pair{793,505});
 
-    //main_start_game();
-    new Menu();
+    main_start_game();
+    //new Menu();
 
     view->show();
 
