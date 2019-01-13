@@ -31,5 +31,6 @@
         <file>Backgrounds/Main_background/building3.png</file>
         <file>Backgrounds/Main_background/building4.png</file>
         <file>Levels/buttons.png</file>
+        <file>Backgrounds/Main_background/song.wav</file>
     </qresource>
 </RCC>

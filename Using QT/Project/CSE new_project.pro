@@ -6,6 +6,8 @@
 
 QT       += core gui
 
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = CSE2017
@@ -50,7 +52,8 @@ SOURCES += \
     game_over.cpp \
     super_powers.cpp \
     menu.cpp \
-    button.cpp
+    button.cpp \
+    music.cpp \
     enemies.cpp
 
 
@@ -85,7 +88,8 @@ HEADERS += \
     game_over.h \
     super_powers.h \
     menu.h \
-    button.h
+    button.h \
+    music.h \
     enemies.h
 
 

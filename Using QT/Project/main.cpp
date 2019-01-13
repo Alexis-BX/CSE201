@@ -1,5 +1,7 @@
 #include "listheaders.h"
 #include "test.h"
+#include "music.h"
+#include <QSound>
 
 View* view;
 
@@ -27,6 +29,8 @@ int main(int argc, char *argv[])
     new Menu();
 
     view->show();
+
+    QSound::play("://Images/Backgrounds/Main_background/song.wav");
 
     Test test;
 

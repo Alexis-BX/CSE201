@@ -25,6 +25,7 @@
 #include "game_over.h"
 #include "level_load.h"
 #include "menu.h"
+#include "music.h"
 #include "player.h"
 #include "projectile.h"
 #include "projectiles.h"
