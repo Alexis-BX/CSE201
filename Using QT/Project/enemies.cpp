@@ -29,7 +29,4 @@ Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
 
 Enemy_2::Enemy_2(pair position, QGraphicsItem* parent) :
     Enemy(position, parent)
-{
-
-
-}
+{}

@@ -32,8 +32,6 @@ int main(int argc, char *argv[])
 
     QSound::play("://Images/Backgrounds/Main_background/song.wav");
 
-    Test test;
-
     return application.exec();
 
 }
