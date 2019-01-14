@@ -13,7 +13,9 @@ public:
 
     View* view;
 
-    void load_level(const char* filename);
+    QGraphicsScene*scene;
+
+    void load_level(const char* filename, QGraphicsScene*scene);
 
     void setup_view();
 

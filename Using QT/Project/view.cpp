@@ -7,7 +7,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     //fluidifies image adition in the background along with some animations
     setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
-    start_game();
+    //start_game();
 
 }
 

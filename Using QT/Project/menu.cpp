@@ -50,6 +50,7 @@ void Menu::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Enter:
     case Qt::Key_Space:
     {
+        std::cout<<"e"<<std::endl;
         launch();
         break;
     }
@@ -62,7 +63,7 @@ void Menu::launch()
     case op_start:
     {
         view->start_game();
-        view->level_load->load_level(":/Images/Levels/Level_clara_002.png");
+        view->level_load->load_level(":/Images/Levels/Level_clara_002.png", view->scene);
         break;
     }
     case op_keys:
@@ -82,14 +83,14 @@ void Menu::set_animation_state()
 {
     for (int i=0; i<op_amount; i++)
     {
-        view->scene_menu->addItem(new Button(view->screen_size.x/2-36, -200+40*i, buttons[i][selected==i]));
+        view->scene_menu->addItem(new Button(view->screen_size.x/2-36, -300+40*i, buttons[i][selected==i]));
     }
 }
 
 void Menu::load_animation()
 {
     Level_load *level_load = new Level_load(view);
-    level_load->load_level(":/Images/Levels/start_screen.png");
+    level_load->load_level(":/Images/Levels/start_screen.png", view->scene_menu);
 
     QPixmap images(":/Images/Levels/buttons.png");
 

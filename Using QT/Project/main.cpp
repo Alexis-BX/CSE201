@@ -11,7 +11,7 @@ Collision_master* collision_master;
 
 void main_start_game(){
     view->start_game();
-    view->level_load->load_level(":/Images/Levels/Level_clara_002.png");
+    view->level_load->load_level(":/Images/Levels/Level_clara_002.png", view->scene);
 }
 
 int main(int argc, char *argv[])
