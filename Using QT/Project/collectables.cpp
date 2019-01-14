@@ -71,6 +71,8 @@ Power_up_6::Power_up_6(pair position, int creator_object_size_y):
     state = immortal;
     speed = pair{0,0};
     setPixmap(gtexture->get_qpixmap_of(power_ups,type)[0]);
+
+    set_movement();
 }
 
 Power_up_7::Power_up_7(pair position, int creator_object_size_y):
@@ -90,4 +92,6 @@ Power_up_8::Power_up_8(pair position, int creator_object_size_y):
     state = immortal;
     speed = pair{3,0};
     setPixmap(gtexture->get_qpixmap_of(power_ups,type)[0]);
+
+    //set_movement();
 }
