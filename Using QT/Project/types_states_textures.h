@@ -17,9 +17,11 @@ enum Block_texture
     dirt,
     question_mark,
     activated = 5,
-    crate = 6,
-    crate_2 = 8,
-    crate_3 = 11
+    tube_top = 6,
+    crate = 8,
+    crate_2 = 10,
+    crate_3 = 13,
+    tube_bottom = 14
 
 };
 

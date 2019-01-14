@@ -65,7 +65,7 @@ public:
     QString get_path_to(Background_texture bg_tex);
 
     //Method that returns the QPixmap array of a sprite animation
-    std::vector<QPixmap> get_qpixmap_of(Object_texture sheet, int start=0, int length=1, int size=18);
+    std::vector<QPixmap> get_qpixmap_of(Object_texture sheet, int start=0, int length=1, pair size=pair{18,18});
 };
 
 

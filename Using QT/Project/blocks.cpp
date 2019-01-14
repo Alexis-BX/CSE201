@@ -107,3 +107,14 @@ End_block::End_block(pair position, QGraphicsItem* parent) :
     sprite = gtexture->get_qpixmap_of(blocks, texture);
     setPixmap(sprite[image_count]);
 }
+
+Tube_block::Tube_block(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = tube_bottom;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36
+    setPixmap(sprite[image_count]);
+}
