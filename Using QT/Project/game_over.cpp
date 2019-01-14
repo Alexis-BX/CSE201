@@ -13,6 +13,9 @@ Game_over::Game_over(QGraphicsItem* parent):
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
 
+    QString score="Final Score:";
+    QPainter painter(&img) ;
+    painter.drawText(QPoint(5,25),score);
     view->music->stop();
 }
 
