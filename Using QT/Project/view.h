@@ -63,6 +63,8 @@ public:
 
     void you_win();
 
+    void play_level(QString level_name);
+
     template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list);
 };
 

@@ -90,13 +90,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 
 void Player::update()
 {
-    if (playing){
-        move();
-    }
-    else
-    {
-        view->centerOn(0, 0);
-    }
+    move();
 }
 
 void Player::move()
@@ -239,9 +233,15 @@ void Player::move()
             else if(temp_collision_type == "damage_block_1") //collision with breakable block
             {
                 collision[i] = true;
-                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0))
+                { //regular collision
                     view->scene->removeItem(colliding_items[j]);
                     view->scene->addItem(new Breakable_block_2(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
+                }
+
+                if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
+                { //if player is super fast, he destroys the block directly
+                    view->scene->removeItem(colliding_items[j]);
                 }
                 continue;
             }
@@ -249,18 +249,24 @@ void Player::move()
             else if(temp_collision_type == "damage_block_2") //collision with breakable block
             {
                 collision[i] = true;
-                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0))
+                { //regular collision
                     view->scene->removeItem(colliding_items[j]);
                     view->scene->addItem(new Breakable_block_3(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
                 }
 
+                if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
+                { //if player is super fast, he destroys the block directly
+                    view->scene->removeItem(colliding_items[j]);
+                }
                 continue;
             }
 
-            else if(temp_collision_type == "damage_block_3") //collision with breakable block
+            else if(temp_collision_type == "damage_block_3") //collision with very broken block => break the block
             {
                 collision[i] = true;
-                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0))
+                {
                     view->scene->removeItem(colliding_items[j]);
                 }
                 continue;
@@ -268,6 +274,11 @@ void Player::move()
             else if(temp_collision_type == "end_collision") //collision with end_block
             {
                 view->you_win();
+            }
+
+            else if(temp_collision_type == "die") //collision with enemy
+            {
+                view->game_over();
             }
 
         }
@@ -452,6 +463,8 @@ void Player::jump()
 
 Player::~Player()
 {
+    qDebug() << "die";
+
     timer->stop();
     timer->deleteLater();
 

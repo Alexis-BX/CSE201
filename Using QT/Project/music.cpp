@@ -1,25 +1,21 @@
-#include "music.h"
 #include "listheaders.h"
-#include <QMainWindow>
-#include <QObject>
-#include <QWidget>
-#include <QSound>
-#include <QUrl>
+#include "global.h"
 
 
 Music::Music(QObject* parent):
     QMediaPlayer (parent)
 {
- /*QUrl url = QUrl(":/Images/Backgrounds/Main_background/song.wav");
-   QMediaPlayer* music = new QMediaPlayer;
-   music->setMedia(url);
-   music->setVolume(100);
-   music->play();*/
-
-   QSound::play("://Images/Backgrounds/Main_background/song.wav");
+    music = new QSound("://Images/Backgrounds/Main_background/song.wav");
+    music->play();
 }
+
+Music::~Music()
+{
+    delete (music);
+}
+
 
 void Music::stop()
 {
-    //
+    music->stop();
 }

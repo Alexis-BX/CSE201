@@ -17,7 +17,7 @@ Enemy_1::Enemy_1(pair position, QGraphicsItem* parent) :
     QPixmap temp;
 
     //setting animations
-    animation[1] = gtexture->get_qpixmap_of(enemy_1, 0, number_of_frames, int(size.x));
+    animation[1] = gtexture->get_qpixmap_of(enemy_1, 0, number_of_frames, size);
 
     for(int i = 0; i < number_of_frames; i++)
     {

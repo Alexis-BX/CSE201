@@ -70,7 +70,26 @@ void Projectile::move()
                 collision[i] = true;
                 continue;
             }
+
+            if(temp_collision_type == "damage_block")
+            {
+                collision[i] = true;
+                if ( type == wine) //the wine bottle breaks the block but not the baguette
+                {
+                    view->scene->removeItem(colliding_items[j]);
+                }
+                continue;
+            }
+
+            if(temp_collision_type == "enemy_collision")
+            {
+                collision[i] = true;
+                view->scene->removeItem(colliding_items[j]);
+                continue;
+            }
         }
+
+
     }
     }
 
