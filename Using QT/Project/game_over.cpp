@@ -9,5 +9,8 @@ Game_over::Game_over(QGraphicsItem* parent):
     QPixmap img(":/Images/Backgrounds/Main_background/game_over.png");
     img = img.scaled(view->screen_size.x, view->screen_size.y);
     setPixmap(img);
+    QString score="Final Score:";
+    QPainter painter(&img) ;
+    painter.drawText(QPoint(5,25),score);
     view->music->stop();
 }
