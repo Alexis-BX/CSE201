@@ -72,13 +72,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 
 void Player::update()
 {
-    if (playing){
-        move();
-    }
-    else
-    {
-        view->centerOn(0, 0);
-    }
+    move();
 }
 
 void Player::move()
@@ -440,6 +434,8 @@ void Player::jump()
 
 Player::~Player()
 {
+    qDebug() << "die";
+
     timer->stop();
     timer->deleteLater();
 

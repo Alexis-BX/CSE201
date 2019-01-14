@@ -14,7 +14,7 @@ Level_load::Level_load(View* view) : view(view)
 
 }
 
-void Level_load::load_level(const char *filename, QGraphicsScene*scene)
+void Level_load::load_level(QString filename, QGraphicsScene*scene)
 {
     this->scene = scene;
 
@@ -47,7 +47,7 @@ void Level_load::setup_background()
     scene->addItem(view->backgrounds_close[0]);
 }
 
-void Level_load::read_level_image(const char* filename)
+void Level_load::read_level_image(QString filename)
 {
     QPixmap imgChar(filename);
 
