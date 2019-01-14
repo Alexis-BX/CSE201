@@ -97,11 +97,11 @@ QString Texture::get_path_to(Background_texture bg_tex)
 // returns the entire pixmap of a given object with the start begin
 // how many blocks to the right start the length being the amount of bloks
 // and size being the size of the blocks
-std::vector<QPixmap> Texture::get_qpixmap_of(Object_texture sheet, int start, int length, int size)
+std::vector<QPixmap> Texture::get_qpixmap_of(Object_texture sheet, int start, int length, pair size)
 {
     QPixmap img(get_path_to(sheet));
 
-    int w = img.width()/size;
+    int w = img.width()/size.x;
 
     int i = start%w, j = start/w;
 
@@ -109,7 +109,7 @@ std::vector<QPixmap> Texture::get_qpixmap_of(Object_texture sheet, int start, in
 
     for (int k=0; k<length; k++)
     {
-        res[k] = img.copy(((i+k)%w)*size, (j+(i+k)/w)*size, size, size);
+        res[k] = img.copy(((i+k)%w)*size.x, (j+(i+k)/w)*size.y, size.x, size.y);
     }
 
     return res;

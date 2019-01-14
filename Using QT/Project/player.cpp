@@ -19,6 +19,24 @@ Player::Player(QGraphicsItem* parent) :
     timer->start(view->ms_between_updates);
 }
 
+void Player::setup_timer()
+{
+    // Timer
+    timerGO = new QTimer();
+
+    timerGO->setTimerType(Qt::VeryCoarseTimer);
+
+    timerGO->start(view->ms_between_updates);
+
+    timerGO->setSingleShot(true);
+
+    timerGO->singleShot(10000, this, SLOT(test()));
+}
+
+void Player::test(){
+    new Game_over;
+}
+
 /**NOTE:
  *  FOR THE moment i made it so the player chooses the items he throws just for testing collisions
  * the designs i made are shit and i know it but again its just to test

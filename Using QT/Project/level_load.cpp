@@ -11,7 +11,7 @@ Level_load::Level_load(View* view) : view(view)
     color_triples.push_back(new Color_triple<Breakable_block_1>(255, 127, 39,view));
     color_triples.push_back(new Color_triple_player(181, 230, 29,view));
     color_triples.push_back(new Color_triple<End_block>(255, 0, 255,view));
-
+    color_triples.push_back(new Color_triple<Tube_block>(163, 73, 164, view));        //random color here
 }
 
 void Level_load::load_level(QString filename, QGraphicsScene*scene)
@@ -24,6 +24,7 @@ void Level_load::load_level(QString filename, QGraphicsScene*scene)
 
     read_level_image(filename);
 }
+
 
 void Level_load::setup_view()
 {
