@@ -230,10 +230,11 @@ bool Test::Test_Jump(){
     int res[2]; //two cases, as before res[i] = 1 means succes 0 otherwise
 
     //case I, the enemy jumped the maximum amount already
-    enemy->times_jumped = enemy->max_consecutive_jumps;
+    enemy->max_consecutive_jumps = 2;
+    enemy->times_jumped = 2;
     int x = enemy->times_jumped;
     enemy->jump();
-    if(x != enemy->times_jumped){
+    if(x == enemy->times_jumped){
         res[0] = 1;
     }
     else{
@@ -242,9 +243,8 @@ bool Test::Test_Jump(){
 
     //case II, the enemy can still jump
     enemy->times_jumped = 1;
-    enemy->speedMax.y = 2;
     enemy->jump();
-    if(enemy->times_jumped == 2 && enemy->speed.y == -2){
+    if(int(enemy->times_jumped) == 2 && int(enemy->speed.y) == -int(enemy->speedMax.y)){
         res[1] = 1;
     }
     else{
@@ -272,43 +272,37 @@ bool Test::Test_Move_First(){
     Enemy_1* enemy = new Enemy_1(position);                             //enemy at a random place
     double dist = distance(pair{player->x(),player->y()},pair{enemy->x(),enemy->y()});    //the distance between the random places
 
-    //Case I: increase of speed.y and state is passive
-    double speed = enemy->speed.y;
+    //Case I: State is passive
     enemy->move();
-    if(enemy->speed.y == speed + 1){
-        if(dist < 30000){
-            if(enemy->state != aggressiv){
+    if(dist < 30000){
+         if(enemy->state != aggressiv){
+              return false;
+         }
+    }
+    else{               //enemy is still passiv
+        if(enemy->facing == Right){
+            if(int(enemy->speed.x) != int(enemy->speedMax.x)){
                 return false;
             }
         }
         else{
-            if(enemy->facing == Right){
-                if(enemy->speed.x != enemy->speedMax.x){
-                    return false;
-                }
-            }
-            else{
-                if(enemy->speed.x != -enemy->speedMax.x){
-                    return false;
-                }
+            if(int(enemy->speed.x) != -int(enemy->speedMax.x)){
+                return false;
             }
         }
     }
-    else{
-        return false;
-    }
+
 
     //Case II: state is aggressiv and motion smooth
     pair position2 = {double(rand() % 739), double(rand() % 505)};
     Enemy_1* enemy2 = new Enemy_1(position2);                             //new enemy that did not move
     double dist2 = distance(pair{player->x(),player->y()},pair{enemy2->x(),enemy2->y()});  //the distance between new enemy and player
-    enemy2->speed.y = rand() % 5;
     enemy2->state = aggressiv;
     int x = (player->x() >= enemy2->x()) ? 0 : -1; //if player.x >= enemy2.x, x = 0; else, x = -1
     int y = (enemy->speed.y > enemy->speedMax.y) ? 0 : -1; //y=0 if (...) true and -1 otherwise
     enemy2->move();
     if(y == 0){
-        if(enemy->speed.y == enemy->speedMax.y){
+        if(int(enemy2->speed.y) == int(enemy2->speedMax.y)){
             if(dist2 > 60000){
                 if(enemy2->state != passiv){
                     return false;
@@ -316,12 +310,12 @@ bool Test::Test_Move_First(){
             }
             else{
                 if(x == 0){
-                    if(enemy2->speed.x != enemy->speedMax.x){
+                    if(int(enemy2->speed.x) != int(enemy2->speedMax.x)){
                         return false;
                     }
                 }
                 else{
-                    if(enemy2->speed.x != -enemy->speedMax.x){
+                    if(int(enemy2->speed.x) != -int(enemy2->speedMax.x)){
                         return false;
                     }
                 }
@@ -330,11 +324,12 @@ bool Test::Test_Move_First(){
         else{return false;}
     }
     else{
-        if(enemy->speed.y != -enemy->speedMax.y){
-            return false;
+        if(int(enemy2->speed.y) < -int(enemy2->speedMax.y)){   //y not 0 could also mean speed.y = 0 which we don't want
+            if(int(enemy2->speed.y) != -int(enemy2->speedMax.y)){
+                return false;
+            }
         }
     }
-    std::cout << "Move I works :)" << std::endl;
     return true;
 }
 
@@ -343,66 +338,73 @@ bool Test::Test_Move_First(){
 bool Test::Test_Move_Second(){
     pair position = {double(rand() % 739), double(rand() % 505)};
     Enemy_1* enemy = new Enemy_1(position);     //enemy 1 is a good test for enemy
-    int a = (enemy->y() >= view->world_size.bottom) ? 0 : -1;  //variables to save some if functions
-    int b = (enemy->y() <= view->world_size.top) ? 0 : -1;
-    int c = (enemy->x() >= view->world_size.right) ? 0 : -1;
-    int d = (enemy->y() <= view->world_size.left) ? 0 : -1;
 
-    int a1 = (enemy->speed.y < 0) ? 0 : -1;
-    int b1 = (enemy->speed.y > 0) ? 0 : -1;
-    int c1 = (enemy->speed.x < 0) ? 0 : -1;
-    int d1 = (enemy->speed.x > 0) ? 0 : -1;
+    //I apologise for how confusing this is about to get
+
+    bool a = (enemy->y() >= view->world_size.bottom);
+    bool b = (enemy->y() <= view->world_size.top);
+    bool c = (enemy->x() >= view->world_size.right);
+    bool d = (enemy->x() <= view->world_size.left);
 
     enemy->move();
 
+    bool a1 = (enemy->speed.y < 0);
+    bool b1 = (enemy->speed.y > 0);
+    bool c1 = (enemy->speed.x < 0);
+    bool d1 = (enemy->speed.x > 0);
+
+
     //first case
-    if(a == 0){
-        if(a1 == -1){
-            if(enemy->speed.y == 0){
-                if(enemy->y() != view->world_size.bottom){
+    if(a){
+        if(!a1){
+            if(int(enemy->speed.y) == 0){
+                if(int(enemy->y()) != view->world_size.bottom){
+                    std::cout << "1" << std::endl;
                     return false;
                 }
             }
-            return false;
+            else{std::cout << "2" << std::endl;return false;}
         }
     }
 
     //second case
-    if(b == 0){
-        if(b1 == -1){
-            if(enemy->speed.y == 0){
-                if(enemy->y() != view->world_size.top){
+    if(b){
+        if(!b1){
+            if(int(enemy->speed.y) == 0){
+                if(int(enemy->y()) != view->world_size.top){
+                    std::cout << "3" << std::endl;
                     return false;
                 }
             }
-            return false;
+            else{std::cout << "4" << std::endl;return false;}
         }
     }
 
     //third case
-    if(c == 0){
-        if(c1 == -1){
-            if(enemy->speed.x == 0){
-                if(enemy->x() != view->world_size.right){
+    if(c){
+        if(!c1){
+            if(int(enemy->speed.x) == 0){
+                if(int(enemy->x()) != view->world_size.right){
+                    std::cout << "5" << std::endl;
                     return false;
                 }
             }
-            return false;
+            else{std::cout << "6" << std::endl;return false;}
         }
     }
 
     //last case
-    if(d == 0){
-        if(d1 == -1){
-            if(enemy->speed.x == 0){
-                if(enemy->x() != view->world_size.left){
+    if(d){
+        if(!d1){
+            if(int(enemy->speed.x) == 0){
+                if(int(enemy->x()) != view->world_size.left){
+                    std::cout << "7" << std::endl;
                     return false;
                 }
             }
-            return false;
+            else{std::cout << "8" << std::endl;return false;}
         }
     }
-    std::cout << "Move II works :)" << std::endl;
     return true;
 }
 
@@ -416,24 +418,24 @@ bool Test::Test_Move_Third(){
 
     //case passiv
     if(enemy->collision[0]){
-        if(enemy->speed.x != 0 || enemy->facing == x){
+        if(int(enemy->speed.x) != 0 || enemy->facing == x){
             return false;
         }
     }
     if(enemy->collision[1]){
-        if(enemy->speed.y != 0){
+        if(int(enemy->speed.y) != 0){
             return false;
         }
     }
     if(!enemy->collision[0] && !enemy->collision[1] && enemy->collision[2]){
-        if(enemy->speed.y != 0){
+        if(int(enemy->speed.y) != 0){
             return false;
         }
     }
 
     //jump reset
     if(enemy->collision[1] && enemy->speed.y >= 0){
-        if(enemy->times_jumped != 0){
+        if(int(enemy->times_jumped) != 0){
             return false;
         }
     }
@@ -458,27 +460,27 @@ bool Test::Test_Move_Third(){
     enemy2->move();
 
     if(enemy2->collision[0]){
-        if(enemy2->speed.x != 0 || enemy2->times_jumped == y){
+        if(int(enemy2->speed.x) != 0 || enemy2->times_jumped == y){
             return false;
         }
     }
     if(enemy2->collision[1]){
-        if(enemy2->speed.y != 0){
+        if(int(enemy2->speed.y) != 0){
             return false;
         }
     }
     if(!enemy2->collision[0] && !enemy2->collision[1] && enemy2->collision[2]){
-        if(enemy2->speed.y != 0){
+        if(int(enemy2->speed.y) != 0){
             return false;
         }
     }
-    std::cout << "move III works" << std::endl;
     return true;
 }
 
 bool Test::Test_Move(){
     Test test;
     if(test.Test_Move_First() && test.Test_Move_Second() && test.Test_Move_Third()){
+        std::cout << "All move work :)" << std::endl;
         return true;
     }
     return false;
@@ -487,14 +489,17 @@ bool Test::Test_Move(){
 bool Test::Test_TimerConnect(){
     pair position = {double(rand() % 739), double(rand() % 505)};
     Enemy_1* enemy = new Enemy_1(position);
-    Player* player = new Player();
-    player->pos() = {double(enemy->x() + 100), double(enemy->y() + 100)};
+    enemy->state = aggressiv;
     int x  = enemy->projectile_count;
     enemy->timer_connect();
+    std::cout << x << std::endl;
+    std::cout << enemy->projectile_count << std::endl;
     if(x != 99 && enemy->projectile_count - x == 1){
+        std::cout << "now it works" << std::endl;
         return true;
     }
     if(x == 99 && enemy->projectile_count == 0){
+        std::cout << "now it works" << std::endl;
         return true;
     }
     std::cout << "timer connect not working" << std::endl;
