@@ -17,7 +17,8 @@ Power_up_5 : power
 Power_up_6 : power
 Power_up_7 : power
 Power_up_8 : power
-Enemy_projectile_1 : lose_life
+Enemy_projectile_1 : die
+Enemy_1 : die
 Player_projectile_1 : nothing
 Player_projectile_2 : nothing
 Player_projectile_3 : nothing

@@ -247,9 +247,15 @@ void Player::move()
                 }
                 continue;
             }
+
             else if(temp_collision_type == "end_collision") //collision with end_block
             {
                 view->you_win();
+            }
+
+            else if(temp_collision_type == "die") //collision with enemy
+            {
+                view->game_over();
             }
 
         }
