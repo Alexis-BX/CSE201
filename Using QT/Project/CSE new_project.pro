@@ -27,67 +27,69 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-    test.cpp \
-    player.cpp \
-    block.cpp \
-    view.cpp \
-    projectile.cpp \
-    collectable.cpp \
-    coin_counter.cpp \
-    counter.cpp \
-    enemy.cpp \
-    texture.cpp \
-    blocks.cpp \
-    projectiles.cpp \
-    tools.cpp \
-    level_load.cpp \
-    collectables.cpp \
     background.cpp \
     backgrounds.cpp \
-    enemies.cpp \
     base_color_triple.cpp \
-    color_triple_player.cpp \
-    start_screen.cpp \
+    block.cpp \
+    blocks.cpp \
+    button.cpp \
+    coin_counter.cpp \
+    collectable.cpp \
+    collectables.cpp \
     collision_master.cpp \
+    color_triple_player.cpp \
+    counter.cpp \
+    enemies.cpp \
+    enemy.cpp \
     game_over.cpp \
+    level_load.cpp \
+    main.cpp \
+    menu.cpp \
+    music.cpp \
+    player.cpp \
+    projectile.cpp \
+    projectiles.cpp \
     super_powers.cpp \
-    music.cpp
-    enemies.cpp
+    test.cpp \
+    texture.cpp \
+    tools.cpp \
+    view.cpp \
+    you_win.cpp
 
 
 HEADERS += \
-    test.h \
-    player.h \
-    block.h \
-    view.h \
-    projectile.h \
-    collectable.h \
-    types_states_textures.h \
-    tools.h \
-    coin_counter.h \
-    counter.h \
-    enemy.h \
-    texture.h \
-    global.h \
-    blocks.h \
-    projectiles.h \
-    level_load.h \
-    collectables.h \
     background.h \
     backgrounds.h \
-    listheaders.h \
-    enemies.h \
+    base_color_triple.h \
+    block.h \
+    blocks.h \
+    button.h \
+    coin_counter.h \
+    collectable.h \
+    collectables.h \
+    collision_master.h \
     color_triple.h \
     color_triple_definition.h \
-    base_color_triple.h \
     color_triple_player.h \
-    start_screen.h \
-    collision_master.h \
+    counter.h \
+    enemies.h \
+    enemy.h \
     game_over.h \
+    global.h \
+    level_load.h \
+    listheaders.h \
+    menu.h \
+    music.h \
+    player.h \
+    projectile.h \
+    projectiles.h \
     super_powers.h \
-    music.h
-    enemies.h
+    test.h \
+    texture.h \
+    tools.h \
+    types_states_textures.h \
+    view.h \
+    you_win.h
 
 
 

@@ -10,6 +10,7 @@
 #include "base_color_triple.h"
 #include "block.h"
 #include "blocks.h"
+#include "button.h"
 #include "coin_counter.h"
 #include "collectable.h"
 #include "collectables.h"
@@ -23,6 +24,7 @@
 #include "enemy.h"
 #include "game_over.h"
 #include "level_load.h"
+#include "menu.h"
 #include "music.h"
 #include "player.h"
 #include "projectile.h"
@@ -30,6 +32,7 @@
 #include "super_powers.h"
 #include "texture.h"
 #include "view.h"
+#include "you_win.h"
 
 
 

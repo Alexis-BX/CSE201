@@ -7,12 +7,18 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     //fluidifies image adition in the background along with some animations
     setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
+    //start_game();
+
+}
+
+void View::start_game(){
     //scene set up
     setScene(scene);
 
+    music = new Music();
+
     // load and create level
     level_load = new Level_load(this);
-
 }
 
 void View::update_background()
@@ -25,10 +31,18 @@ void View::update_background()
 void View::game_over()
 {
     //clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
-    scene->clear();
+    //scene->clear();
     scene_game_over->addItem(new Game_over());
     setScene(scene_game_over);//scene set up;
 }
+
+void View::you_win()
+{
+    scene_you_win->addItem(new You_win());
+    setScene(scene_you_win);
+}
+
+
 
 
 template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> list)

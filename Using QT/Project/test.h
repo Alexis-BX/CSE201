@@ -25,6 +25,14 @@ public:
     bool Test_Delay();
     void Test_Tools();
 
+    //tests for enemy
+    bool Test_Jump();
+    bool Test_Move_First();
+    bool Test_Move_Second();
+    bool Test_Move_Third();
+    bool Test_Move();
+    bool Test_TimerConnect();
+
 };
 
 #endif // TEST_H

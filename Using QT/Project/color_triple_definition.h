@@ -11,11 +11,11 @@ template<class T> Color_triple<T>::Color_triple(int R, int G, int B, View* view)
     b = B;
 }
 
-template<class T> void Color_triple<T>::test(int R, int G, int B, pair &position)
+template<class T> void Color_triple<T>::test(int R, int G, int B, pair &position, QGraphicsScene*scene)
 {
     if (abs(R-r)<=diff && abs(G-g)<=diff && abs(B-b)<=diff)
     {
-        view->scene->addItem(new T{position});
+        (*scene).addItem(new T{position});
     }
 }
 

@@ -1,6 +1,7 @@
 #Player
 
 Base_block : simple_collision
+End_block: end_collision
 Special_block_above : simple_collision
 Special_block_below : simple_collision
 Activated_block : simple_collision

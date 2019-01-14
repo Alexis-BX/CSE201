@@ -4,6 +4,7 @@
 
 #include "level_load.h"
 #include "backgrounds.h"
+#include "music.h"
 
 class Player;
 
@@ -25,8 +26,12 @@ public:
 
     Level_load* level_load;
 
+    Music * music;
+
+    QGraphicsScene *scene_menu  = new QGraphicsScene();
     QGraphicsScene *scene  = new QGraphicsScene();
     QGraphicsScene *scene_game_over  = new QGraphicsScene();
+    QGraphicsScene *scene_you_win  = new QGraphicsScene();
 
     //backgrounds
     //std::vector<Background*> backgrounds;
@@ -35,6 +40,8 @@ public:
     std::vector<Background_close*> backgrounds_close;
 
     // Create world
+    void start_game();
+
     void create_basic_world(int width);
 
     void create_player(pair position = pair{300,-300});
@@ -53,6 +60,8 @@ public:
     void update_background();
 
     void game_over();
+
+    void you_win();
 
     template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list);
 };

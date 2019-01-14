@@ -14,8 +14,10 @@ Level_load::Level_load(View* view) : view(view)
 
 }
 
-void Level_load::load_level(const char *filename)
+void Level_load::load_level(const char *filename, QGraphicsScene*scene)
 {
+    this->scene = scene;
+
     setup_view();
 
     setup_background();
@@ -36,13 +38,13 @@ void Level_load::setup_background()
 {
     //Set the background layers (paralax background)
     view->backgrounds_far.push_back(new Background_far(pair{0,0}));
-    view->scene->addItem(view->backgrounds_far[0]);
+    scene->addItem(view->backgrounds_far[0]);
 
     view->backgrounds_middle.push_back(new Background_middle(pair{0,0}));
-    view->scene->addItem(view->backgrounds_middle[0]);
+    scene->addItem(view->backgrounds_middle[0]);
 
     view->backgrounds_close.push_back(new Background_close(pair{0,0}));
-    view->scene->addItem(view->backgrounds_close[0]);
+    scene->addItem(view->backgrounds_close[0]);
 }
 
 void Level_load::read_level_image(const char* filename)
@@ -76,15 +78,15 @@ void Level_load::read_level_image(const char* filename)
             G = qGreen(pixColor);
             R = qRed(pixColor);
 
-            color_to_object(B,G,R,pair{greal(x*view->block_size),-greal(y*view->block_size)});
+            color_to_object(R,G,B,pair{greal(x*view->block_size),-greal(y*view->block_size)});
         }
     }
 }
 
-void Level_load::color_to_object(int B, int G, int R, pair position)
+void Level_load::color_to_object(int R, int G, int B, pair position)
 {
     for(unsigned long long i = 0; i < color_triples.size(); i++)
     {
-        (*color_triples[i]).test(R,G,B,position);
+        (*color_triples[i]).test(R,G,B,position, scene);
     }
 }
