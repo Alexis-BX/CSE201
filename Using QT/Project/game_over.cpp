@@ -16,7 +16,9 @@ Game_over::Game_over(QGraphicsItem* parent):
     QString score="Final Score:";
     QPainter painter(&img) ;
     painter.drawText(QPoint(5,25),score);
+
     view->music->stop();
+
 }
 
 void Game_over::keyPressEvent(QKeyEvent *event)

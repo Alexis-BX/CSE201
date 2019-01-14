@@ -8,7 +8,6 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
     level_load = new Level_load(this);
-
 }
 
 void View::start_game(){

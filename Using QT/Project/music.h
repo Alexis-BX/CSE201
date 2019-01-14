@@ -7,7 +7,11 @@ class Music:  public QMediaPlayer
 {
 public:
     Music(QObject *parent = nullptr);
+    ~Music();
     void stop();
+
+private:
+    QSound *music;
 };
 
 #endif // MUSIC_H
