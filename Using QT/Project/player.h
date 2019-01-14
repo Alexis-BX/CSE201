@@ -59,6 +59,10 @@ public:
 
     QTimer* timer;
 
+    QTimer* timerGO;
+
+    void setup_timer();
+
     // Methods
     void keyPressEvent(QKeyEvent * event);
 
@@ -80,6 +84,8 @@ public slots:
 
     // Slot for timer
     void update();
+
+    void test();
 };
 
 #endif // PLAYER_H

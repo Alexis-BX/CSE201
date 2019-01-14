@@ -10,4 +10,5 @@ Game_over::Game_over(QGraphicsItem* parent):
     img = img.scaled(view->screen_size.x, view->screen_size.y);
     setPixmap(img);
     view->music->stop();
+    view->player->timerGO->stop();
 }

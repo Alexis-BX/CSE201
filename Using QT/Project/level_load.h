@@ -26,6 +26,7 @@ public:
     void color_to_object(int B, int G, int R, pair position);
 
     std::vector<Base_color_triple*> color_triples;
+
 };
 
 #endif // LEVEL_LOAD_H
