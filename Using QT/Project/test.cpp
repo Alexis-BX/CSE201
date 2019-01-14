@@ -489,8 +489,9 @@ bool Test::Test_Move(){
 bool Test::Test_TimerConnect(){
     pair position = {double(rand() % 739), double(rand() % 505)};
     Enemy_1* enemy = new Enemy_1(position);
-    enemy->state = aggressiv;
-    int x  = enemy->projectile_count;
+    Player* player = new Player;
+    player->setPos({enemy->x() + 50, enemy->y() + 50}); // player really close to enemy
+    int x  = enemy->projectile_count;  //equal to projectile count
     enemy->timer_connect();
     std::cout << x << std::endl;
     std::cout << enemy->projectile_count << std::endl;
