@@ -1,6 +1,7 @@
 #ifndef TEST_H
 #define TEST_H
 #include <QObject>
+#include <QKeyEvent>
 
 class Test: public QObject
 {
@@ -12,7 +13,7 @@ public:
     //tests for block/blocks classes
     bool Test_Blink();
     bool Test_Blink2();
-    bool Test_Blocks(); //tells us if all the tests from this classes are succesful
+    bool Test_Blocks();
 
     //tests for coin_counter class
     bool Test_AddCoin();
@@ -39,6 +40,18 @@ public:
     bool Test_PowerUp();
     bool Test_Speed_ThrowSpeed();
     bool Test_SuperPow();
+
+    //tests for projectile
+    bool Test_Move_Projectile();
+
+    //tests for player
+    bool Test_KeyEvents(QKeyEvent *event);
+    bool Test_Move_Player();
+    bool Test_Animation_State();
+    bool Test_Jump_Player();
+
+    //tests for menu
+    bool Test_KeyPressEvent();
 
     //every test
     void All_Tests();
