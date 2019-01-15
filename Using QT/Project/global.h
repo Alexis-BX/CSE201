@@ -18,7 +18,6 @@
 #include "types_states_textures.h"
 
 #include <QMainWindow>
-#include <QObject>
 #include <QWidget>
 #include <QSound>
 #include <QUrl>

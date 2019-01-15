@@ -49,7 +49,7 @@ public:
 
     void play_level(QString level_name);
 
-    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> &list);
+    template <class BG> void update_single_bg(std::vector<BG*> &list);
 };
 
 #endif // VIEW_H

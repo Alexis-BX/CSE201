@@ -15,7 +15,7 @@ template<class T> void Color_triple<T>::test(int R, int G, int B, pair &position
 {
     if (abs(R-r)<=diff && abs(G-g)<=diff && abs(B-b)<=diff)
     {
-        (*scene).addItem(new T{position});
+        scene->addItem(new T{position});
     }
 }
 

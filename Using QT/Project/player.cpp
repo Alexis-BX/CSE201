@@ -35,8 +35,9 @@ void Player::setup_timer()
     timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
 }
 
-void Player::test(){
-    new Game_over;
+void Player::test()
+{
+    view->game_over();
 }
 
 /**NOTE:
@@ -93,6 +94,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 void Player::update()
 {
     move();
+
 }
 
 void Player::move()
@@ -303,7 +305,7 @@ void Player::move()
     }
 
     //Jump reset
-    if(collision[1] && speed.y > 0)
+    if(collision[1] && speed.y >= 0)
     {
         times_jumped = 0;
     }

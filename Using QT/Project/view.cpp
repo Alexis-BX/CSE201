@@ -48,7 +48,7 @@ void View::play_level(QString level_name)
 
 
 
-template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> &list)
+template <class BG> void View::update_single_bg(std::vector<BG*> &list)
 {
     for(unsigned long long i = 0 ; i < list.size(); i++)
     {
