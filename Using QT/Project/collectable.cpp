@@ -11,9 +11,8 @@ Collectable::Collectable(pair position, int creator_object_size_y, QGraphicsItem
 
     setZValue(layer_collectable);
 
-
-
     collision_ranges = create_collision_range<Collectable>(this);
+
 }
 
 void Collectable::set_movement()
@@ -29,8 +28,11 @@ void Collectable::set_movement()
 
 Collectable::~Collectable()
 {
-    move_timer->stop();
-    move_timer->deleteLater();
+    if(type == eclair)
+    {
+        move_timer->stop();
+        move_timer->deleteLater();
+    }
     for(int i = 0; i < collision_ranges.size(); i++)
     {
         delete(collision_ranges[i]);
@@ -121,4 +123,3 @@ void Collectable::move()
 
     setPos(x()+speed.x,y()+speed.y);
 }
-

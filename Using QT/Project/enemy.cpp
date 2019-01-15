@@ -10,6 +10,7 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
 
     collision_ranges = create_collision_range<Enemy>(this);
 
+
     // Timers
     timer = new QTimer();
 
@@ -33,6 +34,7 @@ Enemy::~Enemy()
 {
     timer->stop();
     timer->deleteLater();
+
     for(int i = 0; i < collision_ranges.size(); i++)
     {
         delete(collision_ranges[i]);

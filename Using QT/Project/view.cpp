@@ -7,6 +7,12 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     //fluidifies image adition in the background along with some animations
     setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    setFixedSize(int(screen_size.x),int(screen_size.y));
+
     level_load = new Level_load(this);
 
     music = new Music();
@@ -24,27 +30,29 @@ void View::update_background()
 //clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
 void View::game_over()
 {
-    view->music->stop();
+    music->stop();
+    scene->clear();
 
-    scene_game_over = new QGraphicsScene();
     setScene(scene_game_over);
     scene_game_over->addItem(new Game_over());
 }
 
 void View::you_win()
 {
-    view->music->stop();
+    music->stop();
+    scene->clear();
 
-    scene_you_win = new QGraphicsScene();
     setScene(scene_you_win);
     scene_you_win->addItem(new You_win());
 }
 
 void View::play_level(QString level_name)
 {
-    scene = new QGraphicsScene();
+    scene_game_over->clear();
+    scene_you_win->clear();
+
     setScene(scene);
-    level_load->load_level(level_name, scene);
+    level_load->load_level(level_name);
 
     music->start();
 }
@@ -66,9 +74,9 @@ template <class BG> void View::update_single_bg(std::vector<BG*> &list)
     }
     else if (list[0]->x() + list[0]->width < player->x() - screen_size.x)
     {
-        //for some reason deleting slows down and doesn't accelerate
-        //scene->removeItem(list[0]);
-        //list.erase(list.begin());
+        scene->removeItem(list[0]);
+        delete(list[0]);
+        list.erase(list.begin());
     }
 
     if (list.back()->x() + list.back()->width < player->x() + screen_size.x/2)
@@ -78,8 +86,8 @@ template <class BG> void View::update_single_bg(std::vector<BG*> &list)
     }
     else if (list.back()->x() > player->x() + screen_size.x)
     {
-        //for some reason deleting slows down and doesn't accelerate
-        //scene->removeItem(list[list.size()-1]);
-        //list.erase(list.end());
+        scene->removeItem(list[list.size()-1]);
+        delete(list[list.size()-1]);
+        list.pop_back();
     }
 }

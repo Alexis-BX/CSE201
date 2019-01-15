@@ -12,4 +12,7 @@ QPainterPath Background::shape() const
     return QPainterPath();
 }
 
-Background::~Background(){}
+Background::~Background()
+{
+
+}

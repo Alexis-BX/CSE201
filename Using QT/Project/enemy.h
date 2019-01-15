@@ -50,6 +50,5 @@ public slots:
 
     // Slot for timer
     void timer_connect();
-
 };
 #endif // ENEMY_H

@@ -37,7 +37,7 @@ void Player::setup_timer()
     timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
     **/
 
-    QTimer::singleShot(60000,this ,SLOT(test()));
+    QTimer::singleShot(30000,this ,SLOT(test()));
 }
 
 void Player::test()
@@ -153,6 +153,7 @@ void Player::move()
         speed.y = (0 > speed.y) ? speed.y : 0 ;
         setY(view->world_size.bottom);
         view->game_over();
+        return;
     }
 
     if(x()<=view->world_size.left)
@@ -196,6 +197,8 @@ void Player::move()
                     create_random_powerup(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.y);
 
                     view->scene->removeItem(colliding_items[j]);
+
+                    delete(colliding_items[j]);
                 }
 
                 continue;
@@ -215,6 +218,9 @@ void Player::move()
 
                 super_powers->power_up(last_char-1);
 
+                delete(colliding_items[j]);
+
+                qDebug() << "deleted";
 
                 continue;
             }
@@ -458,14 +464,8 @@ void Player::jump()
 
 Player::~Player()
 {
-    timerGO->stop();
-    timerGO->deleteLater();
-
     timer->stop();
     timer->deleteLater();
-
-    timerGO->stop();
-    timerGO->deleteLater();
 
     for(int i = 0; i < collision_ranges.size(); i++)
     {
