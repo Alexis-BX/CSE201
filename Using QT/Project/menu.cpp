@@ -9,6 +9,10 @@ Menu::Menu(QGraphicsItem* parent) :
 
     selected = op_start;
 
+    setFlag(QGraphicsItem::ItemIsFocusable);
+
+    setFocus();
+
     QTimer * timer = new QTimer();
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));

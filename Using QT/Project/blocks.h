@@ -65,4 +65,16 @@ public:
     Tube_block(pair position, QGraphicsItem* parent = nullptr);
 };
 
+class Tube_block_up: public Block
+{
+public:
+    Tube_block_up(pair position, QGraphicsItem* parent = nullptr);
+};
+
+class Tube_block_down: public Block
+{
+public:
+    Tube_block_down(pair position, QGraphicsItem* parent = nullptr);
+};
+
 #endif // BLOCKS_H

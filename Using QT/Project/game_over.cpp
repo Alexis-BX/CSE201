@@ -19,7 +19,7 @@ Game_over::Game_over(QGraphicsItem* parent):
 
     view->music->stop();
 
-    view->player->timerGO->stop();
+
 }
 
 void Game_over::keyPressEvent(QKeyEvent *event)

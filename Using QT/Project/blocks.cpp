@@ -112,7 +112,29 @@ Tube_block::Tube_block(pair position, QGraphicsItem* parent) :
     Block(position, parent)
 {
     type = permanent;
-    texture = tube_bottom;
+    texture = tube;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36
+    setPixmap(sprite[image_count]);
+}
+
+Tube_block_up::Tube_block_up(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = tube_up;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36
+    setPixmap(sprite[image_count]);
+}
+
+Tube_block_down::Tube_block_down(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = tube_down;
     state = initial;
 
     sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36

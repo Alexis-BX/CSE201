@@ -30,7 +30,7 @@ void Player::setup_timer()
 
     timerGO->setSingleShot(true);
 
-    timerGO->singleShot(10000, this, SLOT(test()));
+    timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
 }
 
 void Player::test(){
@@ -467,6 +467,9 @@ Player::~Player()
 
     timer->stop();
     timer->deleteLater();
+
+    timerGO->stop();
+    timerGO->deleteLater();
 
     for(int i = 0; i < collision_ranges.size(); i++)
     {
