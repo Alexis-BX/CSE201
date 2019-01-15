@@ -12,18 +12,18 @@ public:
     //tests for block/blocks classes
     bool Test_Blink();
     bool Test_Blink2();
-    void Test_Blocks(); //tells us if all the tests from this classes are succesful
+    bool Test_Blocks(); //tells us if all the tests from this classes are succesful
 
     //tests for coin_counter class
     bool Test_AddCoin();
     bool Test_UpdateCounter();
-    void Test_CoinCount();
+    bool Test_CoinCount();
 
     //tests for tools
     bool Test_CreateColRange();
     bool Test_UpdateColRange();
     bool Test_Delay();
-    void Test_Tools();
+    bool Test_Tools();
 
     //tests for enemy
     bool Test_Jump();
@@ -32,6 +32,16 @@ public:
     bool Test_Move_Third();
     bool Test_Move();
     bool Test_TimerConnect();
+    bool Test_Enemy();
+
+    //tests for super_powers
+    bool Test_UpdateCounter_SP();
+    bool Test_PowerUp();
+    bool Test_Speed_ThrowSpeed();
+    bool Test_SuperPow();
+
+    //every test
+    void All_Tests();
 
 };
 
