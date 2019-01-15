@@ -7,9 +7,11 @@ Player::Player(QGraphicsItem* parent) :
 
     collision_ranges = create_collision_range<Player>(this);
 
-    this->setZValue(layer_player);
+    setZValue(layer_player);
 
     super_powers = new Super_powers();
+
+
 
     // Timer
     timer = new QTimer();
@@ -205,6 +207,7 @@ void Player::move()
                     //qDebug() << last_char;
                     if(QChar(i) == last_char)
                     {
+                        qDebug() << i;
                         super_powers->power_up(i);
                     }
                 }
