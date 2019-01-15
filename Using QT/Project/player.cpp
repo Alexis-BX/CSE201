@@ -19,12 +19,14 @@ Player::Player(QGraphicsItem* parent) :
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
 
     timer->start(view->ms_between_updates);
+
+    setup_timer();
 }
 
 void Player::setup_timer()
 {
     // Timer
-    timerGO = new QTimer();
+    /**timerGO = new QTimer();
 
     timerGO->setTimerType(Qt::VeryCoarseTimer);
 
@@ -33,6 +35,9 @@ void Player::setup_timer()
     timerGO->setSingleShot(true);
 
     timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
+    **/
+
+    QTimer::singleShot(60000,this ,SLOT(test()));
 }
 
 void Player::test()
@@ -149,12 +154,6 @@ void Player::move()
         setY(view->world_size.bottom);
         view->game_over();
     }
-    else if(y() <= view->world_size.top)
-    {
-        //please stop blocking us at the top, it's anoying
-        //speed.y = (0 < speed.y) ? speed.y : 0 ;
-        //setY(view->world_size.top);
-    }
 
     if(x()<=view->world_size.left)
     {
@@ -212,29 +211,13 @@ void Player::move()
             {
                 view->scene->removeItem(colliding_items[j]);
 
-                QChar last_char = (QString(typeid(*colliding_items[j]).name()))[11];
+                int last_char = (QString(typeid(*colliding_items[j]).name()))[11].digitValue();
 
-                for(int i = 0; i < supers_count;i++)
-                {
-                    //qDebug() << (char(i) == last_char);
-                    //qDebug() << char(i);
-                    //qDebug() << last_char;
-                    if(QChar(i) == last_char)
-                    {
-                        qDebug() << i;
-                        super_powers->power_up(i);
-                    }
-                }
+                super_powers->power_up(last_char-1);
+
+
                 continue;
             }
-
-            //else if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
-            //{
-            //    view->scene->removeItem(colliding_items[j]);
-            //    continue;
-            //}
-
-
             else if(temp_collision_type == "damage_block_1") //collision with breakable block
             {
                 collision[i] = true;
@@ -279,11 +262,18 @@ void Player::move()
             else if(temp_collision_type == "end_collision") //collision with end_block
             {
                 view->you_win();
+                return;
             }
 
             else if(temp_collision_type == "die") //collision with enemy
             {
+                if(super_powers->supers_b[super])
+                {
+                    view->scene->removeItem(colliding_items[j]);
+                    continue;
+                }
                 view->game_over();
+                return;
             }
 
         }
@@ -450,7 +440,7 @@ void Player::set_animation_state()
 
 void Player::jump()
 {
-    if(times_jumped >= max_consecutive_jumps)
+    if(times_jumped >= max_consecutive_jumps + ((super_powers->supers_b[super_jump]) ? 1 : 0) )
     {
         return;
     }

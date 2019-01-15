@@ -16,7 +16,10 @@ void Super_powers::update_counters()
         if(supers_b[i])
         {
             supers_i[i] ++;
-            supers_i[i] %= max_count;
+            if(supers_i[i] == max_count)
+            {
+                supers_b[i] = false;
+            }
         }
     }
 }
@@ -36,5 +39,4 @@ double Super_powers::get_throw_speed()
 {
     return (supers_b[super_throw]) ? 2 : 1;
 }
-
 

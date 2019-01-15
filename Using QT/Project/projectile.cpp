@@ -1,9 +1,11 @@
 #include "listheaders.h"
 
-Projectile::Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent) :
+Projectile::Projectile(pair position, bool direction, int character_size_x, Projectile_type type, pair size, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
     state = alive;
+
+    this->type = type;
 
     this->size = size;
 
@@ -14,6 +16,7 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
     collision_ranges = create_collision_range<Projectile>(this);
 
+    setPixmap(gtexture->get_qpixmap_of(projectiles, type)[img_count]);
 
 
     //Timer
@@ -27,6 +30,7 @@ Projectile::Projectile(pair position, bool direction, int character_size_x, pair
 
 Projectile::~Projectile()
 {
+    qDebug() << "projectile destrutor";
     timer->stop();
     timer->deleteLater();
 
@@ -38,11 +42,13 @@ Projectile::~Projectile()
 
 void Projectile::explode()
 {
-    setPixmap(QPixmap(gtexture->get_path_to(projectile_vanish_effect)));
+    QPixmap explosion = QPixmap(gtexture->get_path_to(projectile_vanish_effect));
 
-    setPos(x()-10,y()-10);
+    setPixmap(explosion);
 
-    delay(200);
+    setPos(x()-explosion.width()/2+size.x/2,y()-explosion.height()/2+size.y/2);
+
+    delay(100);
 
     QObject::deleteLater();
 }
@@ -83,6 +89,10 @@ void Projectile::move()
 
             if(temp_collision_type == "enemy_collision")
             {
+                if(type == smoke)
+                {
+                    continue;
+                }
                 collision[i] = true;
                 view->scene->removeItem(colliding_items[j]);
                 continue;

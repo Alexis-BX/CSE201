@@ -9,15 +9,6 @@ Small_collectable::Small_collectable(pair position, int creator_object_size_y):
     setPixmap(gtexture->get_qpixmap_of(power_ups,type)[0]);
 }
 
-/*Big_collectable::Big_collectable(pair position, int creator_object_size_y):
-    Collectable(position, creator_object_size_y)
-{
-    type = star;
-    state = immortal;
-    speed = pair{0,0};
-    setPixmap(gtexture->get_qpixmap_of(power_ups,type)[0]);
-}*/
-
 Power_up_1::Power_up_1(pair position, int creator_object_size_y):
     Collectable(position, creator_object_size_y)
 {

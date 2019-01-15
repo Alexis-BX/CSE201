@@ -24,6 +24,8 @@ void View::update_background()
 //clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
 void View::game_over()
 {
+    view->music->stop();
+
     scene_game_over = new QGraphicsScene();
     setScene(scene_game_over);
     scene_game_over->addItem(new Game_over());
@@ -31,6 +33,8 @@ void View::game_over()
 
 void View::you_win()
 {
+    view->music->stop();
+
     scene_you_win = new QGraphicsScene();
     setScene(scene_you_win);
     scene_you_win->addItem(new You_win());
