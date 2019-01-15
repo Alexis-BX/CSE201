@@ -10,7 +10,7 @@ Color_triple_player::Color_triple_player(int R, int G, int B, View *view)
     b = B;
 }
 
-void Color_triple_player::test(int R, int G, int B, pair &position)
+void Color_triple_player::test(int R, int G, int B, pair &position, QGraphicsScene*scene)
 {
     if (abs(R-r)<=diff && abs(G-g)<=diff && abs(B-b)<=diff)
     {
@@ -22,7 +22,7 @@ void Color_triple_player::test(int R, int G, int B, pair &position)
 
         view->player->setFocus();
 
-        view->scene->addItem(view->player);
+        scene->addItem(view->player);
 
         view->centerOn(view->player);
 

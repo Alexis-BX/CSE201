@@ -7,37 +7,48 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     //fluidifies image adition in the background along with some animations
     setViewportUpdateMode(FullViewportUpdate);//if problems (to slow): MinimalViewportUpdate
 
-    start_game();
-
-}
-
-void View::start_game(){
-    //scene set up
-    setScene(scene);
+    level_load = new Level_load(this);
 
     music = new Music();
 
-    // load and create level
-    level_load = new Level_load(this);
+    current_level = ":/Images/Levels/Level_clara_002.png";
 }
 
 void View::update_background()
 {
-    backgrounds_far = update_single_bg<Background_far>(backgrounds_far);
-    backgrounds_middle = update_single_bg<Background_middle>(backgrounds_middle);
-    backgrounds_close = update_single_bg<Background_close>(backgrounds_close);
+    update_single_bg<Background_far>(backgrounds_far);
+    update_single_bg<Background_middle>(backgrounds_middle);
+    update_single_bg<Background_close>(backgrounds_close);
 }
 
+//clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
 void View::game_over()
 {
-    //clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
-    //scene->clear();
+    scene_game_over = new QGraphicsScene();
+    setScene(scene_game_over);
     scene_game_over->addItem(new Game_over());
-    setScene(scene_game_over);//scene set up;
+}
+
+void View::you_win()
+{
+    scene_you_win = new QGraphicsScene();
+    setScene(scene_you_win);
+    scene_you_win->addItem(new You_win());
+}
+
+void View::play_level(QString level_name)
+{
+    scene = new QGraphicsScene();
+    setScene(scene);
+    level_load->load_level(level_name, scene);
+
+    music->start();
 }
 
 
-template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> list)
+
+
+template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> &list)
 {
     for(unsigned long long i = 0 ; i < list.size(); i++)
     {
@@ -67,6 +78,4 @@ template <class BG> std::vector<BG*> View::update_single_bg(std::vector<BG*> lis
         //scene->removeItem(list[list.size()-1]);
         //list.erase(list.end());
     }
-
-    return list;
 }

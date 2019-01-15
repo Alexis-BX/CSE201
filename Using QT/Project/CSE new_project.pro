@@ -53,7 +53,8 @@ SOURCES += \
     test.cpp \
     texture.cpp \
     tools.cpp \
-    view.cpp
+    view.cpp \
+    you_win.cpp
 
 
 HEADERS += \
@@ -87,7 +88,8 @@ HEADERS += \
     texture.h \
     tools.h \
     types_states_textures.h \
-    view.h
+    view.h \
+    you_win.h
 
 
 

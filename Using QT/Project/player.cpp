@@ -21,6 +21,24 @@ Player::Player(QGraphicsItem* parent) :
     timer->start(view->ms_between_updates);
 }
 
+void Player::setup_timer()
+{
+    // Timer
+    timerGO = new QTimer();
+
+    timerGO->setTimerType(Qt::VeryCoarseTimer);
+
+    timerGO->start(view->ms_between_updates);
+
+    timerGO->setSingleShot(true);
+
+    timerGO->singleShot(10000, this, SLOT(test()));
+}
+
+void Player::test(){
+    new Game_over;
+}
+
 /**NOTE:
  *  FOR THE moment i made it so the player chooses the items he throws just for testing collisions
  * the designs i made are shit and i know it but again its just to test
@@ -74,13 +92,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 
 void Player::update()
 {
-    if (playing){
-        move();
-    }
-    else
-    {
-        view->centerOn(0, 0);
-    }
+    move();
 }
 
 void Player::move()
@@ -224,9 +236,15 @@ void Player::move()
             else if(temp_collision_type == "damage_block_1") //collision with breakable block
             {
                 collision[i] = true;
-                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0))
+                { //regular collision
                     view->scene->removeItem(colliding_items[j]);
                     view->scene->addItem(new Breakable_block_2(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
+                }
+
+                else if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
+                { //if player is super fast, he destroys the block directly
+                    view->scene->removeItem(colliding_items[j]);
                 }
                 continue;
             }
@@ -234,21 +252,36 @@ void Player::move()
             else if(temp_collision_type == "damage_block_2") //collision with breakable block
             {
                 collision[i] = true;
-                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0))
+                { //regular collision
                     view->scene->removeItem(colliding_items[j]);
                     view->scene->addItem(new Breakable_block_3(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
                 }
 
-                continue;
-            }
-
-            else if(temp_collision_type == "damage_block_3") //collision with breakable block
-            {
-                collision[i] = true;
-                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0)){
+                else if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
+                { //if player is super fast, he destroys the block directly
                     view->scene->removeItem(colliding_items[j]);
                 }
                 continue;
+            }
+
+            else if(temp_collision_type == "damage_block_3") //collision with very broken block => break the block
+            {
+                collision[i] = true;
+                if ((abs(speed.y) > 5 && i == 1) || (abs(speed.x) > 5 && i == 0))
+                {
+                    view->scene->removeItem(colliding_items[j]);
+                }
+                continue;
+            }
+            else if(temp_collision_type == "end_collision") //collision with end_block
+            {
+                view->you_win();
+            }
+
+            else if(temp_collision_type == "die") //collision with enemy
+            {
+                view->game_over();
             }
 
         }
@@ -270,7 +303,7 @@ void Player::move()
     }
 
     //Jump reset
-    if(collision[1] && speed.y >= 0)
+    if(collision[1] && speed.y > 0)
     {
         times_jumped = 0;
     }
@@ -433,6 +466,9 @@ void Player::jump()
 
 Player::~Player()
 {
+    timerGO->stop();
+    timerGO->deleteLater();
+
     timer->stop();
     timer->deleteLater();
 

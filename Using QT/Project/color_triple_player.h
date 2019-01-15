@@ -9,7 +9,7 @@ public:
 
     Color_triple_player(int R, int G, int B, View* view);
 
-    void test(int R, int G, int B, pair& position);
+    void test(int R, int G, int B, pair& position, QGraphicsScene*scene);
 };
 
 #endif // COLOR_TRIPLE_PLAYER_H

@@ -1,6 +1,7 @@
 #Player
 
 Base_block : simple_collision
+End_block: end_collision
 Special_block_above : simple_collision
 Special_block_below : simple_collision
 Activated_block : simple_collision
@@ -16,7 +17,8 @@ Power_up_5 : power
 Power_up_6 : power
 Power_up_7 : power
 Power_up_8 : power
-Enemy_projectile_1 : lose_life
+Enemy_projectile_1 : die
+Enemy_1 : die
 Player_projectile_1 : nothing
 Player_projectile_2 : nothing
 Player_projectile_3 : nothing
@@ -29,7 +31,7 @@ Base_block : simple_collision
 Special_block_above : simple_collision
 Special_block_below : simple_collision
 Activated_block : simple_collision
-Small_collectable : simple_collision
+Small_collectable : nothing
 Breakable_block_1 : simple_collision
 Breakable_block_2 : simple_collision
 Breakable_block_3 : simple_collision
@@ -41,7 +43,7 @@ Base_block : simple_collision
 Special_block_above : simple_collision
 Special_block_below : simple_collision
 Activated_block : simple_collision
-Small_collectable : simple_collision
+Small_collectable : nothing
 Breakable_block_1 : simple_collision
 Breakable_block_2 : simple_collision
 Breakable_block_3 : simple_collision
@@ -53,9 +55,9 @@ Base_block : simple_collision
 Special_block_above : simple_collision
 Special_block_below : simple_collision
 Activated_block : simple_collision
-Small_collectable : simple_collision
-Breakable_block_1 : simple_collision
-Breakable_block_2 : simple_collision
-Breakable_block_3 : simple_collision
+Small_collectable : nothing
+Breakable_block_1 : damage_block
+Breakable_block_2 : damage_block
+Breakable_block_3 : damage_block
 Active_block : simple_collision
-Enemy : simple_collision
+Enemy_1 : enemy_collision
