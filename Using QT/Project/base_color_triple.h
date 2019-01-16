@@ -13,12 +13,9 @@ public:
 
     View* view;
 
-    virtual ~Base_color_triple(){}
+    virtual ~Base_color_triple();
 
-    virtual void test(int R, int G, int B, pair& position, QGraphicsScene*scene)
-    {
-        //qDebug() << R << G << B << position.x << position.y << scene;
-    }
+    virtual void test(int R, int G, int B, pair& position, QGraphicsScene*scene);
 };
 
 #endif // BASE_COLOR_TRIPLE_H

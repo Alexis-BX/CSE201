@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Player::Player(QGraphicsItem* parent) :
     QObject(), QGraphicsPixmapItem (parent)
 {

@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Projectile::Projectile(pair position, bool direction, int character_size_x, Projectile_type type, pair size, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
