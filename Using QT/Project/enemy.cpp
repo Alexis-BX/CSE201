@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixmapItem (parent)
 {
 
