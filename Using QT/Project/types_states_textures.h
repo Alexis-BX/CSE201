@@ -1,4 +1,4 @@
-#ifndef TYPES_STATES_TEXTURES_H
+ #ifndef TYPES_STATES_TEXTURES_H
 #define TYPES_STATES_TEXTURES_H
 
 enum Block_type
@@ -17,12 +17,12 @@ enum Block_texture
     dirt,
     question_mark,
     activated = 5,
-    tube_top = 6,
-    crate = 8,
-    crate_2 = 10,
-    crate_3 = 13,
-    tube_bottom = 14
-
+    crate = 6,
+    crate_2 = 8,
+    crate_3 = 11,
+    tube = 6,
+    tube_up,
+    tube_down
 };
 
 enum Block_state

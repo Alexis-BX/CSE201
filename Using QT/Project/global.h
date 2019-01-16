@@ -1,6 +1,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+
 #include <iostream>
 
 #include <QApplication>
@@ -18,7 +19,6 @@
 #include "types_states_textures.h"
 
 #include <QMainWindow>
-#include <QObject>
 #include <QWidget>
 #include <QSound>
 #include <QUrl>

@@ -16,16 +16,19 @@ public:
 
     Block(pair position, QGraphicsItem* parent = nullptr);
 
+    ~Block();
+
     unsigned long long image_count{0};
 
     std::vector<QPixmap> sprite;
 
     void is_hit();
 
+    QTimer* blink_timer;
+
 public slots:
 
     void blink();
-
 };
 
 #endif // BLOCK_H

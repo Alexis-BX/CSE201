@@ -24,6 +24,9 @@ Player_projectile_2 : nothing
 Player_projectile_3 : nothing
 Counter : nothing
 Active_block : active_collision
+Tube_block : simple_collision
+Tube_block_up : simple_collision
+Tube_block_down : simple_collision
 
 #Enemy
 
@@ -48,6 +51,7 @@ Breakable_block_1 : simple_collision
 Breakable_block_2 : simple_collision
 Breakable_block_3 : simple_collision
 Active_block : simple_collision
+Player : power_player
 
 #Projectile
 

@@ -58,9 +58,15 @@ Active_block::Active_block(pair position, QGraphicsItem* parent) :
     setPixmap(sprite[image_count]);
 
     // Timer
-    QTimer * timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(blink()));
-    timer->start(500);
+    blink_timer = new QTimer();
+    QObject::connect(blink_timer,SIGNAL(timeout()),this,SLOT(blink()));
+    blink_timer->start(500);
+}
+
+Active_block::~Active_block()
+{
+    blink_timer->stop();
+    blink_timer->deleteLater();
 }
 
 Special_block_above::Special_block_above(pair position, QGraphicsItem* parent) :
@@ -112,7 +118,29 @@ Tube_block::Tube_block(pair position, QGraphicsItem* parent) :
     Block(position, parent)
 {
     type = permanent;
-    texture = tube_bottom;
+    texture = tube;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36
+    setPixmap(sprite[image_count]);
+}
+
+Tube_block_up::Tube_block_up(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = tube_up;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36
+    setPixmap(sprite[image_count]);
+}
+
+Tube_block_down::Tube_block_down(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = tube_down;
     state = initial;
 
     sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36

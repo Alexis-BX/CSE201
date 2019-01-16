@@ -5,6 +5,7 @@
 #include "level_load.h"
 #include "backgrounds.h"
 #include "music.h"
+#include "menu.h"
 
 class Player;
 
@@ -13,7 +14,7 @@ class View : public QGraphicsView
 
 public:
 
-    View(pair screen_size, int block_size = 18, QWidget * parent=0);
+    View(pair screen_size, int block_size = 18, QWidget * parent=nullptr);
 
     //attributes
     int block_size, ms_between_updates{30};
@@ -28,6 +29,8 @@ public:
     QString current_level;
 
     Music * music;
+
+    Menu * menu;
 
     QGraphicsScene *scene_menu  = new QGraphicsScene();
     QGraphicsScene *scene  = new QGraphicsScene();
@@ -47,9 +50,11 @@ public:
 
     void you_win();
 
+    void open_menu();
+
     void play_level(QString level_name);
 
-    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> &list);
+    template <class BG> void update_single_bg(std::vector<BG*> &list);
 };
 
 #endif // VIEW_H

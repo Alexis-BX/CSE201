@@ -10,31 +10,38 @@ Collectable::Collectable(pair position, int creator_object_size_y, QGraphicsItem
 
 
     setZValue(layer_collectable);
-
-
-
-    collision_ranges = create_collision_range<Collectable>(this);
 }
 
 void Collectable::set_movement()
 {
-    if(type == eclair)
-    {
-        //Timer
-        move_timer = new QTimer();
-        QObject::connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
-        move_timer->start(30);
-    }
+    collision_ranges = create_collision_range<Collectable>(this);
+
+    //Timer
+    move_timer = new QTimer();
+    QObject::connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
+    move_timer->start(30);
+}
+
+int Collectable::get_power_number()
+{
+    return -1;
 }
 
 Collectable::~Collectable()
 {
-    move_timer->stop();
-    move_timer->deleteLater();
-    for(int i = 0; i < collision_ranges.size(); i++)
+    if(move_timer != nullptr)
     {
-        delete(collision_ranges[i]);
+        move_timer->stop();
+        move_timer->deleteLater();
     }
+    if(collision_ranges.size() != 0)
+    {
+        for(int i = 0; i < collision_ranges.size(); i++)
+        {
+            delete(collision_ranges[i]);
+        }
+    }
+
 }
 
 void Collectable::move()
@@ -53,9 +60,9 @@ void Collectable::move()
         speed.x = -5;
     }
 
-    if(std::rand() % 200 == 0)
+    if(rand() % 20 == 0)
     {
-        speed.y += 10;
+        speed.y -= 10;
     }
 
     //in boundaries
@@ -100,6 +107,19 @@ void Collectable::move()
                 collision[i] = true;
                 continue;
             }
+            else if(temp_collision_type == "power_player")
+            {
+                //qDebug() << QString(typeid(this).name());
+
+                int last_char = (QString(typeid(*this).name()))[11].digitValue();
+
+                view->player->super_powers->power_up(last_char-1);
+
+                deleteLater();
+
+                continue;
+            }
+
         }
     }
     }
@@ -121,4 +141,3 @@ void Collectable::move()
 
     setPos(x()+speed.x,y()+speed.y);
 }
-

@@ -10,6 +10,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QMAKE_CXXFLAGS += -Wno-unused-parameter
+
 TARGET = CSE2017
 TEMPLATE = app
 
@@ -29,7 +31,6 @@ CONFIG += c++11
 SOURCES += \
     background.cpp \
     backgrounds.cpp \
-    base_color_triple.cpp \
     block.cpp \
     blocks.cpp \
     button.cpp \

@@ -3,54 +3,51 @@
 Menu::Menu(QGraphicsItem* parent) :
     QObject(), QGraphicsPixmapItem (parent)
 {
-    view->setScene(view->scene_menu);
-
     load_animation();
 
     selected = op_start;
+
+    this->setFlag(QGraphicsItem::ItemIsFocusable);
+
+    this->setFocus();
 
     QTimer * timer = new QTimer();
 
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
 
-    timer->start(500);
+    timer->start(100);
 }
 
 void Menu::update()
 {
     set_animation_state();
-    std::cout<<"updated"<<std::endl;
 }
 
 void Menu::keyPressEvent(QKeyEvent *event)
 {
-    std::cout<<"u"<<std::endl;
     switch (event->key())
     {
-    case Qt::Key_Up:
+    case Qt::Key_Left:
     {
         selected--;
         if (selected<0)
         {
             selected = op_amount-1;
         }
-        std::cout<<"u"<<std::endl;
         break;
     }
-    case Qt::Key_Down:
+    case Qt::Key_Right:
     {
         selected++;
         if (selected >= op_amount)
         {
             selected = 0;
         }
-        std::cout<<"d"<<std::endl;
         break;
     }
     case Qt::Key_Enter:
     case Qt::Key_Space:
     {
-        std::cout<<"e"<<std::endl;
         launch();
         break;
     }
@@ -63,7 +60,6 @@ void Menu::launch()
     case op_start:
     {
         view->play_level(view->current_level);
-        view->level_load->load_level(":/Images/Levels/Level_clara_002.png", view->scene);
         break;
     }
     case op_keys:
@@ -83,14 +79,13 @@ void Menu::set_animation_state()
 {
     for (int i=0; i<op_amount; i++)
     {
-        view->scene_menu->addItem(new Button(view->screen_size.x/2-36, -300+40*i, buttons[i][selected==i]));
+        button_list[i]->setPixmap(buttons[i][selected==i]);
     }
 }
 
 void Menu::load_animation()
 {
-    Level_load *level_load = new Level_load(view);
-    level_load->load_level(":/Images/Levels/start_screen.png", view->scene_menu);
+   new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
 
     QPixmap images(":/Images/Levels/buttons.png");
 
@@ -98,6 +93,11 @@ void Menu::load_animation()
     {
         buttons[i][0] = images.copy(0,  i*36, 72, 36);
         buttons[i][1] = images.copy(72, i*36, 72, 36);
+    }
+
+    for (int i=0; i<op_amount; i++)
+    {
+        button_list[i] = new Button(170 + 200*i, -70, buttons[i][selected==i], this);
     }
 }
 

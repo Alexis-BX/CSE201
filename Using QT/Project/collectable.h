@@ -1,4 +1,4 @@
-#ifndef COLLECTABLE_H
+﻿#ifndef COLLECTABLE_H
 #define COLLECTABLE_H 
 #include "global.h"
 
@@ -21,7 +21,7 @@ public:
 
     std::vector<QPixmap> sprite;
 
-    Collectable(pair position, int creator_object_size_y, QGraphicsItem* parent = 0 );
+    Collectable(pair position, int creator_object_size_y, QGraphicsItem* parent = nullptr );
 
     // Attributes
     pair size, position, speed;
@@ -31,14 +31,15 @@ public:
 
     void set_movement();
 
-    QTimer* move_timer;
+    QTimer* move_timer = nullptr;
 
     ~Collectable();
+
+    int get_power_number();
 
 public slots:
 
     void move(); //next position of the collectable depending on their way of moving
-
 };
 
 #endif // COLLECTABLE_H

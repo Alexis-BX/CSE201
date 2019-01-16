@@ -40,7 +40,7 @@ void update_collision_range(QList<QGraphicsRectItem *> &collision_ranges, pair &
 void create_random_powerup(pair position, double y_offset)
 {
     int y = int(y_offset);
-    switch(rand()%9)
+    switch(rand()%6)
     {
     {
     case 0:
@@ -70,16 +70,6 @@ void create_random_powerup(pair position, double y_offset)
     {
     case 5:
             view->scene->addItem(new Power_up_6(position,y));
-            break;
-    }
-    {
-    case 6:
-            view->scene->addItem(new Power_up_7(position,y));
-            break;
-    }
-    {
-    case 7:
-            view->scene->addItem(new Power_up_8(position,y));
             break;
     }
     }

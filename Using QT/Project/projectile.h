@@ -8,7 +8,7 @@ class Projectile : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Projectile(pair position, bool direction, int character_size_x, pair size, QGraphicsItem* parent = 0);
+    Projectile(pair position, bool direction, int character_size_x, Projectile_type type, pair size = pair{18,18}, QGraphicsItem* parent = 0);
 
     ~Projectile();
 
@@ -36,7 +36,6 @@ public:
 public slots:
 
     void move();
-
 };
 
 #endif // PROJECTILE_H

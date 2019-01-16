@@ -19,12 +19,14 @@ Player::Player(QGraphicsItem* parent) :
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
 
     timer->start(view->ms_between_updates);
+
+    setup_timer();
 }
 
 void Player::setup_timer()
 {
     // Timer
-    timerGO = new QTimer();
+    /**timerGO = new QTimer();
 
     timerGO->setTimerType(Qt::VeryCoarseTimer);
 
@@ -32,11 +34,15 @@ void Player::setup_timer()
 
     timerGO->setSingleShot(true);
 
-    timerGO->singleShot(10000, this, SLOT(test()));
+    timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
+    **/
+
+    QTimer::singleShot(100000,this ,SLOT(test()));
 }
 
-void Player::test(){
-    new Game_over;
+void Player::test()
+{
+    view->game_over();
 }
 
 /**NOTE:
@@ -93,6 +99,7 @@ void Player::keyReleaseEvent(QKeyEvent *event)
 void Player::update()
 {
     move();
+
 }
 
 void Player::move()
@@ -146,12 +153,7 @@ void Player::move()
         speed.y = (0 > speed.y) ? speed.y : 0 ;
         setY(view->world_size.bottom);
         view->game_over();
-    }
-    else if(y() <= view->world_size.top)
-    {
-        //please stop blocking us at the top, it's anoying
-        //speed.y = (0 < speed.y) ? speed.y : 0 ;
-        //setY(view->world_size.top);
+        return;
     }
 
     if(x()<=view->world_size.left)
@@ -172,7 +174,7 @@ void Player::move()
     QList<QGraphicsItem*> colliding_items;
     collision = QList<bool>{false,false,false};
 
-    for(int i = (super_powers->supers_b[super_invincible] && i==0) ? 1 : 0; i < 3 ; i ++)
+    for(int i = (super_powers->supers_b[super_invincible]) ? 1 : 0; i < 3 ; i ++)
     {
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
@@ -195,6 +197,8 @@ void Player::move()
                     create_random_powerup(pair{colliding_items[j]->x(),colliding_items[j]->y()},block_size.y);
 
                     view->scene->removeItem(colliding_items[j]);
+
+                    delete(colliding_items[j]);
                 }
 
                 continue;
@@ -208,31 +212,16 @@ void Player::move()
 
             else if(temp_collision_type == "power") //collision with power up
             {
-                view->scene->removeItem(colliding_items[j]);
+                //view->scene->removeItem(colliding_items[j]);
 
-                QChar last_char = (QString(typeid(*colliding_items[j]).name()))[11];
+                int last_char = (QString(typeid(*colliding_items[j]).name()))[11].digitValue();
 
-                for(int i = 0; i < supers_count;i++)
-                {
-                    //qDebug() << (char(i) == last_char);
-                    //qDebug() << char(i);
-                    //qDebug() << last_char;
-                    if(QChar(i) == last_char)
-                    {
-                        qDebug() << i;
-                        super_powers->power_up(i);
-                    }
-                }
+                super_powers->power_up(last_char-1);
+
+                delete(colliding_items[j]);
+
                 continue;
             }
-
-            //else if(temp_collision_type == "lose_life") //collision with projectile hence dies and loses a life
-            //{
-            //    view->scene->removeItem(colliding_items[j]);
-            //    continue;
-            //}
-
-
             else if(temp_collision_type == "damage_block_1") //collision with breakable block
             {
                 collision[i] = true;
@@ -277,11 +266,18 @@ void Player::move()
             else if(temp_collision_type == "end_collision") //collision with end_block
             {
                 view->you_win();
+                return;
             }
 
             else if(temp_collision_type == "die") //collision with enemy
             {
+                if(super_powers->supers_b[super])
+                {
+                    view->scene->removeItem(colliding_items[j]);
+                    continue;
+                }
                 view->game_over();
+                return;
             }
 
         }
@@ -303,7 +299,7 @@ void Player::move()
     }
 
     //Jump reset
-    if(collision[1] && speed.y > 0)
+    if(collision[1] && speed.y >= 0)
     {
         times_jumped = 0;
     }
@@ -448,7 +444,7 @@ void Player::set_animation_state()
 
 void Player::jump()
 {
-    if(times_jumped >= max_consecutive_jumps)
+    if(times_jumped >= max_consecutive_jumps + ((super_powers->supers_b[super_jump]) ? 1 : 0) )
     {
         return;
     }
@@ -466,9 +462,6 @@ void Player::jump()
 
 Player::~Player()
 {
-    timerGO->stop();
-    timerGO->deleteLater();
-
     timer->stop();
     timer->deleteLater();
 
