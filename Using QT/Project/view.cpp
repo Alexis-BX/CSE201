@@ -27,13 +27,12 @@ void View::update_background()
     update_single_bg<Background_close>(backgrounds_close);
 }
 
-//clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
 void View::game_over()
 {
     music->stop();
 
     setScene(scene_game_over);
-    scene_game_over->addItem(new Game_over());
+    scene_game_over->addItem(new Game_over(player->coin_counter->coins));
 
     scene->clear();
 }

@@ -7,15 +7,15 @@ Menu::Menu(QGraphicsItem* parent) :
 
     selected = op_start;
 
-    this->setFlag(QGraphicsItem::ItemIsFocusable);
+    setFlag(QGraphicsItem::ItemIsFocusable);
 
-    this->setFocus();
+    setFocus();
 
-    QTimer * timer = new QTimer();
+    //QTimer * timer = new QTimer();
 
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
+    //QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
 
-    timer->start(100);
+    //timer->start(100);
 }
 
 void Menu::update()
@@ -34,6 +34,7 @@ void Menu::keyPressEvent(QKeyEvent *event)
         {
             selected = op_amount-1;
         }
+        set_animation_state();
         break;
     }
     case Qt::Key_Right:
@@ -43,6 +44,7 @@ void Menu::keyPressEvent(QKeyEvent *event)
         {
             selected = 0;
         }
+        set_animation_state();
         break;
     }
     case Qt::Key_Enter:
@@ -85,7 +87,7 @@ void Menu::set_animation_state()
 
 void Menu::load_animation()
 {
-   new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
+   //new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
 
     QPixmap images(":/Images/Levels/buttons.png");
 
