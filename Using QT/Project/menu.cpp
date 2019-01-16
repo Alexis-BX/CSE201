@@ -67,7 +67,7 @@ void Menu::launch()
     case op_start:
     {
         view->play_level(view->current_level);
-        view->level_load->load_level(":/Images/Levels/Level_clara_002.png", view->scene);
+        view->level_load->load_level(":/Images/Levels/Level_clara_002.png");
         break;
     }
     case op_keys:
@@ -94,7 +94,7 @@ void Menu::set_animation_state()
 void Menu::load_animation()
 {
     Level_load *level_load = new Level_load(view);
-    level_load->load_level(":/Images/Levels/start_screen.png", view->scene_menu);
+    level_load->load_level(":/Images/Levels/start_screen.png");
 
     QPixmap images(":/Images/Levels/buttons.png");
 

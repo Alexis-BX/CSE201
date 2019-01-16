@@ -58,9 +58,15 @@ Active_block::Active_block(pair position, QGraphicsItem* parent) :
     setPixmap(sprite[image_count]);
 
     // Timer
-    QTimer * timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(blink()));
-    timer->start(500);
+    blink_timer = new QTimer();
+    QObject::connect(blink_timer,SIGNAL(timeout()),this,SLOT(blink()));
+    blink_timer->start(500);
+}
+
+Active_block::~Active_block()
+{
+    blink_timer->stop();
+    blink_timer->deleteLater();
 }
 
 Special_block_above::Special_block_above(pair position, QGraphicsItem* parent) :

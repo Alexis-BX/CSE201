@@ -36,7 +36,6 @@ public:
 public slots:
 
     void move();
-
 };
 
 #endif // PROJECTILE_H

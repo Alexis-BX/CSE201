@@ -51,6 +51,7 @@ Breakable_block_1 : simple_collision
 Breakable_block_2 : simple_collision
 Breakable_block_3 : simple_collision
 Active_block : simple_collision
+Player : power_player
 
 #Projectile
 
