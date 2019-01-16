@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Collectable::Collectable(pair position, int creator_object_size_y, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
