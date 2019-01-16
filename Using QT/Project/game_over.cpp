@@ -5,7 +5,6 @@ Game_over::Game_over(QGraphicsItem* parent):
 {
     setPos(view->player->x() - int(view->screen_size.x/2),-view->screen_size.y+18);
     view->player->deleteLater();
-    view->centerOn(150,150);
     QPixmap img(":/Images/Backgrounds/Main_background/game_over.png");
     img = img.scaled(view->screen_size.x, view->screen_size.y);
     setPixmap(img);
@@ -18,8 +17,6 @@ Game_over::Game_over(QGraphicsItem* parent):
     painter.drawText(QPoint(5,25),score);
 
     view->music->stop();
-
-    view->player->timerGO->stop();
 }
 
 void Game_over::keyPressEvent(QKeyEvent *event)
@@ -30,7 +27,7 @@ void Game_over::keyPressEvent(QKeyEvent *event)
     {
         deleteLater();
 
-        view->play_level(":/Images/Levels/Level_clara_002.png");
+        view->play_level(view->current_level);
     }
     }
 }

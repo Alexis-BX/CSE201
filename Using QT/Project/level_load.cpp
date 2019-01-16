@@ -38,6 +38,24 @@ void Level_load::setup_view()
 void Level_load::setup_background()
 {
     //Set the background layers (paralax background)
+    for(auto iter = view->backgrounds_far.begin(); iter != view->backgrounds_far.end(); iter++)
+    {
+        delete(*iter);
+    }
+    view->backgrounds_far.clear();
+
+    for(auto iter = view->backgrounds_middle.begin(); iter != view->backgrounds_middle.end(); iter++)
+    {
+        delete(*iter);
+    }
+    view->backgrounds_middle.clear();
+
+    for(auto iter = view->backgrounds_close.begin(); iter != view->backgrounds_close.end(); iter++)
+    {
+        delete(*iter);
+    }
+    view->backgrounds_close.clear();
+
     view->backgrounds_far.push_back(new Background_far(pair{0,0}));
     scene->addItem(view->backgrounds_far[0]);
 

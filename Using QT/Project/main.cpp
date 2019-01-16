@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
     view = new View(pair{793,505});
 
-    view->play_level(":/Images/Levels/Level_clara_002.png");
+    view->play_level(view->current_level);
 
     //new Menu();
 

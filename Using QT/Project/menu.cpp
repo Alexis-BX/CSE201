@@ -62,7 +62,7 @@ void Menu::launch()
     switch (selected) {
     case op_start:
     {
-        view->start_game();
+        view->play_level(view->current_level);
         view->level_load->load_level(":/Images/Levels/Level_clara_002.png", view->scene);
         break;
     }

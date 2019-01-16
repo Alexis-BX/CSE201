@@ -63,11 +63,12 @@ bool Test::Test_Blink2() {
     return false;
 }
 
-void Test::Test_Blocks() {
+bool Test::Test_Blocks() {
     Test testobj;
     if(testobj.Test_Blink() == true && testobj.Test_Blink2() == true){
-        std::cout << "Blocks class is succesful!" << std::endl;
+        return true;
     }
+    return false;
 }
 
 
@@ -100,11 +101,13 @@ bool Test::Test_UpdateCounter(){                //tests update counter but from 
     return false;
 }
 
-void Test::Test_CoinCount() {
+bool Test::Test_CoinCount() {
     Test testobj;
     if(testobj.Test_AddCoin() == true && testobj.Test_UpdateCounter() == true){
-        std::cout << "Coin_counter class is succesful!" << std::endl;
+        return true;
     }
+    std::cout << "4" << std::endl;
+    return false;
 }
 
 //tool tests
@@ -214,11 +217,13 @@ bool Test::Test_Delay(){   // sometimes it works sometimes it doesnt (due to tim
     return false;
 }
 
-void Test::Test_Tools(){
+bool Test::Test_Tools(){
     Test testobj;
     if(testobj.Test_Delay() == true && testobj.Test_UpdateColRange() == true && testobj.Test_CreateColRange() == true){
-        std::cout << "Tools are succesful!" << std::endl;
+        return true;
     }
+    std::cout << "3" << std::endl;
+    return false;
 }
 
 //enemy class tests
@@ -256,10 +261,8 @@ bool Test::Test_Jump(){
         sum += res[i];
     }
     if(sum == 2){
-        std::cout << "Jump works :)" << std::endl;
         return true;
     }
-    std::cout << "Jump does not work :(" << std::endl;
     return false;
 }
 
@@ -480,7 +483,6 @@ bool Test::Test_Move_Third(){
 bool Test::Test_Move(){
     Test test;
     if(test.Test_Move_First() && test.Test_Move_Second() && test.Test_Move_Third()){
-        std::cout << "All move work :)" << std::endl;
         return true;
     }
     return false;
@@ -505,4 +507,76 @@ bool Test::Test_TimerConnect(){
     }
     std::cout << "timer connect not working" << std::endl;
     return false;
+}
+
+bool Test::Test_Enemy(){
+    Test test;
+    if(test.Test_Jump() && test.Test_Move()){
+        return true;
+    }
+    std::cout << "2" << std::endl;
+    return false;
+}
+
+//tests for super_powers
+
+bool Test::Test_UpdateCounter_SP(){
+    Super_powers sp;
+    int i_list[supers_count];               //i_list = sp.supers_i initially
+    for(int j = 0; j < supers_count; j++){
+       i_list[j] = sp.supers_i[j];
+    }
+    sp.supers_b[1] = true;  //make sure we at least have one that is true
+    sp.update_counters();
+    for(int i = 0; i < supers_count; i++){
+        if(sp.supers_b[i]){
+            if(sp.supers_i[i] != i_list[i] + 1 || sp.supers_i[i] != sp.supers_i[i] % sp.max_count){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool Test::Test_PowerUp(){
+    Super_powers sp;
+    int i = rand() % 2;
+    sp.power_up(i);
+    if(!sp.supers_b[i] || sp.supers_i[i] != 0){
+        return false;
+    }
+    return true;
+}
+
+bool Test::Test_Speed_ThrowSpeed(){
+    Super_powers sp;
+    sp.supers_b[1] = true; //super_fast is true
+    if(int(sp.get_speed()) != 2 || int(sp.get_throw_speed()) != 1){
+        return false;
+    }
+    sp.supers_b[2] = true;
+    sp.supers_b[1] = false;
+    if(int(sp.get_speed()) != 1 || int(sp.get_throw_speed()) != 2){
+        return false;
+    }
+    return true;
+}
+
+bool Test::Test_SuperPow(){
+    Test test;
+    if(test.Test_UpdateCounter_SP() && test.Test_PowerUp() && test.Test_Speed_ThrowSpeed()){
+        return true;
+    }
+    std::cout << "1" << std::endl;
+    return false;
+}
+
+//All tests
+
+void Test::All_Tests(){
+    Test test;
+    if(test.Test_SuperPow() && test.Test_Enemy() && test.Test_Tools() && test.Test_Blink() && test.Test_CoinCount()){
+        std::cout << "All tests passed" << std::endl;
+    }
+    else{std::cout << "not ok" << std::endl;}
 }

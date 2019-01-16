@@ -7,9 +7,11 @@ Player::Player(QGraphicsItem* parent) :
 
     collision_ranges = create_collision_range<Player>(this);
 
-    this->setZValue(layer_player);
+    setZValue(layer_player);
 
     super_powers = new Super_powers();
+
+
 
     // Timer
     timer = new QTimer();
@@ -217,6 +219,7 @@ void Player::move()
                     //qDebug() << last_char;
                     if(QChar(i) == last_char)
                     {
+                        qDebug() << i;
                         super_powers->power_up(i);
                     }
                 }
@@ -239,7 +242,7 @@ void Player::move()
                     view->scene->addItem(new Breakable_block_2(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
                 }
 
-                if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
+                else if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
                 { //if player is super fast, he destroys the block directly
                     view->scene->removeItem(colliding_items[j]);
                 }
@@ -255,7 +258,7 @@ void Player::move()
                     view->scene->addItem(new Breakable_block_3(pair{colliding_items[j]->x(), colliding_items[j]->y()}));
                 }
 
-                if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
+                else if ((abs(speed.y) > 9 && i == 1) || (abs(speed.x) > 9 && i == 0))
                 { //if player is super fast, he destroys the block directly
                     view->scene->removeItem(colliding_items[j]);
                 }
@@ -300,7 +303,7 @@ void Player::move()
     }
 
     //Jump reset
-    if(collision[1] && speed.y >= 0)
+    if(collision[1] && speed.y > 0)
     {
         times_jumped = 0;
     }
@@ -463,7 +466,8 @@ void Player::jump()
 
 Player::~Player()
 {
-    qDebug() << "die";
+    timerGO->stop();
+    timerGO->deleteLater();
 
     timer->stop();
     timer->deleteLater();

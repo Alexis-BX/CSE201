@@ -25,6 +25,7 @@ public:
     Player* player;
 
     Level_load* level_load;
+    QString current_level;
 
     Music * music;
 
@@ -40,23 +41,6 @@ public:
     std::vector<Background_close*> backgrounds_close;
 
     // Create world
-    void start_game();
-
-    void create_basic_world(int width);
-
-    void create_player(pair position = pair{300,-300});
-
-    void create_block(pair position, Block_type type = Block_type{permanent},
-                      Block_texture texture = Block_texture{brick},Block_state state = Block_state{initial} );
-
-    void create_example_world(int width);
-
-    void readBMP(const char* filename);
-
-    void convert (int v0,int v1,int v2, int i, int j);
-
-    void start_screen();
-
     void update_background();
 
     void game_over();
@@ -65,7 +49,7 @@ public:
 
     void play_level(QString level_name);
 
-    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> list);
+    template <class BG> std::vector<BG*> update_single_bg(std::vector<BG*> &list);
 };
 
 #endif // VIEW_H

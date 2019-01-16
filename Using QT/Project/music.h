@@ -9,6 +9,7 @@ public:
     Music(QObject *parent = nullptr);
     ~Music();
     void stop();
+    void start();
 
 private:
     QSound *music;
