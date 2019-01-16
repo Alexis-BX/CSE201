@@ -11,7 +11,7 @@ enum States
 {
     stand, run, jumpH, fallH, landH,
     crouchD, crouch, crouchU,
-    jumpV, fallV, landV, throwA
+    jumpV, fallV, landV, throwA, number_of_character_states
 };
 
 class Player : public QObject, public QGraphicsPixmapItem
@@ -39,7 +39,7 @@ public:
     int times_jumped{0}, max_consecutive_jumps{2},
 
     maxFrame[12] = {2, 8, 3, 2, 3, 2, 2, 2, 4, 2, 2, 8},
-    number_of_character_states{11}, max_images_per_state{8};
+    max_images_per_state{8};
 
     Super_powers* super_powers;
 
@@ -53,7 +53,7 @@ public:
 
                     //[super][direction][state][frame]
                     //[2][2][number_of_character_states][max_images_per_state]
-    QPixmap animations[2][2][11][8];
+    QPixmap animations[2][2][12][8];
 
     Coin_counter* coin_counter;
 

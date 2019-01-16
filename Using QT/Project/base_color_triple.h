@@ -17,7 +17,7 @@ public:
 
     virtual void test(int R, int G, int B, pair& position, QGraphicsScene*scene)
     {
-        qDebug() << R << G << B << position.x << position.y << scene;
+        //qDebug() << R << G << B << position.x << position.y << scene;
     }
 };
 

@@ -37,7 +37,7 @@ void Player::setup_timer()
     timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
     **/
 
-    QTimer::singleShot(30000,this ,SLOT(test()));
+    QTimer::singleShot(100000,this ,SLOT(test()));
 }
 
 void Player::test()
@@ -174,7 +174,7 @@ void Player::move()
     QList<QGraphicsItem*> colliding_items;
     collision = QList<bool>{false,false,false};
 
-    for(int i = (super_powers->supers_b[super_invincible] && i==0) ? 1 : 0; i < 3 ; i ++)
+    for(int i = (super_powers->supers_b[super_invincible]) ? 1 : 0; i < 3 ; i ++)
     {
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)

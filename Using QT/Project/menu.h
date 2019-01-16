@@ -1,7 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 #include "global.h"
-
+#include "button.h"
 enum Options
 {
     op_start, op_keys, op_help, op_amount
@@ -29,6 +29,8 @@ public:
     void set_animation_state();
 
     void launch();
+
+    Button* button_list[3];
 
 public slots:
 
