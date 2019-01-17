@@ -16,7 +16,7 @@ Music::~Music()
 void Music::start()
 {
     music->play();
-    music->QSound::Infinite;
+    music->setLoops(2);
 }
 
 void Music::stop()

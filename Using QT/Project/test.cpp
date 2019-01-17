@@ -7,6 +7,7 @@
 #include <QGraphicsItem>
 #include <QColor>
 #include <QVector>
+#include <typeinfo>
 
 Test::Test(){}
 
