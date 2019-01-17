@@ -19,8 +19,6 @@ public:
 
     QPixmap buttons[op_amount][2];
 
-    QTimer* timer;
-
     // Methods
     void keyPressEvent(QKeyEvent * event);
 
@@ -31,11 +29,6 @@ public:
     void launch();
 
     Button* button_list[3];
-
-public slots:
-
-    // Slot for timer
-    void update();
 };
 
 #endif // MENU_H

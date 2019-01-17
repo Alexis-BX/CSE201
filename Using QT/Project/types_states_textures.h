@@ -79,7 +79,10 @@ enum Projectile_type
 
 enum Enemy_type
 {
-    basic
+    basic,
+    cloud,
+    smoker
+
 };
 
 enum Enemy_state

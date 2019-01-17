@@ -3,24 +3,13 @@
 Menu::Menu(QGraphicsItem* parent) :
     QObject(), QGraphicsPixmapItem (parent)
 {
-    load_animation();
-
     selected = op_start;
 
-    this->setFlag(QGraphicsItem::ItemIsFocusable);
+    load_animation();
 
-    this->setFocus();
+    setFlag(QGraphicsItem::ItemIsFocusable);
 
-    QTimer * timer = new QTimer();
-
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
-
-    timer->start(100);
-}
-
-void Menu::update()
-{
-    set_animation_state();
+    setFocus();
 }
 
 void Menu::keyPressEvent(QKeyEvent *event)
@@ -34,6 +23,7 @@ void Menu::keyPressEvent(QKeyEvent *event)
         {
             selected = op_amount-1;
         }
+        set_animation_state();
         break;
     }
     case Qt::Key_Right:
@@ -43,10 +33,12 @@ void Menu::keyPressEvent(QKeyEvent *event)
         {
             selected = 0;
         }
+        set_animation_state();
         break;
     }
     case Qt::Key_Enter:
     case Qt::Key_Space:
+    case Qt::Key_Return:
     {
         launch();
         break;

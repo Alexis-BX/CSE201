@@ -17,7 +17,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
     music = new Music();
 
-    current_level = ":/Images/Levels/Level_clara_002.png";
+    current_level = ":/Images/Levels/Level_001.png";
 }
 
 void View::update_background()
@@ -27,20 +27,24 @@ void View::update_background()
     update_single_bg<Background_close>(backgrounds_close);
 }
 
-//clear scene crashes everything for some reason (probably du to deletion of items but not timers?)
+
 void View::game_over()
 {
-    music->stop();
+    music->stop_song(); //stops the background music
+
+    music->play_sound_effect(music_end); //calls the game over music
 
     setScene(scene_game_over);
-    scene_game_over->addItem(new Game_over());
+    scene_game_over->addItem(new Game_over(player->coin_counter->coins));
 
     scene->clear();
 }
 
 void View::you_win()
 {
-    music->stop();
+    music->stop_song(); //stops the background music
+
+    music->play_sound_effect(music_win); //plays the winning music
 
     setScene(scene_you_win);
     scene_you_win->addItem(new You_win());
@@ -65,7 +69,7 @@ void View::play_level(QString level_name)
     setScene(scene);
     level_load->load_level(level_name);
 
-    music->start();
+    music->start_song();
 }
 
 

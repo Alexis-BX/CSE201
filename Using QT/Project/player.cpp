@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Player::Player(QGraphicsItem* parent) :
     QObject(), QGraphicsPixmapItem (parent)
 {
@@ -279,7 +281,6 @@ void Player::move()
                 view->game_over();
                 return;
             }
-
         }
     }
     }
@@ -332,6 +333,8 @@ void Player::move()
 
     super_powers->update_counters();
 
+
+
     setPixmap(animations[super_powers->supers_b[super]][facing][state][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
@@ -339,6 +342,8 @@ void Player::move()
     view->centerOn(this->x(), 0);
 
     view->update_background();
+
+
 }
 
 void Player::throw_projectile()
@@ -348,26 +353,16 @@ void Player::throw_projectile()
     // then the direction is the direction of this last velocity
     pair position{x(),y()};
 
-    switch (current_projectile)
-    {
-    case 1:
-    {
-        view->scene->addItem(new Player_projectile_1(position, facing, size.x, super_powers->get_throw_speed()));
-        break;
-    }
-
-    case 2:
+    if ( super_powers->supers_b[super_wine])
     {
         view->scene->addItem(new Player_projectile_2(position, facing, size.x, super_powers->get_throw_speed()));
-        break;
     }
 
-    case 3:
+    else
     {
-        view->scene->addItem(new Player_projectile_3(position, facing, size.x, super_powers->get_throw_speed()));
-        break;
+        view->scene->addItem(new Player_projectile_1(position, facing, size.x, super_powers->get_throw_speed()));
     }
-    }
+
 }
 
 void Player::set_animation_state()

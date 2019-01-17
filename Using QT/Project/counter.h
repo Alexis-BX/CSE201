@@ -10,7 +10,7 @@ public:
 
     pair size{18,18};
 
-    Counter(int power_of_10, QGraphicsItem* parent = 0);
+    Counter(int power_of_10, QGraphicsItem* parent = nullptr);
 
     void update_counter(int counter);
 
