@@ -21,9 +21,10 @@ bool Test::Test_Blink() {
     unsigned long long x = testquestion_mark.image_count;
     testquestion_mark.blink();
     if(testquestion_mark.image_count != x){
+        std::cout << "Blink() is working" << std::endl;
         return true;
     }
-    std::cout << "Blink() is not working :( " << std::endl;
+    std::cout << "Blink() is not working" << std::endl;
     return false;
 }
 
@@ -57,10 +58,10 @@ bool Test::Test_Blink2() {
         sum += res[j];
     }
     if(sum>5){
-        std::cout << "Blink() inside question_mark is working :)" << std::endl;
+        std::cout << "Blink() inside question_mark is working" << std::endl;
         return true;
     }
-    std::cout << "Blink() inside question_mark is not working :(" << std::endl;
+    std::cout << "Blink() inside question_mark is not working" << std::endl;
     return false;
 }
 
@@ -83,9 +84,10 @@ bool Test::Test_AddCoin(){
     int amount = rand() % 10;       //how many coins we add
     counter.add_coin(amount);
     if(counter.coins - x == amount){
+        std::cout << "Add_coin() is working" << std::endl;
         return true;
     }
-    std::cout << "Add_coin is not working :(" << std::endl;
+    std::cout << "Add_coin is not working" << std::endl;
     return false;
 }
 
@@ -96,18 +98,20 @@ bool Test::Test_UpdateCounter(){                //tests update counter but from 
     counter.counters.push_back(new Counter(1));     //initialize counters of length 1
     counter.add_coin(3);     //for 12 coins, we will need another counter
     if(counter.counters.size() == 2){
+        std::cout << "Update_counter() is working" << std::endl;
         return true;
     }
-    std::cout << "Update_counter does not work :(" << std::endl;
+    std::cout << "Update_counter() is not working" << std::endl;
     return false;
 }
 
 bool Test::Test_CoinCount() {
     Test testobj;
     if(testobj.Test_AddCoin() == true && testobj.Test_UpdateCounter() == true){
+        std::cout << "Coin_count() is working" << std::endl;
         return true;
     }
-    std::cout << "4" << std::endl;
+    std::cout << "Coin_Count() is not working" << std::endl;
     return false;
 }
 
@@ -120,14 +124,14 @@ bool Test::Test_CreateColRange(){
             QColor c(0,0,0);
             c.setAlpha(255); // Maximum transparency
             if(player->collision_ranges[i]->pen().color() != c){           // every element should be invisible
-                  std::cout << "Create Collision Range does not work :(" << std::endl;
+                  std::cout << "Create Collision Range does not work" << std::endl;
                   return false;
             }
         }
-        std::cout << "Create Collision Range works :)" << std::endl;
+        std::cout << "Create Collision Range works" << std::endl;
         return true;
     }
-    std::cout << "Create Collision Range does not work :(" << std::endl;
+    std::cout << "Create Collision Range does not work" << std::endl;
     return false;
 }
 
@@ -221,9 +225,10 @@ bool Test::Test_Delay(){   // sometimes it works sometimes it doesnt (due to tim
 bool Test::Test_Tools(){
     Test testobj;
     if(testobj.Test_Delay() == true && testobj.Test_UpdateColRange() == true && testobj.Test_CreateColRange() == true){
+        std::cout << "Test_Tools() is working" << std::endl;
         return true;
     }
-    std::cout << "3" << std::endl;
+    std::cout << "Test_Tools() is not working" << std::endl;
     return false;
 }
 
@@ -262,8 +267,10 @@ bool Test::Test_Jump(){
         sum += res[i];
     }
     if(sum == 2){
+        std::cout << "Jump() is working" << std::endl;
         return true;
     }
+    std::cout << "Jump() is not working" << std::endl;
     return false;
 }
 
@@ -363,7 +370,6 @@ bool Test::Test_Move_Second(){
         if(!a1){
             if(int(enemy->speed.y) == 0){
                 if(int(enemy->y()) != view->world_size.bottom){
-                    std::cout << "1" << std::endl;
                     return false;
                 }
             }
@@ -414,7 +420,7 @@ bool Test::Test_Move_Second(){
 bool Test::Test_Move_Third(){
     pair position = {double(rand() % 739), double(rand() % 505)};
     Enemy_1* enemy = new Enemy_1(position);
-    double x = enemy->facing;
+    char x = enemy->facing;
     enemy->move();
 
     //case passiv
@@ -481,8 +487,10 @@ bool Test::Test_Move_Third(){
 bool Test::Test_Move(){
     Test test;
     if(test.Test_Move_First() && test.Test_Move_Second() && test.Test_Move_Third()){
+        std::cout << "Move() is working" << std::endl;
         return true;
     }
+    std::cout << "Move() is not working" << std::endl;
     return false;
 }
 
@@ -496,11 +504,11 @@ bool Test::Test_TimerConnect(){
     std::cout << x << std::endl;
     std::cout << enemy->projectile_count << std::endl;
     if(x != 99 && enemy->projectile_count - x == 1){
-        std::cout << "now it works" << std::endl;
+        std::cout << "timer_connect works" << std::endl;
         return true;
     }
     if(x == 99 && enemy->projectile_count == 0){
-        std::cout << "now it works" << std::endl;
+        std::cout << "timer_connect works" << std::endl;
         return true;
     }
     std::cout << "timer connect not working" << std::endl;
@@ -510,8 +518,10 @@ bool Test::Test_TimerConnect(){
 bool Test::Test_Enemy(){
     Test test;
     if(test.Test_Jump() && test.Test_Move()){
+        std::cout << "Enemy is working" << std::endl;
         return true;
     }
+    std::cout << "Enemy is not working" << std::endl;
     return false;
 }
 
@@ -528,10 +538,12 @@ bool Test::Test_UpdateCounter_SP(){
     for(int i = 0; i < supers_count; i++){
         if(sp.supers_b[i]){
             if(sp.supers_i[i] != i_list[i] + 1 || sp.supers_i[i] != sp.supers_i[i] % sp.max_count){
+                std::cout << "Update_counter for SP is not working" << std::endl;
                 return false;
             }
         }
     }
+    std::cout << "Update_counter for SP is working" << std::endl;
     return true;
 }
 
@@ -540,8 +552,10 @@ bool Test::Test_PowerUp(){
     int i = rand() % 2;
     sp.power_up(i);
     if(!sp.supers_b[i] || sp.supers_i[i] != 0){
+        std::cout << "Power Up is not working" << std::endl;
         return false;
     }
+    std::cout << "Power Up is working" << std::endl;
     return true;
 }
 
@@ -549,21 +563,26 @@ bool Test::Test_Speed_ThrowSpeed(){
     Super_powers sp;
     sp.supers_b[1] = true; //super_fast is true
     if(int(sp.get_speed()) != 2 || int(sp.get_throw_speed()) != 1){
+        std::cout << "Speed and throw speed are not working" << std::endl;
         return false;
     }
     sp.supers_b[2] = true;
     sp.supers_b[1] = false;
     if(int(sp.get_speed()) != 1 || int(sp.get_throw_speed()) != 2){
+        std::cout << "Speed and throw speed are not working" << std::endl;
         return false;
     }
+    std::cout << "Speed and throw speed are working" << std::endl;
     return true;
 }
 
 bool Test::Test_SuperPow(){
     Test test;
     if(test.Test_UpdateCounter_SP() && test.Test_PowerUp() && test.Test_Speed_ThrowSpeed()){
+        std::cout << "Super powers are working" << std::endl;
         return true;
     }
+    std::cout << "Super powers are not working" << std::endl;
     return false;
 }
 
@@ -577,6 +596,7 @@ bool Test::Test_Move_Projectile(){
 
     //1st test: life goes down by 1
     if(int(proj.life) != x - 1){
+        std::cout << "Move projectile is not working" << std::endl;
         return false;
     }
 
@@ -586,12 +606,13 @@ bool Test::Test_Move_Projectile(){
             QString collision_type = collision_master->collide("Projectile",QString(typeid(*proj.collision_ranges[i]->collidingItems()[j]).name()));
             if(collision_type == "simple_collision" || collision_type == "damage_block" || collision_type == "enemy_collision"){
                 if(!proj.collision[i]){
+                    std::cout << "Move projectile is not working" << std::endl;
                     return false;
                 }
             }
         }
     }
-    std::cout << "move proj ok" << std::endl;
+    std::cout << "Move projectile is working" << std::endl;
     return true;
 }
 
@@ -724,6 +745,7 @@ bool Test::Test_Move_Player(){
             return false;
         }
     }
+    std::cout << "Move for player is working" << std::endl;
     return true;
 }
 
@@ -734,6 +756,7 @@ bool Test::Test_Jump_Player(){
     player->super_powers->supers_b[super_jump] = true;
     player->jump();
     if(player->times_jumped != 1){  //shouldn't have changed
+        std::cout << "Jump for player is not working" << std::endl;
         return false;
     }
     player->super_powers->supers_b[super_jump] = false;
@@ -741,9 +764,11 @@ bool Test::Test_Jump_Player(){
     if(player->times_jumped == 2){
         if(int(player->speed.y) == -int(player->max_speed.y)){
             std::cout << "yayy" <<std::endl;
+            std::cout << "Jump for player is working" << std::endl;
             return true;
         }
     }
+    std::cout << "Jump for player is not working" << std::endl;
     return false;
 }
 
