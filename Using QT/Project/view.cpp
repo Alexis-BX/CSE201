@@ -70,6 +70,7 @@ void View::world()
 
     scene->addItem(new World());
 
+
 }
 
 void View::play_level(QString level_name)

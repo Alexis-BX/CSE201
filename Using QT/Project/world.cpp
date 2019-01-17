@@ -11,7 +11,6 @@ World::World(QGraphicsItem* parent):
 
     selected = op_start;
 
-
 }
 
 void World::keyPressEvent(QKeyEvent *event)
