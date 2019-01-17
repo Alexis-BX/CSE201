@@ -1,5 +1,5 @@
 Using QT/build-CSE new_project-Desktop_Qt_5_12_0_clang_64bit-Debug/*
 Using QT/build-CSE new_project-Desktop_Qt_5_12_0_MinGW_64_bit-Debug/*
 Using QT/build-CSE new_project-Desktop_Qt_5_11_2_clang_64bit-Debug/*
-Using QT/Project/CSE new_project.pro.user
-Using QT/Project/CSE new_project.pro.user.*
+*.user
+*.user.*
