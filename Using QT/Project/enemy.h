@@ -44,6 +44,9 @@ public:
 
     void throw_projectile();
 
+    QGraphicsRectItem* collision_range_br;
+    QGraphicsRectItem* collision_range_bl;
+
     ~Enemy();
 
 public slots:

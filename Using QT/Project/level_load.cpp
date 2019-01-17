@@ -3,14 +3,14 @@
 Level_load::Level_load(View* view) : view(view)
 {
     color_triples.push_back(new Color_triple<Base_block>(0,0,0,view));
-    color_triples.push_back(new Color_triple<Enemy_3>(237, 28, 36,view));
+    color_triples.push_back(new Color_triple<Enemy_1>(237, 28, 36,view));
     color_triples.push_back(new Color_triple<Special_block_below>(185, 122, 87,view));
     color_triples.push_back(new Color_triple<Special_block_above>(34, 177, 76,view));
     color_triples.push_back(new Color_triple<Small_collectable>(255, 242, 00,view));
     color_triples.push_back(new Color_triple<Active_block>(63, 72, 204,view));
     color_triples.push_back(new Color_triple<Breakable_block_1>(255, 127, 39,view));
     color_triples.push_back(new Color_triple_player(181, 230, 29,view));
-    color_triples.push_back(new Color_triple<End_block>(255, 0, 255,view));
+    color_triples.push_back(new Color_triple<End_block>(20, 10, 160,view));
     color_triples.push_back(new Color_triple<Tube_block>(163, 73, 164, view));
     color_triples.push_back(new Color_triple<Tube_block_up>(97, 44, 97, view));
     color_triples.push_back(new Color_triple<Tube_block_down>(206, 149, 206, view));

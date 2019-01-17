@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Collectable::Collectable(pair position, int creator_object_size_y, QGraphicsItem* parent):  // constructor: gives default aspects of the collectable
       QObject (), QGraphicsPixmapItem (parent)
 {
@@ -60,7 +62,7 @@ void Collectable::move()
         speed.x = -5;
     }
 
-    if(rand() % 20 == 0)
+    if(rand() % 80 == 0)
     {
         speed.y -= 10;
     }
@@ -109,7 +111,7 @@ void Collectable::move()
             }
             else if(temp_collision_type == "power_player")
             {
-                qDebug() << QString(typeid(this).name());
+                //qDebug() << QString(typeid(this).name());
 
                 int last_char = (QString(typeid(*this).name()))[11].digitValue();
 

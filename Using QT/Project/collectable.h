@@ -37,6 +37,8 @@ public:
 
     ~Collectable();
 
+    int get_power_number();
+
 public slots:
 
     void move(); //next position of the collectable depending on their way of moving

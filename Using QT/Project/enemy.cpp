@@ -1,5 +1,7 @@
 #include "listheaders.h"
 
+#include <typeinfo>
+
 Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixmapItem (parent)
 {
 
@@ -17,6 +19,17 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(timer_connect()));
 
     timer->start(30);
+
+    collision_range_br = new QGraphicsRectItem(this);
+    collision_range_bl = new QGraphicsRectItem(this);
+
+    collision_range_br->setRect(0,0, 8 ,8); // bottom right corner
+    collision_range_br->setPos(36, 36);
+    collision_range_br->setPen(QPen(Qt::NoPen));
+
+    collision_range_bl->setRect(0,0,8,8); // bottom left corner
+    collision_range_bl->setPos(-9, 36);
+    collision_range_bl->setPen(QPen(Qt::NoPen));
 
 }
 
@@ -133,6 +146,33 @@ void Enemy::move()
     }
 
     update_collision_range(collision_ranges, size, speed);
+
+    //make sure he doesn't fall off:
+    QList<QGraphicsItem*> corner_colliding_br;
+    QList<QGraphicsItem*> corner_colliding_bl;
+
+    corner_colliding_br = collision_range_br->collidingItems();
+    corner_colliding_bl = collision_range_bl->collidingItems();
+
+    int br = corner_colliding_br.size();
+    int bl = corner_colliding_bl.size();
+
+    if(br == 1) //if there is no collision on the bottom right or left (THE COLLISION BOX COUNTS AS A COLLISION; HENCE 1 AND NOT 0)
+    {
+        if( speed.x > 0)
+        {
+            speed.x = -speed.x;
+        }
+    }
+
+    if(bl == 1)
+    {
+        if( speed.x < 0)
+        {
+            speed.x = -speed.x;
+        }
+    }
+
 
     {
     QString temp_collision_type;
