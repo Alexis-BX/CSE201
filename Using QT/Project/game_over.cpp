@@ -26,11 +26,15 @@ void Game_over::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
+    case Qt::Key_Enter:
+    case Qt::Key_Space:
     case Qt::Key_Return:
     {
         deleteLater();
 
         view->play_level(view->current_level);
+
+        break;
     }
     }
 }

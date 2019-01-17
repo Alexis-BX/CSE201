@@ -10,17 +10,6 @@ Menu::Menu(QGraphicsItem* parent) :
     setFlag(QGraphicsItem::ItemIsFocusable);
 
     setFocus();
-
-    //QTimer * timer = new QTimer();
-
-    //QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
-
-    //timer->start(100);
-}
-
-void Menu::update()
-{
-    set_animation_state();
 }
 
 void Menu::keyPressEvent(QKeyEvent *event)
@@ -49,6 +38,7 @@ void Menu::keyPressEvent(QKeyEvent *event)
     }
     case Qt::Key_Enter:
     case Qt::Key_Space:
+    case Qt::Key_Return:
     {
         launch();
         break;
