@@ -34,10 +34,11 @@
         <file>Textures/Main_texture/power_ups2.png</file>
         <file>Textures/Main_texture/blocks.png</file>
         <file>Menu/accueilsgj.png</file>
+        <file>Levels/Level_003.png</file>
         <file>Levels/Level_001.png</file>
         <file>Levels/Level_002.png</file>
-        <file>Levels/level_guide.png</file>
-        <file>Levels/Level_003.png</file>
         <file>Levels/Level_004.png</file>
+        <file>Levels/level_guide.png</file>
+        <file>Levels/Level_005.png</file>
     </qresource>
 </RCC>

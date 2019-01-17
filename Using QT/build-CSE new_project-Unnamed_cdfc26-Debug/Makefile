@@ -281,6 +281,7 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
+		../Project/.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -545,6 +546,7 @@ Makefile: ../Project/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/mk
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -738,6 +740,7 @@ Makefile: ../Project/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/mk
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf:
@@ -814,6 +817,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r CSE2017.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -859,6 +863,7 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Levels/level_guide.png \
 		../Project/Levels/screen_start.png \
 		../Project/Levels/Level_001.png \
+		../Project/Levels/Level_005.png \
 		../Project/Backgrounds/Main_background/nd.png \
 		../Project/Backgrounds/Main_background/building4.png \
 		../Project/Backgrounds/Main_background/building3.png \
