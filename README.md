@@ -17,12 +17,14 @@ Warning: Audio file would take a lot of time and memory to compile.
 
 ### Installation
 
-Linux & OSX
+Linux (qmake)
 ```
 git clone https://github.com/Zovj2auM/CSE201.git
 cd Using\ QT/Project
 make && make clean
 ```
+
+Note: It seems that the image file of the sandbox is corrupted, so we have not tested the compability. However it compiles normally with qmake and QtCreator on Ubuntu 16.04.
 
 Please report a bug [here](https://github.com/Zovj2auM/CSE201/issues) if you encounter any problems with compiling and/or running.
 
