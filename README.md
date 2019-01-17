@@ -13,8 +13,11 @@ In order to install Mario Bros on your computer, you need to install
 - QT 4.5 or newer
 - 4GB of RAM or more (for compiling)
 
+Warning: Audio file would take a lot of time and memory to compile.
+
 ### Installation
 
+Linux & OSX
 ```
 git clone https://github.com/Zovj2auM/CSE201.git
 cd Using\ QT/Project
@@ -36,11 +39,27 @@ TODO
 
 ### Contributing
 
-- Fork the branch
-- Create your feature branch (`git checkout -b feature/GenericName`)
-- Add and commit changes (`git commit -am 'Comment'`)
-- Push to your branch (`git push origin feature/GenericName`)
-- Open a Pull Request
+- For team members:
+    + Pull from the master branch (`git pull origin master`)
+    + Add everything (`git add .`) or some specific files
+    + Commit (`git commit -m "Changes+Name`)
+    + Push to master branch (`git push origin master`)
+
+    + If you want to test a new feature: Create new branch, develope on it then merge back to master branch.
+    ```
+    git checkout -b Awesome-Feature
+    Do awesome things
+    git merge --no-ff Awesome-Feature
+    git commit -m "Comment"
+    git push origin master
+    ```
+
+- For contributors:
+    + Fork the branch
+    + Create your feature branch (`git checkout -b feature/GenericName`)
+    + Add and commit changes (`git commit -am 'Comment'`)
+    + Push to your branch (`git push origin feature/GenericName`)
+    + Open a Pull Request
 
 ### License
 
