@@ -4,6 +4,8 @@ small_collectable : small_cheese
 big_collectable : big_cheese
 power_ups : power_ups
 enemy_1 : thief_walking_casual
+enemy_2 : cloud
+enemy_3 : smoking_dude
 projectiles : projectiles
 projectile_vanish_effect : explosion
 

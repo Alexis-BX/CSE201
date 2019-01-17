@@ -30,8 +30,6 @@ public:
 
     Music * music;
 
-    Music * collect_cheese;
-
     Menu * menu;
 
     QGraphicsScene *scene_menu  = new QGraphicsScene();

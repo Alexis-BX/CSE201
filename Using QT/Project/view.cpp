@@ -17,8 +17,6 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
     music = new Music();
 
-    collect_cheese = new Music();
-
     current_level = ":/Images/Levels/Level_002.png";
 }
 
@@ -31,12 +29,14 @@ void View::update_background()
 
 void View::collect()
 {
-    collect_cheese->cheese();
+    music->cheese();
 }
 
 void View::game_over()
 {
     music->stop();
+
+    music->end();
 
     setScene(scene_game_over);
     scene_game_over->addItem(new Game_over(player->coin_counter->coins));
@@ -47,6 +47,8 @@ void View::game_over()
 void View::you_win()
 {
     music->stop();
+
+    music->win();
 
     setScene(scene_you_win);
     scene_you_win->addItem(new You_win());

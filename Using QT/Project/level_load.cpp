@@ -16,6 +16,8 @@ Level_load::Level_load(View* view) : view(view)
     color_triples.push_back(new Color_triple<Tube_block>(163, 73, 164, view));
     color_triples.push_back(new Color_triple<Tube_block_up>(97, 44, 97, view));
     color_triples.push_back(new Color_triple<Tube_block_down>(206, 149, 206, view));
+    color_triples.push_back(new Color_triple<Enemy_2>(195, 195, 195, view));
+    color_triples.push_back(new Color_triple<Enemy_3>(63, 72, 204, view));
 }
 
 void Level_load::load_level(QString filename)

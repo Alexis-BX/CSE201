@@ -281,11 +281,6 @@ void Player::move()
                 view->game_over();
                 return;
             }
-
-            else if (temp_collision_type == "add_coin")
-            {
-                view->collect();
-            }
         }
     }
     }

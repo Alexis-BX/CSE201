@@ -14,6 +14,7 @@ void Coin_counter::add_coin(int amount)
 {
     coins += amount;
     update_counter();
+    view->music->cheese();
 }
 
 void Coin_counter::update_counter()
