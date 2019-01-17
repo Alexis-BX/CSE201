@@ -367,7 +367,7 @@ bool Test::Test_Move_Second(){
                     return false;
                 }
             }
-            else{std::cout << "2" << std::endl;return false;}
+            else{return false;}
         }
     }
 
@@ -376,11 +376,10 @@ bool Test::Test_Move_Second(){
         if(!b1){
             if(int(enemy->speed.y) == 0){
                 if(int(enemy->y()) != view->world_size.top){
-                    std::cout << "3" << std::endl;
                     return false;
                 }
             }
-            else{std::cout << "4" << std::endl;return false;}
+            else{return false;}
         }
     }
 
@@ -389,11 +388,10 @@ bool Test::Test_Move_Second(){
         if(!c1){
             if(int(enemy->speed.x) == 0){
                 if(int(enemy->x()) != view->world_size.right){
-                    std::cout << "5" << std::endl;
                     return false;
                 }
             }
-            else{std::cout << "6" << std::endl;return false;}
+            else{return false;}
         }
     }
 
@@ -402,11 +400,10 @@ bool Test::Test_Move_Second(){
         if(!d1){
             if(int(enemy->speed.x) == 0){
                 if(int(enemy->x()) != view->world_size.left){
-                    std::cout << "7" << std::endl;
                     return false;
                 }
             }
-            else{std::cout << "8" << std::endl;return false;}
+            else{return false;}
         }
     }
     return true;
@@ -515,7 +512,6 @@ bool Test::Test_Enemy(){
     if(test.Test_Jump() && test.Test_Move()){
         return true;
     }
-    std::cout << "2" << std::endl;
     return false;
 }
 
@@ -568,7 +564,6 @@ bool Test::Test_SuperPow(){
     if(test.Test_UpdateCounter_SP() && test.Test_PowerUp() && test.Test_Speed_ThrowSpeed()){
         return true;
     }
-    std::cout << "1" << std::endl;
     return false;
 }
 
@@ -705,16 +700,50 @@ bool Test::Test_Move_Player(){
             }
         }
     }
-    //not ready yet
+
+    //movements
+    if(player->collision[0]){
+        if(int(player->speed.x) != 0){
+            return false;
+        }
+    }
+    if(player->collision[1]){
+        if(int(player->speed.y) != 0){
+            return false;
+        }
+    }
+    if(!player->collision[0] && !player->collision[1] && player->collision[2]){
+        if(int(player->speed.y) != 0){
+            return false;
+        }
+    }
+
+    //jump reset
+    if(player->collision[1] && int(player->speed.y) >= 0){
+        if(player->times_jumped != 0){
+            return false;
+        }
+    }
     return true;
 }
 
-//All tests
-
-void Test::All_Tests(){
-    Test test;
-    if(test.Test_SuperPow() && test.Test_Enemy() && test.Test_Tools() && test.Test_Blink() && test.Test_CoinCount()){
-        std::cout << "All tests passed" << std::endl;
+bool Test::Test_Jump_Player(){
+    Player* player = new Player;
+    player->times_jumped = 1;
+    player->max_consecutive_jumps = 2;
+    player->super_powers->supers_b[super_jump] = true;
+    player->jump();
+    if(player->times_jumped != 1){  //shouldn't have changed
+        return false;
     }
-    else{std::cout << "not ok" << std::endl;}
+    player->super_powers->supers_b[super_jump] = false;
+    player->jump();
+    if(player->times_jumped == 2){
+        if(int(player->speed.y) == -int(player->max_speed.y)){
+            std::cout << "yayy" <<std::endl;
+            return true;
+        }
+    }
+    return false;
 }
+
