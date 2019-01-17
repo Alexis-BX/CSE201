@@ -3,7 +3,7 @@
 Level_load::Level_load(View* view) : view(view)
 {
     color_triples.push_back(new Color_triple<Base_block>(0,0,0,view));
-    color_triples.push_back(new Color_triple<Enemy_1>(237, 28, 36,view));
+    color_triples.push_back(new Color_triple<Enemy_3>(237, 28, 36,view));
     color_triples.push_back(new Color_triple<Special_block_below>(185, 122, 87,view));
     color_triples.push_back(new Color_triple<Special_block_above>(34, 177, 76,view));
     color_triples.push_back(new Color_triple<Small_collectable>(255, 242, 00,view));
@@ -14,6 +14,8 @@ Level_load::Level_load(View* view) : view(view)
     color_triples.push_back(new Color_triple<Tube_block>(163, 73, 164, view));
     color_triples.push_back(new Color_triple<Tube_block_up>(97, 44, 97, view));
     color_triples.push_back(new Color_triple<Tube_block_down>(206, 149, 206, view));
+    color_triples.push_back(new Color_triple<Enemy_2>(195, 195, 195, view));
+    color_triples.push_back(new Color_triple<Enemy_3>(63, 72, 204, view));
 }
 
 void Level_load::load_level(QString filename)

@@ -10,6 +10,8 @@ enum Object_texture
     big_collectable,
     power_ups,
     enemy_1,
+    enemy_2,
+    enemy_3,
     projectiles,
     projectile_vanish_effect,
     object_texture_count

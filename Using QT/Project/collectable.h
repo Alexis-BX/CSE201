@@ -33,6 +33,8 @@ public:
 
     QTimer* move_timer = nullptr;
 
+    virtual int get_power_number();
+
     ~Collectable();
 
 public slots:

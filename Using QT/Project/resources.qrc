@@ -36,11 +36,10 @@
         <file>Backgrounds/Main_background/song2.wav</file>
         <file>Textures/Main_texture/.DS_Store</file>
         <file>Textures/Main_texture/.DS_Store~HEAD</file>
-        <file>Textures/Main_texture/enemy2.png</file>
-        <file>Textures/Main_texture/enemy3.png</file>
         <file>Textures/Main_texture/power_ups2.png</file>
         <file>Textures/Main_texture/blocks.png</file>
         <file>Backgrounds/Main_background/youwin.png</file>
         <file>Menu/accueilsgj.png</file>
+        <file>Textures/Main_texture/cloud.png</file>
     </qresource>
 </RCC>

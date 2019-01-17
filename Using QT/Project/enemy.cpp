@@ -43,23 +43,25 @@ Enemy::~Enemy()
 
 void Enemy::timer_connect()
 {
-    move();
+        move();
 
-    if(state == aggressiv)
-    {
-        projectile_count += 1;
-        if(projectile_count == 100)
+        if(state == aggressiv)
         {
-            projectile_count = 0;
-            throw_projectile();
+            projectile_count += 1;
+            if(projectile_count == 100)
+            {
+                projectile_count = 0;
+                throw_projectile();
+            }
         }
-    }
 }
 
 void Enemy::move()
 {
     //Accelerate
-    speed.y += 1;
+    if(type != cloud){
+        speed.y += 1;
+    }
 
     //Player in range
     greal distance_to_player = distance(pair{view->player->x(),view->player->y()},pair{x(),y()});
@@ -162,7 +164,10 @@ void Enemy::move()
             if (collision[0])
             {
                 speed.x = 0;
-                jump();
+
+                if(type != cloud){
+                    jump();
+                }
             }
             if (collision[1])
             {
@@ -221,5 +226,7 @@ void Enemy::move()
 
 void Enemy::throw_projectile()
 {    
-    view->scene->addItem(new Enemy_projectile_1(pair{x(),y()},facing,size.x));
+    if(type == basic){
+        view->scene->addItem(new Enemy_projectile_1(pair{x(),y()},facing,size.x));
+    }
 }
