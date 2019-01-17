@@ -6,7 +6,7 @@ class Game_over: public QObject, public QGraphicsPixmapItem
 
 {
 public:
-    Game_over(QGraphicsItem* parent = nullptr);
+    Game_over(int final_score, QGraphicsItem* parent = nullptr);
 
     void keyPressEvent(QKeyEvent * event);
 };

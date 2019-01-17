@@ -31,6 +31,8 @@ class Active_block: public Block
 {
 public:
     Active_block(pair position, QGraphicsItem* parent = nullptr);
+
+    ~Active_block();
 };
 
 

@@ -27,20 +27,17 @@
         <file>Backgrounds/Main_background/building3.png</file>
         <file>Backgrounds/Main_background/building4.png</file>
         <file>Levels/buttons.png</file>
-        <file>Backgrounds/Main_background/song.wav</file>
         <file>Levels/Level_clara_003.png</file>
         <file>Levels/Level_clara_004.png</file>
         <file>Backgrounds/Main_background/you_win.png</file>
         <file>game_over.png</file>
         <file>Backgrounds/Main_background/game_over.png</file>
-        <file>Backgrounds/Main_background/song2.wav</file>
         <file>Textures/Main_texture/.DS_Store</file>
         <file>Textures/Main_texture/.DS_Store~HEAD</file>
         <file>Textures/Main_texture/enemy2.png</file>
         <file>Textures/Main_texture/enemy3.png</file>
         <file>Textures/Main_texture/power_ups2.png</file>
         <file>Textures/Main_texture/blocks.png</file>
-        <file>Backgrounds/Main_background/youwin.png</file>
         <file>Menu/accueilsgj.png</file>
     </qresource>
 </RCC>

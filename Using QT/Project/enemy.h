@@ -44,12 +44,14 @@ public:
 
     void throw_projectile();
 
+    QGraphicsRectItem* collision_range_br;
+    QGraphicsRectItem* collision_range_bl;
+
     ~Enemy();
 
 public slots:
 
     // Slot for timer
     void timer_connect();
-
 };
 #endif // ENEMY_H

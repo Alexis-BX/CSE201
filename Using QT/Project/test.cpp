@@ -7,6 +7,7 @@
 #include <QGraphicsItem>
 #include <QColor>
 #include <QVector>
+#include <typeinfo>
 
 Test::Test(){}
 
@@ -569,6 +570,143 @@ bool Test::Test_SuperPow(){
     }
     std::cout << "1" << std::endl;
     return false;
+}
+
+//tests for projectile
+
+bool Test::Test_Move_Projectile(){
+    pair position = {double(rand() % 739), double(rand() % 505)};
+    Player_projectile_2 proj(position, true, 20, 2);   //wine projectile
+    int x = proj.life;
+    proj.move();
+
+    //1st test: life goes down by 1
+    if(int(proj.life) != x - 1){
+        return false;
+    }
+
+    //2nd test: updating colliding items
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < proj.collision_ranges[i]->collidingItems().size(); j++){
+            QString collision_type = collision_master->collide("Projectile",QString(typeid(*proj.collision_ranges[i]->collidingItems()[j]).name()));
+            if(collision_type == "simple_collision" || collision_type == "damage_block" || collision_type == "enemy_collision"){
+                if(!proj.collision[i]){
+                    return false;
+                }
+            }
+        }
+    }
+    std::cout << "move proj ok" << std::endl;
+    return true;
+}
+
+//tests for player
+
+bool Test::Test_KeyEvents(QKeyEvent *event){
+    Player* player = new Player;
+    player->times_jumped= 0;
+    player->keyPressEvent(event);
+    if(event->key() == Qt::Key_Left){
+        if(!player->pressed_left){
+            return false;
+        }
+        player->keyReleaseEvent(event);
+        if(player->pressed_left){
+            return false;
+        }
+    }
+    if(event->key() == Qt::Key_Right){
+        if(!player->pressed_right){
+            return false;
+        }
+        player->keyReleaseEvent(event);
+        if(player->pressed_right){
+            return false;
+        }
+    }
+    if(event->key() == Qt::Key_Up){
+        if(player->times_jumped != 1){
+            return false;
+        }
+    }
+    std::cout << "Key events player works" << std::endl;
+    return true;
+}
+
+bool Test::Test_Move_Player(){
+    Player* player = new Player;
+    int x = int(player->speed.x);
+    int y = int(player->speed.y);
+
+    //motion smooth tests
+
+    if(player->pressed_left){
+        if(x > (-player->max_speed.x)*(player->super_powers->get_speed())){
+            if(int(player->speed.x) != x - 1){
+                return false;
+            }
+        }
+    }
+    else{
+        if(x < 0){
+            if(int(player->speed.x) != (x < -1) ? x/2 : 0){
+                return false;
+            }
+        }
+    }
+    if(player->pressed_right){
+        if(x < (player->max_speed.x)*(player->super_powers->get_speed())){
+            if(int(player->speed.x) != x + 1){
+                return false;
+            }
+        }
+    }
+    else{
+        if(x > 0){
+            if(int(player->speed.x) != (x > 1) ? x/2 : 0){
+                return false;
+            }
+        }
+    }
+    if(y > player->max_speed.y){
+        if(int(player->speed.y) != int(player->max_speed.y)){
+            return false;
+        }
+    }
+    else if(y < -player->max_speed.y){
+        if(int(player->speed.y) != -int(player->max_speed.y)){
+            return false;
+        }
+    }
+
+    //in boundaries tests
+    bool y1 = (0 > player->speed.y);
+    bool x1 = (0 < player->speed.x);
+    bool x2 = (0 > player->speed.x);
+
+    if(player->y() >= view->world_size.bottom){
+        if(!y1){
+            if(int(player->y()) != int(view->world_size.bottom)){
+                return false;
+            }
+        }
+    }
+    if(player->x() <= view->world_size.left){
+        if(!x1){
+            if(int(player->x()) != int(view->world_size.left)){
+                return false;
+            }
+        }
+    }
+    if(player->x() >= (view->world_size.right - player->size.x)){
+        if(!x2){
+            if(int(player->x()) != int(view->world_size.right - player->size.x)){
+                return false;
+            }
+        }
+    }
+    //not ready yet
+    return true;
 }
 
 //All tests

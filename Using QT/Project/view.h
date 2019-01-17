@@ -5,6 +5,7 @@
 #include "level_load.h"
 #include "backgrounds.h"
 #include "music.h"
+#include "menu.h"
 
 class Player;
 
@@ -29,6 +30,8 @@ public:
 
     Music * music;
 
+    Menu * menu;
+
     QGraphicsScene *scene_menu  = new QGraphicsScene();
     QGraphicsScene *scene  = new QGraphicsScene();
     QGraphicsScene *scene_game_over  = new QGraphicsScene();
@@ -46,6 +49,8 @@ public:
     void game_over();
 
     void you_win();
+
+    void open_menu();
 
     void play_level(QString level_name);
 

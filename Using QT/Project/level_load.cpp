@@ -16,56 +16,29 @@ Level_load::Level_load(View* view) : view(view)
     color_triples.push_back(new Color_triple<Tube_block_down>(206, 149, 206, view));
 }
 
-void Level_load::load_level(QString filename, QGraphicsScene*scene)
+void Level_load::load_level(QString filename)
 {
-    this->scene = scene;
-
-    setup_view();
-
     setup_background();
 
     read_level_image(filename);
 }
 
-
-void Level_load::setup_view()
-{
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    view->setFixedSize(int(view->screen_size.x),int(view->screen_size.y));
-}
-
 void Level_load::setup_background()
 {
     //Set the background layers (paralax background)
-    for(auto iter = view->backgrounds_far.begin(); iter != view->backgrounds_far.end(); iter++)
-    {
-        delete(*iter);
-    }
+
     view->backgrounds_far.clear();
-
-    for(auto iter = view->backgrounds_middle.begin(); iter != view->backgrounds_middle.end(); iter++)
-    {
-        delete(*iter);
-    }
     view->backgrounds_middle.clear();
-
-    for(auto iter = view->backgrounds_close.begin(); iter != view->backgrounds_close.end(); iter++)
-    {
-        delete(*iter);
-    }
     view->backgrounds_close.clear();
 
     view->backgrounds_far.push_back(new Background_far(pair{0,0}));
-    scene->addItem(view->backgrounds_far[0]);
+    view->scene->addItem(view->backgrounds_far[0]);
 
     view->backgrounds_middle.push_back(new Background_middle(pair{0,0}));
-    scene->addItem(view->backgrounds_middle[0]);
+    view->scene->addItem(view->backgrounds_middle[0]);
 
     view->backgrounds_close.push_back(new Background_close(pair{0,0}));
-    scene->addItem(view->backgrounds_close[0]);
+    view->scene->addItem(view->backgrounds_close[0]);
 }
 
 void Level_load::read_level_image(QString filename)
@@ -108,6 +81,6 @@ void Level_load::color_to_object(int R, int G, int B, pair position)
 {
     for(unsigned long long i = 0; i < color_triples.size(); i++)
     {
-        (*color_triples[i]).test(R,G,B,position, scene);
+        (*color_triples[i]).test(R,G,B,position, view->scene);
     }
 }
