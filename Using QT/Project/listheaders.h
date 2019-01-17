@@ -23,6 +23,7 @@
 #include "enemies.h"
 #include "enemy.h"
 #include "game_over.h"
+#include "help.h"
 #include "level_load.h"
 #include "menu.h"
 #include "music.h"
