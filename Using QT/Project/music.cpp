@@ -2,23 +2,39 @@
 #include "global.h"
 
 
-Music::Music(QObject* parent):
-    QMediaPlayer (parent)
+Music::Music()
 {
-    music = new QSound("://Images/Backgrounds/Main_background/song2.wav");
+    song = new QSound("://Images/Backgrounds/Main_background/song3.wav");
+
+    music.push_back(new QSound("://Images/Backgrounds/Main_background/cheese.wav"));
+    music.push_back(new QSound("://Images/Backgrounds/Main_background/end.wav"));
+    music.push_back(new QSound("://Images/Backgrounds/Main_background/win.wav"));
 }
 
-Music::~Music()
+Music::~Music() //music destructor
 {
-    delete (music);
+    delete (song);
+    for (int i = 0; i < sound_effects_counter; i++)
+    {
+        delete (music[i]);
+    }
 }
 
-void Music::start()
+void Music::start_song() //function that makes the music start
 {
-    music->play();
+    song->play();
+    song->setLoops(QSound::Infinite);
 }
 
-void Music::stop()
+void Music::stop_song() //function that makes the music stop
 {
-    music->stop();
+    song->stop();
 }
+
+void Music::play_sound_effect(Sound_effects sound_effect) //function that makes the good sound effect play
+{
+    music[sound_effect]->play();
+}
+
+
+

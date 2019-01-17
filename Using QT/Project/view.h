@@ -44,6 +44,8 @@ public:
     std::vector<Background_close*> backgrounds_close;
 
     // Create world
+    void collect();
+
     void update_background();
 
     void game_over();

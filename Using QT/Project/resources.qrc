@@ -29,16 +29,20 @@
         <file>Backgrounds/Main_background/game_over.png</file>
         <file>Textures/Main_texture/.DS_Store</file>
         <file>Textures/Main_texture/.DS_Store~HEAD</file>
-        <file>Textures/Main_texture/enemy2.png</file>
-        <file>Textures/Main_texture/enemy3.png</file>
         <file>Textures/Main_texture/power_ups2.png</file>
         <file>Textures/Main_texture/blocks.png</file>
         <file>Menu/accueilsgj.png</file>
         <file>Levels/Level_003.png</file>
+        <file>Textures/Main_texture/cloud.png</file>
+        <file>Backgrounds/Main_background/song3.wav</file>
+        <file>Levels/Level_005.png</file>
         <file>Levels/Level_001.png</file>
         <file>Levels/Level_002.png</file>
         <file>Levels/Level_004.png</file>
         <file>Levels/level_guide.png</file>
         <file>Levels/Level_005.png</file>
+        <file>Backgrounds/Main_background/cheese.wav</file>
+        <file>Backgrounds/Main_background/end.wav</file>
+        <file>Backgrounds/Main_background/win.wav</file>
     </qresource>
 </RCC>

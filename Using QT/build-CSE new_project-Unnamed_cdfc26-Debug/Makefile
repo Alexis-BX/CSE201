@@ -846,11 +846,10 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Textures/Main_texture/power_ups.png \
 		../Project/Textures/Main_texture/.DS_Store \
 		../Project/Textures/Main_texture/Main_texture_list.txt \
-		../Project/Textures/Main_texture/enemy3.png \
 		../Project/Textures/Main_texture/character22.12R.png \
+		../Project/Textures/Main_texture/cloud.png \
 		../Project/Textures/Main_texture/explosion.png \
 		../Project/Textures/Main_texture/.DS_Store~HEAD \
-		../Project/Textures/Main_texture/enemy2.png \
 		../Project/Textures/Main_texture/smoking_dude.png \
 		../Project/Textures/Main_texture/projectiles.png \
 		../Project/Textures/Main_texture/blocks.png \
@@ -864,16 +863,21 @@ qrc_resources.cpp: ../Project/resources.qrc \
 		../Project/Levels/screen_start.png \
 		../Project/Levels/Level_001.png \
 		../Project/Levels/Level_005.png \
+		../Project/Levels/Level_005.png \
 		../Project/Backgrounds/Main_background/nd.png \
 		../Project/Backgrounds/Main_background/building4.png \
 		../Project/Backgrounds/Main_background/building3.png \
 		../Project/Backgrounds/Main_background/you_win.png \
 		../Project/Backgrounds/Main_background/game_over.png \
+		../Project/Backgrounds/Main_background/song3.wav \
 		../Project/Backgrounds/Main_background/arc.png \
 		../Project/Backgrounds/Main_background/building2.png \
+		../Project/Backgrounds/Main_background/win.wav \
 		../Project/Backgrounds/Main_background/eiffel.png \
 		../Project/Backgrounds/Main_background/Main_background_list.txt \
 		../Project/Backgrounds/Main_background/building1.png \
+		../Project/Backgrounds/Main_background/cheese.wav \
+		../Project/Backgrounds/Main_background/end.wav \
 		../Project/Backgrounds/Main_background/bg.png \
 		../Project/Rules/Collisions.txt
 	/Users/devulpian/Qt/5.12.0/clang_64/bin/rcc -name resources ../Project/resources.qrc -o qrc_resources.cpp
