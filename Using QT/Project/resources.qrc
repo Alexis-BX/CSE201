@@ -42,5 +42,6 @@
         <file>Textures/Main_texture/blocks.png</file>
         <file>Backgrounds/Main_background/youwin.png</file>
         <file>Menu/accueilsgj.png</file>
+        <file>Backgrounds/Main_background/song3.wav</file>
     </qresource>
 </RCC>

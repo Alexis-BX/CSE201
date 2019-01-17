@@ -5,7 +5,7 @@
 Music::Music(QObject* parent):
     QMediaPlayer (parent)
 {
-    music = new QSound("://Images/Backgrounds/Main_background/song2.wav");
+    music = new QSound("://Images/Backgrounds/Main_background/song3.wav");
 }
 
 Music::~Music()
@@ -16,6 +16,7 @@ Music::~Music()
 void Music::start()
 {
     music->play();
+    music->QSound::Infinite;
 }
 
 void Music::stop()
