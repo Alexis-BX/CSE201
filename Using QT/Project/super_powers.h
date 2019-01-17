@@ -5,10 +5,10 @@
 enum Supers
 {
     super_fast = eclair,
-    super_invincible2 = croissant,
+    super_throw = croissant,
     super_invincible = chocolatine,
     super_jump = mini_eiffel,
-    super_throw = glass_wine,
+    super_wine = glass_wine,
     super = mushroom,
     supers_count
 };
