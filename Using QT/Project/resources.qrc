@@ -2,7 +2,6 @@
     <qresource prefix="/Images">
         <file>Levels/screen_start.png</file>
         <file>Menu/start_button.png</file>
-        <file>Menu/help.png</file>
         <file>Textures/Main_texture/explosion.png</file>
         <file>Textures/Main_texture/smoking_dude.png</file>
         <file>Textures/Main_texture/thief_dying_poorthing.png</file>

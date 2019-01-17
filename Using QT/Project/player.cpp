@@ -78,8 +78,9 @@ void Player::keyPressEvent(QKeyEvent *event)
         throw_projectile();
         break;
     }
-    case Qt::Key_A:
+    case Qt::Key_Return:
     {
+        deleteLater();
         world_launch_level();
         break;
     }
