@@ -10,9 +10,11 @@ public:
     ~Music();
     void stop();
     void start();
+    void cheese();
 
 private:
     QSound *music;
+    QSound *collect_cheese;
 };
 
 #endif // MUSIC_H

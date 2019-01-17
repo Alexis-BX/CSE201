@@ -282,6 +282,10 @@ void Player::move()
                 return;
             }
 
+            else if (temp_collision_type == "add_coin")
+            {
+                view->collect();
+            }
         }
     }
     }
@@ -334,6 +338,8 @@ void Player::move()
 
     super_powers->update_counters();
 
+
+
     setPixmap(animations[super_powers->supers_b[super]][facing][state][int(count)]);
 
     setPos(x()+speed.x,y()+speed.y);
@@ -341,6 +347,8 @@ void Player::move()
     view->centerOn(this->x(), 0);
 
     view->update_background();
+
+
 }
 
 void Player::throw_projectile()

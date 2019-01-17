@@ -30,6 +30,8 @@ public:
 
     Music * music;
 
+    Music * collect_cheese;
+
     Menu * menu;
 
     QGraphicsScene *scene_menu  = new QGraphicsScene();
@@ -44,6 +46,8 @@ public:
     std::vector<Background_close*> backgrounds_close;
 
     // Create world
+    void collect();
+
     void update_background();
 
     void game_over();
