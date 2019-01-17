@@ -1,7 +1,7 @@
 #include "world.h"
 #include "listheaders.h"
 
-World::World(QString level, QGraphicsItem* parent):
+World::World( QGraphicsItem* parent):
      QObject(), QGraphicsPixmapItem (parent)
 {
 
@@ -11,7 +11,7 @@ World::World(QString level, QGraphicsItem* parent):
 
     selected = op_start;
 
-    current_level = level;
+
 
 }
 

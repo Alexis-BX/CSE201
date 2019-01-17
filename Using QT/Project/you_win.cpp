@@ -30,8 +30,6 @@ void You_win::keyPressEvent(QKeyEvent *event)
     {
     case Qt::Key_Return:
     {
-
-
         view->world();
     }
     }

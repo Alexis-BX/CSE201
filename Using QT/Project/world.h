@@ -9,7 +9,7 @@ class World: public QObject,public QGraphicsPixmapItem
     Q_OBJECT
 public:
 
-    World(QString level, QGraphicsItem* parent = nullptr);
+    World( QGraphicsItem* parent = nullptr);
 
     int selected;
 

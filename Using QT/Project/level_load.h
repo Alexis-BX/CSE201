@@ -15,8 +15,6 @@ public:
 
     QGraphicsScene*scene;
 
-    QString level;
-
     void load_level(QString filename);
 
     void setup_background();
