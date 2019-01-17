@@ -14,7 +14,7 @@ CC            = /Library/Developer/CommandLineTools/usr/bin/clang
 CXX           = /Library/Developer/CommandLineTools/usr/bin/clang++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -stdlib=libc++ -Wno-unused-parameter -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -stdlib=libc++ -Wno-unused-parameter -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -Wno-unused-parameter -fPIC $(DEFINES)
 INCPATH       = -I../Project -I. -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtMultimedia.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtNetwork.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang -F/Users/devulpian/Qt/5.12.0/clang_64/lib
 QMAKE         = /Users/devulpian/Qt/5.12.0/clang_64/bin/qmake
 DEL_FILE      = rm -f
@@ -281,7 +281,6 @@ DIST          = /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.pr
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
-		../Project/.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -546,7 +545,6 @@ Makefile: ../Project/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/mk
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -740,7 +738,6 @@ Makefile: ../Project/CSE\ new_project.pro /Users/devulpian/Qt/5.12.0/clang_64/mk
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf:
@@ -817,7 +814,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r CSE2017.app
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -881,7 +877,7 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
-	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -Wno-unused-parameter -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -dM -E -o moc_predefs.h /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
+	/Library/Developer/CommandLineTools/usr/bin/clang++ -pipe -stdlib=libc++ -Wno-unused-parameter -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -Wno-unused-parameter -dM -E -o moc_predefs.h /Users/devulpian/Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_block.cpp moc_coin_counter.cpp moc_collectable.cpp moc_counter.cpp moc_enemy.cpp moc_menu.cpp moc_player.cpp moc_projectile.cpp moc_test.cpp
 compiler_moc_header_clean:

@@ -3,9 +3,9 @@
 Menu::Menu(QGraphicsItem* parent) :
     QObject(), QGraphicsPixmapItem (parent)
 {
-    load_animation();
-
     selected = op_start;
+
+    load_animation();
 
     setFlag(QGraphicsItem::ItemIsFocusable);
 
