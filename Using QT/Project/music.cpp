@@ -2,42 +2,39 @@
 #include "global.h"
 
 
-Music::Music(QObject* parent):
-    QMediaPlayer (parent)
+Music::Music()
 {
-    music = new QSound("://Images/Backgrounds/Main_background/song3.wav");
-    collect_cheese = new QSound("://Images/Backgrounds/Main_background/cheese.wav");
-    music_end = new QSound("://Images/Backgrounds/Main_background/end.wav");
-    music_win = new QSound("://Images/Backgrounds/Main_background/win.wav");
+    song = new QSound("://Images/Backgrounds/Main_background/song3.wav");
+
+    music.push_back(new QSound("://Images/Backgrounds/Main_background/cheese.wav"));
+    music.push_back(new QSound("://Images/Backgrounds/Main_background/end.wav"));
+    music.push_back(new QSound("://Images/Backgrounds/Main_background/win.wav"));
 }
 
-Music::~Music()
+Music::~Music() //music destructor
 {
-    delete (music);
+    delete (song);
+    for (int i = 0; i < sound_effects_counter; i++)
+    {
+        delete (music[i]);
+    }
 }
 
-void Music::start()
+void Music::start_song() //function that makes the music start
 {
-    music->play();
-    music->setLoops(QSound::Infinite);
+    song->play();
+    song->setLoops(QSound::Infinite);
 }
 
-void Music::cheese()
+void Music::stop_song() //function that makes the music stop
 {
-    collect_cheese->play();
+    song->stop();
 }
 
-void Music::end()
+void Music::play_sound_effect(Sound_effects sound_effect) //function that makes the good sound effect play
 {
-    music_end->play();
+    music[sound_effect]->play();
 }
 
-void Music::win()
-{
-    music_win->play();
-}
 
-void Music::stop()
-{
-    music->stop();
-}
+

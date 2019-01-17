@@ -3,22 +3,27 @@
 #include "global.h"
 #include <QtMultimedia>
 
-class Music:  public QMediaPlayer
+enum Sound_effects
+{
+    collect_cheese, //when collecting a cheese
+    music_end, //game over music
+    music_win, //winning music
+    sound_effects_counter
+};
+
+class Music
 {
 public:
-    Music(QObject *parent = nullptr);
+    Music();
     ~Music();
-    void stop();
-    void start();
-    void cheese();
-    void end();
-    void win();
+    void stop_song();
+    void start_song();
+    void play_sound_effect(Sound_effects sound_effect);
 
 private:
-    QSound *music;
-    QSound *collect_cheese;
-    QSound *music_end;
-    QSound *music_win;
+    QSound * song;
+    QList <QSound*> music;
+
 };
 
 #endif // MUSIC_H

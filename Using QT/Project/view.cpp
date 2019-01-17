@@ -27,16 +27,12 @@ void View::update_background()
     update_single_bg<Background_close>(backgrounds_close);
 }
 
-void View::collect()
-{
-    music->cheese();
-}
 
 void View::game_over()
 {
-    music->stop();
+    music->stop_song(); //stops the background music
 
-    music->end();
+    music->play_sound_effect(music_end); //calls the game over music
 
     setScene(scene_game_over);
     scene_game_over->addItem(new Game_over(player->coin_counter->coins));
@@ -46,9 +42,9 @@ void View::game_over()
 
 void View::you_win()
 {
-    music->stop();
+    music->stop_song(); //stops the background music
 
-    music->win();
+    music->play_sound_effect(music_win); //plays the winning music
 
     setScene(scene_you_win);
     scene_you_win->addItem(new You_win());
@@ -73,7 +69,7 @@ void View::play_level(QString level_name)
     setScene(scene);
     level_load->load_level(level_name);
 
-    music->start();
+    music->start_song();
 }
 
 

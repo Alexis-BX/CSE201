@@ -14,7 +14,7 @@ void Coin_counter::add_coin(int amount)
 {
     coins += amount;
     update_counter();
-    view->music->cheese();
+    view->music->play_sound_effect(collect_cheese); //plays the music coin sound effect
 }
 
 void Coin_counter::update_counter()
