@@ -7,7 +7,7 @@ class Base_color_triple
 {
 public:
 
-    static constexpr int diff = 30;
+    static constexpr int diff = 45;
 
     int r,g,b;
 

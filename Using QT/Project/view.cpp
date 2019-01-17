@@ -17,7 +17,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
     music = new Music();
 
-    current_level = ":/Images/Levels/Level_clara_002.png";
+    current_level = ":/Images/Levels/Level_002.png";
 }
 
 void View::update_background()
