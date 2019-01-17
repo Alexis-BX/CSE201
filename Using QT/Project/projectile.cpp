@@ -85,6 +85,12 @@ void Projectile::move()
                 {
                     view->scene->removeItem(colliding_items[j]);
                 }
+
+                else if (view->player->super_powers->supers_b[super_throw]) //when the super power throw is on then also breaks
+                {
+                    view->scene->removeItem(colliding_items[j]);
+                }
+
                 continue;
             }
 

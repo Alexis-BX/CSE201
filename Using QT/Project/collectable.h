@@ -37,7 +37,7 @@ public:
 
     ~Collectable();
 
-    int get_power_number();
+    //int get_power_number();
 
 public slots:
 

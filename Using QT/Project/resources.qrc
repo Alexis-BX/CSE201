@@ -32,19 +32,13 @@
         <file>Textures/Main_texture/power_ups2.png</file>
         <file>Textures/Main_texture/blocks.png</file>
         <file>Menu/accueilsgj.png</file>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <file>Textures/Main_texture/cloud.png</file>
-=======
-=======
         <file>Backgrounds/Main_background/song3.wav</file>
         <file>Levels/Level_005.png</file>
->>>>>>> 23e5c47f4777fdbe40f0d037e383d22df9a5fce4
         <file>Levels/Level_001.png</file>
         <file>Levels/Level_002.png</file>
         <file>Levels/level_guide.png</file>
         <file>Levels/Level_003.png</file>
         <file>Levels/Level_004.png</file>
->>>>>>> cd1275b7aa0109b0c9981ec3c9fc12f83419f918
     </qresource>
 </RCC>
