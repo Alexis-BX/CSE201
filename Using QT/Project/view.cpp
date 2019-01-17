@@ -61,6 +61,17 @@ void View::open_menu()
     scene_menu->addItem(menu);
 }
 
+void View::world()
+{
+    scene_game_over->clear();
+    scene_you_win->clear();
+
+    setScene(scene);
+
+    scene->addItem(new World());
+
+}
+
 void View::play_level(QString level_name)
 {
     scene_game_over->clear();

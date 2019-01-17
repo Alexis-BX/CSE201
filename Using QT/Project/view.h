@@ -54,6 +54,8 @@ public:
 
     void open_menu();
 
+    void world();
+
     void play_level(QString level_name);
 
     template <class BG> void update_single_bg(std::vector<BG*> &list);

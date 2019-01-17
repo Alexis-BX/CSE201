@@ -78,6 +78,11 @@ void Player::keyPressEvent(QKeyEvent *event)
         throw_projectile();
         break;
     }
+    case Qt::Key_A:
+    {
+        world_launch_level();
+        break;
+    }
     }
 }
 
@@ -466,6 +471,17 @@ Player::~Player()
     }
 
     delete(coin_counter);
+}
+
+void Player::world_launch_level()
+{
+    if ( (x() > 178 && x() < 218) || (x() > 178 && x() < 218) || (x() > 376 && x() < 416) || (x() > 574 && x() < 614))
+    {
+        view->scene->clear();
+        view->play_level(view->current_level);
+    }
+
+
 }
 
 void Player::create_animation()

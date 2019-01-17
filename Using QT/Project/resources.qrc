@@ -43,5 +43,7 @@
         <file>Backgrounds/Main_background/end.wav</file>
         <file>Backgrounds/Main_background/win.wav</file>
         <file>Levels/Level_005.png</file>
+        <file>Backgrounds/BackgroundWorld.png</file>
+        <file>Backgrounds/world_block.png</file>
     </qresource>
 </RCC>
