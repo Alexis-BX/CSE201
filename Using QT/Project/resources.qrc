@@ -33,8 +33,13 @@
         <file>Textures/Main_texture/blocks.png</file>
         <file>Menu/accueilsgj.png</file>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <file>Textures/Main_texture/cloud.png</file>
 =======
+=======
+        <file>Backgrounds/Main_background/song3.wav</file>
+        <file>Levels/Level_005.png</file>
+>>>>>>> 23e5c47f4777fdbe40f0d037e383d22df9a5fce4
         <file>Levels/Level_001.png</file>
         <file>Levels/Level_002.png</file>
         <file>Levels/level_guide.png</file>
