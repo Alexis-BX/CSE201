@@ -476,21 +476,21 @@ Player::~Player()
 
 void Player::world_launch_level()
 {
-    if (x() > 178 && x() < 218)
+    if (x() > 170 && x() < 225)
     {
         deleteLater();
         view->scene->clear();
         view->play_level(":/Images/Levels/Level_003.png");
     }
 
-    else if (x() > 376 && x() < 416)
+    else if (x() > 370 && x() < 422)
     {
         deleteLater();
         view->scene->clear();
         view->play_level(":/Images/Levels/Level_004.png");
     }
 
-    else if (x() > 574 && x() < 614)
+    else if (x() > 568 && x() < 620)
     {
         deleteLater();
         view->scene->clear();
