@@ -62,7 +62,7 @@ void Collectable::move()
         speed.x = -5;
     }
 
-    if(rand() % 20 == 0)
+    if(rand() % 80 == 0)
     {
         speed.y -= 10;
     }

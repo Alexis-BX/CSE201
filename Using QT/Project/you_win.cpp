@@ -7,18 +7,21 @@ You_win::You_win(QGraphicsItem* parent):
 
     view->centerOn(this);
 
-    QPixmap img(":/Images/Backgrounds/Main_background/youwin.png");
-
+    QPixmap img(":/Images/Backgrounds/Main_background/you_win.png");
     img = img.scaled(view->screen_size.x, view->screen_size.y);
 
+    QPainter painter;
+    if(painter.begin(&img))
+    {
+        painter.setPen(QPen(Qt::yellow));
+        painter.setFont(QFont("Times",12,QFont::Bold));
+        painter.drawText(QPoint(5,25),"Final Score: " + QString() );
+        painter.end();
+    }
     setPixmap(img);
 
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
-
-    QString score="Final Score:";
-    QPainter painter(&img) ;
-    painter.drawText(QPoint(5,25),score);
 }
 
 void You_win::keyPressEvent(QKeyEvent *event)

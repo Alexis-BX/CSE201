@@ -43,7 +43,9 @@ HEADERS += background.h \
            tools.h \
            types_states_textures.h \
            view.h \
-           you_win.h
+           you_win.h \
+    gobject.h \
+    gmovingobject.h
 SOURCES += background.cpp \
            backgrounds.cpp \
            base_color_triple.cpp \
@@ -71,5 +73,7 @@ SOURCES += background.cpp \
            texture.cpp \
            tools.cpp \
            view.cpp \
-           you_win.cpp
+           you_win.cpp \
+    gobject.cpp \
+    gmovingobject.cpp
 RESOURCES += resources.qrc

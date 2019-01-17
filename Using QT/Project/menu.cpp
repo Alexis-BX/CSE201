@@ -87,7 +87,7 @@ void Menu::set_animation_state()
 
 void Menu::load_animation()
 {
-   //new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
+   new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
 
     QPixmap images(":/Images/Levels/buttons.png");
 

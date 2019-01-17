@@ -453,10 +453,12 @@ qrc_resources.cpp: resources.qrc \
 		Textures/Main_texture/power_ups2.png \
 		Textures/Main_texture/thief_walking_casual.png \
 		Textures/Main_texture/power_ups.png \
+		Textures/Main_texture/.DS_Store \
 		Textures/Main_texture/Main_texture_list.txt \
 		Textures/Main_texture/enemy3.png \
 		Textures/Main_texture/character22.12R.png \
 		Textures/Main_texture/explosion.png \
+		Textures/Main_texture/.DS_Store~HEAD \
 		Textures/Main_texture/enemy2.png \
 		Textures/Main_texture/smoking_dude.png \
 		Textures/Main_texture/projectiles.png \
@@ -471,6 +473,7 @@ qrc_resources.cpp: resources.qrc \
 		Levels/Level_agathe_002.png \
 		Levels/Level_clara_004.png \
 		Backgrounds/Main_background/nd.png \
+		Backgrounds/Main_background/song.wav \
 		Backgrounds/Main_background/building4.png \
 		Backgrounds/Main_background/youwin.png \
 		Backgrounds/Main_background/building3.png \
@@ -479,6 +482,7 @@ qrc_resources.cpp: resources.qrc \
 		Backgrounds/Main_background/arc.png \
 		Backgrounds/Main_background/building2.png \
 		Backgrounds/Main_background/eiffel.png \
+		Backgrounds/Main_background/song2.wav \
 		Backgrounds/Main_background/Main_background_list.txt \
 		Backgrounds/Main_background/building1.png \
 		Backgrounds/Main_background/bg.png \
