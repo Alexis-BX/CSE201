@@ -54,7 +54,7 @@ public:
 
     void open_menu();
 
-    void world();
+    void world(QString level);
 
     void play_level(QString level_name);
 

@@ -51,8 +51,7 @@ void Menu::launch()
     switch (selected) {
     case op_start:
     {
-        deleteLater();
-        view->world();
+        view->world(view->current_level);
         view->scene_menu->clear();
         break;
     }

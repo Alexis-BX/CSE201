@@ -1,7 +1,7 @@
 #include "world.h"
 #include "listheaders.h"
 
-World::World(QGraphicsItem* parent):
+World::World(QString level, QGraphicsItem* parent):
      QObject(), QGraphicsPixmapItem (parent)
 {
 
@@ -10,6 +10,8 @@ World::World(QGraphicsItem* parent):
     view->scene->addItem(new Button(0, -505+18, QPixmap(":/Images/Backgrounds/BackgroundWorld.png")));
 
     selected = op_start;
+
+    current_level = level;
 
 }
 

@@ -15,6 +15,8 @@ public:
 
     QGraphicsScene*scene;
 
+    QString level;
+
     void load_level(QString filename);
 
     void setup_background();
@@ -22,6 +24,7 @@ public:
     void read_level_image(QString filename);
 
     void color_to_object(int B, int G, int R, pair position);
+
 
     std::vector<Base_color_triple*> color_triples;
 

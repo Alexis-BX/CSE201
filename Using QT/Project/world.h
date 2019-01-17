@@ -9,7 +9,7 @@ class World: public QObject,public QGraphicsPixmapItem
     Q_OBJECT
 public:
 
-    World(QGraphicsItem* parent = nullptr);
+    World(QString level, QGraphicsItem* parent = nullptr);
 
     int selected;
 
@@ -20,6 +20,9 @@ public:
     QTimer* timer;
 
     QTimer* timerGO;
+
+    QString current_level;
+
 
 };
 
