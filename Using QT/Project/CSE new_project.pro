@@ -57,7 +57,11 @@ SOURCES += \
     tools.cpp \
     view.cpp \
     you_win.cpp \
+<<<<<<< HEAD
     world.cpp
+=======
+    help.cpp
+>>>>>>> ad8829ca58eef31f206a8ef6e48ce2c4ecb87342
 
 
 HEADERS += \
@@ -93,7 +97,11 @@ HEADERS += \
     types_states_textures.h \
     view.h \
     you_win.h \
+<<<<<<< HEAD
     world.h
+=======
+    help.h
+>>>>>>> ad8829ca58eef31f206a8ef6e48ce2c4ecb87342
 
 
 

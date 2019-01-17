@@ -302,10 +302,10 @@ bool Test::Test_Move_First(){
     Enemy_1* enemy2 = new Enemy_1(position2);                             //new enemy that did not move
     double dist2 = distance(pair{player->x(),player->y()},pair{enemy2->x(),enemy2->y()});  //the distance between new enemy and player
     enemy2->state = aggressiv;
-    int x = (player->x() >= enemy2->x()) ? 0 : -1; //if player.x >= enemy2.x, x = 0; else, x = -1
-    int y = (enemy->speed.y > enemy->speedMax.y) ? 0 : -1; //y=0 if (...) true and -1 otherwise
+    bool x = (player->x() >= enemy2->x());
+    bool y = (enemy->speed.y > enemy->speedMax.y);
     enemy2->move();
-    if(y == 0){
+    if(y){
         if(int(enemy2->speed.y) == int(enemy2->speedMax.y)){
             if(dist2 > 60000){
                 if(enemy2->state != passiv){
@@ -313,7 +313,7 @@ bool Test::Test_Move_First(){
                 }
             }
             else{
-                if(x == 0){
+                if(x){
                     if(int(enemy2->speed.x) != int(enemy2->speedMax.x)){
                         return false;
                     }
@@ -328,7 +328,7 @@ bool Test::Test_Move_First(){
         else{return false;}
     }
     else{
-        if(int(enemy2->speed.y) < -int(enemy2->speedMax.y)){   //y not 0 could also mean speed.y = 0 which we don't want
+        if(int(enemy2->speed.y) < -int(enemy2->speedMax.y)){   //y not true could also mean speed.y = 0 which we don't want
             if(int(enemy2->speed.y) != -int(enemy2->speedMax.y)){
                 return false;
             }
