@@ -100,7 +100,7 @@ void GMovingObject::activate_block(QGraphicsItem *colliding)
 {
     if(speed.ry() < -5)
     {
-        view->scene->addItem(new Activated_block(pair{colliding->x(),colliding->y()}));
+        view->scenes[scene_level]->addItem(new Activated_block(pair{colliding->x(),colliding->y()}));
 
         create_random_powerup(pair{colliding->x(),colliding->y()},view->block_size);
 
@@ -110,7 +110,7 @@ void GMovingObject::activate_block(QGraphicsItem *colliding)
 
 void GMovingObject::destroy_item(QGraphicsItem *colliding)
 {
-    view->scene->removeItem(colliding);
+    view->scenes[scene_level]->removeItem(colliding);
 
     delete(colliding);
 }
@@ -121,39 +121,47 @@ void GMovingObject::damage_block(int direction, QGraphicsItem *colliding)
 
     int power;
 
-    switch(direction)
+    if(get_name() == "Player")
     {
-    case horizontal:
-    {
-        power = abs(speed.rx())/4;
-        break;
+        switch(direction)
+        {
+        case horizontal:
+        {
+            power = abs(speed.rx())/4;
+            break;
+        }
+        case vertical:
+        {
+            power = abs(speed.ry())/4;
+            break;
+        }
+        default:
+        {
+            return;
+        }
+        }
+
+        if(power == 0)
+        {
+            return;
+        }
     }
-    case vertical:
+    else
     {
-        power = abs(speed.ry())/4;
-        break;
-    }
-    default:
-    {
-        return;
-    }
+        power = 1;
     }
 
-    if(power == 0)
-    {
-        return;
-    }
 
     switch(current_type+power)
     {
     case 2:
     {
-        view->scene->addItem(new Breakable_block_2(pair{colliding->x(), colliding->y()}));
+        view->scenes[scene_level]->addItem(new Breakable_block_2(pair{colliding->x(), colliding->y()}));
         break;
     }
     case 3:
     {
-        view->scene->addItem(new Breakable_block_3(pair{colliding->x(), colliding->y()}));
+        view->scenes[scene_level]->addItem(new Breakable_block_3(pair{colliding->x(), colliding->y()}));
         break;
     }
     }

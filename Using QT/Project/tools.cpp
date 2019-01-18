@@ -44,32 +44,32 @@ void create_random_powerup(pair position, double y_offset)
     {
     {
     case 0:
-            view->scene->addItem(new Power_up_1(position,y));
+            view->scenes[scene_level]->addItem(new Power_up_1(position,y));
             break;
     }
     {
     case 1:
-            view->scene->addItem(new Power_up_2(position,y));
+            view->scenes[scene_level]->addItem(new Power_up_2(position,y));
             break;
     }
     {
     case 2:
-            view->scene->addItem(new Power_up_3(position,y));
+            view->scenes[scene_level]->addItem(new Power_up_3(position,y));
             break;
     }
     {
     case 3:
-            view->scene->addItem(new Power_up_4(position,y));
+            view->scenes[scene_level]->addItem(new Power_up_4(position,y));
             break;
     }
     {
     case 4:
-            view->scene->addItem(new Power_up_5(position,y));
+            view->scenes[scene_level]->addItem(new Power_up_5(position,y));
             break;
     }
     {
     case 5:
-            view->scene->addItem(new Power_up_6(position,y));
+            view->scenes[scene_level]->addItem(new Power_up_6(position,y));
             break;
     }
     }

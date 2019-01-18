@@ -9,13 +9,6 @@ Block::Block(pair position, QGraphicsItem* parent) :
 
 Block::~Block()
 {
-    /**
-    if(texture == question_mark)
-    {
-        blink_timer->stop();
-        blink_timer->deleteLater();
-    }
-    **/
 }
 
 void Block::blink()

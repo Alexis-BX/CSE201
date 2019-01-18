@@ -18,14 +18,6 @@ enum Object_texture
 
 };
 
-enum Background_texture
-{
-    background_far,
-    background_middle,
-    background_close,
-    background_texture_count
-};
-
 
 class Texture
 {

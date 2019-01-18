@@ -16,9 +16,9 @@ GPlayer::GPlayer(QPoint position, QPoint speed, QPoint size, QGraphicsItem *pare
 
     if(view->pressed_key_handler == control_player)
     {
-        clock = new GClock(60);
+        clock = new GClock(180);
 
-        view->scene->addItem(clock);
+        view->scenes[scene_level]->addItem(clock);
     }
 }
 
@@ -319,12 +319,12 @@ void GPlayer::throw_projectile()
 
     if ( supers_b[super_wine])
     {
-        view->scene->addItem(new Player_projectile_2(position, facing, sizex, get_throw_speed()));
+        view->scenes[scene_level]->addItem(new Player_projectile_2(position, facing, sizex, get_throw_speed()));
     }
 
     else
     {
-        view->scene->addItem(new Player_projectile_1(position, facing, sizex, get_throw_speed()));
+        view->scenes[scene_level]->addItem(new Player_projectile_1(position, facing, sizex, get_throw_speed()));
     }
 
 }

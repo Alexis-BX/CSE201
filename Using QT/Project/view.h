@@ -13,6 +13,17 @@
 
 class GPlayer;
 
+enum Scene_name
+{
+    scene_level,
+    scene_menu,
+    scene_help,
+    scene_game_over,
+    scene_you_win,
+    scene_name_counter,
+    all
+};
+
 class View : public QGraphicsView
 {
 
@@ -22,6 +33,8 @@ public:
 
     //attributes
     int block_size, ms_between_updates{30};
+
+    Background_texture monument = background_middle_1;
 
     pair screen_size;
 
@@ -47,11 +60,7 @@ public:
 
     controls pressed_key_handler;
 
-    QGraphicsScene * scene_menu  = new QGraphicsScene();
-    QGraphicsScene * scene_help  = new QGraphicsScene();
-    QGraphicsScene * scene  = new QGraphicsScene();
-    QGraphicsScene * scene_game_over  = new QGraphicsScene();
-    QGraphicsScene * scene_you_win  = new QGraphicsScene();
+    QList<QGraphicsScene*> scenes;
 
     //backgrounds
     //std::vector<Background*> backgrounds;
@@ -73,6 +82,8 @@ public:
     void open_help();
 
     void open_world();
+
+    void clear_scenes(int scene = all);
 
     void play_level(QString level_name = view->current_level, bool is_world = false);
 

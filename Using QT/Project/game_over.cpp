@@ -1,6 +1,6 @@
 #include "listheaders.h"
 
-Game_over::Game_over(int final_score, QGraphicsItem* parent):
+Game_over::Game_over(int score, QGraphicsItem* parent):
     QObject(), QGraphicsPixmapItem (parent)
 {
     setPos(0,-view->screen_size.y-18);
@@ -13,7 +13,7 @@ Game_over::Game_over(int final_score, QGraphicsItem* parent):
     {
         painter.setPen(QPen(Qt::red));
         painter.setFont(QFont("Times",24,QFont::Bold));
-        painter.drawText(QPoint(20,40),"Final Score: " + QString(QString::number(final_score)));
+        painter.drawText(QPoint(20,40),"Final Score: " + QString(QString::number(score)));
         painter.end();
     }
     setPixmap(img);

@@ -35,13 +35,13 @@ void Level_load::setup_background()
     view->backgrounds_close.clear();
 
     view->backgrounds_far.push_back(new Background_far(pair{0,0}));
-    view->scene->addItem(view->backgrounds_far[0]);
+    view->scenes[scene_level]->addItem(view->backgrounds_far[0]);
 
     view->backgrounds_middle.push_back(new Background_middle(pair{0,0}));
-    view->scene->addItem(view->backgrounds_middle[0]);
+    view->scenes[scene_level]->addItem(view->backgrounds_middle[0]);
 
     view->backgrounds_close.push_back(new Background_close(pair{0,0}));
-    view->scene->addItem(view->backgrounds_close[0]);
+    view->scenes[scene_level]->addItem(view->backgrounds_close[0]);
 }
 
 void Level_load::read_level_image(QString filename)
@@ -84,6 +84,6 @@ void Level_load::color_to_object(int R, int G, int B, pair position)
 {
     for(unsigned long long i = 0; i < color_triples.size(); i++)
     {
-        (*color_triples[i]).test(R,G,B,position, view->scene);
+        (*color_triples[i]).test(R,G,B,position, view->scenes[scene_level]);
     }
 }

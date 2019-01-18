@@ -17,6 +17,11 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
     music = new Music();
 
     current_level = ":/Images/Levels/Level_003.png";
+
+    for(int i = 0; i < scene_name_counter; i++)
+    {
+        scenes.push_back(new QGraphicsScene());
+    }
 }
 
 void View::update_background()
@@ -33,17 +38,19 @@ void View::game_over()
 
     music->play_sound_effect(music_end); //calls the game over music
 
-    scene_game_over->clear();
+    int score = player->coin_counter->coins;
 
-    setScene(scene_game_over);
+    clear_scenes();
 
-    scene_game_over->addItem(new Key_handler);
+    setScene(scenes[scene_game_over]);
+
+    scenes[scene_game_over]->addItem(new Key_handler);
 
     pressed_key_handler = control_game_over;
 
-    scene_game_over->addItem(new Game_over(player->coin_counter->coins));
+    gameover = new Game_over(score);
 
-    scene->clear();
+    scenes[scene_game_over]->addItem(gameover);
 }
 
 void View::you_win()
@@ -52,73 +59,87 @@ void View::you_win()
 
     music->play_sound_effect(music_win); //plays the winning music
 
-    setScene(scene_you_win);
+    int score = player->coin_counter->coins;
 
-    scene_you_win->addItem(new Key_handler);
+    clear_scenes();
+
+    setScene(scenes[scene_you_win]);
+
+    scenes[scene_you_win]->addItem(new Key_handler);
 
     pressed_key_handler = control_win;
 
-    youwin = new You_win();
+    youwin = new You_win(score);
 
-    scene_you_win->addItem(youwin);
-
-    scene->clear();
+    scenes[scene_you_win]->addItem(youwin);
 }
 
 void View::open_menu()
 {
-    setScene(scene_menu);
+    setScene(scenes[scene_menu]);
 
-    menu = new Menu();
-
-    scene_menu->addItem(new Key_handler);
+    scenes[scene_menu]->addItem(new Key_handler);
 
     pressed_key_handler = control_menu;
 
-    scene_menu->addItem(menu);
+    menu = new Menu();
+
+    scenes[scene_menu]->addItem(menu);
 }
 
 void View::open_help()
 {
-    setScene(scene_help);
+    setScene(scenes[scene_help]);
 
-    scene_help->addItem(new Key_handler);
+    scenes[scene_help]->addItem(new Key_handler);
 
     pressed_key_handler = control_help;
 
     help = new Help();
 
-    scene_help->addItem(help);
+    scenes[scene_help]->addItem(help);
 }
 
 void View::open_world()
 {
-    scene->clear();
-    scene_game_over->clear();
+    clear_scenes();
 
     pressed_key_handler = control_world;
 
     play_level(":/Images/Levels/level_world.png", true);
 
-    scene->addItem(new Key_handler);
+    scenes[scene_level]->addItem(new Key_handler);
 
     pressed_key_handler = control_world;
 
     world = new World();
 
-    scene->addItem(world);
+    scenes[scene_level]->addItem(world);
+}
+
+void View::clear_scenes(int scene)
+{
+    if(scene == all)
+    {
+        for(int i = 0; i < scene_name_counter; i++)
+        {
+            scenes[i]->clear();
+        }
+    }
+    else
+    {
+        scenes[scene]->clear();
+    }
 }
 
 
 void View::play_level(QString level_name, bool is_world)
 {
-    scene_game_over->clear();
-    scene_you_win->clear();
-    scene->clear();
+    clear_scenes();
 
-    setScene(scene);
+    setScene(scenes[scene_level]);
 
-    scene->addItem(new Key_handler);
+    scenes[scene_level]->addItem(new Key_handler);
 
     if (!is_world)
     {
@@ -143,11 +164,11 @@ template <class BG> void View::update_single_bg(std::vector<BG*> &list)
     if (list[0]->x() > player->x()-screen_size.x)
     {
         list.insert(list.begin(), new BG(pair{list[0]->x()-(list[0]->width),0}));
-        scene->addItem(list[0]);
+        scenes[scene_level]->addItem(list[0]);
     }
     else if (list[0]->x() + list[0]->width < player->x() - screen_size.x)
     {
-        scene->removeItem(list[0]);
+        scenes[scene_level]->removeItem(list[0]);
         delete(list[0]);
         list.erase(list.begin());
     }
@@ -155,11 +176,11 @@ template <class BG> void View::update_single_bg(std::vector<BG*> &list)
     if (list.back()->x() + list.back()->width < player->x() + screen_size.x/2)
     {
         list.push_back(new BG(pair{list.back()->x()+list.back()->width,0}));
-        scene->addItem(list.back());
+        scenes[scene_level]->addItem(list.back());
     }
     else if (list.back()->x() > player->x() + screen_size.x)
     {
-        scene->removeItem(list[list.size()-1]);
+        scenes[scene_level]->removeItem(list[list.size()-1]);
         delete(list[list.size()-1]);
         list.pop_back();
     }

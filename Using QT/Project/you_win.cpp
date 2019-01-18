@@ -1,6 +1,6 @@
 #include "listheaders.h"
 
-You_win::You_win(QGraphicsItem* parent):
+You_win::You_win(int score, QGraphicsItem* parent):
      QObject(), QGraphicsPixmapItem (parent)
 {
     setPos(0,-view->screen_size.y-18);
@@ -13,9 +13,9 @@ You_win::You_win(QGraphicsItem* parent):
     QPainter painter;
     if(painter.begin(&img))
     {
-        painter.setPen(QPen(Qt::yellow));
-        painter.setFont(QFont("Times",12,QFont::Bold));
-        painter.drawText(QPoint(5,25),"Final Score: " + QString() );
+        painter.setPen(QPen(Qt::red));
+        painter.setFont(QFont("Times",30,QFont::Bold));
+        painter.drawText(QPoint(320,40),"Final Score: " + QString(QString::number(score)));
         painter.end();
     }
     setPixmap(img);

@@ -5,7 +5,7 @@
 class You_win: public QObject,public QGraphicsPixmapItem
 {
 public:
-    You_win(QGraphicsItem* parent = nullptr);
+    You_win(int score, QGraphicsItem* parent = nullptr);
 
     void keyPressEvent(QKeyEvent * event);
 

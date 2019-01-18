@@ -122,4 +122,14 @@ enum controls
     control_win
 };
 
+enum Background_texture
+{
+    background_far,
+    background_middle_1,
+    background_middle_2,
+    background_middle_3,
+    background_close,
+    background_texture_count
+};
+
 #endif // TYPES_STATES_TEXTURES_H

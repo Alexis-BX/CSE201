@@ -34,21 +34,22 @@ void World::keyPressEvent(QKeyEvent *event)
 void World::check_position()
 {
     int x = view->player->x();
-    if (x > 170 && x < 225)
+    if (x > 160 && x < 235)
     {
-        view->scene->clear();
+        view->monument = background_middle_1;
         view->play_level(":/Images/Levels/Level_003.png");
     }
 
-    else if (x > 370 && x < 422)
+    else if (x > 360 && x < 432)
     {
-        view->scene->clear();
+        view->monument = background_middle_2;
         view->play_level(":/Images/Levels/Level_004.png");
+
     }
 
-    else if (x > 568 && x < 620)
+    else if (x > 558 && x < 630)
     {
-        view->scene->clear();
+        view->monument = background_middle_3;
         view->play_level(":/Images/Levels/Level_005.png");
     }
 }

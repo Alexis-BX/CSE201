@@ -157,20 +157,14 @@ void Enemy::move()
     int br = corner_colliding_br.size();
     int bl = corner_colliding_bl.size();
 
-    if(br == 1) //if there is no collision on the bottom right or left (THE COLLISION BOX COUNTS AS A COLLISION; HENCE 1 AND NOT 0)
+    if(br <= 1 && speed.x > 0) //if there is no collision on the bottom right or left (THE COLLISION BOX COUNTS AS A COLLISION; HENCE 1 AND NOT 0)
     {
-        if( speed.x > 0)
-        {
-            speed.x = -speed.x;
-        }
+        speed.x = -speed.x;
     }
 
-    if(bl == 1)
+    if(bl <= 1 && speed.x < 0)
     {
-        if( speed.x < 0)
-        {
-            speed.x = -speed.x;
-        }
+        speed.x = -speed.x;
     }
 
 
@@ -267,6 +261,6 @@ void Enemy::move()
 void Enemy::throw_projectile()
 {    
     if(type == basic){
-        view->scene->addItem(new Enemy_projectile_1(QPoint(x(),y()),facing, sizex));
+        view->scenes[scene_level]->addItem(new Enemy_projectile_1(QPoint(x(),y()),facing, sizex));
     }
 }

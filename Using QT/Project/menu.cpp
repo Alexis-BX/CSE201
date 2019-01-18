@@ -47,7 +47,7 @@ void Menu::launch()
     switch (selected) {
     case op_start:
     {
-        view->scene_menu->clear();
+        view->scenes[scene_menu]->clear();
         view->open_world();
         break;
     }
@@ -58,7 +58,7 @@ void Menu::launch()
     }
     case op_help:
     {
-        view->scene_menu->clear();
+        view->scenes[scene_menu]->clear();
         view->open_help();
     }
     }
@@ -76,7 +76,7 @@ void Menu::load_animation()
 {
     bg = new Button(0, -505, QPixmap(":/Images/Menu/menu.png"), this);
 
-    view->scene_menu->addItem(bg);
+    view->scenes[scene_menu]->addItem(bg);
 
     QPixmap images(":/Images/Menu/buttons.png");
 
@@ -90,6 +90,6 @@ void Menu::load_animation()
     {
         button_list[i] = new Button(170 + 200*i, -70, buttons[i][selected==i], this);
 
-        view->scene_menu->addItem(button_list[i]);
+        view->scenes[scene_menu]->addItem(button_list[i]);
     }
 }
