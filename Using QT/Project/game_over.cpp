@@ -17,9 +17,6 @@ Game_over::Game_over(int final_score, QGraphicsItem* parent):
         painter.end();
     }
     setPixmap(img);
-
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    setFocus();
 }
 
 void Game_over::keyPressEvent(QKeyEvent *event)

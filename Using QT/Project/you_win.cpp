@@ -19,9 +19,6 @@ You_win::You_win(QGraphicsItem* parent):
         painter.end();
     }
     setPixmap(img);
-
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    setFocus();
 }
 
 void You_win::keyPressEvent(QKeyEvent *event)

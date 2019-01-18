@@ -10,9 +10,6 @@ Help::Help(QGraphicsItem* parent):
     img = img.scaled(view->screen_size.x, view->screen_size.y);
     setPixmap(img);
 
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    setFocus();
-
     view->scene_help->addItem(this);
 }
 

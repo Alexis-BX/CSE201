@@ -1,5 +1,4 @@
 #include "listheaders.h"
-#include <QList>
 
 View::View(pair screen_size, int block_size, QWidget* parent) :
     QGraphicsView(parent), block_size(block_size), screen_size(screen_size)
@@ -37,7 +36,14 @@ void View::game_over()
     scene->clear();
 
     setScene(scene_game_over);
-    scene_game_over->addItem(new Game_over(player->coin_counter->coins));
+
+    scene_game_over->addItem(new Key_handler);
+
+    pressed_key_handler = control_game_over;
+
+    gameover = new Game_over(player->coin_counter->coins);
+
+    scene_game_over->addItem(gameover);
 }
 
 void View::you_win()
@@ -47,7 +53,14 @@ void View::you_win()
     music->play_sound_effect(music_win); //plays the winning music
 
     setScene(scene_you_win);
-    scene_you_win->addItem(new You_win());
+
+    scene_you_win->addItem(new Key_handler);
+
+    pressed_key_handler = control_win;
+
+    youwin = new You_win();
+
+    scene_you_win->addItem(youwin);
 
     scene->clear();
 }
@@ -58,12 +71,20 @@ void View::open_menu()
 
     menu = new Menu();
 
+    scene_menu->addItem(new Key_handler);
+
+    pressed_key_handler = control_menu;
+
     scene_menu->addItem(menu);
 }
 
 void View::open_help()
 {
     setScene(scene_help);
+
+    scene_help->addItem(new Key_handler);
+
+    pressed_key_handler = control_help;
 
     help = new Help();
 
@@ -73,6 +94,10 @@ void View::open_help()
 void View::open_world()
 {
     play_level(":/Images/Backgrounds/world_block.png");
+
+    scene->addItem(new Key_handler);
+
+    pressed_key_handler = control_world;
 
     world = new World();
 
@@ -87,6 +112,11 @@ void View::play_level(QString level_name)
     scene->clear();
 
     setScene(scene);
+
+    scene->addItem(new Key_handler);
+
+    pressed_key_handler = control_player;
+
     level_load->load_level(level_name);
 
     music->start_song();

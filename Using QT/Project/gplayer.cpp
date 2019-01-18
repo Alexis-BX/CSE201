@@ -8,10 +8,6 @@ GPlayer::GPlayer(QPoint position, QPoint speed, QPoint size, QGraphicsItem *pare
 
     setPixmap(animations[supers_b[super]][facing][state][int(count)]);
 
-    setFlag(QGraphicsItem::ItemIsFocusable);
-
-    setFocus();
-
     setZValue(layer_player);
 
     size.setY(0);

@@ -8,10 +8,6 @@ World::World( QGraphicsItem* parent):
     bg = new Button(0, -505+18, QPixmap(":/Images/Backgrounds/BackgroundWorld.png"), this);
 
     setZValue(layer_button);
-
-    setFlag(QGraphicsItem::ItemIsFocusable);
-
-    setFocus();
 }
 
 void World::keyPressEvent(QKeyEvent *event)
@@ -23,13 +19,11 @@ void World::keyPressEvent(QKeyEvent *event)
        case Qt::Key_Space:
        case Qt::Key_Return:
        {
-           qDebug()<<"a";
            check_position();
            break;
        }
        default:
        {
-           qDebug()<<"a";
            view->player->keyPressEvent(event);
            break;
        }
