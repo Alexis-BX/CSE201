@@ -8,7 +8,9 @@ class Counter : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    pair size{18,18};
+    QPoint size{18,18};
+
+    const QString path{":/Images/Textures/Main_texture/numbers.png"};
 
     Counter(int power_of_10, QGraphicsItem* parent = nullptr);
 

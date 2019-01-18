@@ -5,14 +5,16 @@
 #include "coin_counter.h"
 #include "collision_master.h"
 #include "super_powers.h"
+#include "gplayer.h"
 
 //list of player states
-enum States
+/*enum States
 {
     stand, run, jumpH, fallH, landH,
     crouchD, crouch, crouchU,
     jumpV, fallV, landV, throwA, number_of_character_states
 };
+*/
 
 class Player : public QObject, public QGraphicsPixmapItem
 {
@@ -49,7 +51,7 @@ public:
 
     Direction facing{Right};
 
-    States state{stand}, old_state{stand};
+    Player_states state{stand}, old_state{stand};
 
                     //[super][direction][state][frame]
                     //[2][2][number_of_character_states][max_images_per_state]

@@ -1,13 +1,13 @@
 #include "listheaders.h"
 
-Coin_counter::Coin_counter(pair position, QGraphicsItem* parent) :
+Coin_counter::Coin_counter(QPoint position, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
-    coins = 0;
-    setPos(position.x,position.y-20);
+    position.ry() -= 18;
 
-    Counter* counter = new Counter(0, this);
-    counters.push_back(counter);
+    setPos(position);
+
+    counters.push_back(new Counter(0, this));
 }
 
 void Coin_counter::add_coin(int amount)
@@ -21,8 +21,7 @@ void Coin_counter::update_counter()
 {
     if(coins/(std::pow(10,int(counters.size())))>=1) //if there is a counter missing
     {
-        Counter* counter = new Counter(int(counters.size()), this); //create new counter in the right place
-        counters.push_back(counter);
+        counters.push_back(new Counter(int(counters.size()), this));
     }
 
     for(unsigned long long i = 0 ; i < counters.size() ; i ++)

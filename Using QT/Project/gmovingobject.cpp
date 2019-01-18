@@ -28,6 +28,10 @@ GMovingObject::~GMovingObject()
         timer->stop();
         timer->deleteLater();
     }
+    for(int i = 0; i < collision_ranges.size(); i++)
+    {
+        delete(collision_ranges[i]);
+    }
 }
 
 void GMovingObject::check_in_boundaries()
@@ -71,11 +75,11 @@ void GMovingObject::simple_collision(int i, QGraphicsItem *colliding)
     {
         if(speed.rx() > 0)
         {
-            speed.setX(colliding->x() - x() - sizex);
+            speed.setX(max<qreal>(colliding->x() - x() - sizex,0));
         }
         else if(speed.rx() < 0)
         {
-            speed.setX(colliding->sizex + colliding->x() - x());
+            speed.setX(min<qreal>(colliding->sizex + colliding->x() - x(),0));
         }
         break;
     }
@@ -83,11 +87,12 @@ void GMovingObject::simple_collision(int i, QGraphicsItem *colliding)
     {
         if(speed.ry() > 0)
         {
-            speed.setY(colliding->y() - y() - sizey);
+            speed.setY(max<qreal>(colliding->y() - y() - sizey,0));
+            touching_ground = true;
         }
         else if(speed.ry() < 0)
         {
-            speed.setY(colliding->sizey + colliding->y() - y());
+            speed.setY(min<qreal>(colliding->sizey + colliding->y() - y(),0));
         }
         break;
     }
@@ -117,18 +122,34 @@ void GMovingObject::destroy_item(QGraphicsItem *colliding)
     delete(colliding);
 }
 
-void GMovingObject::damage_block(QGraphicsItem *colliding)
+void GMovingObject::damage_block(int direction, QGraphicsItem *colliding)
 {
-    int current_type = (QString(typeid(*colliding).name()))[19].digitValue();
+    int current_type = (QString(typeid(*colliding).name()))[18].digitValue();
 
-    int power = speed.manhattanLength()/10;
+    int power;
+
+    switch(direction)
+    {
+    case horizontal:
+    {
+        power = abs(speed.rx())/4;
+        break;
+    }
+    case vertical:
+    {
+        power = abs(speed.ry())/4;
+        break;
+    }
+    case diagonal:
+    {
+        return;
+    }
+    }
 
     if(power == 0)
     {
         return;
     }
-
-    destroy_item(colliding);
 
     switch(current_type+power)
     {
@@ -143,6 +164,76 @@ void GMovingObject::damage_block(QGraphicsItem *colliding)
         break;
     }
     }
+
+    destroy_item(colliding);
+}
+
+void GMovingObject::collide(int direction)
+{
+    QString temp_collision_type;
+    QList<QGraphicsItem*> colliding_items = collision_ranges[direction]->collidingItems();
+
+    for(int j = 0; j < colliding_items.size(); j++)
+    {
+        temp_collision_type = collision_master->collide(get_name(),QString(typeid(*colliding_items[j]).name()));
+
+        if(temp_collision_type == "simple_collision")
+        {
+            simple_collision(direction, colliding_items[j]);
+        }
+        else if(temp_collision_type == "active_collision") //deactivates an active block
+        {
+            simple_collision(direction, colliding_items[j]);
+
+            activate_block(colliding_items[j]);
+        }
+        else if(temp_collision_type == "add_coin") //collision with cheese
+        {
+            view->player->coin_counter->add_coin();
+
+            destroy_item(colliding_items[j]);
+        }
+        else if(temp_collision_type == "power") //collision with power up
+        {
+            int last_char = (QString(typeid(*colliding_items[j]).name()))[11].digitValue();
+
+            view->player->power_up(last_char-1);
+
+            destroy_item(colliding_items[j]);
+        }
+        else if(temp_collision_type == "damage_block") //collision with breakable block
+        {
+            simple_collision(direction, colliding_items[j]);
+
+            damage_block(direction, colliding_items[j]);
+        }
+        else if(temp_collision_type == "end_collision") //collision with end_block
+        {
+            view->you_win();
+            return;
+        }
+        else if(temp_collision_type == "die") //collision with enemy
+        {
+            if(view->player->supers_b[super])
+            {
+                destroy_item(colliding_items[j]);
+            }
+
+            view->game_over();
+            return;
+        }
+        else if(temp_collision_type == "enemy_collision")
+        {
+            simple_collision(direction, colliding_items[j]);
+
+            destroy_item(colliding_items[j]);
+        }
+    }
+}
+
+QString GMovingObject::get_name()
+{
+    return "GMovingObject";
 }
 
 void GMovingObject::move()

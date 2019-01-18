@@ -1,33 +1,29 @@
 #include "listheaders.h"
 
-Player_projectile_1::Player_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier):
-    Projectile(position, direction, character_size_x, baguette)
+Player_projectile_1::Player_projectile_1(QPoint position, Direction direction, int character_size_x, double speed_multiplier):
+    GProjectile(baguette, QPoint(speed_multiplier*velocity*((direction == Right) ? 1 : -1), 0),
+                QPoint(position.rx() + ((direction == Right) ? character_size_x : 0),position.ry()))
 {
     life = 1000;
-
-    speed = pair{speed_multiplier*velocity*((direction) ? 1 : -1), 0};
 }
 
-Player_projectile_2::Player_projectile_2(pair position, bool direction, int character_size_x, double speed_multiplier):
-    Projectile(position, direction, character_size_x,wine)
+Player_projectile_2::Player_projectile_2(QPoint position, Direction direction, int character_size_x, double speed_multiplier):
+    GProjectile(wine, QPoint(speed_multiplier*velocity*((direction == Right) ? 1 : -1), 0),
+                QPoint(position.rx() + ((direction == Right) ? character_size_x : 0),position.ry()))
 {
     life = 400;
-
-    speed = pair{speed_multiplier*velocity * ((direction) ? 1 : -1), 0};
 }
 
-Player_projectile_3::Player_projectile_3(pair position, bool direction, int character_size_x, double speed_multiplier):
-    Projectile(position, direction, character_size_x,pot)
+Player_projectile_3::Player_projectile_3(QPoint position, Direction direction, int character_size_x, double speed_multiplier):
+    GProjectile(pot, QPoint(speed_multiplier*velocity*((direction == Right) ? 1 : -1), 0),
+                QPoint(position.rx() + ((direction == Right) ? character_size_x : 0),position.ry()))
 {
     life = 50000;
-
-    speed = pair{speed_multiplier*velocity * ((direction) ? 1 : -1), speed_multiplier*velocity};
 }
 
-Enemy_projectile_1::Enemy_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier):
-    Projectile(position, direction, character_size_x, smoke)
+Enemy_projectile_1::Enemy_projectile_1(QPoint position, Direction direction, int character_size_x, double speed_multiplier):
+    GProjectile(smoke, QPoint(speed_multiplier*velocity*((direction == Right) ? 1 : -1), 0),
+                QPoint(position.rx() + ((direction == Right) ? character_size_x : 0),position.ry()))
 {
     life = 20000;
-
-    speed = pair{speed_multiplier*velocity * ((direction) ? 1 : -1), 0};
 }

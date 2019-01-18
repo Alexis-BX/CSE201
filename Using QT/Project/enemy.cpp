@@ -267,6 +267,6 @@ void Enemy::move()
 void Enemy::throw_projectile()
 {    
     if(type == basic){
-        view->scene->addItem(new Enemy_projectile_1(pair{x(),y()},facing,size.x));
+        view->scene->addItem(new Enemy_projectile_1(QPoint(x(),y()),facing, sizex));
     }
 }

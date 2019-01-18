@@ -7,7 +7,7 @@
 #include "music.h"
 #include "menu.h"
 
-class Player;
+class GPlayer;
 
 class View : public QGraphicsView
 {
@@ -23,7 +23,7 @@ public:
 
     double_pair world_size;
 
-    Player* player;
+    GPlayer* player;
 
     Level_load* level_load;
     QString current_level;

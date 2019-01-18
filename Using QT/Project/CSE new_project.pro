@@ -43,6 +43,8 @@ SOURCES += \
     counter.cpp \
     enemies.cpp \
     enemy.cpp \
+    gobject.cpp \
+    gmovingobject.cpp \
     game_over.cpp \
     level_load.cpp \
     main.cpp \
@@ -52,11 +54,12 @@ SOURCES += \
     projectile.cpp \
     projectiles.cpp \
     super_powers.cpp \
-    test.cpp \
     texture.cpp \
     tools.cpp \
     view.cpp \
-    you_win.cpp
+    you_win.cpp \
+    gplayer.cpp \
+    gprojectile.cpp
 
 
 HEADERS += \
@@ -78,6 +81,8 @@ HEADERS += \
     enemy.h \
     game_over.h \
     global.h \
+    gmovingobject.h \
+    gobject.h \
     level_load.h \
     listheaders.h \
     menu.h \
@@ -86,12 +91,13 @@ HEADERS += \
     projectile.h \
     projectiles.h \
     super_powers.h \
-    test.h \
     texture.h \
     tools.h \
     types_states_textures.h \
     view.h \
-    you_win.h
+    you_win.h \
+    gplayer.h \
+    gprojectile.h
 
 
 

@@ -10,9 +10,9 @@ class Coin_counter : public QObject, public QGraphicsPixmapItem
 
 public:
 
-    Coin_counter(pair position, QGraphicsItem* parent = 0);
+    Coin_counter(QPoint position, QGraphicsItem* parent = 0);
 
-    int coins;
+    int coins{0};
 
     std::vector<Counter*> counters;
 

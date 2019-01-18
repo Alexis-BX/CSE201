@@ -351,7 +351,7 @@ void Player::throw_projectile()
 
     // for the directino of the projectile: define a "last velocity speed"
     // then the direction is the direction of this last velocity
-    pair position{x(),y()};
+    QPoint position(x(),y());
 
     if ( super_powers->supers_b[super_wine])
     {

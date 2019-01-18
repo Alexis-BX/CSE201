@@ -1,29 +1,29 @@
 #ifndef PROJECTILES_H
 #define PROJECTILES_H
-#include "projectile.h"
+#include "gprojectile.h"
 
-class Player_projectile_1 : public Projectile
+class Player_projectile_1 : public GProjectile
 {
 public:
-    Player_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier = 1);
+    Player_projectile_1(QPoint position, Direction direction, int character_size_x, double speed_multiplier = 1);
 };
 
-class Player_projectile_2 : public Projectile
+class Player_projectile_2 : public GProjectile
 {
 public:
-    Player_projectile_2(pair position, bool direction, int character_size_x, double speed_multiplier = 1);
+    Player_projectile_2(QPoint position, Direction direction, int character_size_x, double speed_multiplier = 1);
 };
 
-class Player_projectile_3 : public Projectile
+class Player_projectile_3 : public GProjectile
 {
 public:
-    Player_projectile_3(pair position, bool direction, int character_size_x, double speed_multiplier = 1);
+    Player_projectile_3(QPoint position, Direction direction, int character_size_x, double speed_multiplier = 1);
 };
 
-class Enemy_projectile_1 : public Projectile
+class Enemy_projectile_1 : public GProjectile
 {
 public:
-    Enemy_projectile_1(pair position, bool direction, int character_size_x, double speed_multiplier = 1);
+    Enemy_projectile_1(QPoint position, Direction direction, int character_size_x, double speed_multiplier = 1);
 };
 
 
