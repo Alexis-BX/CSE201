@@ -11,7 +11,7 @@ The game is a remake based on the original version of the game Mario Bros. We wi
 In order to install Mario Bros on your computer, you need to install
 
 - QT 5 or newer
-- 4GB of RAM or more (for compiling)
+- 8GB of RAM or more (for compiling)
 
 Warning: Audio file would take a lot of time and memory to compile.
 
