@@ -26,6 +26,10 @@ make && make clean
 
 Note: It seems that the image file of the sandbox is corrupted, so we have not tested the compability. However it compiles normally with qmake and QtCreator on Ubuntu 16.04.
 
+All OS (Qt)
+Import the project .pro file.
+Run said project.
+
 Please report a bug [here](https://github.com/Zovj2auM/CSE201/issues) if you encounter any problems with compiling and/or running.
 
 ### Screenshot
