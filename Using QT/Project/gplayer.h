@@ -53,7 +53,7 @@ public:
 
     Coin_counter* coin_counter;
 
-    GClock* clock;
+    GClock* clock = nullptr;
 
 public slots:
 

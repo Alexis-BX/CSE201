@@ -14,9 +14,12 @@ GPlayer::GPlayer(QPoint position, QPoint speed, QPoint size, QGraphicsItem *pare
 
     coin_counter = new Coin_counter(size,this);
 
-    clock = new GClock(60);
+    if(view->pressed_key_handler == control_player)
+    {
+        clock = new GClock(60);
 
-    view->scene->addItem(clock);
+        view->scene->addItem(clock);
+    }
 }
 
 GPlayer::~GPlayer()
@@ -24,8 +27,6 @@ GPlayer::~GPlayer()
     view->player = nullptr;
 
     coin_counter->deleteLater();
-
-    delete(clock);
 }
 
 QString GPlayer::get_name()
@@ -95,7 +96,10 @@ void GPlayer::move()
 
     view->update_background();
 
-    clock->update();
+    if(clock != nullptr)
+    {
+        clock->update();
+    }
 
     switch(gstate)
     {

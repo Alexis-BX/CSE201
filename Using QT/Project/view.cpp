@@ -93,7 +93,12 @@ void View::open_help()
 
 void View::open_world()
 {
-    play_level(":/Images/Levels/level_world.png");
+    scene->clear();
+    scene_game_over->clear();
+
+    pressed_key_handler = control_world;
+
+    play_level(":/Images/Levels/level_world.png", true);
 
     scene->addItem(new Key_handler);
 
@@ -105,7 +110,7 @@ void View::open_world()
 }
 
 
-void View::play_level(QString level_name)
+void View::play_level(QString level_name, bool is_world)
 {
     scene_game_over->clear();
     scene_you_win->clear();
@@ -115,7 +120,10 @@ void View::play_level(QString level_name)
 
     scene->addItem(new Key_handler);
 
-    pressed_key_handler = control_player;
+    if (!is_world)
+    {
+        pressed_key_handler = control_player;
+    }
 
     level_load->load_level(level_name);
 
