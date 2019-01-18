@@ -108,7 +108,7 @@ enum screne_layers
     layer_projectile,
     layer_enemy,
     layer_button,
-    layer_player,
+    layer_player
 };
 
 #endif // TYPES_STATES_TEXTURES_H

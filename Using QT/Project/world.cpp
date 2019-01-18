@@ -4,11 +4,10 @@
 World::World( QGraphicsItem* parent):
      QObject(), QGraphicsPixmapItem (parent)
 {
-    bg = new Button(0, -505+18, QPixmap(":/Images/Backgrounds/BackgroundWorld.png"));
 
-    view->level_load->load_level(":/Images/Backgrounds/world_block.png");
+    bg = new Button(0, -505+18, QPixmap(":/Images/Backgrounds/BackgroundWorld.png"), this);
 
-    view->scene->addItem(bg);
+    setZValue(layer_button);
 
     setFlag(QGraphicsItem::ItemIsFocusable);
 
@@ -40,19 +39,20 @@ void World::keyPressEvent(QKeyEvent *event)
 
 void World::check_position()
 {
-    if (x() > 170 && x() < 225)
+    int x = view->player->x();
+    if (x > 170 && x < 225)
     {
         view->scene->clear();
         view->play_level(":/Images/Levels/Level_003.png");
     }
 
-    else if (x() > 370 && x() < 422)
+    else if (x > 370 && x < 422)
     {
         view->scene->clear();
         view->play_level(":/Images/Levels/Level_004.png");
     }
 
-    else if (x() > 568 && x() < 620)
+    else if (x > 568 && x < 620)
     {
         view->scene->clear();
         view->play_level(":/Images/Levels/Level_005.png");

@@ -72,16 +72,11 @@ void View::open_help()
 
 void View::open_world()
 {
-    scene_game_over->clear();
-    scene_you_win->clear();
-
-
-    setScene(scene);
+    play_level(":/Images/Backgrounds/world_block.png");
 
     world = new World();
 
     scene->addItem(world);
-
 }
 
 
@@ -89,6 +84,7 @@ void View::play_level(QString level_name)
 {
     scene_game_over->clear();
     scene_you_win->clear();
+    scene->clear();
 
     setScene(scene);
     level_load->load_level(level_name);
