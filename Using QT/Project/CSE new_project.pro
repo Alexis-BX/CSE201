@@ -61,6 +61,7 @@ SOURCES += \
     gplayer.cpp \
     gprojectile.cpp
 
+
 HEADERS += \
     background.h \
     backgrounds.h \
