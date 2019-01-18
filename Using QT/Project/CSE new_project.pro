@@ -64,7 +64,8 @@ SOURCES += \
     gplayer.cpp \
     gprojectile.cpp \
     key_handler.cpp \
-    gclock.cpp \
+    gclock.cpp
+#    test.cpp
 
 
 HEADERS += \
@@ -105,6 +106,7 @@ HEADERS += \
     help.h \
     gobject.h \
     gclock.h
+#    test.h
 
 
 # Default rules for deployment.
