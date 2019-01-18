@@ -30,9 +30,7 @@ void You_win::keyPressEvent(QKeyEvent *event)
     {
     case Qt::Key_Return:
     {
-        deleteLater();
-
-        view->play_level(view->current_level);
+        view->world();
     }
     }
 }

@@ -22,7 +22,6 @@ Level_load::Level_load(View* view) : view(view)
 void Level_load::load_level(QString filename)
 {
     setup_background();
-
     read_level_image(filename);
 }
 

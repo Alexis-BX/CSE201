@@ -51,7 +51,8 @@ void Menu::launch()
     switch (selected) {
     case op_start:
     {
-        view->play_level(view->current_level);
+        view->world();
+        view->scene_menu->clear();
         break;
     }
     case op_keys:

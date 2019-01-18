@@ -56,7 +56,9 @@ SOURCES += \
     texture.cpp \
     tools.cpp \
     view.cpp \
-    you_win.cpp
+    you_win.cpp \
+    world.cpp
+    help.cpp
 
 
 HEADERS += \
@@ -91,7 +93,9 @@ HEADERS += \
     tools.h \
     types_states_textures.h \
     view.h \
-    you_win.h
+    you_win.h \
+    world.h
+    help.h
 
 
 
