@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/Images">
-        <file>Backgrounds/BackgroundWorld.png</file>
         <file>Backgrounds/Main_background/Main_background_list.txt</file>
         <file>Backgrounds/Main_background/arc.png</file>
         <file>Backgrounds/Main_background/bg.png</file>
@@ -8,24 +7,25 @@
         <file>Backgrounds/Main_background/building2.png</file>
         <file>Backgrounds/Main_background/building3.png</file>
         <file>Backgrounds/Main_background/building4.png</file>
-        <file>Backgrounds/Main_background/cheese.wav</file>
-        <file>Backgrounds/Main_background/eiffel.png</file>
-        <file>Backgrounds/Main_background/end.wav</file>
-        <file>Backgrounds/Main_background/game_over.png</file>
         <file>Backgrounds/Main_background/nd.png</file>
-        <file>Backgrounds/Main_background/song3.wav</file>
-        <file>Backgrounds/Main_background/win.wav</file>
-        <file>Backgrounds/Main_background/you_win.png</file>
-        <file>Backgrounds/world_block.png</file>
+        <file>Backgrounds/Main_background/eiffel.png</file>
+        <file>Sound/end.wav</file>
+        <file>Sound/cheese.wav</file>
+        <file>Sound/song3.wav</file>
+        <file>Sound/win.wav</file>
         <file>Levels/Level_001.png</file>
         <file>Levels/Level_002.png</file>
         <file>Levels/Level_003.png</file>
         <file>Levels/Level_004.png</file>
         <file>Levels/Level_005.png</file>
-        <file>Levels/buttons.png</file>
         <file>Levels/level_guide.png</file>
-        <file>Menu/accueilsgj.png</file>
+        <file>Levels/level_world.png</file>
+        <file>Menu/menu.png</file>
         <file>Menu/help.png</file>
+        <file>Menu/BackgroundWorld.png</file>
+        <file>Menu/buttons.png</file>
+        <file>Menu/game_over.png</file>
+        <file>Menu/you_win.png</file>
         <file>Rules/Collisions.txt</file>
         <file>Textures/Main_texture/Main_texture_list.txt</file>
         <file>Textures/Main_texture/blocks.png</file>

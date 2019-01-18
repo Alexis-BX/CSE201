@@ -13,6 +13,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QMAKE_CXXFLAGS += -Wno-unused-parameter
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
 
+QMAKE_CXXFLAGS += -Wno-sign-conversion
+QMAKE_CXXFLAGS_WARN_ON += -Wno-sign-conversion
+
 TARGET = CSE2017
 TEMPLATE = app
 

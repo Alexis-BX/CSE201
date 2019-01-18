@@ -4,11 +4,10 @@
 
 Music::Music()
 {
-    song = new QSound("://Images/Backgrounds/Main_background/song3.wav");
-
-    music.push_back(new QSound("://Images/Backgrounds/Main_background/cheese.wav"));
-    music.push_back(new QSound("://Images/Backgrounds/Main_background/end.wav"));
-    music.push_back(new QSound("://Images/Backgrounds/Main_background/win.wav"));
+    song = new QSound("://Images/Sound/song3.wav");
+    music.push_back(new QSound("://Images/Sound/cheese.wav"));
+    music.push_back(new QSound("://Images/Sound/end.wav"));
+    music.push_back(new QSound("://Images/Sound/win.wav"));
 }
 
 Music::~Music() //music destructor

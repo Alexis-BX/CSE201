@@ -6,7 +6,7 @@ Game_over::Game_over(int final_score, QGraphicsItem* parent):
     setPos(0,-view->screen_size.y-18);
     view->centerOn(this);
 
-    QPixmap img(":/Images/Backgrounds/Main_background/game_over.png");
+    QPixmap img(":/Images/Menu/game_over.png");
     img = img.scaled(view->screen_size.x, view->screen_size.y);
     QPainter painter;
     if(painter.begin(&img))

@@ -74,11 +74,11 @@ void Menu::set_animation_state()
 
 void Menu::load_animation()
 {
-    bg = new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
+    bg = new Button(0, -505, QPixmap(":/Images/Menu/menu.png"), this);
 
     view->scene_menu->addItem(bg);
 
-    QPixmap images(":/Images/Levels/buttons.png");
+    QPixmap images(":/Images/Menu/buttons.png");
 
     for (int i=0; i<op_amount; i++)
     {

@@ -93,7 +93,7 @@ void View::open_help()
 
 void View::open_world()
 {
-    play_level(":/Images/Backgrounds/world_block.png");
+    play_level(":/Images/Levels/level_world.png");
 
     scene->addItem(new Key_handler);
 

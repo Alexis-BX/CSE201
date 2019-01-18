@@ -5,7 +5,7 @@ World::World( QGraphicsItem* parent):
      QObject(), QGraphicsPixmapItem (parent)
 {
 
-    bg = new Button(0, -505+18, QPixmap(":/Images/Backgrounds/BackgroundWorld.png"), this);
+    bg = new Button(0, -505+18, QPixmap(":/Images/Menu/BackgroundWorld.png"), this);
 
     setZValue(layer_button);
 }
