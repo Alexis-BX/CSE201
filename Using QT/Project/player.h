@@ -60,7 +60,7 @@ public:
 
     QTimer* timer;
 
-    QTimer* timerGO;
+    //QTimer* timerGO;
 
     // Methods
     void keyPressEvent(QKeyEvent * event);

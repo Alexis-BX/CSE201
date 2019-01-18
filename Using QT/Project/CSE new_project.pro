@@ -51,8 +51,6 @@ SOURCES += \
     main.cpp \
     menu.cpp \
     music.cpp \
-    player.cpp \
-    projectile.cpp \
     projectiles.cpp \
     super_powers.cpp \
     texture.cpp \
@@ -62,7 +60,8 @@ SOURCES += \
     world.cpp \
     gplayer.cpp \
     gprojectile.cpp \
-    key_handler.cpp
+    key_handler.cpp \
+    gclock.cpp \
 
 
 HEADERS += \
@@ -83,13 +82,12 @@ HEADERS += \
     enemies.h \
     enemy.h \
     game_over.h \
+    gmovingobject.h \
     global.h \
     level_load.h \
     listheaders.h \
     menu.h \
     music.h \
-    player.h \
-    projectile.h \
     projectiles.h \
     super_powers.h \
     texture.h \
@@ -100,8 +98,10 @@ HEADERS += \
     gplayer.h \
     gprojectile.h \
     world.h \
+    key_handler.h \
+    help.h \
     gobject.h \
-    key_handler.h
+    gclock.h
 
 
 # Default rules for deployment.

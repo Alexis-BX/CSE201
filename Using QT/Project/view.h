@@ -74,7 +74,7 @@ public:
 
     void open_world();
 
-    void play_level(QString level_name);
+    void play_level(QString level_name = view->current_level);
 
     template <class BG> void update_single_bg(std::vector<BG*> &list);
 };

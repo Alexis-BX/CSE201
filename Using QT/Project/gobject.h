@@ -4,6 +4,12 @@
 #define sizex boundingRect().width()
 #define sizey boundingRect().height()
 
+enum General_state
+{
+    Alive,
+    Dead,
+    Win
+};
 
 class GObject : public QObject, public QGraphicsPixmapItem
 {
@@ -12,6 +18,8 @@ class GObject : public QObject, public QGraphicsPixmapItem
 public:
 
     GObject(QPoint position, QGraphicsItem* parent = nullptr);
+
+    General_state gstate{Alive};
 
 public slots:
 
