@@ -98,10 +98,12 @@ void GPlayer::move()
     case Dead:
     {
         view->game_over();
+        break;
     }
     case Win:
     {
         view->you_win();
+        break;
     }
     }
 

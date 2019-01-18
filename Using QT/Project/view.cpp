@@ -37,7 +37,7 @@ void View::game_over()
     scene_game_over->clear();
 
     setScene(scene_game_over);
-    scene_game_over->addItem(new Game_over(0));
+    scene_game_over->addItem(new Game_over(player->coin_counter->coins));
 
     scene->clear();
 }

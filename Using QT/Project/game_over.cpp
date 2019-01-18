@@ -11,9 +11,9 @@ Game_over::Game_over(int final_score, QGraphicsItem* parent):
     QPainter painter;
     if(painter.begin(&img))
     {
-        painter.setPen(QPen(Qt::yellow));
-        painter.setFont(QFont("Times",12,QFont::Bold));
-        painter.drawText(QPoint(5,25),"Final Score: " + QString(final_score) );
+        painter.setPen(QPen(Qt::red));
+        painter.setFont(QFont("Times",24,QFont::Bold));
+        painter.drawText(QPoint(20,40),"Final Score: " + QString(QString::number(final_score)));
         painter.end();
     }
     setPixmap(img);
