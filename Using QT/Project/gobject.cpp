@@ -7,3 +7,8 @@ GObject::GObject(QPoint position, QGraphicsItem* parent)
 {
     setPos(position);
 }
+
+void GObject::move()
+{
+    return;
+}

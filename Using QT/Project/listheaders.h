@@ -35,6 +35,9 @@
 #include "view.h"
 #include "world.h"
 #include "you_win.h"
+#include "gplayer.h"
+#include "gmovingobject.h"
+#include "gobject.h"
 
 
 

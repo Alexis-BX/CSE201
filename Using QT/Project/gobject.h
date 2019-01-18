@@ -13,6 +13,10 @@ public:
 
     GObject(QPoint position, QGraphicsItem* parent = nullptr);
 
+public slots:
+
+    virtual void move();
+
 };
 
 #endif // GOBJECT_H

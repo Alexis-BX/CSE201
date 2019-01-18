@@ -7,9 +7,9 @@ Special_block_above : simple_collision
 Special_block_below : simple_collision
 Activated_block : simple_collision
 Small_collectable : add_coin
-Breakable_block_1 : damage_block_1
-Breakable_block_2 : damage_block_2
-Breakable_block_3 : damage_block_3
+Breakable_block_1 : damage_block
+Breakable_block_2 : damage_block
+Breakable_block_3 : damage_block
 Power_up_1 : power
 Power_up_2 : power
 Power_up_3 : power

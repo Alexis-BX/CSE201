@@ -3,6 +3,7 @@
 #include "global.h"
 #include "gobject.h"
 
+
 enum Collision_ranges
 {
     horizontal,
@@ -29,18 +30,22 @@ public:
 
     void destroy_item(QGraphicsItem* colliding);
 
-    void damage_block(QGraphicsItem* colliding);
+    void damage_block(int direction, QGraphicsItem* colliding);
 
+    void collide(int direction);
 
     QList<QGraphicsRectItem*> collision_ranges;
 
-    QList<qreal> collision;
-
-    QPoint speed{0,0};
+    QPoint speed{0,0}, max_speed{10,15};
 
     Direction facing{Right};
 
     QTimer* timer;
+
+    bool touching_ground{false};
+
+    virtual QString get_name();
+
 
 public slots:
 

@@ -99,7 +99,7 @@ template <class BG> void View::update_single_bg(std::vector<BG*> &list)
 {
     for(unsigned long long i = 0 ; i < list.size(); i++)
     {
-        list[i]->setX((list[i]->x())-(player->speed.x)/(list[i]->speed_ratio));
+        list[i]->setX((list[i]->x())-(player->speed.rx())/(list[i]->speed_ratio));
     }
 
     if (list[0]->x() > player->x()-screen_size.x)

@@ -115,7 +115,7 @@ void Collectable::move()
 
                 int last_char = (QString(typeid(*this).name()))[11].digitValue();
 
-                view->player->super_powers->power_up(last_char-1);
+                view->player->power_up(last_char-1);
 
                 deleteLater();
 

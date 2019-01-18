@@ -78,7 +78,7 @@ bool Test::Test_Blocks() {
 
 bool Test::Test_AddCoin(){
     pair position = {double(rand() % 739), double(rand() % 505)};
-    Coin_counter counter(position);
+    Coin_counter counter(QPoint(position.x,position.y));
     counter.coins = rand() % 20;
     int x = counter.coins;      //check the initial amount of coins
     int amount = rand() % 10;       //how many coins we add
@@ -93,7 +93,7 @@ bool Test::Test_AddCoin(){
 
 bool Test::Test_UpdateCounter(){                //tests update counter but from the add_coin point of view
     pair position = {double(rand() % 739), double(rand() % 505)};
-    Coin_counter counter(position);
+    Coin_counter counter(QPoint(position.x,position.y));
     counter.coins = 9;      //i only need counters of length 1 for 9 coins
     counter.counters.push_back(new Counter(1));     //initialize counters of length 1
     counter.add_coin(3);     //for 12 coins, we will need another counter

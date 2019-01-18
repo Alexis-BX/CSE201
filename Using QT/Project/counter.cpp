@@ -3,14 +3,13 @@
 Counter::Counter(int power_of_10, QGraphicsItem* parent) :
     QObject (), QGraphicsPixmapItem (parent)
 {
-    setPos(-(power_of_10+1)*size.x,0);
+    setPos(-(power_of_10+1)*size.rx(),0);
     update_counter(power_of_10);
 }
 
 void Counter::update_counter(int counter)
 {
-    std::string path = ":/Images/Textures/Main_texture/numbers.png";
-    setPixmap(QPixmap(path.c_str()).copy(size.x*(counter%10), 0, size.x, size.y));
+    setPixmap(QPixmap(path).copy(size.rx()*(counter%10), 0, size.rx(), size.ry()));
 }
 
 
