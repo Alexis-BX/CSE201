@@ -35,7 +35,7 @@ void GClock::update()
 {
     setPlainText("time left: " + QString(QString::number(timer->remainingTime()/1000)));
 
-    if(view->player->x() < view->world_size.left + view->screen_size.x/2 || view->player->x() > view->world_size.right + view->screen_size.x/2)
+    if(view->player->x() < view->world_size.left + view->screen_size.x/2 || view->player->x() > view->world_size.right - view->screen_size.x/2)
     {
         return;
     }
