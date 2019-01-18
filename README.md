@@ -10,7 +10,7 @@ The game is a remake based on the original version of the game Mario Bros. We wi
 
 In order to install Mario Bros on your computer, you need to install
 
-- QT 5 or newer
+- QT 5.12 or newer
 - 8GB of RAM or more (for compiling)
 
 Warning: Audio file would take a lot of time and memory to compile.
@@ -28,7 +28,10 @@ Note: It seems that the image file of the sandbox is corrupted, so we have not t
 
 All OS (Qt)
 Import the project .pro file.
-Run said project.
+Choose a compiler:
+ - on OSX: clang 64
+ - on Windows (tested on W8.1 and W10): MinGW 64
+Compile said project.
 
 Please report a bug [here](https://github.com/Zovj2auM/CSE201/issues) if you encounter any problems with compiling and/or running.
 
