@@ -47,14 +47,7 @@ public:
     //tests for player
     bool Test_KeyEvents(QKeyEvent *event);
     bool Test_Move_Player();
-    bool Test_Animation_State();
     bool Test_Jump_Player();
-
-    //tests for menu
-    bool Test_KeyPressEvent();
-
-    //every test
-    void All_Tests();
 
 };
 

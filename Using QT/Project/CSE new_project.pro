@@ -59,7 +59,9 @@ SOURCES += \
     view.cpp \
     you_win.cpp \
     gplayer.cpp \
-    gprojectile.cpp
+    gprojectile.cpp \
+    world.cpp \
+    help.cpp
 
 
 HEADERS += \
@@ -97,7 +99,9 @@ HEADERS += \
     view.h \
     you_win.h \
     gplayer.h \
-    gprojectile.h
+    gprojectile.h \
+    world.h \
+    help.h
 
 
 

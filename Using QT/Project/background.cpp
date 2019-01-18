@@ -4,7 +4,7 @@ Background::Background(pair position, QGraphicsItem *parent)
     : QGraphicsPixmapItem(parent)
 {
     setPos(position.x,position.y);
-    setOpacity(10);
+    //setOpacity(10);
 }
 
 QPainterPath Background::shape() const

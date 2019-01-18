@@ -80,6 +80,8 @@ public:
 
     void jump();
 
+    void world_launch_level();
+
     ~Player();
 
 public slots:

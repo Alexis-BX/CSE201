@@ -78,6 +78,12 @@ void Player::keyPressEvent(QKeyEvent *event)
         throw_projectile();
         break;
     }
+    case Qt::Key_Return:
+    {
+        deleteLater();
+        world_launch_level();
+        break;
+    }
     }
 }
 
@@ -466,6 +472,33 @@ Player::~Player()
     }
 
     delete(coin_counter);
+}
+
+void Player::world_launch_level()
+{
+    if (x() > 170 && x() < 225)
+    {
+        deleteLater();
+        view->scene->clear();
+        view->play_level(":/Images/Levels/Level_003.png");
+    }
+
+    else if (x() > 370 && x() < 422)
+    {
+        deleteLater();
+        view->scene->clear();
+        view->play_level(":/Images/Levels/Level_004.png");
+    }
+
+    else if (x() > 568 && x() < 620)
+    {
+        deleteLater();
+        view->scene->clear();
+        view->play_level(":/Images/Levels/Level_005.png");
+    }
+
+
+
 }
 
 void Player::create_animation()

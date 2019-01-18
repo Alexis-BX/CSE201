@@ -17,7 +17,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
     music = new Music();
 
-    current_level = ":/Images/Levels/Level_002.png";
+    current_level = ":/Images/Levels/Level_003.png";
 }
 
 void View::update_background()
@@ -60,6 +60,19 @@ void View::open_menu()
 
     scene_menu->addItem(menu);
 }
+
+void View::world()
+{
+    scene_game_over->clear();
+    scene_you_win->clear();
+
+
+    setScene(scene);
+
+    scene->addItem(new World());
+
+}
+
 
 void View::play_level(QString level_name)
 {
