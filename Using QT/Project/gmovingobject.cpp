@@ -17,17 +17,12 @@ GMovingObject::GMovingObject(QPoint speed, QPoint position, QGraphicsItem *paren
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(view->ms_between_updates);
-
-
 }
 
 GMovingObject::~GMovingObject()
 {
-    if(timer != nullptr)
-    {
-        timer->stop();
-        timer->deleteLater();
-    }
+    timer->stop();
+    timer->deleteLater();
     for(int i = 0; i < collision_ranges.size(); i++)
     {
         delete(collision_ranges[i]);
@@ -38,9 +33,7 @@ void GMovingObject::check_in_boundaries()
 {
     if(y() >= view->world_size.bottom)
     {
-        speed.rx() = (0 > speed.ry()) ? speed.ry() : 0 ;
-        setY(view->world_size.bottom);
-        deleteLater();
+        gstate = Dead;
         return;
     }
     if(x()<=view->world_size.left)
@@ -140,7 +133,7 @@ void GMovingObject::damage_block(int direction, QGraphicsItem *colliding)
         power = abs(speed.ry())/4;
         break;
     }
-    case diagonal:
+    default:
     {
         return;
     }
@@ -168,65 +161,71 @@ void GMovingObject::damage_block(int direction, QGraphicsItem *colliding)
     destroy_item(colliding);
 }
 
-void GMovingObject::collide(int direction)
+void GMovingObject::collide()
 {
     QString temp_collision_type;
-    QList<QGraphicsItem*> colliding_items = collision_ranges[direction]->collidingItems();
-
-    for(int j = 0; j < colliding_items.size(); j++)
+    QList<QGraphicsItem*> colliding_items;
+    for(int direction = 0; direction < 3; direction ++)
     {
-        temp_collision_type = collision_master->collide(get_name(),QString(typeid(*colliding_items[j]).name()));
+        colliding_items  = collision_ranges[direction]->collidingItems();
 
-        if(temp_collision_type == "simple_collision")
+        for(int j = 0; j < colliding_items.size(); j++)
         {
-            simple_collision(direction, colliding_items[j]);
-        }
-        else if(temp_collision_type == "active_collision") //deactivates an active block
-        {
-            simple_collision(direction, colliding_items[j]);
+            temp_collision_type = collision_master->collide(get_name(),QString(typeid(*colliding_items[j]).name()));
 
-            activate_block(colliding_items[j]);
-        }
-        else if(temp_collision_type == "add_coin") //collision with cheese
-        {
-            view->player->coin_counter->add_coin();
-
-            destroy_item(colliding_items[j]);
-        }
-        else if(temp_collision_type == "power") //collision with power up
-        {
-            int last_char = (QString(typeid(*colliding_items[j]).name()))[11].digitValue();
-
-            view->player->power_up(last_char-1);
-
-            destroy_item(colliding_items[j]);
-        }
-        else if(temp_collision_type == "damage_block") //collision with breakable block
-        {
-            simple_collision(direction, colliding_items[j]);
-
-            damage_block(direction, colliding_items[j]);
-        }
-        else if(temp_collision_type == "end_collision") //collision with end_block
-        {
-            view->you_win();
-            return;
-        }
-        else if(temp_collision_type == "die") //collision with enemy
-        {
-            if(view->player->supers_b[super])
+            if(temp_collision_type == "simple_collision")
             {
+                simple_collision(direction, colliding_items[j]);
+            }
+            else if(temp_collision_type == "active_collision") //deactivates an active block
+            {
+                simple_collision(direction, colliding_items[j]);
+
+                activate_block(colliding_items[j]);
+            }
+            else if(temp_collision_type == "add_coin") //collision with cheese
+            {
+                view->player->coin_counter->add_coin();
+
                 destroy_item(colliding_items[j]);
             }
+            else if(temp_collision_type == "power") //collision with power up
+            {
+                int last_char = (QString(typeid(*colliding_items[j]).name()))[11].digitValue();
 
-            view->game_over();
-            return;
-        }
-        else if(temp_collision_type == "enemy_collision")
-        {
-            simple_collision(direction, colliding_items[j]);
+                view->player->power_up(last_char-1);
 
-            destroy_item(colliding_items[j]);
+                destroy_item(colliding_items[j]);
+            }
+            else if(temp_collision_type == "damage_block") //collision with breakable block
+            {
+                simple_collision(direction, colliding_items[j]);
+
+                damage_block(direction, colliding_items[j]);
+            }
+            else if(temp_collision_type == "end_collision") //collision with end_block
+            {
+                gstate = Win;
+                return;
+            }
+            else if(temp_collision_type == "die") //collision with enemy
+            {
+                if(view->player->supers_b[super])
+                {
+                    destroy_item(colliding_items[j]);
+                }
+                else
+                {
+                    gstate = Dead;
+                    return;
+                }
+            }
+            else if(temp_collision_type == "enemy_collision")
+            {
+                simple_collision(direction, colliding_items[j]);
+
+                destroy_item(colliding_items[j]);
+            }
         }
     }
 }

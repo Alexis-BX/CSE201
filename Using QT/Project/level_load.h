@@ -13,8 +13,6 @@ public:
 
     View* view;
 
-    QGraphicsScene*scene;
-
     void load_level(QString filename);
 
     void setup_background();

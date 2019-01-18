@@ -21,6 +21,8 @@ GPlayer::GPlayer(QPoint position, QPoint speed, QPoint size, QGraphicsItem *pare
 
 GPlayer::~GPlayer()
 {
+    view->player = nullptr;
+
     coin_counter->deleteLater();
 }
 
@@ -39,10 +41,7 @@ void GPlayer::move()
 
     qreal speedy = speed.y();
 
-    for(int i = 0 ; i < 3 ; i ++)
-    {
-        collide(i);
-    }
+    collide();
 
     if(speedy > 0 && speedy != speed.y())
     {
@@ -93,6 +92,18 @@ void GPlayer::move()
     view->centerOn(this->x(), 0);
 
     view->update_background();
+
+    switch(gstate)
+    {
+    case Dead:
+    {
+        view->game_over();
+    }
+    case Win:
+    {
+        view->you_win();
+    }
+    }
 
 }
 

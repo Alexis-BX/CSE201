@@ -34,10 +34,12 @@ void View::game_over()
 
     music->play_sound_effect(music_end); //calls the game over music
 
-    scene->clear();
+    scene_game_over->clear();
 
     setScene(scene_game_over);
-    scene_game_over->addItem(new Game_over(player->coin_counter->coins));
+    scene_game_over->addItem(new Game_over(0));
+
+    scene->clear();
 }
 
 void View::you_win()

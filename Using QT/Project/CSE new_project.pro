@@ -51,8 +51,6 @@ SOURCES += \
     main.cpp \
     menu.cpp \
     music.cpp \
-    player.cpp \
-    projectile.cpp \
     projectiles.cpp \
     super_powers.cpp \
     texture.cpp \
@@ -61,9 +59,7 @@ SOURCES += \
     you_win.cpp \
     world.cpp \
     gplayer.cpp \
-    gprojectile.cpp \
-    help.cpp
-
+    gprojectile.cpp
 
 HEADERS += \
     background.h \
@@ -83,13 +79,12 @@ HEADERS += \
     enemies.h \
     enemy.h \
     game_over.h \
+    gmovingobject.h \
     global.h \
     level_load.h \
     listheaders.h \
     menu.h \
     music.h \
-    player.h \
-    projectile.h \
     projectiles.h \
     super_powers.h \
     texture.h \
@@ -100,7 +95,8 @@ HEADERS += \
     gplayer.h \
     gprojectile.h \
     world.h \
-    help.h
+    help.h \
+    gobject.h
 
 
 # Default rules for deployment.

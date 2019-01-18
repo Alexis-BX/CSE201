@@ -30,10 +30,7 @@ void GProjectile::move()
 
     update_collision_range();
 
-    for(int i = 0 ; i < 3 ; i ++)
-    {
-        collide(i);
-    }
+    collide();
 
     if(speed != max_speed || life <= 0)
     {
@@ -59,6 +56,6 @@ void GProjectile::explode()
 
     delay(100);
 
-    QObject::deleteLater();
+    deleteLater();
 }
 

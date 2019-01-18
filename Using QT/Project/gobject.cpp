@@ -10,5 +10,5 @@ GObject::GObject(QPoint position, QGraphicsItem* parent)
 
 void GObject::move()
 {
-    return;
+
 }

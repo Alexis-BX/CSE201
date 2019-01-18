@@ -32,7 +32,7 @@ public:
 
     void damage_block(int direction, QGraphicsItem* colliding);
 
-    void collide(int direction);
+    void collide();
 
     QList<QGraphicsRectItem*> collision_ranges;
 
