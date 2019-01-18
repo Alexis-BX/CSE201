@@ -20,6 +20,8 @@ enum Block_texture
     crate = 6,
     crate_2 = 8,
     crate_3 = 11,
+    flag_pole=18,
+    flag,
     tube = 6,
     tube_up,
     tube_down

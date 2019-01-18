@@ -34,10 +34,10 @@ void View::game_over()
 
     music->play_sound_effect(music_end); //calls the game over music
 
+    scene->clear();
+
     setScene(scene_game_over);
     scene_game_over->addItem(new Game_over(player->coin_counter->coins));
-
-    scene->clear();
 }
 
 void View::you_win()
@@ -61,7 +61,16 @@ void View::open_menu()
     scene_menu->addItem(menu);
 }
 
-void View::world()
+void View::open_help()
+{
+    setScene(scene_help);
+
+    help = new Help();
+
+    scene_help->addItem(help);
+}
+
+void View::open_world()
 {
     scene_game_over->clear();
     scene_you_win->clear();
@@ -69,7 +78,9 @@ void View::world()
 
     setScene(scene);
 
-    scene->addItem(new World());
+    world = new World();
+
+    scene->addItem(world);
 
 }
 

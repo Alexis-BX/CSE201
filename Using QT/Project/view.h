@@ -6,6 +6,8 @@
 #include "backgrounds.h"
 #include "music.h"
 #include "menu.h"
+#include "help.h"
+#include "world.h"
 
 class Player;
 
@@ -23,19 +25,24 @@ public:
 
     double_pair world_size;
 
-    Player* player;
+    Player * player;
 
-    Level_load* level_load;
+    Level_load * level_load;
     QString current_level;
 
     Music * music;
 
+    Help * help;
+
     Menu * menu;
 
-    QGraphicsScene *scene_menu  = new QGraphicsScene();
-    QGraphicsScene *scene  = new QGraphicsScene();
-    QGraphicsScene *scene_game_over  = new QGraphicsScene();
-    QGraphicsScene *scene_you_win  = new QGraphicsScene();
+    World * world;
+
+    QGraphicsScene * scene_menu  = new QGraphicsScene();
+    QGraphicsScene * scene_help  = new QGraphicsScene();
+    QGraphicsScene * scene  = new QGraphicsScene();
+    QGraphicsScene * scene_game_over  = new QGraphicsScene();
+    QGraphicsScene * scene_you_win  = new QGraphicsScene();
 
     //backgrounds
     //std::vector<Background*> backgrounds;
@@ -54,7 +61,9 @@ public:
 
     void open_menu();
 
-    void world();
+    void open_help();
+
+    void open_world();
 
     void play_level(QString level_name);
 

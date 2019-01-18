@@ -55,12 +55,6 @@ public:
     Activated_block(pair position, QGraphicsItem* parent = nullptr);
 };
 
-class End_block: public Block
-{
-public:
-    End_block(pair position, QGraphicsItem* parent = nullptr);
-};
-
 class Tube_block: public Block
 {
 public:
@@ -77,6 +71,18 @@ class Tube_block_down: public Block
 {
 public:
     Tube_block_down(pair position, QGraphicsItem* parent = nullptr);
+};
+
+class End_pole: public Block
+{
+public:
+    End_pole(pair position, QGraphicsItem* parent = nullptr);
+};
+
+class End_flag: public Block
+{
+public:
+    End_flag(pair position, QGraphicsItem* parent = nullptr);
 };
 
 #endif // BLOCKS_H

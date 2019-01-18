@@ -32,7 +32,7 @@ void Game_over::keyPressEvent(QKeyEvent *event)
     {
         deleteLater();
 
-        view->world();
+        view->open_world();
 
         break;
     }

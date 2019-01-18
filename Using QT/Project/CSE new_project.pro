@@ -44,6 +44,7 @@ SOURCES += \
     enemies.cpp \
     enemy.cpp \
     game_over.cpp \
+    help.cpp \
     level_load.cpp \
     main.cpp \
     menu.cpp \
@@ -58,7 +59,6 @@ SOURCES += \
     view.cpp \
     you_win.cpp \
     world.cpp
-    help.cpp
 
 
 HEADERS += \
@@ -80,6 +80,7 @@ HEADERS += \
     enemy.h \
     game_over.h \
     global.h \
+    help.h \
     level_load.h \
     listheaders.h \
     menu.h \
@@ -95,10 +96,6 @@ HEADERS += \
     view.h \
     you_win.h \
     world.h
-    help.h
-
-
-
 
 
 # Default rules for deployment.

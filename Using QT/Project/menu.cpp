@@ -3,13 +3,13 @@
 Menu::Menu(QGraphicsItem* parent) :
     QObject(), QGraphicsPixmapItem (parent)
 {
-    selected = op_start;
-
-    load_animation();
-
     setFlag(QGraphicsItem::ItemIsFocusable);
 
     setFocus();
+
+    selected = op_start;
+
+    load_animation();
 }
 
 void Menu::keyPressEvent(QKeyEvent *event)
@@ -51,8 +51,8 @@ void Menu::launch()
     switch (selected) {
     case op_start:
     {
-        view->world();
         view->scene_menu->clear();
+        view->open_world();
         break;
     }
     case op_keys:
@@ -62,8 +62,8 @@ void Menu::launch()
     }
     case op_help:
     {
-        //display help, game info...
-        break;
+        view->scene_menu->clear();
+        view->open_help();
     }
     }
 }
@@ -78,7 +78,9 @@ void Menu::set_animation_state()
 
 void Menu::load_animation()
 {
-   new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
+    bg = new Button(0, -505, QPixmap(":/Images/Menu/accueilsgj.png"), this);
+
+    view->scene_menu->addItem(bg);
 
     QPixmap images(":/Images/Levels/buttons.png");
 
@@ -91,6 +93,8 @@ void Menu::load_animation()
     for (int i=0; i<op_amount; i++)
     {
         button_list[i] = new Button(170 + 200*i, -70, buttons[i][selected==i], this);
+
+        view->scene_menu->addItem(button_list[i]);
     }
 }
 

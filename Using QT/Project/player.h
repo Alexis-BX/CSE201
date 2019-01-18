@@ -23,7 +23,6 @@ public:
 
     Player(QGraphicsItem* parent = nullptr);
 
-
     // Attributes
 
     QList<QGraphicsRectItem*> collision_ranges;
@@ -61,14 +60,10 @@ public:
 
     QTimer* timerGO;
 
-    void setup_timer();
-
     // Methods
     void keyPressEvent(QKeyEvent * event);
 
     void keyReleaseEvent(QKeyEvent * event);
-
-    void move();
 
     void throw_projectile();
 
@@ -78,16 +73,14 @@ public:
 
     void jump();
 
-    void world_launch_level();
-
     ~Player();
 
 public slots:
 
     // Slot for timer
-    void update();
+    void move();
 
-    void test();
+    void player_game_over();
 };
 
 #endif // PLAYER_H

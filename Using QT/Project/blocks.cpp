@@ -102,18 +102,6 @@ Activated_block::Activated_block(pair position, QGraphicsItem* parent) :
     setPixmap(sprite[image_count]);
 }
 
-
-End_block::End_block(pair position, QGraphicsItem* parent) :
-    Block(position, parent)
-{
-    type = permanent;
-    texture = grass;            //RANDOM TEXTURE FOR NOW
-    state = initial;
-
-    sprite = gtexture->get_qpixmap_of(blocks, texture);
-    setPixmap(sprite[image_count]);
-}
-
 Tube_block::Tube_block(pair position, QGraphicsItem* parent) :
     Block(position, parent)
 {
@@ -144,5 +132,27 @@ Tube_block_down::Tube_block_down(pair position, QGraphicsItem* parent) :
     state = initial;
 
     sprite = gtexture->get_qpixmap_of(blocks, texture, 1, pair{36,18});      //size bigger than others, equal to 36
+    setPixmap(sprite[image_count]);
+}
+
+End_pole::End_pole(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = flag_pole;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
+    setPixmap(sprite[image_count]);
+}
+
+End_flag::End_flag(pair position, QGraphicsItem* parent) :
+    Block(position, parent)
+{
+    type = permanent;
+    texture = flag;
+    state = initial;
+
+    sprite = gtexture->get_qpixmap_of(blocks, texture);
     setPixmap(sprite[image_count]);
 }

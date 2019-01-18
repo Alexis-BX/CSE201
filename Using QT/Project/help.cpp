@@ -12,20 +12,18 @@ Help::Help(QGraphicsItem* parent):
 
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
+
+    view->scene_help->addItem(this);
 }
 
 void Help::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
-    case Qt::Key_Enter:
-    case Qt::Key_Space:
-    case Qt::Key_Return:
+    default:
     {
-        deleteLater();
-
-        view->play_level(view->current_level);
-
+        view->scene_help->clear();
+        view->open_menu();
         break;
     }
     }

@@ -13,8 +13,6 @@ public:
 
     Background(pair position, QGraphicsItem *parent = nullptr);
 
-    virtual QPainterPath shape() const;
-
     ~Background();
 };
 

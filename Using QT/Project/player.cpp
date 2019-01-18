@@ -13,46 +13,20 @@ Player::Player(QGraphicsItem* parent) :
 
     super_powers = new Super_powers();
 
-
-
     // Timer
     timer = new QTimer();
 
-    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(update()));
+    QObject::connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     timer->start(view->ms_between_updates);
 
-    setup_timer();
+    QTimer::singleShot(100000,this ,SLOT(player_game_over()));
 }
 
-void Player::setup_timer()
-{
-    // Timer
-    /**timerGO = new QTimer();
-
-    timerGO->setTimerType(Qt::VeryCoarseTimer);
-
-    timerGO->start(view->ms_between_updates);
-
-    timerGO->setSingleShot(true);
-
-    timerGO->singleShot(10, this, SLOT(test()));//doesn't work yet for some reason
-    **/
-
-    QTimer::singleShot(100000,this ,SLOT(test()));
-}
-
-void Player::test()
+void Player::player_game_over()
 {
     view->game_over();
 }
-
-/**NOTE:
- *  FOR THE moment i made it so the player chooses the items he throws just for testing collisions
- * the designs i made are shit and i know it but again its just to test
- *
- * - adrien
- * **/
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
@@ -78,10 +52,9 @@ void Player::keyPressEvent(QKeyEvent *event)
         throw_projectile();
         break;
     }
-    case Qt::Key_Return:
+    case Qt::Key_Escape:
     {
-        deleteLater();
-        world_launch_level();
+        view->game_over();
         break;
     }
     }
@@ -102,12 +75,6 @@ void Player::keyReleaseEvent(QKeyEvent *event)
         break;
     }
     }
-}
-
-void Player::update()
-{
-    move();
-
 }
 
 void Player::move()
@@ -472,33 +439,6 @@ Player::~Player()
     }
 
     delete(coin_counter);
-}
-
-void Player::world_launch_level()
-{
-    if (x() > 170 && x() < 225)
-    {
-        deleteLater();
-        view->scene->clear();
-        view->play_level(":/Images/Levels/Level_003.png");
-    }
-
-    else if (x() > 370 && x() < 422)
-    {
-        deleteLater();
-        view->scene->clear();
-        view->play_level(":/Images/Levels/Level_004.png");
-    }
-
-    else if (x() > 568 && x() < 620)
-    {
-        deleteLater();
-        view->scene->clear();
-        view->play_level(":/Images/Levels/Level_005.png");
-    }
-
-
-
 }
 
 void Player::create_animation()

@@ -9,21 +9,13 @@ class World: public QObject,public QGraphicsPixmapItem
     Q_OBJECT
 public:
 
-    World( QGraphicsItem* parent = nullptr);
+    Button * bg;
 
-    int selected;
+    World( QGraphicsItem* parent = nullptr);
 
     void keyPressEvent(QKeyEvent * event);
 
     void check_position();
-
-    QTimer* timer;
-
-    QTimer* timerGO;
-
-    QString current_level;
-
-
 };
 
 #endif // WORLD_H
