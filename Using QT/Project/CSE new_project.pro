@@ -61,8 +61,7 @@ SOURCES += \
     you_win.cpp \
     world.cpp \
     gplayer.cpp \
-    gprojectile.cpp \
-    help.cpp
+    gprojectile.cpp
 
 
 HEADERS += \
@@ -100,7 +99,7 @@ HEADERS += \
     gplayer.h \
     gprojectile.h \
     world.h \
-    help.h
+    gobject.h
 
 
 # Default rules for deployment.
