@@ -148,21 +148,16 @@ void Enemy::move()
     update_collision_range(collision_ranges, size, speed);
 
     //make sure he doesn't fall off:
-    QList<QGraphicsItem*> corner_colliding_br;
-    QList<QGraphicsItem*> corner_colliding_bl;
 
-    corner_colliding_br = collision_range_br->collidingItems();
-    corner_colliding_bl = collision_range_bl->collidingItems();
+    int br = collision_range_br->collidingItems().size();
+    int bl = collision_range_bl->collidingItems().size();
 
-    int br = corner_colliding_br.size();
-    int bl = corner_colliding_bl.size();
-
-    if(br <= 1 && speed.x > 0) //if there is no collision on the bottom right or left (THE COLLISION BOX COUNTS AS A COLLISION; HENCE 1 AND NOT 0)
+    if(br == 2 && speed.x > 0)
     {
         speed.x = -speed.x;
     }
 
-    if(bl <= 1 && speed.x < 0)
+    if(bl == 2 && speed.x < 0)
     {
         speed.x = -speed.x;
     }
