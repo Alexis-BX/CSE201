@@ -4,6 +4,7 @@
 #include "super_powers.h"
 #include "coin_counter.h"
 #include "gmovingobject.h"
+#include "gclock.h"
 
 enum Player_states
 {
@@ -51,6 +52,8 @@ public:
     QPixmap animations[2][2][12][8];
 
     Coin_counter* coin_counter;
+
+    GClock* clock;
 
 public slots:
 

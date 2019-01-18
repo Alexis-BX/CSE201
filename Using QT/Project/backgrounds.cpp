@@ -5,7 +5,7 @@ Background_far::Background_far(pair position): Background(position)
     sprite = QPixmap(gtexture->get_path_to(background_far));
     width = sprite.width();
     height = sprite.height();
-    setPos(position.x,position.y-height+18);
+    setPos(position.x,position.y-height+72);
     this->setZValue(layer_background_far);
     setPixmap(sprite);
     this->speed_ratio = 10;
