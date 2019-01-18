@@ -7,7 +7,7 @@ You_win::You_win(QGraphicsItem* parent):
 
     view->centerOn(this);
 
-    QPixmap img(":/Images/Backgrounds/Main_background/you_win.png");
+    QPixmap img(":/Images/Menu/you_win.png");
     img = img.scaled(view->screen_size.x, view->screen_size.y);
 
     QPainter painter;
@@ -19,9 +19,6 @@ You_win::You_win(QGraphicsItem* parent):
         painter.end();
     }
     setPixmap(img);
-
-    setFlag(QGraphicsItem::ItemIsFocusable);
-    setFocus();
 }
 
 void You_win::keyPressEvent(QKeyEvent *event)

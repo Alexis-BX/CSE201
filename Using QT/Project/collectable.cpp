@@ -111,8 +111,6 @@ void Collectable::move()
             }
             else if(temp_collision_type == "power_player")
             {
-                //qDebug() << QString(typeid(this).name());
-
                 int last_char = (QString(typeid(*this).name()))[11].digitValue();
 
                 view->player->power_up(last_char-1);

@@ -112,4 +112,14 @@ enum screne_layers
     layer_clock
 };
 
+enum controls
+{
+    control_player,
+    control_help,
+    control_menu,
+    control_world,
+    control_game_over,
+    control_win
+};
+
 #endif // TYPES_STATES_TEXTURES_H

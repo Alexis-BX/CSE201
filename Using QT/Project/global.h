@@ -1,7 +1,6 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
-
 #include <iostream>
 
 #include <QApplication>
@@ -10,18 +9,18 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QKeyEvent>
+#include <QList>
+#include <QMainWindow>
 #include <QObject>
 #include <QRgb>
+#include <QSound>
 #include <QTimer>
+#include <QUrl>
 #include <QtWidgets>
+#include <QWidget>
 
 #include "tools.h"
 #include "types_states_textures.h"
-
-#include <QMainWindow>
-#include <QWidget>
-#include <QSound>
-#include <QUrl>
 
 class View;
 
@@ -36,22 +35,3 @@ class Collision_master;
 extern Collision_master* collision_master;
 
 #endif // GLOBAL_H
-
-
-/* Libraries that turned out to be useless
-#include <QCoreApplication>
-#include <QPixmap>
-#include <math.h>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cmath>
-#include "vector"
-#include "cstring"
-#include "string"
-#include <QDebug>
-#include <QtDebug>
-#include <cstddef>
-#include <cstdlib>
-#include <QTime>
-*/

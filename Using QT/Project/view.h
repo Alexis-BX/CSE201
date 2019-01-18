@@ -8,6 +8,8 @@
 #include "menu.h"
 #include "help.h"
 #include "world.h"
+#include "you_win.h"
+#include "game_over.h"
 
 class GPlayer;
 
@@ -38,6 +40,12 @@ public:
     Menu * menu;
 
     World * world;
+
+    You_win * youwin;
+
+    Game_over * gameover;
+
+    controls pressed_key_handler;
 
     QGraphicsScene * scene_menu  = new QGraphicsScene();
     QGraphicsScene * scene_help  = new QGraphicsScene();

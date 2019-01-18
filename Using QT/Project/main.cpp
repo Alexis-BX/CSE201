@@ -20,9 +20,7 @@ int main(int argc, char *argv[])
 
     view = new View(pair{793,505});
 
-    //view->open_menu();
-
-    view->play_level();
+    view->open_menu();
 
     view->show();
 

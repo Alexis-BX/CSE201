@@ -32,10 +32,6 @@ void Collision_master::read_rules_from_file()
             {
                 return;
             }
-            else
-            {
-                //qDebug() << buffer_string[0];
-            }
         } while (buffer_string[0] != QChar('#'));
 
         name = buffer_string.trimmed();
