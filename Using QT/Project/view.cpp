@@ -16,7 +16,7 @@ View::View(pair screen_size, int block_size, QWidget* parent) :
 
     music = new Music();
 
-    current_level = ":/Images/Levels/Level_003.png";
+    current_level = ":/Images/Levels/Level_adrien.png";
 
     for(int i = 0; i < scene_name_counter; i++)
     {

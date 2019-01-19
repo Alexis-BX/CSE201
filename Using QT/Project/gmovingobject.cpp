@@ -96,15 +96,21 @@ void GMovingObject::simple_collision(int i, QGraphicsItem *colliding)
     }
 }
 
-void GMovingObject::activate_block(QGraphicsItem *colliding)
+void GMovingObject::activate_block(int direction, QGraphicsItem *colliding)
 {
-    if(speed.ry() < -5)
+    if(speed.ry() < -5 && direction == vertical)
     {
         view->scenes[scene_level]->addItem(new Activated_block(pair{colliding->x(),colliding->y()}));
 
         create_random_powerup(pair{colliding->x(),colliding->y()},view->block_size);
 
+        simple_collision(direction, colliding);
+
         destroy_item(colliding);
+    }
+    else
+    {
+        simple_collision(direction, colliding);
     }
 }
 
@@ -127,28 +133,42 @@ void GMovingObject::damage_block(int direction, QGraphicsItem *colliding)
         {
         case horizontal:
         {
-            power = abs(speed.rx())/4;
+            power = abs(speed.rx())/6;
             break;
         }
         case vertical:
         {
-            power = abs(speed.ry())/4;
+            power = abs(speed.ry())/6;
             break;
         }
         default:
         {
+            simple_collision(direction, colliding);
             return;
         }
         }
 
         if(power == 0)
         {
+            simple_collision(direction, colliding);
             return;
         }
     }
     else
     {
-        power = 1;
+        if(direction != horizontal)
+        {
+            simple_collision(direction, colliding);
+            return;
+        }
+        if(QString(typeid(*this).name()) == "19Player_projectile_2")
+        {
+            power = 5;
+        }
+        else
+        {
+            power = 1;
+        }
     }
 
 
@@ -165,6 +185,8 @@ void GMovingObject::damage_block(int direction, QGraphicsItem *colliding)
         break;
     }
     }
+
+    simple_collision(direction, colliding);
 
     destroy_item(colliding);
 }
@@ -187,9 +209,7 @@ void GMovingObject::collide()
             }
             else if(temp_collision_type == "active_collision") //deactivates an active block
             {
-                simple_collision(direction, colliding_items[j]);
-
-                activate_block(colliding_items[j]);
+                activate_block(direction, colliding_items[j]);
             }
             else if(temp_collision_type == "add_coin") //collision with cheese
             {
@@ -207,8 +227,6 @@ void GMovingObject::collide()
             }
             else if(temp_collision_type == "damage_block") //collision with breakable block
             {
-                simple_collision(direction, colliding_items[j]);
-
                 damage_block(direction, colliding_items[j]);
             }
             else if(temp_collision_type == "end_collision") //collision with end_block
@@ -233,6 +251,14 @@ void GMovingObject::collide()
                 simple_collision(direction, colliding_items[j]);
 
                 destroy_item(colliding_items[j]);
+            }
+
+            else if(temp_collision_type == "power_player")
+            {
+                gstate = Dead;
+                int last_char = (QString(typeid(this).name()))[11].digitValue();
+
+                view->player->power_up(last_char-1);
             }
         }
     }

@@ -39,5 +39,6 @@
         <file>Textures/Main_texture/smoking_dude.png</file>
         <file>Textures/Main_texture/thief_dying_poorthing.png</file>
         <file>Textures/Main_texture/thief_walking_casual.png</file>
+        <file>Levels/Level_adrien.png</file>
     </qresource>
 </RCC>

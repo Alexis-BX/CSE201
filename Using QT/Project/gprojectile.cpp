@@ -44,6 +44,19 @@ void GProjectile::move()
     count  += (count >= 3.7) ? -count : 0.3;
 
     setPixmap(gtexture->get_qpixmap_of(projectiles, type, 4)[count]);
+
+    switch(gstate)
+    {
+    case Dead:
+    {
+        deleteLater();
+        break;
+    }
+    default:
+    {
+        break;
+    }
+    }
 }
 
 void GProjectile::explode()

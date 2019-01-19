@@ -20,15 +20,17 @@ Enemy::Enemy(pair position, QGraphicsItem* parent ) : QObject (), QGraphicsPixma
 
     timer->start(30);
 
+    size = pair{36,36};
+
     collision_range_br = new QGraphicsRectItem(this);
     collision_range_bl = new QGraphicsRectItem(this);
 
-    collision_range_br->setRect(0,0, 8 ,8); // bottom right corner
-    collision_range_br->setPos(36, 36);
+    collision_range_br->setRect(0,0, 4 ,4); // bottom right corner
+    collision_range_br->setPos(size.x, size.y);
     collision_range_br->setPen(QPen(Qt::NoPen));
 
-    collision_range_bl->setRect(0,0,8,8); // bottom left corner
-    collision_range_bl->setPos(-9, 36);
+    collision_range_bl->setRect(0,0,4,4); // bottom left corner
+    collision_range_bl->setPos(-5, size.y);
     collision_range_bl->setPen(QPen(Qt::NoPen));
 
 }
@@ -151,23 +153,57 @@ void Enemy::move()
     QList<QGraphicsItem*> corner_colliding_br;
     QList<QGraphicsItem*> corner_colliding_bl;
 
+
     corner_colliding_br = collision_range_br->collidingItems();
     corner_colliding_bl = collision_range_bl->collidingItems();
 
-    int br = corner_colliding_br.size();
-    int bl = corner_colliding_bl.size();
 
-    if(br <= 1 && speed.x > 0) //if there is no collision on the bottom right or left (THE COLLISION BOX COUNTS AS A COLLISION; HENCE 1 AND NOT 0)
+    bool bru = false;
+    bool blu = false;
+
+    QString temp_collision_type;
+
+    //remove background layers colliding
+    for (int i = 0; i < corner_colliding_br.size(); i++)
     {
-        speed.x = -speed.x;
+        temp_collision_type = collision_master->collide("Enemy", QString(typeid(*corner_colliding_br[i]).name()));
+
+        if ( temp_collision_type == "simple_collision")
+        {
+            bru = true;
+            break;
+        }
     }
 
-    if(bl <= 1 && speed.x < 0)
+    for (int i = 0; i < corner_colliding_bl.size(); i++)
     {
-        speed.x = -speed.x;
+        temp_collision_type = collision_master->collide("Enemy", QString(typeid(*corner_colliding_bl[i]).name()));
+
+        if ( temp_collision_type == "simple_collision")
+        {
+            blu = true;
+            break;
+        }
+    }
+
+    if(bru || blu)
+    {
+        if(!bru && speed.x > 0)
+        {
+            speed.x = -speed.x;
+        }
+
+        else if(!blu && speed.x < 0)
+        {
+            speed.x = -speed.x;
+        }
     }
 
 
+
+
+
+    //movements
     {
     QString temp_collision_type;
     QList<QGraphicsItem*> colliding_items;
@@ -185,6 +221,16 @@ void Enemy::move()
                 collision[i] = true;
                 continue;
             }
+
+            else if(temp_collision_type == "player_die")
+            {
+                if(!view->player->supers_b[super])
+                {
+                    view->game_over();
+                    return;
+                }
+            }
+
         }
     }
     }

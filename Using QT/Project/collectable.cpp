@@ -102,8 +102,8 @@ void Collectable::move()
         colliding_items = collision_ranges[i]->collidingItems();
         for(int j = 0; j < colliding_items.size(); j++)
         {
-            temp_collision_type = collision_master->collide("Collectable",QString(typeid(*colliding_items[j]).name()));
 
+            temp_collision_type = collision_master->collide("Collectable",QString(typeid(*colliding_items[j]).name()));
             if(temp_collision_type == "simple_collision")
             {
                 collision[i] = true;
@@ -115,10 +115,12 @@ void Collectable::move()
 
                 view->player->power_up(last_char-1);
 
+                qDebug() << "power_player";
                 deleteLater();
 
                 continue;
             }
+
 
         }
     }

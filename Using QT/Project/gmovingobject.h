@@ -26,7 +26,7 @@ public:
 
     void simple_collision(int i, QGraphicsItem* colliding);
 
-    void activate_block(QGraphicsItem* colliding);
+    void activate_block(int direction, QGraphicsItem* colliding);
 
     void destroy_item(QGraphicsItem* colliding);
 
@@ -36,7 +36,7 @@ public:
 
     QList<QGraphicsRectItem*> collision_ranges;
 
-    QPoint speed{0,0}, max_speed{10,15};
+    QPoint speed{0,0}, max_speed{7,15};
 
     Direction facing{Right};
 
